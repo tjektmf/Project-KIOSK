@@ -10,6 +10,7 @@ public class ChoiceCategoryBeverageBtn extends JButton {
 		
 		ImageIcon beverage = new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/apple100.jpg");
 		setIcon(beverage);
+		setText("Beverage");
 		mainFrame.choiceCategoryBeverageBtn = choiceCategoryBeverageBtn;
 	}
 	

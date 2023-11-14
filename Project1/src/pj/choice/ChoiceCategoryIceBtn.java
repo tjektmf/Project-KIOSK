@@ -11,6 +11,7 @@ public class ChoiceCategoryIceBtn extends JButton{
 		
 		ImageIcon ice = new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/apple100.jpg");
 		setIcon(ice);
+		setText("Icecream");
 		mainFrame.choiceCategoryIceBtn = choiceCategoryIceBtn;	
 	}
 }

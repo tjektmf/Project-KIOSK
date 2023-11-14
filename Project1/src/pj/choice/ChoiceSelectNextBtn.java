@@ -8,7 +8,7 @@ import javax.swing.JButton;
 public class ChoiceSelectNextBtn extends JButton{
 	
 	JButton choiceSelectNextBtn = new JButton();
-	ChoiceSelectMenu card;
+	ChoiceSelectIce card;
 
 	public ChoiceSelectNextBtn(ChoiceFrameSelect mainFrame) {
 		
