@@ -22,7 +22,7 @@ public class ChoiceFrameSelect extends JPanel {
 		// all 패널을 메인프레임에 붙어야함 5개패널의 생성자에 들어갈 매개변수 변경이 필요함
 		
 		
-		BorderLayout border = new BorderLayout(40, 40);
+		BorderLayout border = new BorderLayout(20,20);
 		setLayout(border);
 		
 

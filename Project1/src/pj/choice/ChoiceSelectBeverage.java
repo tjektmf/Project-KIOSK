@@ -22,7 +22,7 @@ public class ChoiceSelectBeverage extends JPanel {
 		JPanel pan1 = new JPanel(new GridLayout(4, 4));
 		JPanel pan2 = new JPanel(new GridLayout(4, 4));
 		JPanel pan3 = new JPanel(new GridLayout(4, 4));
-
+		
 		for (int i = 1; i < 49; i++) {
 			if (i < 17) {
 				pan1.add(new JButton("beverage " + i));
