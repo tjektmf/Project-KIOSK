@@ -17,14 +17,14 @@ public class PointButton extends JFrame {
 		JFrame f = new JFrame("CardLayout Sample");
 		CardLayout card = new CardLayout();
 		f.setLayout(card);
-		
+		Color color = new Color(236, 108, 165);
 		JPanel panel1 = new JPanel(null);
 		JPanel panel2 = new JPanel(null);
 		JPanel panel3 = new JPanel(null);
 		JPanel panel4 = new JPanel(null);
 
 	
-		panel1.setBackground(Color.white);
+		panel1.setBackground(color);
 		panel2.setBackground(Color.white);
 		panel3.setBackground(Color.white);
 		panel4.setBackground(Color.white);
@@ -34,11 +34,11 @@ public class PointButton extends JFrame {
 		JLabel label2 = new JLabel("회원이신가요?");
 		JLabel label3 = new JLabel("최종 결제금액");
 	
-		label1.setBounds(1, 1, 300, 100);
+		label1.setBounds(30, 1, 300, 100);
 		label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-		label2.setBounds(1, 190, 500, 100);
+		label2.setBounds(30, 190, 500, 100);
 		label2.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-		label3.setBounds(1, 490, 300, 100);
+		label3.setBounds(30, 490, 300, 100);
 		label3.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 	
 		panel1.add(label1);
@@ -48,11 +48,11 @@ public class PointButton extends JFrame {
 		JButton btn1 = new JButton("회원포인트");
 		btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		btn1.setForeground(Color.pink);
-		btn1.setBackground(Color.white);
+		btn1.setBackground(new Color(0,0,0,0)); 
 		btn1.setBounds(30, 90, 145, 90);
 		JButton btn2 = new JButton("결제");
 		btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		btn2.setBackground(Color.white);
+		btn2.setBackground(new Color(0,0,0,0)); 
 		btn2.setBounds(270, 90, 145, 90);
 		JButton btn3 = new JButton("yes");
 		btn3.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 50));
@@ -96,7 +96,7 @@ public class PointButton extends JFrame {
 		tf.setSize(330, 50);
 		panel2.add(tf);
 		JLabel panel2label1 = new JLabel("회원번호 입력해주세요");
-		panel2label1.setBounds(1, 50, 300, 100);
+		panel2label1.setBounds(30, 50, 300, 100);
 		panel2label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 		panel2.add(panel2label1);
 		
@@ -199,12 +199,12 @@ public class PointButton extends JFrame {
 			}
 		});
 		
-//		panel2btn11.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				 tf.setText(tf.getText().substring(ALLBITS, ABORT));
-//			}
-//		});
+		panel2btn11.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 tf.setText(tf.getText().substring(0, tf.getText().length()-1));
+			}
+		});
 		
 		JButton panel2btn12 = new JButton("이전");
 		panel2btn12.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
@@ -257,11 +257,11 @@ public class PointButton extends JFrame {
 		JLabel panel3label4 = new JLabel("최종결제금액");
 		
 
-		panel3label1.setBounds(1, 1, 300, 100);
+		panel3label1.setBounds(30, 1, 300, 100);
 		panel3label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-		panel3label3.setBounds(1, 1, 300, 100);
+		panel3label3.setBounds(30, 1, 300, 100);
 		panel3label3.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-		panel3label4.setBounds(1, 490, 300, 100);
+		panel3label4.setBounds(30, 490, 300, 100);
 		panel3label4.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 	
 		panel3.add(panel3label1);
@@ -337,12 +337,12 @@ public class PointButton extends JFrame {
 		
 		
 		// panel4부분
-		JLabel panel4label1 = new JLabel("영수증 출력하시겠습니까?");
+		JLabel panel4label1 = new JLabel("결제가 완료되었습니다");
 		panel4label1.setBounds(120, 300, 300, 100);
 	
 		
 		panel4.add(panel4label1);
-		
+
 		f.add("1", panel1);
 		f.add("2", panel2);
 		f.add("3", panel3);
