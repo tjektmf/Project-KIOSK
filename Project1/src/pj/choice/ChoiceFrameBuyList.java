@@ -9,7 +9,7 @@ public class ChoiceFrameBuyList extends JPanel {
 	public ChoiceFrameBuyList(ChoiceFrame mainFrame) {
 		
 		JLabel test = new JLabel();
-		test.setIcon(new ImageIcon("C:/ds/JavaStudy/myfiles/images/animals/img2.jpg"));
+		test.setIcon(new ImageIcon("img/cat.gif"));
 		
 		add(test);
 

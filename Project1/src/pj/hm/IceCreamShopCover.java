@@ -22,24 +22,24 @@ import javax.swing.Timer;
 
 public class IceCreamShopCover extends JFrame {
 
+	String imagePath = "C:/Users/Gi7E-36/Desktop/img/베라img.png"; // 파일 확장자 추가
     public IceCreamShopCover() {
         setTitle("베스킨라빈스");
-        setLayout(new BorderLayout());
+    //    setLayout(new BorderLayout());
 
         // 이미지를 표시할 JLabel
         JLabel mainLabel = new JLabel();
         // 투명한 패널 위에 글씨를 표시할 JLabel
         JLabel textLabel = new JLabel("화면을 클릭하세요");
         // 이미지 파일 경로
-        String imagePath = "C:/Users/Gi7E-36/Desktop/img/베라img.png"; // 파일 확장자 추가
         
         Timer change = new Timer(3000, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 					
+				IceCreamShopCover.d(imagePath);
 			}
-			String imagePath2 = "C:/Users/Gi7E-36/Desktop/img/ad1.png";
         });
         
         for(int i = 0 ; i < 5; i++) {
@@ -57,8 +57,8 @@ public class IceCreamShopCover extends JFrame {
         }
 
         // 투명한 패널을 만들어 글씨를 포함시키고 위치 설정
-        JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        textPanel.setSize(540, 960);
+        JPanel textPanel = new JPanel();
+        textPanel.setBounds(100, 100, 100, 100);
         textPanel.setBackground(new Color(0,0,0,0)); // 투명 설정
         add(textPanel);
         textPanel.add(textLabel);
@@ -85,6 +85,10 @@ public class IceCreamShopCover extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+    
+    public static String d(String imagePath) {
+    	return imagePath;
     }
 
     public static void main(String[] args) {

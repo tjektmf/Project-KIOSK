@@ -8,9 +8,9 @@ public class ChoiceTopButtonBack extends JButton{
 	JButton choiceTopButtonBack;
 
 	public ChoiceTopButtonBack(ChoiceFrameTop mainFrame) {
-		ImageIcon back = new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/apple40.jpg");
+		ImageIcon back = new ImageIcon("img/cat.gif");
 		setIcon(back);
-		setText("Back");
+	//	setText("Back");
 		mainFrame.choiceTopButtonBack = choiceTopButtonBack;
 	}
 }

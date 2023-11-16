@@ -26,9 +26,9 @@ public class ChoiceFrame extends JFrame {
 		// 크기조절
 		choiceFrameTop.setBounds(0, 0, 540, 50);
 		choiceFrameCategory.setBounds(0, 60, 540, 60);
-		choiceSelectAll.setBounds(0, 130, 540, 400);
-		choiceFramePrice.setBounds(0, 530, 540, 60);
-		choiceFrameBuyList.setBounds(0, 780, 540, 200);
+		choiceSelectAll.setBounds(0, 130, 540, 500);
+		choiceFramePrice.setBounds(0, 640, 540, 60);
+		choiceFrameBuyList.setBounds(0, 710, 540, 190);
 
 		add(choiceFrameTop);
 		add(choiceFrameCategory);
