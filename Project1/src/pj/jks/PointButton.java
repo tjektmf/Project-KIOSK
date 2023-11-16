@@ -1,4 +1,4 @@
-package pj.choice;
+package pj.jks;
 
 import java.awt.CardLayout;
 import java.awt.Color;
