@@ -17,8 +17,10 @@ public class ChoiceFrameTop extends JPanel {
 		
 		
 		GridLayout grid = new GridLayout(1,2);
-		grid.setHgap(300);
-		grid.setVgap(1000);
+
+		grid.setHgap(200);
+		setLayout(grid);
+
 		choiceTopButtonHome = new ChoiceTopButtonHome(this);
 		choiceTopButtonBack = new ChoiceTopButtonBack(this);
 

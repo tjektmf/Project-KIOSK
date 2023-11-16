@@ -48,10 +48,6 @@ public class IceCreamShopCover extends JFrame {
         add(textPanel);
         textPanel.add(textLabel);
 
-        
-        // 이미지 파일 3초마다 바뀌도록
-        // 이미지 마다 글씨가 들어가야함
-
         // 전체를 감싸는 패널
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(mainLabel, BorderLayout.CENTER);
@@ -64,16 +60,7 @@ public class IceCreamShopCover extends JFrame {
                   mainLabel.add(textPanel);
                   currentImgIndex = (currentImgIndex + 1 ) % imagePaths.length;
                }
-        	   
-        	   
-//        	@Override			
-//        	public void actionPerformed(ActionEvent e) {
-//        		String imagePath = imagePaths[currentImgIndex];
-//        		updateImg(mainLabel);
-//        		currentImgIndex = (currentImgIndex + 1 ) % imagePaths.length;
-//        	    add(textPanel);
-//        	}
-//        	
+      	
         	   });
         
         changeImg.start();
