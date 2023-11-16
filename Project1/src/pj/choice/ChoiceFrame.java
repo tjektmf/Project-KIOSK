@@ -6,25 +6,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ChoiceFrame extends JFrame {
-	
+
 	ChoiceFrameTop choiceFrameTop;
 	ChoiceFrameCategory choiceFrameCategory;
-	ChoiceFrameSelect choiceFrameSelect;
-
+	ChoiceSelectAll choiceSelectAll;
 
 	public ChoiceFrame() {
-		GridLayout grid = new GridLayout(4,1);
+		GridLayout grid = new GridLayout(4, 1);
 		setLayout(grid);
 		grid.setVgap(40);
 		choiceFrameTop = new ChoiceFrameTop(this);
 		choiceFrameCategory = new ChoiceFrameCategory(this);
-		choiceFrameSelect = new ChoiceFrameSelect(this);
-		
+
+		choiceSelectAll = new ChoiceSelectAll(this);
+
 		// 붙이는 순서 중요
 		add(choiceFrameTop);
 		add(choiceFrameCategory);
-		add(choiceFrameSelect);
-		
+		add(choiceSelectAll);
+
 		setBounds(100, 100, 1080, 1920);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
