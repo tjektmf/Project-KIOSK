@@ -25,7 +25,7 @@ public class ChoiceFrame extends JFrame {
 		add(choiceFrameCategory);
 		add(choiceSelectAll);
 
-		setBounds(100, 100, 1080, 1920);
+		setBounds(100, 100, 540, 960);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}

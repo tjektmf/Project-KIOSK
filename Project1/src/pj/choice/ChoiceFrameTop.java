@@ -17,13 +17,12 @@ public class ChoiceFrameTop extends JPanel {
 		
 		
 		GridLayout grid = new GridLayout(1,2);
-		grid.setHgap(600);
-		setLayout(grid);
+		grid.setHgap(300);
+		grid.setVgap(1000);
 		choiceTopButtonHome = new ChoiceTopButtonHome(this);
 		choiceTopButtonBack = new ChoiceTopButtonBack(this);
 
 		add(choiceTopButtonHome, BorderLayout.WEST);
 		add(choiceTopButtonBack, BorderLayout.EAST);
-
 	}
 }

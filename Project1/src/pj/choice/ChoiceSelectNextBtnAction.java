@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class ChoiceSelectNextBtnAction implements ActionListener {
 
-	ChoiceSelectMenu card;
+//	ChoiceSelectMenu card;
 	
 	public ChoiceSelectNextBtnAction(ChoiceFrameSelect mainFrame) {
 		
