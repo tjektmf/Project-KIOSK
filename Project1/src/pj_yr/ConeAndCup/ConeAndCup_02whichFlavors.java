@@ -1,4 +1,4 @@
-package project_yr.ConeAndCup;
+package pj_yr.ConeAndCup;
 
 import javax.swing.JFrame;
 
