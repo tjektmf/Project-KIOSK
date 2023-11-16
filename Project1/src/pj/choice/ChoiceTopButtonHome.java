@@ -10,7 +10,7 @@ public class ChoiceTopButtonHome extends JButton {
 	public ChoiceTopButtonHome(ChoiceFrameTop mainFrame) {
 		
 
-		ImageIcon home = new ImageIcon("img/cat.gif");
+		ImageIcon home = new ImageIcon("img/daseul/cat.gif");
 		setIcon(home);
 	//	setText("Home");
 		mainFrame.choiceTopButtonHome = choiceTopButtonHome;

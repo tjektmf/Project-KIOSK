@@ -53,7 +53,7 @@ public class ChoiceSelectIce extends JPanel {
 		// 액션리스너는 어케주지? 이거도 포문안에 넣을수있나? 됨ㅋ
 		
 		for (int i = 1; i < 49; i++) {
-			ImageIcon apple = new ImageIcon("img/" + i + ".png");
+			ImageIcon apple = new ImageIcon("img/daseul/" + i + ".png");
 			if (i < 17) {
 				pan1.add(new JButton(apple));
 			} else if (i < 33) {
