@@ -1,15 +1,10 @@
 package pj.choice;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import pj.hm.CategoryHome;
-import pj.hm.IceCreamShopCover;
+import pj.menu.CategoryHome;
 
 public class ChoiceSelectAll extends JPanel {
 

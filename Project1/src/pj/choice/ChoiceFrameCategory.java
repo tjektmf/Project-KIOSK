@@ -7,8 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import pj.hm.CategoryHome;
-import pj.hm.IceCreamShopCover;
+import pj.menu.CategoryHome;
 
 public class ChoiceFrameCategory extends JPanel {
 

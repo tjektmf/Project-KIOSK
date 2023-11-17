@@ -1,9 +1,8 @@
 package pj.choice;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pj.hm.CategoryHome;
+import pj.menu.CategoryHome;
 
 public class ChoiceFrame extends JPanel {
 
