@@ -49,7 +49,7 @@ public class ChoiceSelectIce extends JPanel {
 		page33.setIcon(new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/pagetest.png"));
 
 		// 이거 버튼마다 이미지 넣으려면 이미지 번호가 1씩 증가하게 저장하면 될거같음
-		// 액션리스너는 어케주지? 이거도 포문안에 넣을수있나? 됨ㅋ
+		// 액션리스너는 어케주지? 이거도 포문안에 넣을수있나?
 
 		JButton action;
 		for (int i = 1; i < 49; i++) {

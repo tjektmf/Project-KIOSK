@@ -50,8 +50,8 @@ public class IceCreamShopCover extends JFrame {
 		
 		// 우측하단 관리자 페이지로 넘어갈 버튼
 		JButton keyBtn = new JButton();
-		keyBtn.setSize(100, 100);
-		keyBtn.setLocation(440, 860);
+		keyBtn.setSize(70, 70);
+		keyBtn.setLocation(455, 855);
 //		keyBtn.setOpaque(false);
 		// Key 이미지
 		ImageIcon addImage  = new ImageIcon("img/hyemi/key.png");
