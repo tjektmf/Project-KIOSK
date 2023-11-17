@@ -24,16 +24,13 @@ public class ChoiceFrameSelect extends JPanel {
 		
 		BorderLayout border = new BorderLayout(10,10);
 		setLayout(border);
-		
 
 		choiceSelectNextBtn = new JButton(">>");
 		choiceSelectPrevBtn = new JButton("<<");
 		choiceSelectIce = new ChoiceSelectIce(this);
 	
-		
 		add(choiceSelectNextBtn, BorderLayout.EAST);
 		add(choiceSelectPrevBtn, BorderLayout.WEST);
 		add(choiceSelectIce, BorderLayout.CENTER);
-	
 	}
 }

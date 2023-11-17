@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import pj.menu.CategoryHome;
+
 public class ChoiceFrameCategory extends JPanel {
 
 	JButton choiceCategoryIceBtn;
@@ -15,14 +17,16 @@ public class ChoiceFrameCategory extends JPanel {
 	JButton choiceCategoryBeverageBtn;
 	JButton choiceCategoryDessertBtn;
 	ChoiceSelectAll choiceSelectAll;
+	CategoryHome categoryhome;
+	
 
+	
 	public ChoiceFrameCategory(ChoiceFrame mainFrame) {
-
+		
 		choiceSelectAll = mainFrame.choiceSelectAll;
 		GridLayout grid = new GridLayout(1, 5);
 		setLayout(grid);
 		grid.setHgap(10);
-
 
 		choiceCategoryIceBtn = new ChoiceCategoryIceBtn(this);
 		choiceCategoryCakeBtn = new ChoiceCategoryCakeBtn(this);

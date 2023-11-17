@@ -1,12 +1,10 @@
 package pj.choice;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import pj.menu.CategoryHome;
 
 public class ChoiceSelectAll extends JPanel {
 
@@ -15,8 +13,7 @@ public class ChoiceSelectAll extends JPanel {
 	ChoiceFrameSelect3 choiceFrameSelect3;
 	ChoiceFrameSelect4 choiceFrameSelect4;
 	ChoiceFrameSelect5 choiceFrameSelect5;
-//	JButton choiceSelectNextBtn;
-//	JButton choiceSelectPrevBtn;
+	CategoryHome categoryhome;
 	CardLayout menuCard;
 
 	public ChoiceSelectAll(ChoiceFrame mainFrame) {
@@ -24,8 +21,6 @@ public class ChoiceSelectAll extends JPanel {
 
 		setLayout(menuCard);
 
-//		choiceSelectNextBtn = new JButton(">>");
-//		choiceSelectPrevBtn = new JButton("<<");
 		choiceFrameSelect = new ChoiceFrameSelect(this);
 		choiceFrameSelect2 = new ChoiceFrameSelect2(this);
 		choiceFrameSelect3 = new ChoiceFrameSelect3(this);
@@ -40,10 +35,10 @@ public class ChoiceSelectAll extends JPanel {
 		add("coffee", choiceFrameSelect3);
 		add("beverage", choiceFrameSelect4);
 		add("dessert", choiceFrameSelect5);
-
-//		choiceFrameSelect.add(choiceSelectNextBtn);
-//		choiceFrameSelect.add(choiceSelectPrevBtn);
-
 	}
 
+	public void showCard(String cardName) {
+		menuCard.show(this, cardName);
+		System.out.println("작동함");
+	}
 }
