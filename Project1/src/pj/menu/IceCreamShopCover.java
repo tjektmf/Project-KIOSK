@@ -1,6 +1,7 @@
 package pj.menu;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -14,14 +15,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import pj.admin.adminPassword;
 import pj.choice.ChoiceFrame;
-import pj.menu.CategoryHome;
 
 public class IceCreamShopCover extends JFrame {
 	// img
@@ -38,16 +40,37 @@ public class IceCreamShopCover extends JFrame {
 	public IceCreamShopCover() {
 		setTitle("베스킨라빈스");
 
-		// 이미지를 표시할 JLabel
+		// 이미지 표시
 		JLabel mainLabel = new JLabel();
 		mainLabel.setIcon(null);
-		// 투명한 패널 위에 글씨를 표시할 JLabel
+		
+		// 투명한 패널 위에 글씨 표시
 		JLabel textLabel = new JLabel("화면을 클릭하세요");
 		textLabel.setFont(new Font("맑은고딕", Font.BOLD, 40));
-
-		// 투명한 패널을 만들어 글씨를 포함시키고 위치 설정
-		JPanel textPanel = new JPanel();
 		
+		// 우측하단 관리자 페이지로 넘어갈 버튼
+		JButton keyBtn = new JButton();
+		keyBtn.setSize(100, 100);
+		keyBtn.setLocation(440, 860);
+//		keyBtn.setOpaque(false);
+		keyBtn.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+//		    	JLabel key = new JLabel();
+//		    	key.setIcon(new ImageIcon("img/hyemi/key.png"));
+//		    	new adminPassword();
+		    	
+		    	  // Key 이미지
+		    	ImageIcon addImage  = new ImageIcon("img/hyemi/key.png");
+                //JLabel keyLabel = new JLabel();
+		    	keyBtn.setIcon(addImage);
+                // adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
+                updateFrameContent();
+		    }
+		});
+		
+		// 투명한 패널을 만들어 글씨를 포함시키고 위치 설정
+		JPanel textPanel = new JPanel();		
 		textPanel.setBounds(150, 200, 400, 400);
 		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
 		add(textPanel);
@@ -55,7 +78,12 @@ public class IceCreamShopCover extends JFrame {
 
 		// 전체를 감싸는 패널
 		JPanel mainPanel = new JPanel(new BorderLayout());
-		mainPanel.add(mainLabel, BorderLayout.CENTER);
+		mainPanel.setLayout(null); // (mainPanel)의 레이아웃 null로 설정후 수동으로 위치조절
+		mainLabel.setSize(540, 960);
+		mainPanel.add(mainLabel);//, BorderLayout.CENTER
+		mainPanel.add(keyBtn);// , BorderLayout.SOUTH
+		
+		
 		Timer changeImg = new Timer(3000, new ActionListener() {
 			
 			@Override
@@ -66,6 +94,7 @@ public class IceCreamShopCover extends JFrame {
 				String imagePath = imagePaths[currentImgIndex];
 				updateImg(mainLabel);
 				mainLabel.add(textPanel);
+				mainLabel.add(keyBtn);
 				currentImgIndex = (currentImgIndex + 1) % imagePaths.length;
 			}
 		});
@@ -91,17 +120,17 @@ public class IceCreamShopCover extends JFrame {
 				dispose();
 			}
 		});
-
+		
 		add(mainPanel, BorderLayout.CENTER);
+	
 
 		// 프레임 표시 설정
 		pack();
-		setBounds(300, 300, 540, 960);
+		setSize(540, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
 	public void updateImg(JLabel label) {
 		try {
 			BufferedImage image = ImageIO.read(new File(imagePaths[currentImgIndex]));
@@ -113,7 +142,10 @@ public class IceCreamShopCover extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
+	private void updateFrameContent() {
+		new adminPassword();
+	}
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> new IceCreamShopCover());
 	}

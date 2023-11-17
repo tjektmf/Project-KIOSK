@@ -2,7 +2,6 @@ package pj.menu;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -28,8 +27,11 @@ public class CategoryHome extends JPanel {
 	ChoiceSelectAll choiceSelectAll;
 	ChoiceFrame choiceFrame;
 	ChoiceFrameCategory choiceFrameCategory;
+	
+	
 
 	public CategoryHome(ChoiceFrame mainFrame) {
+		
 		choiceSelectAll = mainFrame.choiceSelectAll;
 		JFrame f = new JFrame();
 		CardLayout card = new CardLayout();
@@ -41,14 +43,16 @@ public class CategoryHome extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		add(panel);
+		
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
-	
+		
 		add(panel);
 		add(panel2);
-
+		
+		
 		f.add(panel2);
-//		f.add(panel);
+		f.add(panel);
 		f.add(mainFrame);
 
 		// 카테고리 버튼 추가
@@ -62,7 +66,7 @@ public class CategoryHome extends JPanel {
 		icecreamBtn.setPreferredSize(new Dimension(100, 60));
 		icecakeBtn.setPreferredSize(new Dimension(80, 60));
 		coffeeBtn.setPreferredSize(new Dimension(80, 60));
-		beverageBtn.setPreferredSize(new Dimension(80, 60));
+		beverageBtn.setPreferredSize(new Dimension(100, 60));
 		dessertBtn.setPreferredSize(new Dimension(80, 60));
 
 		// add("CENTER",newPanel);
@@ -71,12 +75,6 @@ public class CategoryHome extends JPanel {
 		coffeeBtn.addActionListener(new MenuButtonListener("coffeeBtn"));
 		beverageBtn.addActionListener(new MenuButtonListener("beverageBtn"));
 		dessertBtn.addActionListener(new MenuButtonListener("dessertBtn"));
-
-		icecakeBtn.addActionListener(new MenuButtonListener("Cake")); // ChoiceFrameSelect2();
-		coffeeBtn.addActionListener(new MenuButtonListener("Coffee")); // ChoiceFrameSelect3();
-		beverageBtn.addActionListener(new MenuButtonListener("Beverage")); // ChoiceFrameSelect4();
-		dessertBtn.addActionListener(new MenuButtonListener("Dessert")); // ChoiceFrameSelect5();
-		
 
 		icecreamBtn.addActionListener(new ActionListener() {
 
@@ -125,8 +123,10 @@ public class CategoryHome extends JPanel {
 		});
 
 		// f.setDefaultCloseOperation(ABORT);
-		f.setBounds(300, 300, 540, 960);
+		f.setSize(540, 960);
 		f.setVisible(true);
+		f.setLocationRelativeTo(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	// 메뉴 버튼에 대한 액션 리스너
@@ -144,6 +144,7 @@ public class CategoryHome extends JPanel {
 			//System.out.println(itemName.substring(0, itemName.length() - 3));
 		}
 	}
+
 
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();
