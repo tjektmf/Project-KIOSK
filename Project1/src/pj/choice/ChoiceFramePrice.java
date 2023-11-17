@@ -2,11 +2,7 @@ package pj.choice;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,10 +10,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import pj.hm.CategoryHome;
+import pj.jks.PointButton;
 
 public class ChoiceFramePrice extends JPanel {
 
+	ChoiceFrame mainFrame;
+	PointButton pointButton;
+	CategoryHome categoryHome;
+	//= new CategoryHome(mainFrame, pointButton);
+
 	public ChoiceFramePrice(ChoiceFrame mainFrame) {
+		
+
 		
 		CardLayout priceCard = new CardLayout(10, 0);
 
@@ -46,7 +53,10 @@ public class ChoiceFramePrice extends JPanel {
 		JButton but0 = new JButton("나중에 사라질 버튼");
 		JButton but1 = new JButton("제리 그대로 보여줌");
 		JButton but2 = new JButton("text로 가격보여줌");
-		JButton but3 = new JButton("결제하기");
+		JButton but3 = new JButton("결제하기"); //
+
+		JTextField tf = new JTextField("price");
+		tf.setHorizontalAlignment(JTextField.CENTER);
 
 		but0.addActionListener(new ActionListener() {
 
@@ -82,6 +92,7 @@ public class ChoiceFramePrice extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				priceCard.previous(ChoiceFramePrice.this);
+				categoryHome.showCard("price");
 				System.out.println("나중에 결제창으로");
 
 			}
@@ -93,8 +104,9 @@ public class ChoiceFramePrice extends JPanel {
 		pan1.add(pan12);
 		pan1.add(but0);
 		pan2.add(test2);
-		pan2.add(but2);
+		pan2.add(tf);
 		pan2.add(but3);
+		
 
 	}
 }

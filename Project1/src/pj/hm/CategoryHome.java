@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
+import pj.jks.PointButton;
 
 public class CategoryHome extends JPanel {
 
@@ -25,13 +26,19 @@ public class CategoryHome extends JPanel {
 	JButton dessertBtn = new JButton("디저트");
 
 	ChoiceSelectAll choiceSelectAll;
-	ChoiceFrame choiceFrame;
+	static ChoiceFrame choiceFrame;
 	ChoiceFrameCategory choiceFrameCategory;
+	static PointButton pointButton;
 
-	public CategoryHome(ChoiceFrame mainFrame) {
+	JFrame f;
+	CardLayout card;
+
+	public CategoryHome(ChoiceFrame mainFrame, PointButton pointButton) {
+	
 		choiceSelectAll = mainFrame.choiceSelectAll;
-		JFrame f = new JFrame();
-		CardLayout card = new CardLayout();
+
+		f = new JFrame();
+		card = new CardLayout();
 		f.setLayout(card);
 
 		f.setTitle("category");
@@ -49,6 +56,7 @@ public class CategoryHome extends JPanel {
 		f.add(panel2);
 //		f.add(panel);
 		f.add(mainFrame);
+		f.add("price", pointButton);
 
 		// 카테고리 버튼 추가
 		panel2.add(icecreamBtn);
@@ -139,8 +147,16 @@ public class CategoryHome extends JPanel {
 		}
 	}
 
+	public void showCard(String path) {
+
+		card.show(CategoryHome.this, "price");
+
+	}
+
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();
-		new CategoryHome(choiceFrame);
+		PointButton pointButton = new PointButton();
+
+		new CategoryHome(choiceFrame, pointButton);
 	}
 }

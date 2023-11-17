@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import pj.choice.ChoiceFrame;
+import pj.jks.PointButton;
 
 public class IceCreamShopCover extends JFrame {
 
@@ -52,7 +53,6 @@ public class IceCreamShopCover extends JFrame {
 		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
 		add(textPanel);
 		textPanel.add(textLabel);
-		
 
 		// 전체를 감싸는 패널
 		JPanel mainPanel = new JPanel(new BorderLayout());
@@ -88,7 +88,8 @@ public class IceCreamShopCover extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// 화면 클릭 시 카테고리 페이지를 표시
 				ChoiceFrame choiceFrame = new ChoiceFrame();
-				new CategoryHome(choiceFrame);
+				PointButton pointButton = new PointButton();
+				new CategoryHome(choiceFrame, pointButton);
 				dispose();
 			}
 		});

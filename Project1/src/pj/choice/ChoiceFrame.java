@@ -40,7 +40,7 @@ public class ChoiceFrame extends JPanel {
 
 		setBounds(100, 100, 540, 960);
 //		setDefaultCloseOperation(EXIT_ON_CLOSE);
-//		setVisible(true);
+		setVisible(true);
 	}
 
 	public static void main(String[] args) {

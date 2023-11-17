@@ -21,6 +21,10 @@ public class ChoiceSelectIce extends JPanel {
 
 	JButton choiceSelectPrevBtn;
 	JButton choiceSelectNextBtn;
+	ImageIcon apple;
+	ChoiceFramePrice choiceFramePrice;
+
+	int count = 0;
 
 	public ChoiceSelectIce(ChoiceFrameSelect mainFrame) {
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
@@ -51,26 +55,65 @@ public class ChoiceSelectIce extends JPanel {
 		// 이거 버튼마다 이미지 넣으려면 이미지 번호가 1씩 증가하게 저장하면 될거같음
 		// 액션리스너는 어케주지? 이거도 포문안에 넣을수있나? 됨ㅋ
 
-		JButton action;
+		JButton[] actions = new JButton[48];
 		for (int i = 1; i < 49; i++) {
-			ImageIcon apple = new ImageIcon("img/daseul/" + i + ".png");
+			apple = new ImageIcon("img/daseul/" + i + ".png");
 			if (i < 17) {
-				pan1.add(action = new JButton(apple));
-				
-				action.addActionListener(new ActionListener() {
-					static int count = 0;
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						System.out.println(count);
-					}
-				});
+				pan1.add(actions[i - 1] = new JButton(apple));
 			} else if (i < 33) {
-				pan2.add(new JButton(apple));
+				pan2.add(actions[i - 1] = new JButton(apple));
 			} else {
-				pan3.add(new JButton(apple));
-			} 
+				pan3.add(actions[i - 1] = new JButton(apple));
+			}
 		}
+		// test.setIcon(new ImageIcon("img/daseul/cat.gif"));
+		
+		
+
+		actions[0].addActionListener(new ActionListener() {
+
+			// e.getSource().toString().contains("img/daseul/1.png");
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int check = 0;
+				
+		//		check = Integer.parseInt(e.getSource().toString().substring(11, e.getSource().toString().length() - 3));
+				switch (check) {
+				case 0:
+					System.out.println("0");
+					break;
+				case 1:
+					System.out.println("1");
+					break;
+				case 2:
+					System.out.println("2");
+					break;
+				case 3:
+					System.out.println("3");
+					break;
+				case 4:
+					System.out.println("4");
+					break;
+				case 5:
+					System.out.println("5");
+					break;
+				case 6:
+					System.out.println("6");
+					break;
+				case 7:
+					System.out.println("7");
+					break;
+				case 8:
+					System.out.println("8");
+					break;
+				default:
+					System.out.println("0");
+					break;
+				}
+			}
+		});
+
 		pan1.add(page1);
 		pan2.add(page2);
 		pan2.add(page22);
