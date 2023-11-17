@@ -24,11 +24,12 @@ public class IceCreamShopCover extends JFrame {
 
 	// img
 	String[] imagePaths = { 
-			"C:/pj/img/ad1.png",
-            "C:/pj/img/ad2.png",
-            "C:/pj/img/ad3.png",
-            "C:/pj/img/ad4.png",
-            "C:/pj/img/베라img.png"};
+			"img/hyemi/베라img.png",
+			"img/hyemi/ad1.png",
+            "img/hyemi/ad2.png",
+            "img/hyemi/ad3.png",
+            "img/hyemi/ad4.png"
+            };
 	
 	int currentImgIndex = 0;
 	
@@ -79,7 +80,7 @@ public class IceCreamShopCover extends JFrame {
         mainPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // 화면 클릭 시 카테고리 페이지를 표시
+                // 화면 클릭 시 카테고리 페이지
                 new CategoryHome();
                 dispose();
             }
