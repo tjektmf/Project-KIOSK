@@ -66,7 +66,9 @@ public class IceCreamShopCover extends JFrame {
 //		    	new adminPassword();
 		    	
                 // adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
+		    	setVisible(false);
                 updateFrameContent();
+                
 		    }
 		});
 		

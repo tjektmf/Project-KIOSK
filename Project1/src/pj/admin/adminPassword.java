@@ -33,6 +33,7 @@ public class adminPassword extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (pw.getPassword().toString().equals("111111")) {
 					new adminPage();
+					setVisible(false);
 				} else {
 					new IceCreamShopCover();
 					setVisible(false); // 비밀번호 틀리면 화면 넘어가면서 기존화면 꺼짐
@@ -57,6 +58,7 @@ public class adminPassword extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (passWord.equals(new String(pw.getPassword()))) {
 					new adminPage();
+					setVisible(false);
 				} else {
 					new IceCreamShopCover();
 					setVisible(false); 
