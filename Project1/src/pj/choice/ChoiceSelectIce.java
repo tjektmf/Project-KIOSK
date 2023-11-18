@@ -24,8 +24,9 @@ public class ChoiceSelectIce extends JPanel {
 	ImageIcon apple;
 	ChoiceFramePrice choiceFramePrice;
 
-	int count = 0;
-
+	int count;
+	int num;
+	
 	public ChoiceSelectIce(ChoiceFrameSelect mainFrame) {
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
@@ -67,52 +68,41 @@ public class ChoiceSelectIce extends JPanel {
 			}
 		}
 		// test.setIcon(new ImageIcon("img/daseul/cat.gif"));
+		// e.getSource().toString().contains("img/daseul/1.png");
+		// check = Integer.parseInt(e.getSource().toString().substring(11,
+		// e.getSource().toString().length() - 3));
 		
-		
+		// 각 메뉴 선택시 이동하는 화면이 다르고 가격도 다름
+		// switch 문으로 여러개 묶을수는 있을거같은데
 
-		actions[0].addActionListener(new ActionListener() {
-
-			// e.getSource().toString().contains("img/daseul/1.png");
+		for(num=0; num<48;num++) {
+			
+		actions[num].addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int check = 0;
-				
-		//		check = Integer.parseInt(e.getSource().toString().substring(11, e.getSource().toString().length() - 3));
-				switch (check) {
-				case 0:
-					System.out.println("0");
-					break;
-				case 1:
-					System.out.println("1");
-					break;
-				case 2:
-					System.out.println("2");
-					break;
-				case 3:
-					System.out.println("3");
-					break;
-				case 4:
-					System.out.println("4");
-					break;
-				case 5:
-					System.out.println("5");
-					break;
-				case 6:
-					System.out.println("6");
-					break;
-				case 7:
-					System.out.println("7");
-					break;
-				case 8:
-					System.out.println("8");
-					break;
-				default:
-					System.out.println("0");
-					break;
-				}
+				count = num;
+				System.out.println(count);
 			}
 		});
+		
+		}
+		actions[1].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("1");
+			}
+		});
+		actions[2].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("2");
+			}
+		});
+		
+		
 
 		pan1.add(page1);
 		pan2.add(page2);
