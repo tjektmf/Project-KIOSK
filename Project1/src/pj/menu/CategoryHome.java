@@ -52,7 +52,7 @@ public class CategoryHome extends JPanel {
 		
 		
 		f.add(panel2);
-		f.add(panel);
+//		f.add(panel);
 		f.add(mainFrame);
 
 		// 카테고리 버튼 추가
