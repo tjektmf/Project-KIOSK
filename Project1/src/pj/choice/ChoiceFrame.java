@@ -1,5 +1,7 @@
 package pj.choice;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
 
 import pj.menu.CategoryHome;
@@ -36,8 +38,9 @@ public class ChoiceFrame extends JPanel {
 		add(choiceSelectAll);
 		add(choiceFramePrice);
 		add(choiceFrameBuyList);
+		setBackground(new Color(255,255,255));
 
-		setBounds(100, 100, 540, 960);
+		setBounds(100, 100, 560, 960);
 //		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}

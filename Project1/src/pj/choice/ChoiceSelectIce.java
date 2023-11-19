@@ -2,19 +2,22 @@ package pj.choice;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pj.menu.CategoryHome;
+import pj_yr.ConeAndCup.ConeAndCup_00frame;
+
 public class ChoiceSelectIce extends JPanel {
+	
 
 	// 카드레이아웃도 주변패널과의 행열간격은 줄수있음 CardLayout(x,y)
 	CardLayout card = new CardLayout();
@@ -23,6 +26,9 @@ public class ChoiceSelectIce extends JPanel {
 	JButton choiceSelectNextBtn;
 	ImageIcon apple;
 	ChoiceFramePrice choiceFramePrice;
+	CategoryHome categoryHome;
+	ConeAndCup_00frame move = new ConeAndCup_00frame();
+	JFrame f;
 
 	int count;
 	int num;
@@ -38,8 +44,8 @@ public class ChoiceSelectIce extends JPanel {
 		// 패널 3개를 gridlayout으로 설정하기 위해 3개를 만듬
 		// 행렬 설정 자체는 굳이 따로 만들지 않아도 되지만 setvgap sethgap을 수정하기 위해 만듬
 		GridLayout grid1 = new GridLayout(3, 3);
-		GridLayout grid2 = new GridLayout();
-		GridLayout grid3 = new GridLayout();
+		GridLayout grid2 = new GridLayout(3, 3);
+		GridLayout grid3 = new GridLayout(3, 3);
 		grid1.setHgap(10);
 		grid1.setVgap(10);
 		grid2.setHgap(10);
@@ -52,12 +58,15 @@ public class ChoiceSelectIce extends JPanel {
 		JPanel pan3 = new JPanel(grid3);
 
 		// 나중에 페이지 나타내는 이미지활용 지금은 무시해도됨
-		JLabel page1 = new JLabel();
-		page1.setIcon(new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/pagetest.png"));
-		JLabel page2 = new JLabel();
-		JLabel page22 = new JLabel();
-		page2.setIcon(new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/pagetest.png"));
-		page22.setIcon(new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/pagetest.png"));
+		// JLabel page1 = new JLabel();
+		// page1.setIcon(new
+		// ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/pagetest.png"));
+		// JLabel page2 = new JLabel();
+		// JLabel page22 = new JLabel();
+		// page2.setIcon(new
+		// ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/pagetest.png"));
+		// page22.setIcon(new
+		// ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/pagetest.png"));
 
 		JLabel page3 = new JLabel();
 		JLabel page32 = new JLabel();
@@ -69,31 +78,59 @@ public class ChoiceSelectIce extends JPanel {
 		// 이거 버튼마다 이미지 넣으려면 이미지 번호가 1씩 증가하게 저장하면 될거같음
 		// 액션리스너는 어케주지? 이거도 포문안에 넣을수있나?
 
-		
-		
 		JButton[] actions = new JButton[48];
 		BorderLayout[] borderArr = new BorderLayout[48];
 		JLabel[] nameArr = new JLabel[48];
 		JLabel[] picArr = new JLabel[48];
-		for (int i = 1; i < 8; i++) {
-			apple = new ImageIcon("img/img_baskin/baskin_container/0" + i + ".png");
-			if (i < 8) {
+		for (int i = 1; i <= 9; i++) {
+			apple = new ImageIcon("img/img_baskin/baskin_container/" + i + "_icecream.png");
+			if (i <= 9) {
 				pan1.add(actions[i - 1] = new JButton());
-				borderArr[i - 1] = new BorderLayout(0, -10);
-				nameArr[i - 1] = new JLabel("<html>파인트<br>9800원<html>");
+				borderArr[i - 1] = new BorderLayout(-10, -10);
+				nameArr[i - 1] = new JLabel();
 				picArr[i - 1] = new JLabel(apple);
 				actions[i - 1].setLayout(borderArr[i - 1]);
 				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].add(nameArr[i - 1], BorderLayout.SOUTH);
+				actions[i - 1].setBackground(new Color(255, 255, 255));
+				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+				
+				
+				
 			} else if (i < 33) {
 				pan2.add(actions[i - 1] = new JButton(apple));
 			} else {
 				pan3.add(actions[i - 1] = new JButton(apple));
 			}
 		}
+		nameArr[0].setText("<html><body style='text-align:center;'>싱글레귤러<br>3900원<html>");
+		nameArr[1].setText("<html><body style='text-align:center;'>더블주니어<br>5100원<html>");
+		nameArr[2].setText("<html><body style='text-align:center;'>더블레귤러<br>7300원<html>");
+		nameArr[3].setText("<html><body style='text-align:center;'>파인트<br>9800원<html>");
+		nameArr[4].setText("<html><body style='text-align:center;'>쿼터<br>18500원<html>");
+		nameArr[5].setText("<html><body style='text-align:center;'>패밀리<br>26000원<html>");
+		nameArr[6].setText("<html><body style='text-align:center;'>하프갤런<br>31500원<html>");
+		nameArr[7].setText("<html><body style='text-align:center;'>버라이어티팩<br>23400원<html>");
+		nameArr[8].setText("<html><body style='text-align:center;'>핸드팩<br>39200원<html>");
 
+		
+		actions[0].addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				move.setVisible(true);
+		//		categoryHome.getParent().setVisible(false);
+				categoryHome.frame(f).dispose();
+				
+			}
+		});
+//		nameArr[1].setText("<html>파인트<br>9800원<html>");
+//		nameArr[2].setText("<html>파인트<br>9800원<html>");
+//		nameArr[3].setText("<html>파인트<br>9800원<html>");
+//		nameArr[4].setText("<html>파인트<br>9800원<html>");)
 		// test.setIcon(new ImageIcon("img/daseul/cat.gif"));
 		// e.getSource().toString().contains("img/daseul/1.png");
 		// check = Integer.parseInt(e.getSource().toString().substring(11,
@@ -117,9 +154,9 @@ public class ChoiceSelectIce extends JPanel {
 			}
 		});
 
-		pan1.add(page1);
-		pan2.add(page2);
-		pan2.add(page22);
+		// pan1.add(page1);
+		// pan2.add(page2);
+		// pan2.add(page22);
 		pan3.add(page3);
 		pan3.add(page32);
 		pan3.add(page33);

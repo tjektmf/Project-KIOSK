@@ -126,7 +126,8 @@ public class CategoryHome extends JPanel {
 		});
 
 		// f.setDefaultCloseOperation(ABORT);
-		f.setBounds(300, 300, 540, 960);
+		// 540인데 555으로 올림 버튼이 화면크기를 넘기는데 왜그런지 모르겠음
+		f.setBounds(300, 300, 555, 960); 
 		f.setVisible(true);
 
 	}

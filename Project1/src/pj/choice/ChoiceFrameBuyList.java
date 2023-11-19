@@ -1,6 +1,7 @@
 package pj.choice;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,6 +61,9 @@ public class ChoiceFrameBuyList extends JPanel {
 		pan1.add(but1);
 		pan1.add(but2);
 		pan1.add(but3);
+		pan1.setBackground(new Color(255,255,255));
+		pan2.setBackground(new Color(255,255,255));
+		// 팬2는 날릴 생각으로 test랑 같이 붙여놓은거임
 		
 
 	}

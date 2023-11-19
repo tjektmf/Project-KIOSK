@@ -38,7 +38,7 @@ public class IceCreamShopCover extends JFrame {
 	int currentImgIndex = 0;
 
 	public IceCreamShopCover() {
-		setTitle("베스킨라빈스");
+		setTitle("BR31");
 
 		// 이미지 표시
 		JLabel mainLabel = new JLabel();

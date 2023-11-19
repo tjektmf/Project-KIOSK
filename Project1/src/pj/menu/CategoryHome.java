@@ -27,13 +27,15 @@ public class CategoryHome extends JPanel {
 	ChoiceSelectAll choiceSelectAll;
 	ChoiceFrame choiceFrame;
 	ChoiceFrameCategory choiceFrameCategory;
-	
-	
 
+	JFrame f = new JFrame();
+	
+	public JFrame frame(JFrame f) {
+		return this.f=f;
+	}
 	public CategoryHome(ChoiceFrame mainFrame) {
-		
+
 		choiceSelectAll = mainFrame.choiceSelectAll;
-		JFrame f = new JFrame();
 		CardLayout card = new CardLayout();
 		f.setLayout(card);
 
@@ -43,14 +45,13 @@ public class CategoryHome extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		add(panel);
-		
+
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
-		
+
 		add(panel);
 		add(panel2);
-		
-		
+
 		f.add(panel2);
 //		f.add(panel);
 		f.add(mainFrame);
@@ -61,7 +62,7 @@ public class CategoryHome extends JPanel {
 		panel2.add(coffeeBtn);
 		panel2.add(beverageBtn);
 		panel2.add(dessertBtn);
-		
+
 		// .setPreferredSize(new Dimension(width,height));
 		icecreamBtn.setPreferredSize(new Dimension(100, 60));
 		icecakeBtn.setPreferredSize(new Dimension(80, 60));
@@ -141,10 +142,9 @@ public class CategoryHome extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// 선택된 메뉴 정보 처리
 			System.out.println(itemName + " 선택됨");
-			//System.out.println(itemName.substring(0, itemName.length() - 3));
+			// System.out.println(itemName.substring(0, itemName.length() - 3));
 		}
 	}
-
 
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();

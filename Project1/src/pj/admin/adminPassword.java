@@ -31,7 +31,7 @@ public class adminPassword extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (pw.getPassword().toString().equals("111111")) {
+				if (pw.getPassword().equals(passWord)) {
 					new adminPage();
 					setVisible(false);
 				} else {
@@ -61,7 +61,7 @@ public class adminPassword extends JFrame {
 					setVisible(false);
 				} else {
 					new IceCreamShopCover();
-					setVisible(false); 
+					setVisible(false);
 				}
 			}
 

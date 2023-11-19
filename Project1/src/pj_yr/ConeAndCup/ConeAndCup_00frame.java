@@ -12,6 +12,7 @@ public class ConeAndCup_00frame extends JFrame {
         setTitle("Custom Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(540, 960);
+   //     setVisible(true);
 
         Color beskinColor = new Color(236, 108, 165);
 
@@ -198,10 +199,8 @@ public class ConeAndCup_00frame extends JFrame {
         add(jp);
     }
 
-   
-
     public static void main(String[] args) {
-    	new ConeAndCup_00frame().setVisible(true);
+    	new ConeAndCup_00frame();
     }
 }
 
