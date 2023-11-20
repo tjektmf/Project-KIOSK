@@ -2,6 +2,7 @@ package pj.menu;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -15,8 +16,11 @@ import javax.swing.JPanel;
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
+import pj.jks.PointButton;
 
 public class CategoryHome extends JPanel {
+
+	Color beskinColor = new Color(236, 108, 165);
 
 	JButton icecreamBtn = new JButton("Icecream");
 	JButton icecakeBtn = new JButton("Cake");
@@ -29,11 +33,12 @@ public class CategoryHome extends JPanel {
 	ChoiceFrameCategory choiceFrameCategory;
 
 	JFrame f = new JFrame();
-	
+
 	public JFrame frame(JFrame f) {
-		return this.f=f;
+		return this.f = f;
 	}
-	public CategoryHome(ChoiceFrame mainFrame) {
+
+	public CategoryHome(ChoiceFrame mainFrame, PointButton pointButton) {
 
 		choiceSelectAll = mainFrame.choiceSelectAll;
 		CardLayout card = new CardLayout();
@@ -44,17 +49,18 @@ public class CategoryHome extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		add(panel);
 
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
 
+		
 		add(panel);
 		add(panel2);
 
-		f.add(panel2);
-//		f.add(panel);
-		f.add(mainFrame);
+		f.add(panel2, BorderLayout.NORTH);
+
+		f.add(mainFrame, BorderLayout.CENTER); // 위치 안먹음 @_@
+		f.add("price", pointButton);
 
 		// 카테고리 버튼 추가
 		panel2.add(icecreamBtn);
@@ -62,6 +68,12 @@ public class CategoryHome extends JPanel {
 		panel2.add(coffeeBtn);
 		panel2.add(beverageBtn);
 		panel2.add(dessertBtn);
+
+		icecreamBtn.setForeground(beskinColor);
+		icecakeBtn.setForeground(beskinColor);
+		coffeeBtn.setForeground(beskinColor);
+		beverageBtn.setForeground(beskinColor);
+		dessertBtn.setForeground(beskinColor);
 
 		// .setPreferredSize(new Dimension(width,height));
 		icecreamBtn.setPreferredSize(new Dimension(100, 60));
@@ -79,49 +91,49 @@ public class CategoryHome extends JPanel {
 
 		icecreamBtn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("작동");
-				card.next(f.getContentPane());
-				choiceSelectAll.showCard("ice");
-			}
-		});
-		icecakeBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("작동");
+					card.next(f.getContentPane());
+					choiceSelectAll.showCard("ice");
+				}
+			});
+			icecakeBtn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("작동");
-				card.next(f.getContentPane());
-				choiceSelectAll.showCard("cake");
-			}
-		});
-		coffeeBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("작동");
+					card.next(f.getContentPane());
+					choiceSelectAll.showCard("cake");
+				}
+			});
+			coffeeBtn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("작동");
-				card.next(f.getContentPane());
-				choiceSelectAll.showCard("coffee");
-			}
-		});
-		beverageBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("작동");
+					card.next(f.getContentPane());
+					choiceSelectAll.showCard("coffee");
+				}
+			});
+			beverageBtn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("작동");
-				card.next(f.getContentPane());
-				choiceSelectAll.showCard("beverage");
-			}
-		});
-		dessertBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("작동");
+					card.next(f.getContentPane());
+					choiceSelectAll.showCard("beverage");
+				}
+			});
+			dessertBtn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("작동");
-				card.next(f.getContentPane());
-				choiceSelectAll.showCard("dessert");
-			}
-		});
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("작동");
+					card.next(f.getContentPane());
+					choiceSelectAll.showCard("dessert");
+				}
+			});
 
 		// f.setDefaultCloseOperation(ABORT);
 		f.setSize(540, 960);
@@ -146,9 +158,12 @@ public class CategoryHome extends JPanel {
 		}
 	}
 
+
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();
-		new CategoryHome(choiceFrame);
+		PointButton pointButton = new PointButton();
+
+		new CategoryHome(choiceFrame, pointButton);
 	}
 
 }

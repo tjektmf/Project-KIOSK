@@ -1,7 +1,6 @@
 package pj.menu;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -22,15 +21,16 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import pj.admin.adminPassword;
+import pj.admin.AdminPassword;
 import pj.choice.ChoiceFrame;
+import pj.jks.PointButton;
 
 public class IceCreamShopCover extends JFrame {
 	// img
 	String[] imagePaths = { 
-			"img/hyemi/베라img.png",
 			"img/hyemi/ad1.png",
             "img/hyemi/ad2.png",
+            "img/hyemi/베라img.png",
             "img/hyemi/ad3.png",
             "img/hyemi/ad4.png"
             };
@@ -52,10 +52,10 @@ public class IceCreamShopCover extends JFrame {
 		JButton keyBtn = new JButton();
 		keyBtn.setSize(70, 70);
 		keyBtn.setLocation(455, 855);
-//		keyBtn.setOpaque(false);
+		keyBtn.setBackground(new Color(0, 0, 0, 0));
+		keyBtn.setBorderPainted(false);
 		// Key 이미지
 		ImageIcon addImage  = new ImageIcon("img/hyemi/key.png");
-		//JLabel keyLabel = new JLabel();
 		keyBtn.setIcon(addImage);
 		
 		keyBtn.addActionListener(new ActionListener() {
@@ -83,8 +83,8 @@ public class IceCreamShopCover extends JFrame {
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setLayout(null); // (mainPanel)의 레이아웃 null로 설정후 수동으로 위치조절
 		mainLabel.setSize(540, 960);
-		mainPanel.add(mainLabel);//, BorderLayout.CENTER
-		mainPanel.add(keyBtn);// , BorderLayout.SOUTH
+		mainPanel.add(mainLabel);//, BorderLayout.CENTER 뺌
+		mainPanel.add(keyBtn);// , BorderLayout.SOUTH 뺌
 		
 		
 		Timer changeImg = new Timer(3000, new ActionListener() {
@@ -119,7 +119,8 @@ public class IceCreamShopCover extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// 화면 클릭 시 카테고리 페이지를 표시
 				ChoiceFrame choiceFrame = new ChoiceFrame();
-				new CategoryHome(choiceFrame);
+				PointButton pointButton = new PointButton();
+				new CategoryHome(choiceFrame, pointButton);
 				dispose();
 			}
 		});
@@ -146,7 +147,7 @@ public class IceCreamShopCover extends JFrame {
 		}
 	}
 	private void updateFrameContent() {
-		new adminPassword();
+		new AdminPassword();
 	}
 	
 	public static void main(String[] args) {
