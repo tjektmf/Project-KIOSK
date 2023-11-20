@@ -20,7 +20,7 @@ public class ChoiceSelectAll extends JPanel {
 	CardLayout menuCard;
 
 	public ChoiceSelectAll(ChoiceFrame mainFrame) {
-		menuCard = new CardLayout(20, 20);
+		menuCard = new CardLayout();
 
 		setLayout(menuCard);
 

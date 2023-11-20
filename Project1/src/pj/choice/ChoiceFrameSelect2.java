@@ -12,7 +12,7 @@ public class ChoiceFrameSelect2 extends JPanel{
 	
 	public ChoiceFrameSelect2(ChoiceSelectAll mainFrame) {
 		
-		BorderLayout border = new BorderLayout(40, 40);
+		BorderLayout border = new BorderLayout(20, 20);
 		setLayout(border);
 		
 

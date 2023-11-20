@@ -12,7 +12,7 @@ public class ChoiceFrameSelect4 extends JPanel {
 	JButton choiceSelectPrevBtn;
 
 	public ChoiceFrameSelect4(ChoiceSelectAll mainFrame) {
-		BorderLayout border = new BorderLayout(40, 40);
+		BorderLayout border = new BorderLayout(20, 20);
 		setLayout(border);
 
 		choiceSelectNextBtn = new JButton(">>");

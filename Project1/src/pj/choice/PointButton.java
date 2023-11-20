@@ -18,18 +18,22 @@ public class PointButton extends JFrame {
 		CardLayout card = new CardLayout();
 		f.setLayout(card);
 		Color color = new Color(236, 108, 165);
+		
 		JPanel panel1 = new JPanel(null);
 		JPanel panel2 = new JPanel(null);
 		JPanel panel3 = new JPanel(null);
 		JPanel panel4 = new JPanel(null);
+		JPanel panel5 = new JPanel(null);
+		JPanel panel6 = new JPanel(null);
 
 	
 		panel1.setBackground(color);
 		panel2.setBackground(Color.white);
 		panel3.setBackground(Color.white);
 		panel4.setBackground(Color.white);
+		panel5.setBackground(Color.white);
 		
-		
+		//panel 1부분
 		JLabel label1 = new JLabel("결제하기");
 		JLabel label2 = new JLabel("회원이신가요?");
 		JLabel label3 = new JLabel("최종 결제금액");
@@ -85,7 +89,7 @@ public class PointButton extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				card.show(f.getContentPane(), "3");
+				card.show(f.getContentPane(), "4");
 			}
 		});
 		
@@ -230,7 +234,7 @@ public class PointButton extends JFrame {
 		panel2btn13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				card.show(f.getContentPane(), "1");
+				card.show(f.getContentPane(), "3");
 			}
 		});
 		
@@ -250,103 +254,175 @@ public class PointButton extends JFrame {
 		panel2.add(panel2btn12);
 		panel2.add(panel2btn13);
 		
+		//panel3 부분
+		JLabel panel3label1 = new JLabel("인증되었습니다");
+		JLabel panel3label2 = new JLabel("현재 적립금");
 		
-		// panel3 부분
-		JLabel panel3label1 = new JLabel("결제하기");
-		JLabel panel3label3 = new JLabel("결제");
-		JLabel panel3label4 = new JLabel("최종결제금액");
-		
-
-		panel3label1.setBounds(30, 1, 300, 100);
-		panel3label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-		panel3label3.setBounds(30, 1, 300, 100);
-		panel3label3.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-		panel3label4.setBounds(30, 490, 300, 100);
-		panel3label4.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-	
-		panel3.add(panel3label1);
-//		panel3.add(panel3label2);
-		panel3.add(panel3label3);
-		panel3.add(panel3label4);
-		
-		
-		JButton panel3btn1 = new JButton("회원포인트");
-		JButton panel3btn2 = new JButton("신용카드");
-		JButton panel3btn3 = new JButton("카카오페이");
-		panel3btn1.setBounds(30, 140, 100, 90);
-		panel3btn2.setBounds(200, 140, 100, 90);
-		panel3btn3.setBounds(370, 140, 100, 90);
-		
+		panel3label1.setBounds(180, 140, 300, 100);
+		panel3label2.setBounds(180, 400, 300, 100);
+		JTextField tf1 = new JTextField(30);
+		tf1.setLocation(100,500);
+		tf1.setSize(330, 50);
+		JButton panel3btn1 = new JButton("확인");
+		panel3btn1.setBounds(155, 800, 350, 90);
 		panel3btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				card.show(f.getContentPane(), "4");
-			}
-		});
-		
-		panel3btn2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				card.show(f.getContentPane(), "4");
-			}
-		});
-		
-		panel3btn3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				card.show(f.getContentPane(), "4");
-			}
-		});
-		
-		
-		JButton panel3btn6 = new JButton("이전");
-		panel3btn6.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		panel3btn6.setBounds(30, 800, 100, 90);
-		panel3btn6.setForeground(Color.pink);
-		panel3btn6.setBackground(Color.white);
-		panel3btn6.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
 				card.show(f.getContentPane(), "1");
 			}
 		});
-		
-		JButton panel3btn7 = new JButton("결제취소");
-		panel3btn7.setBounds(155, 800, 350, 90);
-		panel3btn7.setForeground(Color.white);
-		panel3btn7.setBackground(Color.pink);
-		add(panel3btn7);
-		panel3btn7.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				card.show(f.getContentPane(), "1");
-			}
-		});
-		
 		panel3.add(panel3btn1);
-		panel3.add(panel3btn2);
-		panel3.add(panel3btn3);
-		panel3.add(panel3btn6);
-		panel3.add(panel3btn7);
+		panel3.add(panel3label1);
+		panel3.add(panel3label2);
+		panel3.add(tf1);
 		
+		// panel4 부분
+		JLabel panel4label1 = new JLabel("결제하기");
+		JLabel panel4label2 = new JLabel("최종결제금액");
 		
-		
-		// panel4부분
-		JLabel panel4label1 = new JLabel("결제가 완료되었습니다");
-		panel4label1.setBounds(120, 300, 300, 100);
-	
-		
-		panel4.add(panel4label1);
 
+		panel4label1.setBounds(30, 1, 300, 100);
+		panel4label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
+		panel4label2.setBounds(30, 490, 300, 100);
+		panel4label2.setFont(new Font("맑음고딕체", Font.BOLD, 23));
+	
+		panel4.add(panel4label1);
+		panel4.add(panel4label2);
+		
+		
+		JButton panel4btn1 = new JButton("회원포인트");
+		JButton panel4btn2 = new JButton("신용카드");
+		JButton panel4btn3 = new JButton("카카오페이");
+		panel4btn1.setBounds(30, 140, 100, 90);
+		panel4btn2.setBounds(200, 140, 100, 90);
+		panel4btn3.setBounds(370, 140, 100, 90);
+		
+		panel4btn1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				card.show(f.getContentPane(), "5");
+			}
+		});
+		
+		panel4btn2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				card.show(f.getContentPane(), "5");
+			}
+		});
+		
+		panel4btn3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				card.show(f.getContentPane(), "5");
+			}
+		});
+		
+		
+		JButton panel4btn6 = new JButton("이전");
+		panel4btn6.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+		panel4btn6.setBounds(30, 800, 100, 90);
+		panel4btn6.setForeground(Color.pink);
+		panel4btn6.setBackground(Color.white);
+		panel4btn6.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				card.show(f.getContentPane(), "1");
+			}
+		});
+		
+		JButton panel4btn7 = new JButton("결제취소");
+		panel4btn7.setBounds(155, 800, 350, 90);
+		panel4btn7.setForeground(Color.white);
+		panel4btn7.setBackground(Color.pink);
+		add(panel4btn7);
+		panel4btn7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				card.show(f.getContentPane(), "1");
+			}
+		});
+		
+		panel4.add(panel4btn1);
+		panel4.add(panel4btn2);
+		panel4.add(panel4btn3);
+		panel4.add(panel4btn6);
+		panel4.add(panel4btn7);
+		
+		
+		
+		// panel5부분
+		JLabel panel5label1 = new JLabel("결제하시겠습니까???");
+		panel5label1.setBounds(120, 300, 300, 100);
+		
+		JButton panel5btn1 = new JButton("결제확인");
+		panel5btn1.setBounds(155, 800, 350, 90);
+		add(panel5btn1);
+		panel5btn1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				card.show(f.getContentPane(), "6");
+			}
+		});
+		JButton panel5btn2 = new JButton("이전");
+		panel5btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+		panel5btn2.setBounds(30, 800, 100, 90);
+		panel5btn2.setForeground(Color.pink);
+		panel5btn2.setBackground(Color.white);
+		panel5btn2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				card.show(f.getContentPane(), "4");
+			}
+		});
+		
+		panel5.add(panel5label1);
+		panel5.add(panel5btn1);
+		panel5.add(panel5btn2);
+
+		
+		// panel16부분
+		
+		JLabel panel6label1 = new JLabel("결제완료되었습니다");
+		panel6label1.setBounds(70, 100, 300, 100);
+		JLabel panel6label2 = new JLabel("주문내역");
+		panel6label2.setBounds(70, 500, 300, 100);
+		panel6.add(panel6label1);
+		panel6.add(panel6label2);
+		
+		JButton panel6btn1 = new JButton("확인");
+		panel6btn1.setBounds(155, 800, 350, 90);
+		add(panel6btn1);
+//		panel6btn1.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				card.show(f.getContentPane(), "1");
+//			}
+//		});
+		
+		panel6.add(panel6btn1);
+		
+		
+		
+		
+		
+		
+		
+		
 		f.add("1", panel1);
 		f.add("2", panel2);
 		f.add("3", panel3);
 		f.add("4", panel4);
+		f.add("5", panel5);
+		f.add("6", panel6);
 		
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		f.setBounds(100, 100, 540, 960);
