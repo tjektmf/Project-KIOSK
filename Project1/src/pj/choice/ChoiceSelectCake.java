@@ -22,7 +22,8 @@ public class ChoiceSelectCake extends JPanel {
 	CardLayout card = new CardLayout();
 	JButton choiceSelectPrevBtn;
 	JButton choiceSelectNextBtn;
-	ImageIcon apple;
+	ImageIcon menuImage;
+	int theNumberOfMenu = 14;
 
 	public ChoiceSelectCake(ChoiceFrameSelect2 mainFrame) {
 
@@ -37,13 +38,14 @@ public class ChoiceSelectCake extends JPanel {
 		BorderLayout[] borderArr = new BorderLayout[48];
 		JLabel[] nameArr = new JLabel[48];
 		JLabel[] picArr = new JLabel[48];
+		
 		for (int i = 1; i <= 18; i++) {
-		//	apple = new ImageIcon("img/img_baskin/baskin_cake/" + i + ".png");
-
 			try {
-				BufferedImage image = ImageIO.read(new File("img/img_baskin/baskin_cake/" + i + ".png"));
-				Image scaledImage = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
-				apple = new ImageIcon(scaledImage);
+				if (i <= theNumberOfMenu) {
+					BufferedImage image = ImageIO.read(new File("img/img_baskin/baskin_cake/" + i + ".png"));
+					Image scaledImage = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
+					menuImage = new ImageIcon(scaledImage);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -52,7 +54,7 @@ public class ChoiceSelectCake extends JPanel {
 				pan1.add(actions[i - 1] = new JButton());
 				borderArr[i - 1] = new BorderLayout(-10, -10);
 				nameArr[i - 1] = new JLabel();
-				picArr[i - 1] = new JLabel(apple);
+				picArr[i - 1] = new JLabel(menuImage);
 				actions[i - 1].setLayout(borderArr[i - 1]);
 				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].add(nameArr[i - 1], BorderLayout.SOUTH);
@@ -60,11 +62,12 @@ public class ChoiceSelectCake extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+				menuImage = null;
 			} else if (i < 19) {
-				pan2.add(actions[i - 1] = new JButton(apple));
+				pan2.add(actions[i - 1] = new JButton(menuImage));
 				borderArr[i - 1] = new BorderLayout(-10, -10);
 				nameArr[i - 1] = new JLabel();
-				picArr[i - 1] = new JLabel(apple);
+				picArr[i - 1] = new JLabel(menuImage);
 				actions[i - 1].setLayout(borderArr[i - 1]);
 				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].add(nameArr[i - 1], BorderLayout.SOUTH);
@@ -72,8 +75,7 @@ public class ChoiceSelectCake extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
-			} else {
-				pan3.add(actions[i - 1] = new JButton(apple));
+				menuImage = null;
 			}
 		}
 		nameArr[0].setText("<html><body style='text-align:center;'>도라에몽의<br>대나무 헬리콥터<br>31000원<html>");
@@ -90,7 +92,6 @@ public class ChoiceSelectCake extends JPanel {
 		nameArr[11].setText("<html><body style='text-align:center;'>나눠먹는 와츄원<br>33000원<html>");
 		nameArr[12].setText("<html><body style='text-align:center;'>골라먹는 스노우 볼<br>28000원<html>");
 		nameArr[13].setText("<html><body style='text-align:center;'>골라먹는 와츄원<br>27000원<html>");
-		
 
 		choiceSelectNextBtn.addActionListener(new ActionListener() {
 

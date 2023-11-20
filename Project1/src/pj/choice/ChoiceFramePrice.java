@@ -12,21 +12,32 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import pj.hm.CategoryHome;
 import pj.jks.PointButton;
+import pj.menu.CategoryHome;
 
 public class ChoiceFramePrice extends JPanel {
 
 	ChoiceFrame mainFrame;
 	PointButton pointButton;
 	CategoryHome categoryHome;
-	//= new CategoryHome(mainFrame, pointButton);
+	// = new CategoryHome(mainFrame, pointButton);
+
+	JButton but0 = new JButton("ㅇㅇ");
+
+	public void hideButton(ChoiceSelectIce mainPanel) {
+		mainPanel.hideButton = this.but0;
+		mainPanel.hideButton.setVisible(true);
+		System.out.println(but0.getSize() + " hideButton 굴러감");
+		this.repaint();
+	}
+
+	public void priceCard() {
+		priceCard.next(this);
+	}
+
+	CardLayout priceCard = new CardLayout(10, 0);
 
 	public ChoiceFramePrice(ChoiceFrame mainFrame) {
-		
-
-		
-		CardLayout priceCard = new CardLayout(10, 0);
 
 		JLabel test = new JLabel();
 		JLabel test2 = new JLabel();
@@ -50,7 +61,8 @@ public class ChoiceFramePrice extends JPanel {
 		pan1.setLayout(grid);
 		pan2.setLayout(grid);
 
-		JButton but0 = new JButton("나중에 사라질 버튼");
+		but0.setVisible(false);
+
 		JButton but1 = new JButton("제리 그대로 보여줌");
 		JButton but2 = new JButton("text로 가격보여줌");
 		JButton but3 = new JButton("결제하기"); //
@@ -92,7 +104,7 @@ public class ChoiceFramePrice extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				priceCard.previous(ChoiceFramePrice.this);
-				categoryHome.showCard("price");
+				// categoryHome.showCard("price");
 				System.out.println("나중에 결제창으로");
 
 			}
@@ -106,7 +118,6 @@ public class ChoiceFramePrice extends JPanel {
 		pan2.add(test2);
 		pan2.add(tf);
 		pan2.add(but3);
-		
 
 	}
 }
