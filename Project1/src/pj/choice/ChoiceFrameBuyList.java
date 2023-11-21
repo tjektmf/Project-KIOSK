@@ -16,15 +16,17 @@ import javax.swing.SwingUtilities;
 public class ChoiceFrameBuyList extends JPanel {
 
 	private static final ChoiceFrameBuyList instance = new ChoiceFrameBuyList();
+	
+	public static ChoiceFrameBuyList getInstance() {
+		return instance;
+	}
 
+	
 	JLabel label1 = new JLabel();
 	JLabel label2 = new JLabel();
 	JLabel label3 = new JLabel();
 	JPanel pan1 = new JPanel();
 
-	public static ChoiceFrameBuyList getInstance() {
-		return instance;
-	}
 
 	private ChoiceFrameBuyList() {
 
@@ -83,19 +85,17 @@ public class ChoiceFrameBuyList extends JPanel {
 
 	public void showImg() {
 		System.out.println("showImg 잘굴러가는중");
-		// SwingUtilities.invokeLater(() -> {
-	//	label1.setText("dd");
+		
 		System.out.println(label1.getText());
+		
+		//	label1.setText("dd");
+		// if문은 테스트용임 이후 삭제하면서 주석처리한 윗줄 살려서 내용추가해야함
 		if(label1.getText().equals("dd")) {
 			label1.setText("pp");
 		} else {
 			label1.setText("dd");
 		}
-		label1.revalidate();
-		label1.repaint();
-		// });
-		// System.out.println(label1.getText());
-		// label1.setText("dd");
+
 
 	}
 }

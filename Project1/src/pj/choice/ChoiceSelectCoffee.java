@@ -31,7 +31,7 @@ public class ChoiceSelectCoffee extends JPanel {
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 
-	int theNumberOfMenu = 10;
+	final int theNumberOfMenu = 10;
 	int buttonNum;
 	
 	public ChoiceSelectCoffee(ChoiceFrameSelect3 mainFrame) {
@@ -67,8 +67,8 @@ public class ChoiceSelectCoffee extends JPanel {
 				nameArr[i - 1] = new JLabel();
 				picArr[i - 1] = new JLabel(menuImage);
 				actions[i - 1].setLayout(borderArr[i - 1]);
-				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].add(nameArr[i - 1], BorderLayout.SOUTH);
+				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].setBackground(new Color(255, 255, 255));
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
@@ -81,8 +81,8 @@ public class ChoiceSelectCoffee extends JPanel {
 				nameArr[i - 1] = new JLabel();
 				picArr[i - 1] = new JLabel(menuImage);
 				actions[i - 1].setLayout(borderArr[i - 1]);
-				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].add(nameArr[i - 1], BorderLayout.SOUTH);
+				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].setBackground(new Color(255, 255, 255));
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);

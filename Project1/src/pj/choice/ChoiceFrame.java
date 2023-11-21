@@ -21,7 +21,7 @@ public class ChoiceFrame extends JPanel {
 		choiceFrameTop = new ChoiceFrameTop(this);
 		choiceFrameCategory = new ChoiceFrameCategory(this);
 		choiceSelectAll = new ChoiceSelectAll(this);
-		choiceFramePrice = new ChoiceFramePrice(this);
+		choiceFramePrice = ChoiceFramePrice.getInstance();
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 
 		choiceFrameCategory.choiceSelectAll = choiceSelectAll;

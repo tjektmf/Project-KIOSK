@@ -17,18 +17,46 @@ import pj.menu.CategoryHome;
 
 public class ChoiceFramePrice extends JPanel {
 
+	private static final ChoiceFramePrice instance = new ChoiceFramePrice();
+
+	public static ChoiceFramePrice getInstance() {
+		return instance;
+	}
+
 	ChoiceFrame mainFrame;
 	PointButton pointButton;
 	CategoryHome categoryHome;
 	// = new CategoryHome(mainFrame, pointButton);
 
-	JButton but0 = new JButton("ㅇㅇ");
+	JButton but0 = new JButton("결제하기");
+	JTextField tf = new JTextField("price");
 
-	public void hideButton(ChoiceSelectIce mainPanel) {
-		mainPanel.hideButton = this.but0;
-		mainPanel.hideButton.setVisible(true);
+
+	boolean a = true; // 메서드 테스트용
+
+	public void hideButton() {
 		System.out.println(but0.getSize() + " hideButton 굴러감");
-		this.repaint();
+
+		// but0.setVisible(true);
+		// tf.setVisible(true);
+		// 불리언포함 if문은 테스트용 이후 삭제하면서 윗줄 살리고 내용추가
+		// 메서드 바로위에있는 인스턴스까지 삭제해야함
+		if (a) {
+			but0.setVisible(true);
+			tf.setVisible(true);
+			a = false;
+		} else {
+			but0.setVisible(false);
+			tf.setVisible(false);
+			a = true;
+		}
+
+//		repaint();
+	}
+
+	public void showPrice(int price) {
+		System.out.println("showPrice 데굴데굴");
+		tf.setText(Integer.toString(price));
 	}
 
 	public void priceCard() {
@@ -37,7 +65,7 @@ public class ChoiceFramePrice extends JPanel {
 
 	CardLayout priceCard = new CardLayout(10, 0);
 
-	public ChoiceFramePrice(ChoiceFrame mainFrame) {
+	public ChoiceFramePrice() {
 		System.out.println("ChoiceFramePrice : " + this);
 
 		JLabel test = new JLabel();
@@ -68,7 +96,6 @@ public class ChoiceFramePrice extends JPanel {
 		JButton but2 = new JButton("text로 가격보여줌");
 		JButton but3 = new JButton("결제하기"); //
 
-		JTextField tf = new JTextField("price");
 		tf.setHorizontalAlignment(JTextField.CENTER);
 
 		but0.addActionListener(new ActionListener() {
@@ -114,10 +141,10 @@ public class ChoiceFramePrice extends JPanel {
 		add(pan1);
 		add(pan2);
 		pan1.add(test);
-		pan1.add(pan12);
+		pan1.add(tf);
 		pan1.add(but0);
 		pan2.add(test2);
-		pan2.add(tf);
+		// pan2.add(tf);
 		pan2.add(but3);
 
 	}

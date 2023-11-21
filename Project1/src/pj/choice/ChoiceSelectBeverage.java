@@ -26,7 +26,7 @@ public class ChoiceSelectBeverage extends JPanel {
 	JButton choiceSelectNextBtn;
 	ImageIcon menuImage;
 
-	int theNumberOfMenu = 18;
+	final int theNumberOfMenu = 18;
 	int buttonNum;
 
 	ChoiceFrame choiceFrame;
@@ -36,6 +36,8 @@ public class ChoiceSelectBeverage extends JPanel {
 
 	public ChoiceSelectBeverage(ChoiceFrameSelect4 mainFrame) {
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
+		choiceFramePrice = ChoiceFramePrice.getInstance();
+		
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
@@ -65,8 +67,8 @@ public class ChoiceSelectBeverage extends JPanel {
 				nameArr[i - 1] = new JLabel();
 				picArr[i - 1] = new JLabel(menuImage);
 				actions[i - 1].setLayout(borderArr[i - 1]);
-				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].add(nameArr[i - 1], BorderLayout.SOUTH);
+				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].setBackground(new Color(255, 255, 255));
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
@@ -78,8 +80,8 @@ public class ChoiceSelectBeverage extends JPanel {
 				nameArr[i - 1] = new JLabel();
 				picArr[i - 1] = new JLabel(menuImage);
 				actions[i - 1].setLayout(borderArr[i - 1]);
-				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].add(nameArr[i - 1], BorderLayout.SOUTH);
+				actions[i - 1].add(picArr[i - 1], BorderLayout.CENTER);
 				actions[i - 1].setBackground(new Color(255, 255, 255));
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
@@ -98,7 +100,11 @@ public class ChoiceSelectBeverage extends JPanel {
 						// choiceFramePrice.priceCard();
 						// choiceFramePrice.hideButton(ChoiceSelectCake.this);
 						choiceFrameBuyList.showImg();
+						choiceFramePrice.hideButton();
 						move.setVisible(true);
+						
+						
+						
 
 					}
 				});
