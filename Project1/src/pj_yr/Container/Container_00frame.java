@@ -7,7 +7,7 @@ public class Container_00frame extends JFrame {
     Container_03takeOut noticeTakeOut = new Container_03takeOut();
 
     public Container_00frame() {
-        setTitle("Custom Frame");
+        setTitle("Container Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(540, 960);
 
@@ -16,7 +16,7 @@ public class Container_00frame extends JFrame {
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 
-        // 첫 번째 행 : 옵션, 플레이버
+        // 행1 : 옵션, 플레이버
         JPanel row1 = new JPanel(new BorderLayout());
 
         JLabel label1a = new JLabel("옵션", SwingConstants.CENTER);
@@ -32,19 +32,19 @@ public class Container_00frame extends JFrame {
         row1.add(label1b, BorderLayout.EAST);
         jp.add(row1);
 
-        // 두 번째 행 : 여기에서 - 0 + 버튼도 구현해야함 -> 가격도 변하는, 맛에대한 설명도 나와야함 아마 쪼개야할거같음 
+        // 행2 : 여기에서 - 0 + 버튼도 구현해야함 -> 가격도 변하는, 맛에대한 설명도 나와야함 아마 쪼개야할거같음 
         JPanel row2 = new JPanel();
         row2.setPreferredSize(new Dimension(540, 150));
         row2.setBackground(Color.gray);
         jp.add(row2);
 
-        // 세 번째 행 : 뭔가 정보가 나와야할듯,,
+        // 행3 : 뭔가 정보가 나와야할듯,,
         JPanel row3 = new JPanel();
         row3.setPreferredSize(new Dimension(540, 50));
         row3.add(noticeTakeOut.getContentPane());
         jp.add(row3);
 
-        // 네 번째 행 : 스푼이랑 이미지
+        // 행4 : 스푼이랑 이미지
         JPanel row4 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         row4.setPreferredSize(new Dimension(540, 70));
 
@@ -77,7 +77,7 @@ public class Container_00frame extends JFrame {
         jp.add(row4);
 
         
-        // 다섯 번째 행 
+        // 행5 
         // 스푼의 버튼 -> 3번째, 4번째만 있으면됨
         JPanel row5 = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         row5.setPreferredSize(new Dimension(540, 40));
@@ -114,7 +114,7 @@ public class Container_00frame extends JFrame {
         jp.add(row5);
         
         
-        // 여섯 번째 행
+        // 행6
         // 포장 이미지
         JPanel row6 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         row6.setPreferredSize(new Dimension(540, 50));
@@ -148,7 +148,7 @@ public class Container_00frame extends JFrame {
         jp.add(row6);
 
         
-        // 일곱 번째 행 
+        // 행7 
         // 포장 버튼
         JPanel row7 = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         row7.setPreferredSize(new Dimension(540, 40));
@@ -185,7 +185,7 @@ public class Container_00frame extends JFrame {
         jp.add(row7);
         
 
-        // 여덟 번째 행
+        // 행8
         JPanel row8 = new JPanel();
         row8.setPreferredSize(new Dimension(540, 80));
         JButton button8a = new JButton("이전");
@@ -204,7 +204,7 @@ public class Container_00frame extends JFrame {
         row8.add(button8b);
         jp.add(row8);
 
-        // 아홉 번째 행
+        // 행9
         JPanel row9 = new JPanel();
         row9.setPreferredSize(new Dimension(540, 170));
         // 앞으로 쓸곳8

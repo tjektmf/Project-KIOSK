@@ -10,7 +10,7 @@ public class ConeAndCup_00frame extends JFrame {
 //    private int selectedButtonIndex = -1;
     
     public ConeAndCup_00frame() {
-        setTitle("Custom Frame");
+        setTitle("ConeAndCup Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(540, 960);
 
@@ -19,7 +19,7 @@ public class ConeAndCup_00frame extends JFrame {
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 
-        // 첫 번째 행 : 옵션, 플레이버
+        // 행1 : 옵션, 플레이버
         JPanel row1 = new JPanel(new BorderLayout());
 
         JLabel label1a = new JLabel("옵션", SwingConstants.CENTER);
@@ -35,19 +35,19 @@ public class ConeAndCup_00frame extends JFrame {
         row1.add(label1b, BorderLayout.EAST);
         jp.add(row1);
 
-        // 두 번째 행 : 맛에대한 설명
+        // 행2 : 맛에대한 설명
         JPanel row2 = new JPanel();
         row2.setPreferredSize(new Dimension(540, 150));
         row2.setBackground(Color.gray);
         jp.add(row2);
 
-        // 세 번째 행 : 포장 하는지 안내문구
+        // 행3 : 포장 하는지 안내문구
         JPanel row3 = new JPanel();
         row3.setPreferredSize(new Dimension(540, 50));
         row3.add(noticeTakeOut.getContentPane());
         jp.add(row3);
 
-        // 네 번째 행 : 컵~콘~와플콘 사진이 있어야
+        // 행4 : 컵~콘~와플콘 사진이 있어야
         JPanel row4 = new JPanel();
         row4.setPreferredSize(new Dimension(540, 210));
         
@@ -75,7 +75,7 @@ public class ConeAndCup_00frame extends JFrame {
 
         jp.add(row4);
         
-        // 다섯 번째 행 : 버튼
+        // 행5 : 버튼
         JPanel row5 = new JPanel();
         row5.setPreferredSize(new Dimension(540, 40));
 
@@ -106,13 +106,13 @@ public class ConeAndCup_00frame extends JFrame {
            
         jp.add(row5);
 
-        // 여섯 번째 행 : 빈공간
+        // 행6 : 빈공간
         JPanel row6 = new JPanel();
         row6.setPreferredSize(new Dimension(540, 180));
         // TODO: 여기에 필요한 컴포넌트 추가
         jp.add(row6);
 
-        // 일곱 번째 행 : 이전, 담기 버튼
+        // 행7 : 이전, 담기 버튼
         JPanel row7 = new JPanel();
         row7.setPreferredSize(new Dimension(540, 80));
         JButton button6a = new JButton("이전");
@@ -131,7 +131,7 @@ public class ConeAndCup_00frame extends JFrame {
         row7.add(button6b);
         jp.add(row7);
 
-        // 여덟 번째 행 : 뭔가,, 광고 같은게,,
+        // 행8 : 뭔가,, 광고 같은게,,
         JPanel row8 = new JPanel();
         row8.setPreferredSize(new Dimension(540, 170));
         // 앞으로 쓸곳8

@@ -1,5 +1,6 @@
 package pj_yr.Container;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +12,7 @@ public class Container_05counting {
 
 	public Container_05counting(JPanel panelName, int i) {
         JButton minusButtoni = new JButton("-");
-        JTextField numberFieldi = new JTextField("0", 1); // 초기값은 0
+        JTextField numberFieldi = new JTextField("0", 3); // 초기값은 0
         numberFieldi.setEditable(false);
         JButton plusButtoni = new JButton("+");
 
@@ -38,8 +39,10 @@ public class Container_05counting {
 
         minusButtoni.setPreferredSize(new java.awt.Dimension(30, 20));
         plusButtoni.setPreferredSize(new java.awt.Dimension(30, 20));
-        minusButtoni.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 6));
-        plusButtoni.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 6));
+        minusButtoni.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 8));
+        plusButtoni.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 8));
+
+        numberFieldi.setPreferredSize(new Dimension(50, 30));        
 
         panelName.add(minusButtoni);
         panelName.add(numberFieldi);
