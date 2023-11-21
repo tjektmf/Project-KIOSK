@@ -26,16 +26,17 @@ public class ChoiceSelectCoffee extends JPanel {
 	JButton choiceSelectNextBtn;
 	ImageIcon menuImage;
 
+	ChoiceFrame choiceFrame;
+	ChoiceFramePrice choiceFramePrice;
+	ConeAndCup_00frame move = new ConeAndCup_00frame();
+	ChoiceFrameBuyList choiceFrameBuyList;
+
 	int theNumberOfMenu = 10;
 	int buttonNum;
-
-	ChoiceFrame choiceFrame;
-	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
-	ConeAndCup_00frame move = new ConeAndCup_00frame();
-	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
-
+	
 	public ChoiceSelectCoffee(ChoiceFrameSelect3 mainFrame) {
 
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 

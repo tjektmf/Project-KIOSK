@@ -30,12 +30,12 @@ public class ChoiceSelectBeverage extends JPanel {
 	int buttonNum;
 
 	ChoiceFrame choiceFrame;
-	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
+	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
-	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
+	ChoiceFrameBuyList choiceFrameBuyList;
 
 	public ChoiceSelectBeverage(ChoiceFrameSelect4 mainFrame) {
-
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 

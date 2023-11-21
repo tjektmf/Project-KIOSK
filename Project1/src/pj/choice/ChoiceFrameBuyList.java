@@ -15,15 +15,18 @@ import javax.swing.SwingUtilities;
 
 public class ChoiceFrameBuyList extends JPanel {
 
-	ImageIcon apple;
+	private static final ChoiceFrameBuyList instance = new ChoiceFrameBuyList();
+
 	JLabel label1 = new JLabel();
 	JLabel label2 = new JLabel();
 	JLabel label3 = new JLabel();
 	JPanel pan1 = new JPanel();
 
-	ChoiceSelectIce choiceSelectIce;
+	public static ChoiceFrameBuyList getInstance() {
+		return instance;
+	}
 
-	public ChoiceFrameBuyList(ChoiceFrame mainFrame) {
+	private ChoiceFrameBuyList() {
 
 		CardLayout card = new CardLayout(10, 10);
 
@@ -73,18 +76,24 @@ public class ChoiceFrameBuyList extends JPanel {
 		pan2.setBackground(new Color(255, 255, 255));
 		// 팬2는 날릴 생각으로 test랑 같이 붙여놓은거임
 		label1.setText("외않되");
+		System.out.println("외않되 추가당시 instance: " + this);
 		// label1.setText("ddd");
-		label1.setText("22");
+
 	}
 
 	public void showImg() {
 		System.out.println("showImg 잘굴러가는중");
-		SwingUtilities.invokeLater(() -> {
+		// SwingUtilities.invokeLater(() -> {
+	//	label1.setText("dd");
+		System.out.println(label1.getText());
+		if(label1.getText().equals("dd")) {
+			label1.setText("pp");
+		} else {
 			label1.setText("dd");
-			System.out.println(label1.getText());
-		});
-		label1.validate();
+		}
+		label1.revalidate();
 		label1.repaint();
+		// });
 		// System.out.println(label1.getText());
 		// label1.setText("dd");
 

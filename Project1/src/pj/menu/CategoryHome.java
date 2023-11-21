@@ -55,7 +55,7 @@ public class CategoryHome extends JPanel {
 
 		choiceSelectAll = mainFrame.choiceSelectAll;
 	//	choiceSelectAll = new ChoiceSelectAll(mainFrame);
-		
+		System.out.println("CategoryHome : " + this);
 		
 		f.setLayout(card);
 

@@ -38,6 +38,7 @@ public class ChoiceFramePrice extends JPanel {
 	CardLayout priceCard = new CardLayout(10, 0);
 
 	public ChoiceFramePrice(ChoiceFrame mainFrame) {
+		System.out.println("ChoiceFramePrice : " + this);
 
 		JLabel test = new JLabel();
 		JLabel test2 = new JLabel();

@@ -30,12 +30,13 @@ public class ChoiceSelectDessert extends JPanel {
 	int buttonNum;
 	
 	ChoiceFrame choiceFrame;
-	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
+	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
-	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
+	ChoiceFrameBuyList choiceFrameBuyList;
+	
 
 	public ChoiceSelectDessert(ChoiceFrameSelect5 mainFrame) {
-
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
@@ -72,6 +73,7 @@ public class ChoiceSelectDessert extends JPanel {
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				menuImage = null;
+				
 			} else if (i < 19) {
 				pan2.add(actions[i - 1] = new JButton(menuImage));
 				borderArr[i - 1] = new BorderLayout(-10, -10);
@@ -94,11 +96,12 @@ public class ChoiceSelectDessert extends JPanel {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						
 						System.out.println("액션리스너 작동함");
-						// choiceFramePrice.priceCard();
-						// choiceFramePrice.hideButton(ChoiceSelectCake.this);
+						System.out.println("instance: " + choiceFrameBuyList);
 						choiceFrameBuyList.showImg();
 						move.setVisible(true);
+						
 
 					}
 				});

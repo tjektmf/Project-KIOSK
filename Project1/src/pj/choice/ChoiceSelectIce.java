@@ -35,20 +35,21 @@ public class ChoiceSelectIce extends JPanel {
 	CategoryHome categoryHome;
 	JFrame f;
 	IceCreamShopCover iceCreamShopCover;
-	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
+	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
-	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
+	ChoiceFrameBuyList choiceFrameBuyList;
+	ChoiceFrameSelect choiceFrameSelect;
 
 	// 이미지 없다고 오류떠서 메뉴개수 정해줌
 	int theNumberOfMenu = 9;
-	int buttonNum=1;
+	int buttonNum = 1;
 
-	
 	int count;
 	int num;
-	
 
+	// ChoiceFrameSelect mainFrame
 	public ChoiceSelectIce(ChoiceFrameSelect mainFrame) {
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
@@ -96,13 +97,12 @@ public class ChoiceSelectIce extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
-			
+
 				menuImage = null;
 
-				
 			}
 		}
-		
+
 		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
 			if (picArr[buttonNum - 1] != null) {
 				actions[buttonNum - 1].addActionListener(new ActionListener() {
@@ -129,7 +129,7 @@ public class ChoiceSelectIce extends JPanel {
 		nameArr[7].setText("<html><body style='text-align:center;'>버라이어티팩<br>23400원<html>");
 		nameArr[8].setText("<html><body style='text-align:center;'>핸드팩<br>39200원<html>");
 
-		
+		System.out.println("ChoiceSelectIce : " + this);
 
 		// categoryHome.showFrame(false);
 		// categoryHome.mainCard(mainCard);

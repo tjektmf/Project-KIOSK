@@ -27,14 +27,15 @@ public class ChoiceSelectCake extends JPanel {
 	ImageIcon menuImage;
 
 	ChoiceFrame choiceFrame;
-	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
+	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
-	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
+	ChoiceFrameBuyList choiceFrameBuyList;
+	
 	int theNumberOfMenu = 14;
 	int buttonNum;
 
 	public ChoiceSelectCake(ChoiceFrameSelect2 mainFrame) {
-
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
