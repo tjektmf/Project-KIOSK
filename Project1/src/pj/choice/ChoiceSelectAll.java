@@ -15,7 +15,7 @@ public class ChoiceSelectAll extends JPanel {
 	ChoiceFrameSelect5 choiceFrameSelect5;
 	CategoryHome categoryhome;
 	CardLayout menuCard;
-
+	
 	public ChoiceSelectAll(ChoiceFrame mainFrame) {
 		menuCard = new CardLayout();
 

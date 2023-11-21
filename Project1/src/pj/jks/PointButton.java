@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import pj.choice.ChoiceFrame;
-import pj.hm.CategoryHome;
+import pj.menu.CategoryHome;
 
 public class PointButton extends JPanel {
 
@@ -347,4 +347,7 @@ public class PointButton extends JPanel {
 //		f.setVisible(true);
 	}
 
+	public static void main(String[] args) {
+		new PointButton();
+	}
 }

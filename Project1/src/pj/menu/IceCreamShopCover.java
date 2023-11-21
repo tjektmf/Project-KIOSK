@@ -30,7 +30,7 @@ public class IceCreamShopCover extends JFrame {
 	String[] imagePaths = { 
 			"img/hyemi/ad1.png",
             "img/hyemi/ad2.png",
-            "img/hyemi/베라img.png",
+            "img/hyemi/homeImg.png",
             "img/hyemi/ad3.png",
             "img/hyemi/ad4.png"
             };
@@ -74,7 +74,7 @@ public class IceCreamShopCover extends JFrame {
 		
 		// 투명한 패널을 만들어 글씨를 포함시키고 위치 설정
 		JPanel textPanel = new JPanel();		
-		textPanel.setBounds(150, 200, 400, 400);
+		textPanel.setBounds(120, 280, 400, 400);
 		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
 		add(textPanel);
 		textPanel.add(textLabel);

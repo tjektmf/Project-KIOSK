@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import pj.hm.CategoryHome;
 import pj.jks.PointButton;
+import pj.menu.CategoryHome;
 
 public class ChoiceFramePrice extends JPanel {
 
@@ -92,7 +92,7 @@ public class ChoiceFramePrice extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				priceCard.previous(ChoiceFramePrice.this);
-				categoryHome.showCard("price");
+		
 				System.out.println("나중에 결제창으로");
 
 			}

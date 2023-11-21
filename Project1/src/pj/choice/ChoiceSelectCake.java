@@ -44,6 +44,7 @@ public class ChoiceSelectCake extends JPanel {
 				BufferedImage image = ImageIO.read(new File("img/img_baskin/baskin_cake/" + i + ".png"));
 				Image scaledImage = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
 				apple = new ImageIcon(scaledImage);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -60,6 +61,7 @@ public class ChoiceSelectCake extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+				apple = null;
 			} else if (i < 19) {
 				pan2.add(actions[i - 1] = new JButton(apple));
 				borderArr[i - 1] = new BorderLayout(-10, -10);
@@ -72,6 +74,7 @@ public class ChoiceSelectCake extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+				apple = null;
 			} else {
 				pan3.add(actions[i - 1] = new JButton(apple));
 			}
