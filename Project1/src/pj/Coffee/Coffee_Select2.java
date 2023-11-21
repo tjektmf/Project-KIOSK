@@ -18,9 +18,9 @@ public Coffee_Select2() {
 	imageLabel.setIcon(new ImageIcon("C:/pj/배경2.png"));
 
 	Coffee1.setBounds(100, 100, 540, 960);
-
-	JButton HomeBtn = new JButton("초기화면");
-	JButton ReturnBtn = new JButton("카테고리");
+//
+//	JButton HomeBtn = new JButton("초기화면");
+//	JButton ReturnBtn = new JButton("카테고리");
 	JButton AddShotN = new JButton("추가안함");
 	JButton AddShotY = new JButton("샷추가");
 	JButton SyrupN = new JButton("추가안함");
@@ -33,8 +33,8 @@ public Coffee_Select2() {
 	JButton OptionsBtn = new JButton("상품옵션선택");
 
 	// 버튼들 위치 정하는 작업
-	HomeBtn.setBounds(10, 20, 50, 50);
-	ReturnBtn.setBounds(468, 20, 50, 50);
+//	HomeBtn.setBounds(10, 20, 50, 50);
+//	ReturnBtn.setBounds(468, 20, 50, 50);
 	AddShotN.setBounds(160, 200, 100, 90);
 	AddShotY.setBounds(270, 200, 100, 90);
 	SyrupN.setBounds(160, 310, 100, 90);
@@ -48,8 +48,8 @@ public Coffee_Select2() {
 
 	// 메인 페널에 버튼 추가
 	mainPanel.setLayout(null);
-	mainPanel.add(HomeBtn);
-	mainPanel.add(ReturnBtn);
+//	mainPanel.add(HomeBtn);
+//	mainPanel.add(ReturnBtn);
 	mainPanel.add(AddShotN);
 	mainPanel.add(AddShotY);
 	mainPanel.add(SyrupN);
