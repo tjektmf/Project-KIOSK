@@ -30,7 +30,7 @@ public class IceCreamShopCover extends JFrame {
 	String[] imagePaths = { 
 			"img/hyemi/ad1.png",
             "img/hyemi/ad2.png",
-            "img/hyemi/homeImg.png",
+            "img/hyemi/ad.png",
             "img/hyemi/ad3.png",
             "img/hyemi/ad4.png"
             };
