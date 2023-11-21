@@ -74,6 +74,34 @@ public class PointButton extends JFrame {
 		panel1.add(panel1tf);
 		panel1.add(panel1tf2);
 
+		JLabel pointLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/happy.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+			
+			pointLabel.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		pointLabel.setHorizontalAlignment(JLabel.CENTER);
+		
+		JLabel pointLabel2 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/happy.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+			
+			pointLabel2.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		pointLabel2.setHorizontalAlignment(JLabel.CENTER);
+		
 		JButton btn1 = new JButton("회원포인트");
 		btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		btn1.setForeground(Color.pink);
@@ -84,9 +112,11 @@ public class PointButton extends JFrame {
 		btn2.setBackground(new Color(0, 0, 0, 0));
 		btn2.setBounds(270, 90, 145, 90);
 		JButton btn3 = new JButton("적립하기");
-		btn3.setBackground(new Color(0, 0, 0, 0));
+		btn3.add(pointLabel);
+		btn3.setBackground(new Color(255,255,255));
 		btn3.setBounds(30, 270, 105, 120);
 		JButton btn4 = new JButton("사용하기");
+		btn4.add(pointLabel2);
 		btn4.setBackground(new Color(0, 0, 0, 0));
 		btn4.setBounds(160, 270, 105, 120);
 		JButton btn5 = new JButton("< 이전");
@@ -132,6 +162,7 @@ public class PointButton extends JFrame {
 		});
 
 		// panel2 부분
+		
 		JTextField tf = new JTextField(30);
 		tf.setLocation(100, 700);
 		tf.setSize(330, 50);
@@ -141,31 +172,227 @@ public class PointButton extends JFrame {
 		panel2label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 		panel2.add(panel2label1);
 
-		JButton panel2btn0 = new JButton("0");
-		JButton panel2btn1 = new JButton("1");
-		JButton panel2btn2 = new JButton("2");
-		JButton panel2btn3 = new JButton("3");
-		JButton panel2btn4 = new JButton("4");
-		JButton panel2btn5 = new JButton("5");
-		JButton panel2btn6 = new JButton("6");
-		JButton panel2btn7 = new JButton("7");
-		JButton panel2btn8 = new JButton("8");
-		JButton panel2btn9 = new JButton("9");
-		JButton panel2btn10 = new JButton("Clear");
-		JButton panel2btn11 = new JButton("<");
+		
+		
+		
+		JLabel numLabel1 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/1.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel1.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel1.setHorizontalAlignment(JLabel.CENTER);		
+		
+		JLabel numLabel2 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/2.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel2.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel2.setHorizontalAlignment(JLabel.CENTER);		
+		
+		JLabel numLabel3 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/3.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel3.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel2.setHorizontalAlignment(JLabel.CENTER);		
+		JLabel numLabel4 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/4.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel4.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel4.setHorizontalAlignment(JLabel.CENTER);
+		
+		JLabel numLabel5 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/5.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel5.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel5.setHorizontalAlignment(JLabel.CENTER);	
+		
+		
+		JLabel numLabel6 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/6.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel6.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel6.setHorizontalAlignment(JLabel.CENTER);		
+		JLabel numLabel7 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/7.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel7.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel7.setHorizontalAlignment(JLabel.CENTER);		
+		JLabel numLabel8 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/8.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel8.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel8.setHorizontalAlignment(JLabel.CENTER);		
+		JLabel numLabel9 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/9.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel9.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel9.setHorizontalAlignment(JLabel.CENTER);	
+		
+		JLabel numLabel0 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/0.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			numLabel0.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel0.setHorizontalAlignment(JLabel.CENTER);		
+		
+		
+		JLabel backLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/취소.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+			
+			backLabel.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		backLabel.setHorizontalAlignment(JLabel.CENTER);	
+		
+		JLabel cleLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/전체삭제.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+			
+			cleLabel.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		cleLabel.setHorizontalAlignment(JLabel.CENTER);	
+		
+		
+		JButton panel2btn0 = new JButton();
+		JButton panel2btn1 = new JButton();
+		JButton panel2btn2 = new JButton();
+		JButton panel2btn3 = new JButton();
+		JButton panel2btn4 = new JButton();
+		JButton panel2btn5 = new JButton();
+		JButton panel2btn6 = new JButton();
+		JButton panel2btn7 = new JButton();
+		JButton panel2btn8 = new JButton();
+		JButton panel2btn9 = new JButton();
+		JButton panel2btn10 = new JButton();
+		JButton panel2btn11 = new JButton();
 
+		panel2btn1.add(numLabel1);
+		panel2btn2.add(numLabel2);
+		panel2btn3.add(numLabel3);
+		panel2btn4.add(numLabel4);
+		panel2btn5.add(numLabel5);
+		panel2btn6.add(numLabel6);
+		panel2btn7.add(numLabel7);
+		panel2btn8.add(numLabel8);
+		panel2btn9.add(numLabel9);
+		panel2btn0.add(numLabel0);
+		panel2btn10.add(cleLabel);
+		panel2btn11.add(backLabel);
+	
+		
 		panel2btn0.setBounds(200, 500, 100, 90);
+		panel2btn0.setBackground(new Color(255,255,255));
 		panel2btn1.setBounds(80, 200, 100, 90);
+		panel2btn1.setBackground(new Color(255,255,255));
 		panel2btn2.setBounds(200, 200, 100, 90);
+		panel2btn2.setBackground(new Color(255,255,255));
 		panel2btn3.setBounds(320, 200, 100, 90);
+		panel2btn3.setBackground(new Color(255,255,255));
 		panel2btn4.setBounds(80, 300, 100, 90);
+		panel2btn4.setBackground(new Color(255,255,255));
 		panel2btn5.setBounds(200, 300, 100, 90);
+		panel2btn5.setBackground(new Color(255,255,255));
 		panel2btn6.setBounds(320, 300, 100, 90);
+		panel2btn6.setBackground(new Color(255,255,255));
 		panel2btn7.setBounds(80, 400, 100, 90);
+		panel2btn7.setBackground(new Color(255,255,255));
 		panel2btn8.setBounds(200, 400, 100, 90);
+		panel2btn8.setBackground(new Color(255,255,255));
 		panel2btn9.setBounds(320, 400, 100, 90);
+		panel2btn9.setBackground(new Color(255,255,255));
 		panel2btn10.setBounds(80, 500, 100, 90);
+		panel2btn10.setBackground(new Color(255,255,255));
 		panel2btn11.setBounds(320, 500, 100, 90);
+		panel2btn11.setBackground(new Color(255,255,255));
 
 		panel2btn0.addActionListener(new ActionListener() {
 			@Override
@@ -313,7 +540,177 @@ public class PointButton extends JFrame {
 //		panel3.add(panel3label2);
 //		panel3.add(tf1);
 
+		
 		// panel4 부분
+		
+		JLabel p4numLabel1 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/1.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel1.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel1.setHorizontalAlignment(JLabel.CENTER);		
+		
+		JLabel p4numLabel2 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/2.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel2.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel2.setHorizontalAlignment(JLabel.CENTER);		
+		
+		JLabel p4numLabel3 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/3.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel3.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		numLabel2.setHorizontalAlignment(JLabel.CENTER);		
+		JLabel p4numLabel4 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/4.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel4.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel4.setHorizontalAlignment(JLabel.CENTER);
+		
+		JLabel p4numLabel5 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/5.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel5.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel5.setHorizontalAlignment(JLabel.CENTER);	
+		
+		
+		JLabel p4numLabel6 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/6.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel6.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel6.setHorizontalAlignment(JLabel.CENTER);		
+		JLabel p4numLabel7 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/7.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel7.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel7.setHorizontalAlignment(JLabel.CENTER);		
+		
+		JLabel p4numLabel8 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/8.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel8.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel8.setHorizontalAlignment(JLabel.CENTER);		
+		
+		JLabel p4numLabel9 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/9.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel9.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel9.setHorizontalAlignment(JLabel.CENTER);	
+		
+		JLabel p4numLabel0 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/0.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			p4numLabel0.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4numLabel0.setHorizontalAlignment(JLabel.CENTER);		
+		
+		
+		JLabel p4backLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/취소.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+			
+			p4backLabel.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4backLabel.setHorizontalAlignment(JLabel.CENTER);	
+		
+		JLabel p4cleLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/전체삭제.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+			
+			p4cleLabel.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		p4cleLabel.setHorizontalAlignment(JLabel.CENTER);	
+		
 		JTextField panel4tf = new JTextField(30);
 		JTextField panel4tf2 = new JTextField(30);
 		panel4tf.setLocation(80, 600);
@@ -335,31 +732,59 @@ public class PointButton extends JFrame {
 		panel4.add(panel4label2);
 		panel4.add(panel4label3);
 
-		JButton panel4btn0 = new JButton("0");
-		JButton panel4btn1 = new JButton("1");
-		JButton panel4btn2 = new JButton("2");
-		JButton panel4btn3 = new JButton("3");
-		JButton panel4btn4 = new JButton("4");
-		JButton panel4btn5 = new JButton("5");
-		JButton panel4btn6 = new JButton("6");
-		JButton panel4btn7 = new JButton("7");
-		JButton panel4btn8 = new JButton("8");
-		JButton panel4btn9 = new JButton("9");
-		JButton panel4btn10 = new JButton("Clear");
-		JButton panel4btn11 = new JButton("<");
+		JButton panel4btn0 = new JButton();
+		JButton panel4btn1 = new JButton();
+		JButton panel4btn2 = new JButton();
+		JButton panel4btn3 = new JButton();
+		JButton panel4btn4 = new JButton();
+		JButton panel4btn5 = new JButton();
+		JButton panel4btn6 = new JButton();
+		JButton panel4btn7 = new JButton();
+		JButton panel4btn8 = new JButton();
+		JButton panel4btn9 = new JButton();
+		JButton panel4btn10 = new JButton();
+		JButton panel4btn11 = new JButton();
 
+		
+		
+		panel4btn1.add(p4numLabel1);
+		panel4btn2.add(p4numLabel2);
+		panel4btn3.add(p4numLabel3);
+		panel4btn4.add(p4numLabel4);
+		panel4btn5.add(p4numLabel5);
+		panel4btn6.add(p4numLabel6);
+		panel4btn7.add(p4numLabel7);
+		panel4btn8.add(p4numLabel8);
+		panel4btn9.add(p4numLabel9);
+		panel4btn0.add(p4numLabel0);
+		panel4btn10.add(p4cleLabel);
+		panel4btn11.add(p4backLabel);
+		
+		
 		panel4btn0.setBounds(200, 500, 100, 90);
+		panel4btn0.setBackground(new Color(255,255,255));
 		panel4btn1.setBounds(80, 200, 100, 90);
+		panel4btn1.setBackground(new Color(255,255,255));
 		panel4btn2.setBounds(200, 200, 100, 90);
+		panel4btn2.setBackground(new Color(255,255,255));
 		panel4btn3.setBounds(320, 200, 100, 90);
+		panel4btn3.setBackground(new Color(255,255,255));
 		panel4btn4.setBounds(80, 300, 100, 90);
+		panel4btn4.setBackground(new Color(255,255,255));
 		panel4btn5.setBounds(200, 300, 100, 90);
+		panel4btn5.setBackground(new Color(255,255,255));
 		panel4btn6.setBounds(320, 300, 100, 90);
+		panel4btn6.setBackground(new Color(255,255,255));
 		panel4btn7.setBounds(80, 400, 100, 90);
+		panel4btn7.setBackground(new Color(255,255,255));
 		panel4btn8.setBounds(200, 400, 100, 90);
+		panel4btn8.setBackground(new Color(255,255,255));
 		panel4btn9.setBounds(320, 400, 100, 90);
+		panel4btn9.setBackground(new Color(255,255,255));
 		panel4btn10.setBounds(80, 500, 100, 90);
+		panel4btn10.setBackground(new Color(255,255,255));
 		panel4btn11.setBounds(320, 500, 100, 90);
+		panel4btn11.setBackground(new Color(255,255,255));
 
 		panel4btn0.addActionListener(new ActionListener() {
 			@Override
@@ -409,7 +834,7 @@ public class PointButton extends JFrame {
 		panel4btn7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tf.setText(tf.getText() + "7");
+				panel4tf.setText(panel4tf.getText() + "7");
 			}
 		});
 		panel4btn8.addActionListener(new ActionListener() {
@@ -422,7 +847,7 @@ public class PointButton extends JFrame {
 		panel4btn9.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tf.setText(tf.getText() + "9");
+				panel4tf.setText(panel4tf.getText() + "9");
 			}
 		});
 
@@ -439,6 +864,7 @@ public class PointButton extends JFrame {
 				panel4tf.setText(panel4tf.getText().substring(0, panel4tf.getText().length() - 1));
 			}
 		});
+		
 		JButton panel4btn12 = new JButton("취소");
 		JButton panel4btn13 = new JButton("확인");
 
@@ -481,6 +907,9 @@ public class PointButton extends JFrame {
 		panel4.add(panel4btn12);
 		panel4.add(panel4btn13);
 
+		
+		
+		
 		// panel5 부분
 		JLabel panel5label1 = new JLabel("결제하기");
 		JLabel panel5label2 = new JLabel("최종결제금액");
@@ -517,7 +946,7 @@ public class PointButton extends JFrame {
 		JLabel cashLabel = new JLabel();
 		try {
 			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/naverpay.png"));
+					ImageIO.read(new File("img/jks/카드결제.png"));
 			
 			Image scaledImage =
 			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
@@ -526,14 +955,51 @@ public class PointButton extends JFrame {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		panel5.add(cashLabel);
+		cashLabel.setHorizontalAlignment(JLabel.CENTER);
 		
-		JButton panel5btn3 = new JButton("신용카드");
-		JButton panel5btn4 = new JButton("삼성페이");
-		JButton panel5btn5 = new JButton("카카오페이");
+		
+		JLabel cashLabel2 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/naverpay.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			cashLabel2.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		cashLabel2.setHorizontalAlignment(JLabel.CENTER);
+		
+		JLabel cashLabel3 = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/카카오페이.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			cashLabel3.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		cashLabel3.setHorizontalAlignment(JLabel.CENTER);
+		
+		JButton panel5btn3 = new JButton();
+		JButton panel5btn4 = new JButton();
+		JButton panel5btn5 = new JButton();
+		
 		panel5btn3.setBounds(30, 240, 100, 90);
 		panel5btn4.setBounds(200, 240, 100, 90);
 		panel5btn5.setBounds(370, 240, 100, 90);
+		
+		panel5btn3.add(cashLabel);
+		panel5btn3.setBackground(new Color(255,255,255));
+		panel5btn4.add(cashLabel2);
+		panel5btn4.setBackground(new Color(255,255,255));
+		panel5btn5.add(cashLabel3);
+		panel5btn5.setBackground(new Color(255,255,255));
 
 		panel5btn3.addActionListener(new ActionListener() {
 			@Override
@@ -593,6 +1059,8 @@ public class PointButton extends JFrame {
 		panel5.add(panel5btn6);
 		panel5.add(panel5btn7);
 
+		
+		
 		// panel6부분
 		JLabel panel6label1 = new JLabel("결제하기");
 		panel6label1.setBounds(180, 20, 300, 100);
