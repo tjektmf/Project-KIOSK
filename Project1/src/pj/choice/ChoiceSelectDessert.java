@@ -17,13 +17,22 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pj_yr.ConeAndCup.ConeAndCup_00frame;
+
 public class ChoiceSelectDessert extends JPanel {
 
 	CardLayout card = new CardLayout();
 	JButton choiceSelectPrevBtn;
 	JButton choiceSelectNextBtn;
 	ImageIcon menuImage;
+	
 	int theNumberOfMenu = 18;
+	int buttonNum;
+	
+	ChoiceFrame choiceFrame;
+	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
+	ConeAndCup_00frame move = new ConeAndCup_00frame();
+	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
 
 	public ChoiceSelectDessert(ChoiceFrameSelect5 mainFrame) {
 
@@ -79,6 +88,23 @@ public class ChoiceSelectDessert extends JPanel {
 			}
 		}
 
+		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
+			if (picArr[buttonNum - 1] != null) {
+				actions[buttonNum - 1].addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("액션리스너 작동함");
+						// choiceFramePrice.priceCard();
+						// choiceFramePrice.hideButton(ChoiceSelectCake.this);
+						choiceFrameBuyList.showImg();
+						move.setVisible(true);
+
+					}
+				});
+			}
+		}
+		
 		nameArr[0].setText("<html><body style='text-align:center;'>도라에몽의<br>대나무 헬리콥터<br>31000원<html>");
 		nameArr[1].setText("<html><body style='text-align:center;'>달토끼맛 쿠기의<br>보름달 소원<br>28000원<html>");
 		nameArr[2].setText("<html><body style='text-align:center;'>노티드 스마일<br>크림 버니<br>31000원<html>");
@@ -109,7 +135,7 @@ public class ChoiceSelectDessert extends JPanel {
 
 		add(pan1);
 		add(pan2);
-		add(pan3);
+//		add(pan3);
 		setLayout(card);
 		setVisible(true);
 

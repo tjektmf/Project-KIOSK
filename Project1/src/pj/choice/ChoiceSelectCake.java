@@ -17,13 +17,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pj_yr.ConeAndCup.ConeAndCup_00frame;
+
 public class ChoiceSelectCake extends JPanel {
 
 	CardLayout card = new CardLayout();
 	JButton choiceSelectPrevBtn;
 	JButton choiceSelectNextBtn;
 	ImageIcon menuImage;
+
+	ChoiceFrame choiceFrame;
+	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
+	ConeAndCup_00frame move = new ConeAndCup_00frame();
+	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
 	int theNumberOfMenu = 14;
+	int buttonNum;
 
 	public ChoiceSelectCake(ChoiceFrameSelect2 mainFrame) {
 
@@ -38,7 +46,7 @@ public class ChoiceSelectCake extends JPanel {
 		BorderLayout[] borderArr = new BorderLayout[48];
 		JLabel[] nameArr = new JLabel[48];
 		JLabel[] picArr = new JLabel[48];
-		
+
 		for (int i = 1; i <= 18; i++) {
 			try {
 				if (i <= theNumberOfMenu) {
@@ -62,7 +70,9 @@ public class ChoiceSelectCake extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+
 				menuImage = null;
+
 			} else if (i < 19) {
 				pan2.add(actions[i - 1] = new JButton(menuImage));
 				borderArr[i - 1] = new BorderLayout(-10, -10);
@@ -76,6 +86,23 @@ public class ChoiceSelectCake extends JPanel {
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				menuImage = null;
+
+			}
+		}
+		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
+			if (picArr[buttonNum - 1] != null) {
+				actions[buttonNum - 1].addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("액션리스너 작동함");
+						// choiceFramePrice.priceCard();
+						// choiceFramePrice.hideButton(ChoiceSelectCake.this);
+						choiceFrameBuyList.showImg();
+						move.setVisible(true);
+
+					}
+				});
 			}
 		}
 		nameArr[0].setText("<html><body style='text-align:center;'>도라에몽의<br>대나무 헬리콥터<br>31000원<html>");
@@ -112,7 +139,7 @@ public class ChoiceSelectCake extends JPanel {
 
 		add(pan1);
 		add(pan2);
-		add(pan3);
+//		add(pan3);
 		setLayout(card);
 		setVisible(true);
 

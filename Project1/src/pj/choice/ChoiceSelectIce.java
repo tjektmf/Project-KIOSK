@@ -32,18 +32,21 @@ public class ChoiceSelectIce extends JPanel {
 	JButton choiceSelectNextBtn;
 	JButton hideButton = new JButton("숨어있는 결제창");
 	ImageIcon menuImage;
-	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
 	CategoryHome categoryHome;
-	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	JFrame f;
 	IceCreamShopCover iceCreamShopCover;
+	ChoiceFramePrice choiceFramePrice = new ChoiceFramePrice(choiceFrame);
+	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList = new ChoiceFrameBuyList(this.choiceFrame);
 
 	// 이미지 없다고 오류떠서 메뉴개수 정해줌
 	int theNumberOfMenu = 9;
+	int buttonNum=1;
 
+	
 	int count;
 	int num;
+	
 
 	public ChoiceSelectIce(ChoiceFrameSelect mainFrame) {
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
@@ -81,6 +84,7 @@ public class ChoiceSelectIce extends JPanel {
 			}
 
 			if (i <= 9) {
+
 				pan1.add(actions[i - 1] = new JButton());
 				borderArr[i - 1] = new BorderLayout(-10, -10);
 				nameArr[i - 1] = new JLabel();
@@ -92,12 +96,27 @@ public class ChoiceSelectIce extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+			
 				menuImage = null;
 
-			} else if (i < 33) {
-				pan2.add(actions[i - 1] = new JButton(menuImage));
-			} else {
-				pan3.add(actions[i - 1] = new JButton(menuImage));
+				
+			}
+		}
+		
+		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
+			if (picArr[buttonNum - 1] != null) {
+				actions[buttonNum - 1].addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println("액션리스너 작동함");
+						// choiceFramePrice.priceCard();
+						// choiceFramePrice.hideButton(ChoiceSelectCake.this);
+						choiceFrameBuyList.showImg();
+						move.setVisible(true);
+
+					}
+				});
 			}
 		}
 		nameArr[0].setText("<html><body style='text-align:center;'>싱글레귤러<br>3900원<html>");
@@ -110,23 +129,13 @@ public class ChoiceSelectIce extends JPanel {
 		nameArr[7].setText("<html><body style='text-align:center;'>버라이어티팩<br>23400원<html>");
 		nameArr[8].setText("<html><body style='text-align:center;'>핸드팩<br>39200원<html>");
 
-		actions[0].addActionListener(new ActionListener() {
+		
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("액션리스너 작동함");
-				// choiceFramePrice.priceCard();
-				choiceFramePrice.hideButton(ChoiceSelectIce.this);
-				choiceFrameBuyList.showImg();
-				move.setVisible(true);
+		// categoryHome.showFrame(false);
+		// categoryHome.mainCard(mainCard);
 
-				// categoryHome.showFrame(false);
-				// categoryHome.mainCard(mainCard);
-
-				// mainFrame.getParent().getParent().getParent().
-				// categoryHome.frame(f).dispose();
-			}
-		});
+		// mainFrame.getParent().getParent().getParent().
+		// categoryHome.frame(f).dispose();
 
 		actions[1].addActionListener(new ActionListener() {
 
@@ -160,8 +169,8 @@ public class ChoiceSelectIce extends JPanel {
 			}
 		});
 		add(pan1);
-		add(pan2);
-		add(pan3);
+//		add(pan2);
+//		add(pan3);
 		setLayout(card);
 		setVisible(true);
 	}
