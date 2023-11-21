@@ -1,11 +1,17 @@
-package pj.choice;
+package pj.jks;
 
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -507,6 +513,21 @@ public class PointButton extends JFrame {
 		panel5btn2.setBackground(new Color(0, 0, 0, 0));
 		panel5btn2.setBounds(270, 90, 145, 90);
 
+		
+		JLabel cashLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage =
+					ImageIO.read(new File("img/jks/naverpay.png"));
+			
+			Image scaledImage =
+			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+			
+			cashLabel.setIcon(new ImageIcon(scaledImage));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		panel5.add(cashLabel);
+		
 		JButton panel5btn3 = new JButton("신용카드");
 		JButton panel5btn4 = new JButton("삼성페이");
 		JButton panel5btn5 = new JButton("카카오페이");
