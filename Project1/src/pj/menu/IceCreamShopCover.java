@@ -30,7 +30,7 @@ public class IceCreamShopCover extends JFrame {
 	String[] imagePaths = { 
 			"img/hyemi/ad1.png",
             "img/hyemi/ad2.png",
-            "img/hyemi/ad.png",
+            "img/hyemi/ad0.png",
             "img/hyemi/ad3.png",
             "img/hyemi/ad4.png"
             };
@@ -54,6 +54,7 @@ public class IceCreamShopCover extends JFrame {
 		keyBtn.setLocation(455, 855);
 		keyBtn.setBackground(new Color(0, 0, 0, 0));
 		keyBtn.setBorderPainted(false);
+		
 		// Key 이미지
 		ImageIcon addImage  = new ImageIcon("img/hyemi/key.png");
 		keyBtn.setIcon(addImage);
@@ -67,8 +68,7 @@ public class IceCreamShopCover extends JFrame {
 		    	
                 // adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
 		    	setVisible(false);
-                updateFrameContent();
-                
+                updateFrameContent();     
 		    }
 		});
 		
@@ -85,8 +85,7 @@ public class IceCreamShopCover extends JFrame {
 		mainLabel.setSize(540, 960);
 		mainPanel.add(mainLabel);//, BorderLayout.CENTER 뺌
 		mainPanel.add(keyBtn);// , BorderLayout.SOUTH 뺌
-		
-		
+			
 		Timer changeImg = new Timer(3000, new ActionListener() {
 			
 			@Override
@@ -126,7 +125,6 @@ public class IceCreamShopCover extends JFrame {
 		});
 		
 		add(mainPanel, BorderLayout.CENTER);
-	
 
 		// 프레임 표시 설정
 		pack();

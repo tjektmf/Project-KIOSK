@@ -20,7 +20,7 @@ import pj.jks.PointButton;
 
 public class CategoryHome extends JPanel {
 
-	Color beskinColor = new Color(236, 108, 165);
+	Color beskinColor = new Color(236,108,165);
 
 	JButton icecreamBtn = new JButton("Icecream");
 	JButton icecakeBtn = new JButton("Cake");
@@ -43,16 +43,14 @@ public class CategoryHome extends JPanel {
 		choiceSelectAll = mainFrame.choiceSelectAll;
 		CardLayout card = new CardLayout();
 		f.setLayout(card);
-
 		f.setTitle("category");
+		
 		setLayout(new GridLayout(3, 1));
-
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
-
 		
 		add(panel);
 		add(panel2);
@@ -157,7 +155,6 @@ public class CategoryHome extends JPanel {
 			// System.out.println(itemName.substring(0, itemName.length() - 3));
 		}
 	}
-
 
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();

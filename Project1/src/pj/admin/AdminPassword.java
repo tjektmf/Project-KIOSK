@@ -21,8 +21,8 @@ import pj.menu.IceCreamShopCover;
 public class AdminPassword extends JFrame {
 
 	// 1. IceCreamShopCover() 우측하단 키 누르면 -> adminPassword()
-	// 2. adminPassword() 에서 비밀번호 입력(비밀번호 ~~~) (맞으면 adminPage() 
-	// 틀리면 IceCreamShopCover())
+	// 2. adminPassword() 에서 비밀번호 입력(비밀번호 ~~~) 
+	// (맞으면 adminPage()  틀리면 IceCreamShopCover())
 
 	private String passWord = "123456";
 
