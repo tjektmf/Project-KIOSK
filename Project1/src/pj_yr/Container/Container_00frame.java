@@ -16,7 +16,7 @@ public class Container_00frame extends JFrame {
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 
-        // 첫 번째 행
+        // 첫 번째 행 : 옵션, 플레이버
         JPanel row1 = new JPanel(new BorderLayout());
 
         JLabel label1a = new JLabel("옵션", SwingConstants.CENTER);
@@ -32,146 +32,189 @@ public class Container_00frame extends JFrame {
         row1.add(label1b, BorderLayout.EAST);
         jp.add(row1);
 
-        // 두 번째 행
+        // 두 번째 행 : 여기에서 - 0 + 버튼도 구현해야함 -> 가격도 변하는, 맛에대한 설명도 나와야함 아마 쪼개야할거같음 
         JPanel row2 = new JPanel();
         row2.setPreferredSize(new Dimension(540, 150));
         row2.setBackground(Color.gray);
         jp.add(row2);
 
-        // 세 번째 행
+        // 세 번째 행 : 뭔가 정보가 나와야할듯,,
         JPanel row3 = new JPanel();
         row3.setPreferredSize(new Dimension(540, 50));
         row3.add(noticeTakeOut.getContentPane());
         jp.add(row3);
 
-        // 네 번째 행
-        JPanel row4 = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-        row4.setPreferredSize(new Dimension(540, 290));
+        // 네 번째 행 : 스푼이랑 이미지
+        JPanel row4 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        row4.setPreferredSize(new Dimension(540, 70));
 
-        // 패널 1
-        JPanel panel4a = new JPanel();
-        panel4a.setBackground(beskinColor);
-        panel4a.setPreferredSize(new Dimension(160, 120));
-        JButton button4a1 = new JButton("+");
-        button4a1.setPreferredSize(new Dimension(20, 20));
-        JButton button4a2 = new JButton("-");
-        button4a2.setPreferredSize(new Dimension(20, 20));
+        // 패널0 : 스푼
+        JLabel spoon = new JLabel("스푼");
+        spoon.setPreferredSize(new Dimension(50, 70));
+        row4.add(spoon);
+        
+        // 패널 1 : 필요없음
+        JLabel label4a = new JLabel();
+        label4a.setPreferredSize(new Dimension(110, 70));
+        new Container_04imageSpoon(label4a);
 
-        // TODO: 버튼 리스너 및 초기값 설정
-        panel4a.add(button4a1, button4a2);
-        panel4a.add(button4a1, button4a2);
+        row4.add(label4a);
 
-        row4.add(panel4a);
+        // 패널 2 : 스푼(최대 4개)
+        JLabel label4b = new JLabel();
+        label4b.setPreferredSize(new Dimension(110, 70));
+        new Container_04imageSpoon(label4b);
 
-        // 패널 2
-        JPanel panel4b = new JPanel();
-        panel4b.setBackground(beskinColor);
-        panel4b.setPreferredSize(new Dimension(160, 120));
-        JButton button4b1 = new JButton("+");
-        button4b1.setPreferredSize(new Dimension(20, 20));
-        JButton button4b2 = new JButton("-");
-        button4b2.setPreferredSize(new Dimension(20, 20));
-        // TODO: 버튼 리스너 및 초기값 설정
-        panel4b.add(button4b1, button4b2);
-        row4.add(panel4b);
+        row4.add(label4b);
 
-        // 패널 3
-        JPanel panel4c = new JPanel();
-        panel4c.setBackground(beskinColor);
-        panel4c.setPreferredSize(new Dimension(160, 120));
-        JButton button4c1 = new JButton("+");
-        button4c1.setPreferredSize(new Dimension(20, 20));
-        JButton button4c2 = new JButton("-");
-        button4c2.setPreferredSize(new Dimension(20, 20));
-        // TODO: 버튼 리스너 및 초기값 설정
-        panel4c.add(button4c1, button4c2);
-        row4.add(panel4c);
+        // 패널 3 : 포장스푼추가(+50)
+        JLabel label4c = new JLabel();
+        label4c.setPreferredSize(new Dimension(110, 70));
+        new Container_04imageSpoon(label4c);
+
+        row4.add(label4c);
 
         jp.add(row4);
 
         
-        // 다섯 번째 행
-        JPanel row5 = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-        row5.setPreferredSize(new Dimension(540, 290));
+        // 다섯 번째 행 
+        // 스푼의 버튼 -> 3번째, 4번째만 있으면됨
+        JPanel row5 = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        row5.setPreferredSize(new Dimension(540, 40));
 
-        // 패널 1
+        //스푼 밑에
+        JPanel panel5i = new JPanel();
+        //panel5a.setBackground(beskinColor);
+        panel5i.setPreferredSize(new Dimension(110, 30));
+        row5.add(panel5i);
+
+        //패널 1
         JPanel panel5a = new JPanel();
-        panel5a.setBackground(beskinColor);
-        panel5a.setPreferredSize(new Dimension(160, 120));
-        JButton button5a1 = new JButton("+");
-        button5a1.setPreferredSize(new Dimension(20, 20));
-        JButton button5a2 = new JButton("-");
-        button5a2.setPreferredSize(new Dimension(20, 20));
+        //panel5a.setBackground(beskinColor);
+        panel5a.setPreferredSize(new Dimension(110, 30));
 
-        // TODO: 버튼 리스너 및 초기값 설정
-        panel5a.add(button5a1, button5a2);
-        panel5a.add(button5a1, button5a2);
-
+        //new Container_05counting(panel5a, 1);
         row5.add(panel5a);
 
         // 패널 2
         JPanel panel5b = new JPanel();
-        panel5b.setBackground(beskinColor);
-        panel5b.setPreferredSize(new Dimension(160, 120));
-        JButton button5b1 = new JButton("+");
-        button5b1.setPreferredSize(new Dimension(20, 20));
-        JButton button5b2 = new JButton("-");
-        button5b2.setPreferredSize(new Dimension(20, 20));
-        // TODO: 버튼 리스너 및 초기값 설정
-        panel5b.add(button5b1, button5b2);
+        //panel5b.setBackground(beskinColor);
+        panel5b.setPreferredSize(new Dimension(110, 30));
+
+        new Container_05counting(panel5b, 1);
         row5.add(panel5b);
 
         // 패널 3
         JPanel panel5c = new JPanel();
-        panel5c.setBackground(beskinColor);
-        panel5c.setPreferredSize(new Dimension(160, 120));
-        JButton button5c1 = new JButton("+");
-        button5c1.setPreferredSize(new Dimension(20, 20));
-        JButton button5c2 = new JButton("-");
-        button5c2.setPreferredSize(new Dimension(20, 20));
-        // TODO: 버튼 리스너 및 초기값 설정
-        panel5c.add(button5c1, button5c2);
-        row5.add(panel5c);
+        //panel5c.setBackground(beskinColor);
+        panel5c.setPreferredSize(new Dimension(110, 30));
 
+        new Container_05counting(panel5c, 1);
+        row5.add(panel5c);
         jp.add(row5);
         
         
         // 여섯 번째 행
-        JPanel row6 = new JPanel();
-        row6.setPreferredSize(new Dimension(540, 130));
-        // TODO: 여기에 필요한 컴포넌트 추가
+        // 포장 이미지
+        JPanel row6 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        row6.setPreferredSize(new Dimension(540, 50));
+
+        // 패널0 : 포장
+        JLabel togo = new JLabel("포장");
+        togo.setPreferredSize(new Dimension(50, 70));
+        row6.add(togo);
+        
+        // 패널 1
+        JLabel label6a = new JLabel();
+        label6a.setPreferredSize(new Dimension(110, 70));
+        new Container_04imageSpoon(label6a);
+
+        row6.add(label6a);
+
+        // 패널 2
+        JLabel label6b = new JLabel();
+        label6b.setPreferredSize(new Dimension(110, 70));
+        new Container_04imageSpoon(label6b);
+
+        row6.add(label6b);
+
+        // 패널 3
+        JLabel label6c = new JLabel();
+        label6c.setPreferredSize(new Dimension(110, 70));
+        new Container_04imageSpoon(label6c);
+
+        row6.add(label6c);
+
         jp.add(row6);
 
-        // 일곱 번째 행
-        JPanel row7 = new JPanel();
-        row7.setPreferredSize(new Dimension(540, 80));
-        JButton button7a = new JButton("이전");
-        button7a.setBackground(Color.white);
-        button7a.setForeground(beskinColor);
-        button7a.setPreferredSize(new Dimension(100, 30));
-        button7a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        
+        // 일곱 번째 행 
+        // 포장 버튼
+        JPanel row7 = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        row7.setPreferredSize(new Dimension(540, 40));
 
-        JButton button7b = new JButton("담기");
-        button7b.setBackground(beskinColor);
-        button7b.setForeground(Color.white);
-        button7b.setPreferredSize(new Dimension(350, 30));
-        button7b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        // 포장밑에
+        JPanel panel7i = new JPanel();
+        //panel5a.setBackground(beskinColor);
+        panel7i.setPreferredSize(new Dimension(110, 30));
+        row7.add(panel7i);
 
-        row7.add(button7a);
-        row7.add(button7b);
+        // 패널 1
+        JPanel panel7a = new JPanel();
+        //panel7a.setBackground(beskinColor);
+        panel7a.setPreferredSize(new Dimension(110, 30));
+
+        new Container_05counting(panel7a, 1);
+        row7.add(panel7a);
+
+        // 패널 2
+        JPanel panel7b = new JPanel();
+        //panel7b.setBackground(beskinColor);
+        panel7b.setPreferredSize(new Dimension(110, 30));
+
+        new Container_05counting(panel7b, 1);
+        row7.add(panel7b);
+
+        // 패널 3
+        JPanel panel7c = new JPanel();
+        //panel7c.setBackground(beskinColor);
+        panel7c.setPreferredSize(new Dimension(110, 30));
+
+        new Container_05counting(panel5c, 1);
+        row7.add(panel7c);
         jp.add(row7);
+        
 
         // 여덟 번째 행
         JPanel row8 = new JPanel();
-        row8.setPreferredSize(new Dimension(540, 170));
-        // 앞으로 쓸곳8
-        row8.setBackground(Color.gray);
+        row8.setPreferredSize(new Dimension(540, 80));
+        JButton button8a = new JButton("이전");
+        button8a.setBackground(Color.white);
+        button8a.setForeground(beskinColor);
+        button8a.setPreferredSize(new Dimension(100, 30));
+        button8a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+
+        JButton button8b = new JButton("담기");
+        button8b.setBackground(beskinColor);
+        button8b.setForeground(Color.white);
+        button8b.setPreferredSize(new Dimension(350, 30));
+        button8b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+
+        row8.add(button8a);
+        row8.add(button8b);
         jp.add(row8);
+
+        // 아홉 번째 행
+        JPanel row9 = new JPanel();
+        row9.setPreferredSize(new Dimension(540, 170));
+        // 앞으로 쓸곳8
+        row9.setBackground(Color.gray);
+        jp.add(row9);
 
         add(jp);
     }
 
     public static void main(String[] args) {
-    	new Container_00frame().setVisible(true);
+       new Container_00frame().setVisible(true);
     }
 }
