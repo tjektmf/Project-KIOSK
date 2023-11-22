@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,15 +25,18 @@ public class ChoiceFlavor_00frame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(540, 960);
         
-        ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);        
+        ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);
         ChoiceFlavor_04showFlavorSelections showFlavorSelections = new ChoiceFlavor_04showFlavorSelections();
         ChoiceFlavor_02row2 row2 = new ChoiceFlavor_02row2(this, showFlavorSelections);
-
+        ChoiceFlavor_03prevOrNext row3 = new ChoiceFlavor_03prevOrNext(this, row2, showFlavorSelections);
+        
         add(row1, BorderLayout.NORTH);
         add(row2);
+        add(row3);
         add(showFlavorSelections, BorderLayout.SOUTH);
 
         setCurrentPanel(1);
+        
     }
 
     public int getCurrentPanel() {
@@ -44,10 +50,12 @@ public class ChoiceFlavor_00frame extends JFrame {
             ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);
             ChoiceFlavor_04showFlavorSelections showFlavorSelections = new ChoiceFlavor_04showFlavorSelections();
             ChoiceFlavor_02row2 row2 = new ChoiceFlavor_02row2(this, showFlavorSelections);
+            //ChoiceFlavor_03prevOrNext row3 = new ChoiceFlavor_03prevOrNext(null, row2, showFlavorSelections);
 
             add(row1, BorderLayout.NORTH);
             add(row2);
             add(showFlavorSelections, BorderLayout.SOUTH);
+            //add(row3);
 
             revalidate();
             repaint();

@@ -23,7 +23,7 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
     private void initializeButtons() {
         flavorButtons = new JButton[MAX_BUTTONS];
         for (int i = 0; i < MAX_BUTTONS; i++) {
-            flavorButtons[i] = new JButton("메뉴" + i);
+            flavorButtons[i] = new JButton("메뉴" + (i+1));
             flavorButtons[i].setPreferredSize(new Dimension(90, 110));
             flavorButtons[i].setEnabled(false);
             add(flavorButtons[i]);
@@ -51,4 +51,11 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
             }
         }
     }
+
+	public void clearFlavorButtons() {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    
  }
