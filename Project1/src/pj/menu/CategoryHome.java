@@ -16,9 +16,7 @@ import javax.swing.JPanel;
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
-<<<<<<< HEAD
 import pj.jks.PointButton;
-=======
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 
@@ -183,9 +181,7 @@ public class CategoryHome extends JPanel {
 
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();
-		PointButton pointButton = new PointButton();
-
-		new CategoryHome(choiceFrame, pointButton);
+	      new CategoryHome(choiceFrame);
 	}
 
 }
