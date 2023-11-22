@@ -118,8 +118,8 @@ public class ChoiceSelectIce extends JPanel {
 				i++;
 
 				priceSet.add(rs.getInt("icecream_price"));
-				System.out.println(priceSet.toString());
 			}
+			System.out.println("아이스크림 가격 list : " + priceSet.toString());
 			rs.close();
 			pstmt.close();
 			conn.close();

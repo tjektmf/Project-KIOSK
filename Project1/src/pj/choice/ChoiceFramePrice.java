@@ -46,8 +46,8 @@ public class ChoiceFramePrice extends JPanel {
 			tf.setVisible(true);
 			a = false;
 		} else {
-			but0.setVisible(false);
-			tf.setVisible(false);
+	//		but0.setVisible(false);
+	//		tf.setVisible(false);
 			a = true;
 		}
 
