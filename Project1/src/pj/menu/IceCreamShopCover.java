@@ -27,7 +27,6 @@ import pj.jks.PointButton;
 
 public class IceCreamShopCover extends JFrame {
 	// img
-
 	String[] imagePaths = { "img/hyemi/ad0.png", "img/hyemi/ad1.png", "img/hyemi/ad2.png", "img/hyemi/ad3.png",
 			"img/hyemi/ad4.png" };
 
@@ -155,5 +154,7 @@ public class IceCreamShopCover extends JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> new IceCreamShopCover());
+		// 이벤트 디스패치 스레드(Event Dispatch Thread, EDT)에서 코드를 실행하기 위한 유틸리티 메서드
+		// IceCreamShopCover() 클래스의 인스턴스를 생성하고, 이를 EDT에서 실행하도록 스케줄링
 	}
 }
