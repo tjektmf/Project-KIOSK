@@ -112,12 +112,12 @@ public class ConeAndCup_00frame extends JFrame {
         // 행7 : 이전, 담기 버튼
         JPanel row7 = new JPanel();
         row7.setPreferredSize(new Dimension(540, 80));
-        JButton button6a = new JButton("확인");
-        button6a.setBackground(Color.white);
-        button6a.setForeground(beskinColor);
-        button6a.setPreferredSize(new Dimension(100, 30));
-        button6a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        button6a.addActionListener(new ActionListener() {
+        JButton button7a = new JButton("확인");
+        button7a.setBackground(Color.white);
+        button7a.setForeground(beskinColor);
+        button7a.setPreferredSize(new Dimension(100, 30));
+        button7a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        button7a.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -125,14 +125,14 @@ public class ConeAndCup_00frame extends JFrame {
 			}
 		});
         
-        JButton button6b = new JButton("담기");
-        button6b.setBackground(beskinColor);
-        button6b.setForeground(Color.white);
-        button6b.setPreferredSize(new Dimension(350, 30));
-        button6b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        JButton button7b = new JButton("담기");
+        button7b.setBackground(beskinColor);
+        button7b.setForeground(Color.white);
+        button7b.setPreferredSize(new Dimension(350, 30));
+        button7b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
-        row7.add(button6a);
-        row7.add(button6b);
+        row7.add(button7a);
+        row7.add(button7b);
         jp.add(row7);
 
         // 행8 : 뭔가,, 광고 같은게,,
