@@ -16,7 +16,11 @@ import javax.swing.JPanel;
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
+<<<<<<< HEAD
 import pj.jks.PointButton;
+=======
+import pj_yr.ConeAndCup.ConeAndCup_00frame;
+
 
 public class CategoryHome extends JPanel {
 
@@ -31,17 +35,37 @@ public class CategoryHome extends JPanel {
 	ChoiceSelectAll choiceSelectAll;
 	ChoiceFrame choiceFrame;
 	ChoiceFrameCategory choiceFrameCategory;
+	ConeAndCup_00frame coneAndCup_00frame = new ConeAndCup_00frame();
+	
+			
 
 	JFrame f = new JFrame();
+	
 
-	public JFrame frame(JFrame f) {
-		return this.f = f;
+	public void mainFrame(JFrame frame) {
+		this.f = frame;
+
 	}
 
-	public CategoryHome(ChoiceFrame mainFrame, PointButton pointButton) {
+	public void showFrame(boolean show) {
+		f.setVisible(show);
+	}
+
+	public void mainCard(CardLayout mainCard) {
+		
+		this.card = mainCard;
+		card.next(f);
+	}
+
+	CardLayout card = new CardLayout();
+
+	public CategoryHome(ChoiceFrame mainFrame) {
+
 
 		choiceSelectAll = mainFrame.choiceSelectAll;
-		CardLayout card = new CardLayout();
+	//	choiceSelectAll = new ChoiceSelectAll(mainFrame);
+		System.out.println("CategoryHome : " + this);
+		
 		f.setLayout(card);
 		f.setTitle("category");
 		
@@ -55,10 +79,11 @@ public class CategoryHome extends JPanel {
 		add(panel);
 		add(panel2);
 
-		f.add(panel2, BorderLayout.NORTH);
 
-		f.add(mainFrame, BorderLayout.CENTER); // 위치 안먹음 @_@
-		f.add("price", pointButton);
+		f.add(panel2);
+		f.add(mainFrame);
+		f.add(panel);
+
 
 		// 카테고리 버튼 추가
 		panel2.add(icecreamBtn);
@@ -134,8 +159,8 @@ public class CategoryHome extends JPanel {
 			});
 
 		// f.setDefaultCloseOperation(ABORT);
-		f.setSize(540, 960);
-		f.setVisible(true);
+		f.setSize(555, 960);
+//		f.setVisible(true);
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

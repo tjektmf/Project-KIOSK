@@ -26,6 +26,8 @@ public class ChoiceSelectAll extends JPanel {
 		choiceFrameSelect3 = new ChoiceFrameSelect3(this);
 		choiceFrameSelect4 = new ChoiceFrameSelect4(this);
 		choiceFrameSelect5 = new ChoiceFrameSelect5(this);
+		
+		System.out.println(this);
 
 		// 아이스크림1 케잌2 커피3 음료4 디저트5 클래스 이름길어서 숫자붙임
 

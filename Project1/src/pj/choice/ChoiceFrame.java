@@ -21,9 +21,9 @@ public class ChoiceFrame extends JPanel {
 		choiceFrameTop = new ChoiceFrameTop(this);
 		choiceFrameCategory = new ChoiceFrameCategory(this);
 		choiceSelectAll = new ChoiceSelectAll(this);
-		choiceFramePrice = new ChoiceFramePrice(this);
-		choiceFrameBuyList = new ChoiceFrameBuyList(this);
-		
+		choiceFramePrice = ChoiceFramePrice.getInstance();
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
+
 		choiceFrameCategory.choiceSelectAll = choiceSelectAll;
 
 		// 크기조절
@@ -38,7 +38,7 @@ public class ChoiceFrame extends JPanel {
 		add(choiceSelectAll);
 		add(choiceFramePrice);
 		add(choiceFrameBuyList);
-		setBackground(new Color(255,255,255));
+		setBackground(new Color(255, 255, 255));
 
 		setBounds(100, 100, 560, 960);
 //		setDefaultCloseOperation(EXIT_ON_CLOSE);

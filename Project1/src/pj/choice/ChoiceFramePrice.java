@@ -17,16 +17,56 @@ import pj.menu.CategoryHome;
 
 public class ChoiceFramePrice extends JPanel {
 
+	private static final ChoiceFramePrice instance = new ChoiceFramePrice();
+
+	public static ChoiceFramePrice getInstance() {
+		return instance;
+	}
+
 	ChoiceFrame mainFrame;
 	PointButton pointButton;
 	CategoryHome categoryHome;
-	//= new CategoryHome(mainFrame, pointButton);
+	// = new CategoryHome(mainFrame, pointButton);
 
-	public ChoiceFramePrice(ChoiceFrame mainFrame) {
-		
+	JButton but0 = new JButton("결제하기");
+	JTextField tf = new JTextField("price");
 
-		
-		CardLayout priceCard = new CardLayout(10, 0);
+
+	boolean a = true; // 메서드 테스트용
+
+	public void hideButton() {
+		System.out.println(but0.getSize() + " hideButton 굴러감");
+
+		// but0.setVisible(true);
+		// tf.setVisible(true);
+		// 불리언포함 if문은 테스트용 이후 삭제하면서 윗줄 살리고 내용추가
+		// 메서드 바로위에있는 인스턴스까지 삭제해야함
+		if (a) {
+			but0.setVisible(true);
+			tf.setVisible(true);
+			a = false;
+		} else {
+	//		but0.setVisible(false);
+	//		tf.setVisible(false);
+			a = true;
+		}
+
+//		repaint();
+	}
+
+	public void showPrice(int price) {
+		System.out.println("showPrice 데굴데굴");
+		tf.setText(Integer.toString(price));
+	}
+
+	public void priceCard() {
+		priceCard.next(this);
+	}
+
+	CardLayout priceCard = new CardLayout(10, 0);
+
+	public ChoiceFramePrice() {
+		System.out.println("ChoiceFramePrice : " + this);
 
 		JLabel test = new JLabel();
 		JLabel test2 = new JLabel();
@@ -50,12 +90,12 @@ public class ChoiceFramePrice extends JPanel {
 		pan1.setLayout(grid);
 		pan2.setLayout(grid);
 
-		JButton but0 = new JButton("나중에 사라질 버튼");
+		but0.setVisible(false);
+
 		JButton but1 = new JButton("제리 그대로 보여줌");
 		JButton but2 = new JButton("text로 가격보여줌");
 		JButton but3 = new JButton("결제하기"); //
 
-		JTextField tf = new JTextField("price");
 		tf.setHorizontalAlignment(JTextField.CENTER);
 
 		but0.addActionListener(new ActionListener() {
@@ -92,8 +132,7 @@ public class ChoiceFramePrice extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				priceCard.previous(ChoiceFramePrice.this);
-		
-				System.out.println("나중에 결제창으로");
+
 
 			}
 		});
@@ -101,12 +140,11 @@ public class ChoiceFramePrice extends JPanel {
 		add(pan1);
 		add(pan2);
 		pan1.add(test);
-		pan1.add(pan12);
+		pan1.add(tf);
 		pan1.add(but0);
 		pan2.add(test2);
-		pan2.add(tf);
+		// pan2.add(tf);
 		pan2.add(but3);
-		
 
 	}
 }
