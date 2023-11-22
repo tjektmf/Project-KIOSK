@@ -57,11 +57,18 @@ public class ChoiceSelectCake extends JPanel {
 
 		for (int i = 1; i <= 18; i++) {
 			try {
+<<<<<<< HEAD
 				if (i <= theNumberOfMenu) {
 					BufferedImage image = ImageIO.read(new File("img/img_baskin/baskin_cake/" + i + ".png"));
 					Image scaledImage = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
 					menuImage = new ImageIcon(scaledImage);
 				}
+=======
+				BufferedImage image = ImageIO.read(new File("img/img_baskin/baskin_cake/" + i + ".png"));
+				Image scaledImage = image.getScaledInstance(140, 140, Image.SCALE_SMOOTH);
+				apple = new ImageIcon(scaledImage);
+				
+>>>>>>> refs/remotes/origin/hyemi
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -78,9 +85,13 @@ public class ChoiceSelectCake extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+<<<<<<< HEAD
 
 				menuImage = null;
 
+=======
+				apple = null;
+>>>>>>> refs/remotes/origin/hyemi
 			} else if (i < 19) {
 				pan2.add(actions[i - 1] = new JButton(menuImage));
 				borderArr[i - 1] = new BorderLayout(-10, -10);
@@ -93,8 +104,14 @@ public class ChoiceSelectCake extends JPanel {
 				actions[i - 1].setBorder(null);
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
+<<<<<<< HEAD
 				menuImage = null;
 
+=======
+				apple = null;
+			} else {
+				pan3.add(actions[i - 1] = new JButton(apple));
+>>>>>>> refs/remotes/origin/hyemi
 			}
 		}
 		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {

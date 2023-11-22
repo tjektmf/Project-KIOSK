@@ -347,4 +347,7 @@ public class PointButton extends JPanel {
 //		f.setVisible(true);
 	}
 
+	public static void main(String[] args) {
+		new PointButton();
+	}
 }
