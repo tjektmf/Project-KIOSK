@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Database.jdbcConnection;
+import database.JdbcConnection;
 
 public class AdminPage extends JFrame {
 
@@ -29,7 +29,7 @@ public class AdminPage extends JFrame {
 	public static List<String> getOrderData() {
 		List<String> orderDataList = new ArrayList<>();
 
-		try (Connection conn = jdbcConnection.getConnection()) {
+		try (Connection conn = JdbcConnection.getConnection()) {
 
 			String sql = "SELECT menu_name, menu_price, category5_name "
 					+ "FROM menu m JOIN choice c ON m.menu_id = c.icecream_id";
