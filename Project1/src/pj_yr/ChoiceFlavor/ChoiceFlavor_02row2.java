@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,18 +20,20 @@ public class ChoiceFlavor_02row2 extends JPanel {
     private CardLayout cardLayout;
     private ChoiceFlavor_00frame frame;
     private ChoiceFlavor_04showFlavorSelections showFlavorSelections;
+    private ChoiceFlavor_03prevOrNext row3; // row3 추가
 
-    private static final int BUTTONS_NUMS = 16;
-    private static final int TOTAL_CARDS = 2;
+//    private static final int BUTTONS_NUMS = 16;
+//    private static final int TOTAL_CARDS = 2;
 
     public ChoiceFlavor_02row2(ChoiceFlavor_00frame frame, ChoiceFlavor_04showFlavorSelections showFlavorSelections) {
         this.frame = frame;
         this.showFlavorSelections = showFlavorSelections;
         setLayout(new BorderLayout());
 
+        // 카드 패널 추가 
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-        
+
         // 카드 1
         JPanel card1 = createCardPanel(1, 16);
         cardPanel.add(card1, "card1");
@@ -41,8 +41,6 @@ public class ChoiceFlavor_02row2 extends JPanel {
         // 카드 2
         JPanel card2 = createCardPanel(17, 29);
         cardPanel.add(card2, "card2");
-
-        add(cardPanel, BorderLayout.CENTER);
 
         // << 
         JButton prevButton = new JButton("<<");
@@ -63,6 +61,13 @@ public class ChoiceFlavor_02row2 extends JPanel {
             }
         });
         add(nextButton, BorderLayout.EAST);
+
+        // 카드 패널 추가 (센터에)
+        add(cardPanel, BorderLayout.CENTER);
+
+        // row3 추가 (남쪽에)
+        row3 = new ChoiceFlavor_03prevOrNext(frame, showFlavorSelections);
+        add(row3, BorderLayout.SOUTH);
     }
 
     private JPanel createCardPanel(int startValue, int endValue) {

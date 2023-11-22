@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -20,14 +22,30 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
         initializeButtons();
     }
 
+    private class ButtonClickListener implements ActionListener {
+        private int buttonIndex;
+
+        public ButtonClickListener(int buttonIndex) {
+            this.buttonIndex = buttonIndex;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            flavorButtons[buttonIndex].setIcon(null);
+            flavorButtons[buttonIndex].setEnabled(false);
+        }
+    }
+
+    
     private void initializeButtons() {
         flavorButtons = new JButton[MAX_BUTTONS];
         for (int i = 0; i < MAX_BUTTONS; i++) {
             flavorButtons[i] = new JButton("메뉴" + (i+1));
             flavorButtons[i].setPreferredSize(new Dimension(90, 110));
-            flavorButtons[i].setEnabled(false);
-            add(flavorButtons[i]);
-        }
+            flavorButtons[i].setEnabled(false);            
+            flavorButtons[i].addActionListener(new ButtonClickListener(i));
+
+            add(flavorButtons[i]);        }
     }
 
     public void updateFlavorButtons(ImageIcon[] selectedImages) {
@@ -52,10 +70,12 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
         }
     }
 
-	public void clearFlavorButtons() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void clearFlavorButtons() {
+        for (JButton button : flavorButtons) {
+            button.setIcon(null);
+            button.setEnabled(false);
+        }
+    }
     
     
  }

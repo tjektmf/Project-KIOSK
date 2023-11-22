@@ -12,7 +12,6 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
     Color beskinColor = new Color(236, 108, 165);
 
     public ChoiceFlavor_03prevOrNext(ChoiceFlavor_00frame choiceFlavor_00frame, 
-                                      ChoiceFlavor_02row2 row2, 
                                       ChoiceFlavor_04showFlavorSelections showFlavorSelections) {
         setLayout(new BorderLayout());
 
@@ -22,7 +21,9 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         prevButton.setForeground(beskinColor);
         prevButton.setPreferredSize(new Dimension(100, 30));
         prevButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        prevButton.addActionListener(e -> row2.changePanel(-1));
+        prevButton.addActionListener(e -> {
+            // 이전 버튼 기능 구현
+        });
         add(prevButton, BorderLayout.WEST);
 
         // 담기 버튼
@@ -33,7 +34,6 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         addButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         addButton.addActionListener(e -> {
             // 담기 버튼 기능 구현
-            // showFlavorSelections에 추가된 이미지를 처리하는 코드 추가
         });
         add(addButton, BorderLayout.CENTER);
 
