@@ -12,7 +12,7 @@ public class Container_03takeOut extends JFrame {
 		
 		setSize(540, 80);
         
-        JLabel label1 = new JLabel("★ 포장 불가 품목으로 쇼핑백/뚜껑이 제공되지 않습니다 ★");
+        JLabel label1 = new JLabel("★ 알레르기 유발 식품에 대한 정보는 매장 내 비치되었습니다 ★");
         label1.setHorizontalAlignment(JLabel.CENTER); 
         label1.setForeground(Color.RED);
 		label1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
