@@ -16,15 +16,12 @@ import javax.swing.JPanel;
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
-<<<<<<< HEAD
+
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
-=======
-import pj.jks.PointButton;
->>>>>>> refs/remotes/origin/hyemi
 
 public class CategoryHome extends JPanel {
 
-	Color beskinColor = new Color(236,108,165);
+	Color beskinColor = new Color(236, 108, 165);
 
 	JButton icecreamBtn = new JButton("Icecream");
 	JButton icecakeBtn = new JButton("Cake");
@@ -36,29 +33,20 @@ public class CategoryHome extends JPanel {
 	ChoiceFrame choiceFrame;
 	ChoiceFrameCategory choiceFrameCategory;
 	ConeAndCup_00frame coneAndCup_00frame = new ConeAndCup_00frame();
-	
-			
 
 	JFrame f = new JFrame();
-<<<<<<< HEAD
-	
 
 	public void mainFrame(JFrame frame) {
 		this.f = frame;
-=======
 
-	public JFrame frame(JFrame f) {
-		return this.f = f;
->>>>>>> refs/remotes/origin/hyemi
 	}
 
-<<<<<<< HEAD
 	public void showFrame(boolean show) {
 		f.setVisible(show);
 	}
 
 	public void mainCard(CardLayout mainCard) {
-		
+
 		this.card = mainCard;
 		card.next(f);
 	}
@@ -66,37 +54,27 @@ public class CategoryHome extends JPanel {
 	CardLayout card = new CardLayout();
 
 	public CategoryHome(ChoiceFrame mainFrame) {
-=======
-	public CategoryHome(ChoiceFrame mainFrame, PointButton pointButton) {
->>>>>>> refs/remotes/origin/hyemi
 
 		choiceSelectAll = mainFrame.choiceSelectAll;
-	//	choiceSelectAll = new ChoiceSelectAll(mainFrame);
+		// choiceSelectAll = new ChoiceSelectAll(mainFrame);
 		System.out.println("CategoryHome : " + this);
-		
+
 		f.setLayout(card);
 		f.setTitle("category");
-		
+
 		setLayout(new GridLayout(3, 1));
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
-		
+
 		add(panel);
 		add(panel2);
 
-<<<<<<< HEAD
 		f.add(panel2);
 		f.add(mainFrame);
 		f.add(panel);
-=======
-		f.add(panel2, BorderLayout.NORTH);
-
-		f.add(mainFrame, BorderLayout.CENTER); // 위치 안먹음 @_@
-		f.add("price", pointButton);
->>>>>>> refs/remotes/origin/hyemi
 
 		// 카테고리 버튼 추가
 		panel2.add(icecreamBtn);
@@ -127,49 +105,49 @@ public class CategoryHome extends JPanel {
 
 		icecreamBtn.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("작동");
-					card.next(f.getContentPane());
-					choiceSelectAll.showCard("ice");
-				}
-			});
-			icecakeBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("작동");
+				card.next(f.getContentPane());
+				choiceSelectAll.showCard("ice");
+			}
+		});
+		icecakeBtn.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("작동");
-					card.next(f.getContentPane());
-					choiceSelectAll.showCard("cake");
-				}
-			});
-			coffeeBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("작동");
+				card.next(f.getContentPane());
+				choiceSelectAll.showCard("cake");
+			}
+		});
+		coffeeBtn.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("작동");
-					card.next(f.getContentPane());
-					choiceSelectAll.showCard("coffee");
-				}
-			});
-			beverageBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("작동");
+				card.next(f.getContentPane());
+				choiceSelectAll.showCard("coffee");
+			}
+		});
+		beverageBtn.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("작동");
-					card.next(f.getContentPane());
-					choiceSelectAll.showCard("beverage");
-				}
-			});
-			dessertBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("작동");
+				card.next(f.getContentPane());
+				choiceSelectAll.showCard("beverage");
+			}
+		});
+		dessertBtn.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("작동");
-					card.next(f.getContentPane());
-					choiceSelectAll.showCard("dessert");
-				}
-			});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("작동");
+				card.next(f.getContentPane());
+				choiceSelectAll.showCard("dessert");
+			}
+		});
 
 		// f.setDefaultCloseOperation(ABORT);
 		f.setSize(555, 960);
@@ -196,9 +174,7 @@ public class CategoryHome extends JPanel {
 
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();
-		PointButton pointButton = new PointButton();
-
-		new CategoryHome(choiceFrame, pointButton);
+		new CategoryHome(choiceFrame);
 	}
 
 }

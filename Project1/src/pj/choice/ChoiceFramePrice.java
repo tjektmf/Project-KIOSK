@@ -132,12 +132,6 @@ public class ChoiceFramePrice extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				priceCard.previous(ChoiceFramePrice.this);
-<<<<<<< HEAD
-				// categoryHome.showCard("price");
-=======
-		
->>>>>>> refs/remotes/origin/hyemi
-				System.out.println("나중에 결제창으로");
 
 			}
 		});
