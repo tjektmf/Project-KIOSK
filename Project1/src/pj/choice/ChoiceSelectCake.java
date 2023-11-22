@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -35,6 +36,7 @@ public class ChoiceSelectCake extends JPanel {
 	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
+	ArrayList<Integer> priceSet = new ArrayList<Integer>();
 
 	final int theNumberOfMenu = 14;
 	int buttonNum;
@@ -81,7 +83,6 @@ public class ChoiceSelectCake extends JPanel {
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 
-
 				menuImage = null;
 
 			} else if (i < 19) {
@@ -101,23 +102,6 @@ public class ChoiceSelectCake extends JPanel {
 
 			}
 		}
-		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
-			if (picArr[buttonNum - 1] != null) {
-				actions[buttonNum - 1].addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						System.out.println("액션리스너 작동함");
-						// choiceFramePrice.priceCard();
-						// choiceFramePrice.hideButton(ChoiceSelectCake.this);
-						choiceFrameBuyList.showImg();
-						choiceFramePrice.hideButton();
-						move.setVisible(true);
-
-					}
-				});
-			}
-		}
 
 		try {
 			Connection conn = Connector.getConnection();
@@ -132,12 +116,39 @@ public class ChoiceSelectCake extends JPanel {
 				nameArr[i].setText("<html><body style='text-align:center;'>" + rs.getString("cake_name") + "<br>"
 						+ rs.getInt("cake_price") + "<html>");
 				i++;
+
+				priceSet.add(rs.getInt("cake_price"));
 			}
+			System.out.println("cake 가격 list : " + priceSet.toString());
 			rs.close();
 			pstmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+
+		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
+			if (picArr[buttonNum - 1] != null) {
+
+				actions[buttonNum - 1].addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						for (int i = 0; i < theNumberOfMenu; i++) {
+							if (e.getSource() == actions[i]) {
+								System.out.println("같다");
+								choiceFramePrice.showPrice(priceSet.get(i));
+							}
+						}
+						System.out.println("데굴데굴");
+
+						choiceFrameBuyList.showImg();
+						choiceFramePrice.hideButton();
+
+						move.setVisible(true);
+					}
+				});
+			}
 		}
 
 		choiceSelectNextBtn.addActionListener(new ActionListener() {

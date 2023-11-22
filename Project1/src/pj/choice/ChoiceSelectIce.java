@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.database.Connector;
+import pj.jks.PointButton;
 import pj.menu.CategoryHome;
 import pj.menu.IceCreamShopCover;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;

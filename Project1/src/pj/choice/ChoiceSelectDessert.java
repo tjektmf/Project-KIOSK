@@ -10,6 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -17,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pj.database.Connector;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class ChoiceSelectDessert extends JPanel {
@@ -33,6 +39,7 @@ public class ChoiceSelectDessert extends JPanel {
 	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
+	ArrayList<Integer> priceSet = new ArrayList<Integer>();
 	
 
 	public ChoiceSelectDessert(ChoiceFrameSelect5 mainFrame) {
@@ -92,37 +99,55 @@ public class ChoiceSelectDessert extends JPanel {
 				menuImage = null;
 			}
 		}
+		
+		try {
+			Connection conn = Connector.getConnection();
+			System.out.println(conn);
+			String sql = "select dessert_name, dessert_price from dessert";
 
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			int i = 0;
+			while (rs.next()) { // 넥스트값이 없으면 false를 반환, while문 정지
+				nameArr[i].setText("<html><body style='text-align:center;'>" + rs.getString("dessert_name") + "<br>"
+						+ rs.getInt("dessert_price") + "<html>");
+				i++;
+
+				priceSet.add(rs.getInt("dessert_price"));
+			}
+			System.out.println("dessert 가격 list : " + priceSet.toString());
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			
 		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
 			if (picArr[buttonNum - 1] != null) {
+
 				actions[buttonNum - 1].addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
-						System.out.println("액션리스너 작동함");
-						System.out.println("instance: " + choiceFrameBuyList);
+						for (int i = 0; i < theNumberOfMenu; i++) {
+							if (e.getSource() == actions[i]) {
+								System.out.println("같다");
+								choiceFramePrice.showPrice(priceSet.get(i));
+							}
+						}
+						System.out.println("데굴데굴");
+
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
-						move.setVisible(true);
-						
 
+						move.setVisible(true);
 					}
 				});
 			}
 		}
 		
-		nameArr[0].setText("<html><body style='text-align:center;'>도라에몽의<br>대나무 헬리콥터<br>31000원<html>");
-		nameArr[1].setText("<html><body style='text-align:center;'>달토끼맛 쿠기의<br>보름달 소원<br>28000원<html>");
-		nameArr[2].setText("<html><body style='text-align:center;'>노티드 스마일<br>크림 버니<br>31000원<html>");
-		nameArr[3].setText("<html><body style='text-align:center;'>스페셜 데이<br>27000원<html>");
-		nameArr[4].setText("<html><body style='text-align:center;'>핑크 퐁당 라이언<br>28000원<html>");
-		nameArr[5].setText("<html><body style='text-align:center;'>핑크 라춘 인 원더랜드<br>31000원<html>");
-		nameArr[6].setText("<html><body style='text-align:center;'>라이언의 서핑 타임<br>33000원<html>");
-		nameArr[7].setText("<html><body style='text-align:center;'>핑크 하트 드롭<br>31000원<html>");
-		nameArr[8].setText("<html><body style='text-align:center;'>우주에서 온<br>엄마는 외계인<br>28000원<html>");
-		nameArr[9].setText("<html><body style='text-align:center;'>반짝이는 잔망루피<br>30000원<html>");
-
 		choiceSelectNextBtn.addActionListener(new ActionListener() {
 
 			@Override
