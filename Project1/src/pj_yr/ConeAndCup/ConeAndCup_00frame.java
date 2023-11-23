@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 public class ConeAndCup_00frame extends JFrame {
     ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
 //    private int selectedButtonIndex = -1;
+    Color beskinColor = new Color(236, 108, 165);
     
     public ConeAndCup_00frame() {
         setTitle("ConeAndCup Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(540, 960);
 
-        Color beskinColor = new Color(236, 108, 165);
 
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
@@ -115,7 +115,7 @@ public class ConeAndCup_00frame extends JFrame {
         JButton button7a = new JButton("확인");
         button7a.setBackground(Color.white);
         button7a.setForeground(beskinColor);
-        button7a.setPreferredSize(new Dimension(100, 30));
+        button7a.setPreferredSize(new Dimension(300, 30));
         button7a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         button7a.addActionListener(new ActionListener() {
 			
@@ -125,14 +125,14 @@ public class ConeAndCup_00frame extends JFrame {
 			}
 		});
         
-        JButton button7b = new JButton("담기");
-        button7b.setBackground(beskinColor);
-        button7b.setForeground(Color.white);
-        button7b.setPreferredSize(new Dimension(350, 30));
-        button7b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-
+//        JButton button7b = new JButton("담기");
+//        button7b.setBackground(beskinColor);
+//        button7b.setForeground(Color.white);
+//        button7b.setPreferredSize(new Dimension(350, 30));
+//        button7b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+//
         row7.add(button7a);
-        row7.add(button7b);
+//        row7.add(button7b);
         jp.add(row7);
 
         // 행8 : 뭔가,, 광고 같은게,,
