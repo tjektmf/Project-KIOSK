@@ -25,7 +25,8 @@ public class ChoiceFramePrice extends JPanel {
 
 	ChoiceFrame mainFrame;
 	CategoryHome categoryHome;
-	
+	static int SAVED_PRICE;
+
 	// = new CategoryHome(mainFrame, pointButton);
 
 	JButton but0 = new JButton("결제하기");
@@ -55,7 +56,14 @@ public class ChoiceFramePrice extends JPanel {
 
 	public void showPrice(int price) {
 		System.out.println("showPrice 데굴데굴");
-		tf.setText(Integer.toString(price));
+		System.out.println(tf.getText());
+		if (tf.getText().equals("price")) {
+			tf.setText(Integer.toString(price));
+		} else {
+			tf.setText(Integer.toString(price + Integer.parseInt(tf.getText())));
+		}
+		SAVED_PRICE = Integer.parseInt(tf.getText());
+		System.out.println("결제창으로 보낼 값 : " + SAVED_PRICE);
 	}
 
 	CardLayout priceCard = new CardLayout(10, 0);

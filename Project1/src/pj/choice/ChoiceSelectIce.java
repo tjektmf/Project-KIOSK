@@ -47,6 +47,7 @@ public class ChoiceSelectIce extends JPanel {
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ChoiceFrameSelect choiceFrameSelect;
+	JLabel[] SAVED_BUYLIST = new JLabel[9];
 
 	// ResultSet priceSet;
 	ArrayList<Integer> priceSet = new ArrayList<Integer>();
@@ -142,10 +143,11 @@ public class ChoiceSelectIce extends JPanel {
 							}
 						}
 						System.out.println("데굴데굴");
-
+				
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
-
+						
+						// if문을 통해 메뉴당 골라서 넣으면 될듯 
 						move.setVisible(true);
 					}
 				});

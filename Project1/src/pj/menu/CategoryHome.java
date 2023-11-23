@@ -1,33 +1,37 @@
 package pj.menu;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
-
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class CategoryHome extends JPanel {
 
 	Color beskinColor = new Color(236, 108, 165);
 
-	JButton icecreamBtn = new JButton("Icecream");
-	JButton icecakeBtn = new JButton("Cake");
-	JButton coffeeBtn = new JButton("Coffee");
-	JButton beverageBtn = new JButton("Beverage");
-	JButton dessertBtn = new JButton("Dessert");
+	JButton icecreamBtn = new JButton();
+	JButton icecakeBtn = new JButton();
+	JButton coffeeBtn = new JButton();
+	JButton beverageBtn = new JButton();
+	JButton dessertBtn = new JButton();
 
 	ChoiceSelectAll choiceSelectAll;
 	ChoiceFrame choiceFrame;
@@ -62,39 +66,65 @@ public class CategoryHome extends JPanel {
 		f.setLayout(card);
 		f.setTitle("category");
 
-		setLayout(new GridLayout(3, 1));
-
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
 		JPanel panel2 = new JPanel();
-		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 30));
+		panel2.setOpaque(false);
+		panel2.setLayout(null);
+		JLabel mainLabel = new JLabel();
 
-		add(panel);
-		add(panel2);
+		try {
+			BufferedImage image = ImageIO.read(new File("img/img_baskin/baskin_main/show.png"));
+			Image scaledImage = image.getScaledInstance(555, 960, Image.SCALE_SMOOTH);
+			mainLabel.setIcon(new ImageIcon(scaledImage));
 
+		} catch (IOException e) {
+			System.out.println("이미지오류");
+			e.printStackTrace();
+		}
+
+		// add(panel2);
+
+//		f.add(mainLabel);
+//		f.add(panel2);
 		f.add(panel2);
 		f.add(mainFrame);
-		f.add(panel);
 
 		// 카테고리 버튼 추가
+		mainLabel.setBounds(0, 0, 555, 960);
 		panel2.add(icecreamBtn);
 		panel2.add(icecakeBtn);
 		panel2.add(coffeeBtn);
 		panel2.add(beverageBtn);
 		panel2.add(dessertBtn);
+		panel2.add(mainLabel);
 
-		icecreamBtn.setForeground(beskinColor);
-		icecakeBtn.setForeground(beskinColor);
-		coffeeBtn.setForeground(beskinColor);
-		beverageBtn.setForeground(beskinColor);
-		dessertBtn.setForeground(beskinColor);
+		icecreamBtn.setBounds(80, 200, 170, 250);
+		icecakeBtn.setBounds(300, 200, 170, 250);
+		coffeeBtn.setBounds(60, 500, 120, 200);
+		beverageBtn.setBounds(220, 500, 120, 200);
+		dessertBtn.setBounds(380, 500, 120, 200);
 
-		// .setPreferredSize(new Dimension(width,height));
-		icecreamBtn.setPreferredSize(new Dimension(100, 60));
-		icecakeBtn.setPreferredSize(new Dimension(80, 60));
-		coffeeBtn.setPreferredSize(new Dimension(80, 60));
-		beverageBtn.setPreferredSize(new Dimension(100, 60));
-		dessertBtn.setPreferredSize(new Dimension(80, 60));
+
+		// 버튼 선 없애기
+		icecreamBtn.setBorderPainted(false);
+		icecakeBtn.setBorderPainted(false);
+		coffeeBtn.setBorderPainted(false);
+		beverageBtn.setBorderPainted(false);
+		dessertBtn.setBorderPainted(false);
+
+		ImageIcon addIcecreamBtn = new ImageIcon("img/img_baskin/baskin_main/ice.png");
+		icecreamBtn.setIcon(addIcecreamBtn);
+
+		ImageIcon addCakeBtn = new ImageIcon("img/img_baskin/baskin_main/cake.png");
+		icecakeBtn.setIcon(addCakeBtn);
+
+		ImageIcon addCoffeeBtn = new ImageIcon("img/img_baskin/baskin_main/coffee.png");
+		coffeeBtn.setIcon(addCoffeeBtn);
+
+		ImageIcon addBeverageBtn = new ImageIcon("img/img_baskin/baskin_main/beverage.png");
+		beverageBtn.setIcon(addBeverageBtn);
+
+		ImageIcon addDessertBtn = new ImageIcon("img/img_baskin/baskin_main/dessert.png");
+		dessertBtn.setIcon(addDessertBtn);
 
 		// add("CENTER",newPanel);
 		icecreamBtn.addActionListener(new MenuButtonListener("iceBtn"));
@@ -151,7 +181,7 @@ public class CategoryHome extends JPanel {
 
 		// f.setDefaultCloseOperation(ABORT);
 		f.setSize(555, 960);
-//		f.setVisible(true);
+	//	f.setVisible(true);
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
