@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import pj.menu.CategoryHome;
+import pj.main.CategoryHome;
 
 public class ChoiceFrame extends JPanel {
 

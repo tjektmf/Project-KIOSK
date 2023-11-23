@@ -64,7 +64,7 @@ public class OrderPage extends JFrame {
 		
 		add(mainPanel);
 
-		setSize(540, 960);
+		setSize(555, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);

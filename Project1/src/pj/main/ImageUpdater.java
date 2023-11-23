@@ -1,4 +1,4 @@
-package pj.menu;
+package pj.main;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;

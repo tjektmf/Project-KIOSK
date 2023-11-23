@@ -26,8 +26,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.database.Connector;
-import pj.menu.CategoryHome;
-import pj.menu.IceCreamShopCover;
+import pj.main.CategoryHome;
+import pj.main.IceCreamShopCover;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class ChoiceSelectIce extends JPanel {

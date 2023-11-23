@@ -1,4 +1,4 @@
-package pj.menu;
+package pj.main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -105,7 +105,7 @@ public class IceCreamShopCover extends JFrame {
 
 		try {
 			BufferedImage image = ImageIO.read(new File(imagePaths[currentImgIndex]));
-			Image scaledImage = image.getScaledInstance(540, 960, Image.SCALE_SMOOTH);
+			Image scaledImage = image.getScaledInstance(555, 960, Image.SCALE_SMOOTH);
 			mainLabel.setIcon(new ImageIcon(scaledImage));
 
 		} catch (IOException e) {
@@ -130,7 +130,7 @@ public class IceCreamShopCover extends JFrame {
 
 		// 프레임 표시 설정
 		pack();
-		setSize(540, 960);
+		setSize(555, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);

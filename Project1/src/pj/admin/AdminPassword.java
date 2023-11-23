@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 
-import pj.menu.IceCreamShopCover;
+import pj.main.IceCreamShopCover;
 
 public class AdminPassword extends JFrame {
 
@@ -95,7 +95,7 @@ public class AdminPassword extends JFrame {
 		pageLabel.add(click);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(540, 960);
+		setSize(555, 960);
 		setLocationRelativeTo(null);
 		setVisible(true);
 

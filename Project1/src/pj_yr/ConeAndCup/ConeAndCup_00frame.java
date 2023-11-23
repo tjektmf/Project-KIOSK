@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import pj.menu.CategoryHome;
+import pj.main.CategoryHome;
 
 public class ConeAndCup_00frame extends JFrame {
 	ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
