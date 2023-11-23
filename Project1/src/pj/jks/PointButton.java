@@ -1,16 +1,19 @@
 package pj.jks;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -20,11 +23,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import pj.choice.ChoiceTopButtonBack;
-import pj.choice.ChoiceTopButtonHome;
-
 public class PointButton extends JFrame {
-	
+
+	static String membership_tel;
 
 	public PointButton() {
 		JFrame f = new JFrame("CardLayout Sample");
@@ -80,40 +81,43 @@ public class PointButton extends JFrame {
 
 		JTextField panel1tf = new JTextField(30);
 		JTextField panel1tf2 = new JTextField(30);
+//	            }
+
+		// PANEL 1 최종결제 밑에 2 옆에
 		panel1tf.setLocation(10, 610);
 		panel1tf.setSize(500, 100);
 		panel1tf2.setLocation(280, 520);
 		panel1tf2.setSize(200, 40);
 		panel1.add(panel1tf);
 		panel1.add(panel1tf2);
+		//							처음에는 0
+		// PANEL1 에는   주문금액 - (포인트사용금액)  = 최종결제금액
+		// PANEL2 최종결제금액
+		
 
 		JLabel pointLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/happy.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/happy.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+
 			pointLabel.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		pointLabel.setHorizontalAlignment(JLabel.CENTER);
 		JLabel pointLabel2 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/happy.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/happy.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+
 			pointLabel2.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		pointLabel2.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JButton btn1 = new JButton("회원포인트");
 		btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		btn1.setForeground(Color.pink);
@@ -125,7 +129,7 @@ public class PointButton extends JFrame {
 		btn2.setBounds(270, 90, 145, 90);
 		JButton btn3 = new JButton();
 		btn3.add(pointLabel);
-		btn3.setBackground(new Color(255,255,255));
+		btn3.setBackground(new Color(255, 255, 255));
 		btn3.setBounds(30, 270, 105, 120);
 		JButton btn4 = new JButton();
 		btn4.add(pointLabel2);
@@ -154,7 +158,7 @@ public class PointButton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				btn3.setBackground(Color.pink);
 				card.show(f.getContentPane(), "2");
-		
+
 			}
 		});
 		btn4.addActionListener(new ActionListener() {
@@ -174,7 +178,7 @@ public class PointButton extends JFrame {
 		});
 
 		// panel2 부분
-		
+
 		JTextField tf = new JTextField(30);
 		tf.setLocation(100, 700);
 		tf.setSize(330, 50);
@@ -184,176 +188,146 @@ public class PointButton extends JFrame {
 		panel2label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 		panel2.add(panel2label1);
 
-		
-		
-		
 		JLabel numLabel1 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/1.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/1.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel1.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel1.setHorizontalAlignment(JLabel.CENTER);		
-		
+		numLabel1.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel numLabel2 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/2.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/2.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel2.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel2.setHorizontalAlignment(JLabel.CENTER);		
-		
+		numLabel2.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel numLabel3 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/3.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(80, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/3.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(80, 90, Image.SCALE_SMOOTH);
+
 			numLabel3.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel2.setHorizontalAlignment(JLabel.CENTER);		
+		numLabel2.setHorizontalAlignment(JLabel.CENTER);
 		JLabel numLabel4 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/4.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/4.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel4.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		numLabel4.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JLabel numLabel5 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/5.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/5.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel5.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel5.setHorizontalAlignment(JLabel.CENTER);	
-		
-		
+		numLabel5.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel numLabel6 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/6.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/6.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel6.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel6.setHorizontalAlignment(JLabel.CENTER);		
+		numLabel6.setHorizontalAlignment(JLabel.CENTER);
 		JLabel numLabel7 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/7.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/7.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel7.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel7.setHorizontalAlignment(JLabel.CENTER);		
+		numLabel7.setHorizontalAlignment(JLabel.CENTER);
 		JLabel numLabel8 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/8.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/8.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel8.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel8.setHorizontalAlignment(JLabel.CENTER);		
+		numLabel8.setHorizontalAlignment(JLabel.CENTER);
 		JLabel numLabel9 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/9.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/9.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel9.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel9.setHorizontalAlignment(JLabel.CENTER);	
-		
+		numLabel9.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel numLabel0 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/0.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/0.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			numLabel0.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel0.setHorizontalAlignment(JLabel.CENTER);		
-		
-		
+		numLabel0.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel backLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/취소.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/취소.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+
 			backLabel.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		backLabel.setHorizontalAlignment(JLabel.CENTER);	
-		
+		backLabel.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel cleLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/reset.jpg"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/reset.jpg"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+
 			cleLabel.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		cleLabel.setHorizontalAlignment(JLabel.CENTER);	
-		
-		
+		cleLabel.setHorizontalAlignment(JLabel.CENTER);
+
 		JButton panel2btn0 = new JButton();
 		JButton panel2btn1 = new JButton();
 		JButton panel2btn2 = new JButton();
@@ -379,32 +353,31 @@ public class PointButton extends JFrame {
 		panel2btn0.add(numLabel0);
 		panel2btn10.add(cleLabel);
 		panel2btn11.add(backLabel);
-	
-		
+
 		panel2btn0.setBounds(200, 500, 100, 90);
-		panel2btn0.setBackground(new Color(255,255,255));
+		panel2btn0.setBackground(new Color(255, 255, 255));
 		panel2btn1.setBounds(80, 200, 100, 90);
-		panel2btn1.setBackground(new Color(255,255,255));
+		panel2btn1.setBackground(new Color(255, 255, 255));
 		panel2btn2.setBounds(200, 200, 100, 90);
-		panel2btn2.setBackground(new Color(255,255,255));
+		panel2btn2.setBackground(new Color(255, 255, 255));
 		panel2btn3.setBounds(320, 200, 100, 90);
-		panel2btn3.setBackground(new Color(255,255,255));
+		panel2btn3.setBackground(new Color(255, 255, 255));
 		panel2btn4.setBounds(80, 300, 100, 90);
-		panel2btn4.setBackground(new Color(255,255,255));
+		panel2btn4.setBackground(new Color(255, 255, 255));
 		panel2btn5.setBounds(200, 300, 100, 90);
-		panel2btn5.setBackground(new Color(255,255,255));
+		panel2btn5.setBackground(new Color(255, 255, 255));
 		panel2btn6.setBounds(320, 300, 100, 90);
-		panel2btn6.setBackground(new Color(255,255,255));
+		panel2btn6.setBackground(new Color(255, 255, 255));
 		panel2btn7.setBounds(80, 400, 100, 90);
-		panel2btn7.setBackground(new Color(255,255,255));
+		panel2btn7.setBackground(new Color(255, 255, 255));
 		panel2btn8.setBounds(200, 400, 100, 90);
-		panel2btn8.setBackground(new Color(255,255,255));
+		panel2btn8.setBackground(new Color(255, 255, 255));
 		panel2btn9.setBounds(320, 400, 100, 90);
-		panel2btn9.setBackground(new Color(255,255,255));
+		panel2btn9.setBackground(new Color(255, 255, 255));
 		panel2btn10.setBounds(80, 500, 100, 90);
-		panel2btn10.setBackground(new Color(255,255,255));
+		panel2btn10.setBackground(new Color(255, 255, 255));
 		panel2btn11.setBounds(320, 500, 100, 90);
-		panel2btn11.setBackground(new Color(255,255,255));
+		panel2btn11.setBackground(new Color(255, 255, 255));
 
 		panel2btn0.addActionListener(new ActionListener() {
 			@Override
@@ -494,23 +467,49 @@ public class PointButton extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				card.show(f.getContentPane(), "1");
+				tf.setText("");
+				
 				btn3.setBackground(Color.white);
 				btn4.setBackground(Color.white);
 			}
 		});
-		
+
 		JButton panel2btn13 = new JButton("입력 완료");
 		panel2btn13.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel2btn13.setBounds(155, 800, 350, 90);
 		panel2btn13.setForeground(Color.white);
 		panel2btn13.setBackground(Color.pink);
-		add(panel2btn7);
 		panel2btn13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				card.show(f.getContentPane(), "4");
-//				 card.show(f.getContentPane(), "3");
+				membership_tel = tf.getText().substring(1, tf.getText().length());
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
+							"1234");
+					String sql = "SELECT membership_tel FROM membership";
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery();
+
+					while (rs.next()) {
+						if (rs.getString("membership_tel").equals(membership_tel)) {
+							card.show(f.getContentPane(), "4");
+							break;
+						} else {
+							card.show(f.getContentPane(), "3");
+						}
+					}
+					rs.close();
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -533,16 +532,15 @@ public class PointButton extends JFrame {
 		JLabel panel3label1 = new JLabel("유효하지 않습니다 다시 눌러주세요!");
 		panel3label1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 20));
 		panel3label1.setForeground(color.pink);
-		
 
 		panel3label1.setBounds(90, 120, 400, 200);
 
-		
 		JButton panel3btn1 = new JButton("확인");
 		panel3btn1.setBounds(60, 700, 400, 150);
 		panel3btn1.setForeground(color.white);
 		panel3btn1.setBackground(color.pink);
 		panel3btn1.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -551,188 +549,199 @@ public class PointButton extends JFrame {
 		});
 		panel3.add(panel3btn1);
 		panel3.add(panel3label1);
-	
 
-
-		
 		// panel4 부분
-		
+
 		JLabel p4numLabel1 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/1.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/1.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel1.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel1.setHorizontalAlignment(JLabel.CENTER);		
-		
+		p4numLabel1.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4numLabel2 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/2.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/2.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel2.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel2.setHorizontalAlignment(JLabel.CENTER);		
-		
+		p4numLabel2.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4numLabel3 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/3.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(80, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/3.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(80, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel3.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		numLabel2.setHorizontalAlignment(JLabel.CENTER);		
+		p4numLabel3.setHorizontalAlignment(JLabel.CENTER);
 		JLabel p4numLabel4 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/4.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/4.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel4.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		p4numLabel4.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JLabel p4numLabel5 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/5.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/5.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel5.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel5.setHorizontalAlignment(JLabel.CENTER);	
-		
-		
+		p4numLabel5.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4numLabel6 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/6.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/6.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel6.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel6.setHorizontalAlignment(JLabel.CENTER);		
+		p4numLabel6.setHorizontalAlignment(JLabel.CENTER);
+		
 		JLabel p4numLabel7 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/7.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/7.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel7.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel7.setHorizontalAlignment(JLabel.CENTER);		
-		
+		p4numLabel7.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4numLabel8 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/8.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/8.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel8.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel8.setHorizontalAlignment(JLabel.CENTER);		
-		
+		p4numLabel8.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4numLabel9 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/9.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/9.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel9.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel9.setHorizontalAlignment(JLabel.CENTER);	
-		
+		p4numLabel9.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4numLabel0 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/0.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/0.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			p4numLabel0.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4numLabel0.setHorizontalAlignment(JLabel.CENTER);		
-		
-		
+		p4numLabel0.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4backLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/취소.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/취소.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+
 			p4backLabel.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4backLabel.setHorizontalAlignment(JLabel.CENTER);	
-		
+		p4backLabel.setHorizontalAlignment(JLabel.CENTER);
+
 		JLabel p4cleLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/reset.jpg"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/reset.jpg"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+
 			p4cleLabel.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		p4cleLabel.setHorizontalAlignment(JLabel.CENTER);	
+		p4cleLabel.setHorizontalAlignment(JLabel.CENTER);
+
+		JTextField panel4pointtf = new JTextField(30);
+		JTextField panel4currenttf = new JTextField(30);
+		panel4pointtf.setLocation(80, 600);
+		panel4pointtf.setSize(330, 50);
+		panel4currenttf.setLocation(120, 700);
+		panel4currenttf.setSize(330, 50);
+		panel4.add( panel4pointtf);
+		panel4.add(panel4currenttf);
+		if(tf.getText()=="") {
 		
-		JTextField panel4tf = new JTextField(30);
-		JTextField panel4tf2 = new JTextField(30);
-		panel4tf.setLocation(80, 600);
-		panel4tf.setSize(330, 50);
-		panel4tf2.setLocation(120, 700);
-		panel4tf2.setSize(330, 50);
-		panel4.add(panel4tf);
-		panel4.add(panel4tf2);
+			System.out.println("널");
+		}else {
+			tf.setText("ddd");
+			membership_tel = tf.getText().substring(1, tf.getText().length());
+		}
+//		membership_point = tf.getText().substring(1, tf.getText().length());
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
+					"1234");
+			String sql = "SELECT * FROM membership";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				if (rs.getString("membership_tel").equals(membership_tel)) {
+					System.out.println("ㅇ : " + Integer.toString(rs.getInt("membership_point")));
+					panel4currenttf.setText(Integer.toString(rs.getInt("membership_point")));
+		//			panel4currenttf.repaint();
+					break;
+				}
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	
+		// TOString Integer.;;;; 사용 
+		//멤버쉽 포인트 불러와서 현재적립금 나오게 하기 CURRNETTF에   >> 사용포인트 누르기 (사용포인트랑 멤버십포인트 비교 사용포인트가 멤버십포인트 보다 많으면 에러) 
+		// 확인 누르면 패널1 최종결재 금액이 바뀌게  (주문금액 - 사용포인트 = 최종가격);
+		
 
 		JLabel panel4label1 = new JLabel("적립포인트");
 		JLabel panel4label2 = new JLabel("포인트를 사용하시려면 버튼을 눌러주세요");
@@ -762,8 +771,6 @@ public class PointButton extends JFrame {
 		JButton panel4btn10 = new JButton();
 		JButton panel4btn11 = new JButton();
 
-		
-		
 		panel4btn1.add(p4numLabel1);
 		panel4btn2.add(p4numLabel2);
 		panel4btn3.add(p4numLabel3);
@@ -776,115 +783,112 @@ public class PointButton extends JFrame {
 		panel4btn0.add(p4numLabel0);
 		panel4btn10.add(p4cleLabel);
 		panel4btn11.add(p4backLabel);
-		
-		
+
 		panel4btn0.setBounds(200, 500, 100, 90);
-		panel4btn0.setBackground(new Color(255,255,255));
+		panel4btn0.setBackground(new Color(255, 255, 255));
 		panel4btn1.setBounds(80, 200, 100, 90);
-		panel4btn1.setBackground(new Color(255,255,255));
+		panel4btn1.setBackground(new Color(255, 255, 255));
 		panel4btn2.setBounds(200, 200, 100, 90);
-		panel4btn2.setBackground(new Color(255,255,255));
+		panel4btn2.setBackground(new Color(255, 255, 255));
 		panel4btn3.setBounds(320, 200, 100, 90);
-		panel4btn3.setBackground(new Color(255,255,255));
+		panel4btn3.setBackground(new Color(255, 255, 255));
 		panel4btn4.setBounds(80, 300, 100, 90);
-		panel4btn4.setBackground(new Color(255,255,255));
+		panel4btn4.setBackground(new Color(255, 255, 255));
 		panel4btn5.setBounds(200, 300, 100, 90);
-		panel4btn5.setBackground(new Color(255,255,255));
+		panel4btn5.setBackground(new Color(255, 255, 255));
 		panel4btn6.setBounds(320, 300, 100, 90);
-		panel4btn6.setBackground(new Color(255,255,255));
+		panel4btn6.setBackground(new Color(255, 255, 255));
 		panel4btn7.setBounds(80, 400, 100, 90);
-		panel4btn7.setBackground(new Color(255,255,255));
+		panel4btn7.setBackground(new Color(255, 255, 255));
 		panel4btn8.setBounds(200, 400, 100, 90);
-		panel4btn8.setBackground(new Color(255,255,255));
+		panel4btn8.setBackground(new Color(255, 255, 255));
 		panel4btn9.setBounds(320, 400, 100, 90);
-		panel4btn9.setBackground(new Color(255,255,255));
+		panel4btn9.setBackground(new Color(255, 255, 255));
 		panel4btn10.setBounds(80, 500, 100, 90);
-		panel4btn10.setBackground(new Color(255,255,255));
+		panel4btn10.setBackground(new Color(255, 255, 255));
 		panel4btn11.setBounds(320, 500, 100, 90);
-		panel4btn11.setBackground(new Color(255,255,255));
+		panel4btn11.setBackground(new Color(255, 255, 255));
 
 		panel4btn0.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "0");
+				panel4pointtf.setText(panel4pointtf.getText() + "0");
 			}
 		});
 
 		panel4btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "1");
+				panel4pointtf.setText(panel4pointtf.getText() + "1");
 			}
 		});
 
 		panel4btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "2");
+				panel4pointtf.setText(panel4pointtf.getText() + "2");
 			}
 		});
 		panel4btn3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "3");
+				panel4pointtf.setText(panel4pointtf.getText() + "3");
 			}
 		});
 		panel4btn4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "4");
+				panel4pointtf.setText(panel4pointtf.getText() + "4");
 			}
 		});
 		panel4btn5.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "5");
+				panel4pointtf.setText(panel4pointtf.getText() + "5");
 			}
 		});
 		panel4btn6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "6");
+				panel4pointtf.setText(panel4pointtf.getText() + "6");
 			}
 		});
 
 		panel4btn7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "7");
+				panel4pointtf.setText(panel4pointtf.getText() + "7");
 			}
 		});
 		panel4btn8.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "8");
+				panel4pointtf.setText(panel4pointtf.getText() + "8");
 			}
 		});
 
 		panel4btn9.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText() + "9");
+				panel4pointtf.setText(panel4pointtf.getText() + "9");
 			}
 		});
 
 		panel4btn10.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText("");
+				panel4pointtf.setText("");
 			}
 		});
 
 		panel4btn11.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4tf.setText(panel4tf.getText().substring(0, panel4tf.getText().length() - 1));
+				panel4pointtf.setText(panel4pointtf.getText().substring(0, panel4pointtf.getText().length() - 1));
 			}
 		});
-		
-		JButton panel4btn12 = new JButton("취소");
-		JButton panel4btn13 = new JButton("확인");
 
+		JButton panel4btn12 = new JButton("취소");
 		panel4btn12.setBounds(30, 800, 100, 90);
 		panel4btn12.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel4btn12.setForeground(Color.pink);
@@ -892,11 +896,13 @@ public class PointButton extends JFrame {
 		panel4btn12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				tf.setText("");
 				card.show(f.getContentPane(), "1");
 				btn4.setBackground(Color.white);
 			}
 		});
+		
+		JButton panel4btn13 = new JButton("확인");
 		panel4btn13.setBounds(155, 800, 350, 90);
 		panel4btn13.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel4btn13.setForeground(Color.white);
@@ -926,9 +932,6 @@ public class PointButton extends JFrame {
 		panel4.add(panel4btn12);
 		panel4.add(panel4btn13);
 
-		
-		
-		
 		// panel5 부분
 		JLabel panel5label1 = new JLabel("결제하기");
 		JLabel panel5label2 = new JLabel("최종결제금액");
@@ -961,64 +964,56 @@ public class PointButton extends JFrame {
 		panel5btn2.setBackground(new Color(0, 0, 0, 0));
 		panel5btn2.setBounds(270, 90, 145, 90);
 
-		
 		JLabel cashLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/카드결제.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/카드결제.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
 			cashLabel.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		cashLabel.setHorizontalAlignment(JLabel.CENTER);
-		
-		
+
 		JLabel cashLabel2 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/naverpay.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(110, 66, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/naverpay.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(110, 66, Image.SCALE_SMOOTH);
+
 			cashLabel2.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		cashLabel2.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JLabel cashLabel3 = new JLabel();
 		try {
-			BufferedImage bufferedImage =
-					ImageIO.read(new File("img/jks/카카오페이.png"));
-			
-			Image scaledImage =
-			bufferedImage.getScaledInstance(110, 90, Image.SCALE_SMOOTH);
-			
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/카카오페이.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(110, 90, Image.SCALE_SMOOTH);
+
 			cashLabel3.setIcon(new ImageIcon(scaledImage));
-		} catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		cashLabel3.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JButton panel5btn3 = new JButton();
 		JButton panel5btn4 = new JButton();
 		JButton panel5btn5 = new JButton();
-		
+
 		panel5btn3.setBounds(30, 240, 100, 90);
 		panel5btn4.setBounds(200, 240, 100, 90);
 		panel5btn5.setBounds(370, 240, 100, 90);
-		
+
 		panel5btn3.add(cashLabel);
-		panel5btn3.setBackground(new Color(255,255,255));
+		panel5btn3.setBackground(new Color(255, 255, 255));
 		panel5btn4.add(cashLabel2);
-		panel5btn4.setBackground(new Color(255,255,255));
+		panel5btn4.setBackground(new Color(255, 255, 255));
 		panel5btn5.add(cashLabel3);
-		panel5btn5.setBackground(new Color(255,255,255));
+		panel5btn5.setBackground(new Color(255, 255, 255));
 
 		panel5btn3.addActionListener(new ActionListener() {
 			@Override
@@ -1079,25 +1074,22 @@ public class PointButton extends JFrame {
 		panel5.add(panel5btn6);
 		panel5.add(panel5btn7);
 
-		
-		
 		// panel6부분
 		JLabel panel6label1 = new JLabel("결제대기중");
 		panel6label1.setBounds(180, 20, 300, 100);
 		panel6label1.setForeground(color.pink);
 		panel6label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
-	
+
 		JLabel panel6label2 = new JLabel("결제준비가 완료 되었다면 결제 확인버튼을 눌러주세요");
 		panel6label2.setFont(new Font("맑음고딕체", Font.BOLD, 18));
-		panel6label2.setBounds(30, 30,700, 200);
-		
-		
+		panel6label2.setBounds(30, 30, 700, 200);
+
 		JLabel test = new JLabel();
 		test.setIcon(new ImageIcon("img/jks/loading.gif"));
 		test.setHorizontalAlignment(JLabel.CENTER);
 		test.setBounds(30, 230, 440, 400);
 		panel6.add(test);
-			
+
 		JButton panel6btn1 = new JButton("결제확인");
 		panel6btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel6btn1.setForeground(Color.white);
@@ -1147,16 +1139,21 @@ public class PointButton extends JFrame {
 		panel7.add(panel7label);
 		panel7.add(panel7label2);
 		panel7.add(panel7label3);
-		panel7.add(panel7label4);
+		panel7.add(panel7label4);	
 
-		JTextField panel7tf = new JTextField(30);
-		JTextField panel7tf2 = new JTextField(30);
-		panel7tf.setLocation(10, 440);
-		panel7tf.setSize(500, 300);
-		panel7tf2.setLocation(135, 215);
-		panel7tf2.setSize(180, 60);
-		panel7.add(panel7tf);
-		panel7.add(panel7tf2);
+		JTextField panel7waittf = new JTextField(30);
+		JTextField panel7ordertf = new JTextField(30);
+		panel7waittf.setLocation(10, 440);
+		panel7waittf.setSize(500, 300);
+		panel7ordertf.setLocation(135, 215);
+		panel7ordertf.setSize(180, 60);
+		panel7.add(panel7waittf);
+		panel7.add(panel7ordertf);
+		
+		
+		
+		// waittf에 대기번호 출력      ordertf에 주문 내역 적립금 내역 출력 
+		
 
 		JButton panel7btn1 = new JButton("확인");
 		panel7btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
@@ -1164,13 +1161,7 @@ public class PointButton extends JFrame {
 		panel7btn1.setForeground(Color.white);
 		panel7btn1.setBackground(Color.pink);
 		add(panel7btn1);
-//		panel6btn1.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				
-//				card.show(f.getContentPane(), "1");
-//			}
-//		});
+
 
 		panel7.add(panel7btn1);
 		f.add("1", panel1);
