@@ -19,14 +19,15 @@ import javax.swing.SwingConstants;
 import pj.main.CategoryHome;
 
 public class ConeAndCup_00frame extends JFrame {
+
 	ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
 	CategoryHome categoryHome;
 
 	public ConeAndCup_00frame() {
 
-		setSize(555, 960);
+		setSize(560, 960);
 		setLocationRelativeTo(null);
-	//	setVisible(true);
+		// setVisible(true);
 
 		Color beskinColor = new Color(236, 108, 165);
 
@@ -45,175 +46,114 @@ public class ConeAndCup_00frame extends JFrame {
 		label1b.setPreferredSize(new Dimension(270, 80));
 		label1b.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
-		row1.add(label1a, BorderLayout.WEST);
-		row1.add(label1b, BorderLayout.EAST);
-		jp.add(row1);
-
-		// 두 번째 행
+		// 행2 : 맛에대한 설명
 		JPanel row2 = new JPanel();
 		row2.setPreferredSize(new Dimension(540, 150));
 		row2.setBackground(Color.gray);
 		jp.add(row2);
 
-		// 세 번째 행
+		// 행3 : 포장 하는지 안내문구
 		JPanel row3 = new JPanel();
 		row3.setPreferredSize(new Dimension(540, 50));
 		row3.add(noticeTakeOut.getContentPane());
 		jp.add(row3);
 
-		// 네 번째 행
-		JPanel row4 = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-		row4.setPreferredSize(new Dimension(540, 280));
+		// 행4 : 컵~콘~와플콘 사진이 있어야
+		JPanel row4 = new JPanel();
+		row4.setPreferredSize(new Dimension(540, 210));
 
-		// 패널 1
-		JPanel panel4a = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
-		panel4a.setBackground(beskinColor);
-		panel4a.setPreferredSize(new Dimension(160, 40));
+		// 라벨1 : 컵
+		JLabel btn4a = new JLabel();
+		new ConeAndCup_04choicImg(btn4a);
+		btn4a.setPreferredSize(new Dimension(160, 200));
+		row4.add(btn4a);
 
-		JButton minusButton1 = new JButton("-");
-		JTextField numberField1 = new JTextField("0", 3); // 초기값은 0
-		numberField1.setEditable(false);
-		JButton plusButton1 = new JButton("+");
+		// 라벨2 : 콘
+		JLabel btn4b = new JLabel();
+		new ConeAndCup_04choicImg(btn4b);
+		btn4b.setPreferredSize(new Dimension(160, 200));
+		row4.add(btn4b);
 
-		// 버튼에 대한 액션 리스너 추가
-		minusButton1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int currentValue = Integer.parseInt(numberField1.getText());
-				if (currentValue > 0) {
-					numberField1.setText(Integer.toString(currentValue - 1));
-				}
-			}
-		});
+		// 라벨3 : 와플콘
+		JLabel btn4c = new JLabel();
+		new ConeAndCup_04choicImg(btn4c);
+		btn4c.setPreferredSize(new Dimension(160, 200));
+		row4.add(btn4c);
 
-		plusButton1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int currentValue = Integer.parseInt(numberField1.getText());
-				if (currentValue < 100) {
-					numberField1.setText(Integer.toString(currentValue + 1));
-				}
-			}
-		});
-
-		panel4a.add(minusButton1);
-		panel4a.add(numberField1);
-		panel4a.add(plusButton1);
-
-		row4.add(panel4a);
-
-		// 패널 2
-		JPanel panel4b = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
-		panel4b.setBackground(beskinColor);
-		panel4b.setPreferredSize(new Dimension(160, 40));
-
-		JButton minusButton2 = new JButton("-");
-		JTextField numberField2 = new JTextField("0", 3); // 초기값은 0
-		numberField2.setEditable(false);
-		JButton plusButton2 = new JButton("+");
-
-		// 버튼에 대한 액션 리스너 추가
-		minusButton2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int currentValue = Integer.parseInt(numberField2.getText());
-				if (currentValue > 0) {
-					numberField2.setText(Integer.toString(currentValue - 1));
-				}
-			}
-		});
-
-		plusButton2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int currentValue = Integer.parseInt(numberField2.getText());
-				if (currentValue < 100) {
-					numberField2.setText(Integer.toString(currentValue + 1));
-				}
-			}
-		});
-
-		panel4b.add(minusButton2);
-		panel4b.add(numberField2);
-		panel4b.add(plusButton2);
-
-		row4.add(panel4b);
-
-		// 패널 3
-		JPanel panel4c = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
-		panel4c.setBackground(beskinColor);
-		panel4c.setPreferredSize(new Dimension(160, 40));
-
-		JButton minusButton3 = new JButton("-");
-		JTextField numberField3 = new JTextField("0", 3); // 초기값은 0
-		numberField3.setEditable(false);
-		JButton plusButton3 = new JButton("+");
-
-		// 버튼에 대한 액션 리스너 추가
-		minusButton3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int currentValue = Integer.parseInt(numberField3.getText());
-				if (currentValue > 0) {
-					numberField3.setText(Integer.toString(currentValue - 1));
-				}
-			}
-		});
-
-		plusButton3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int currentValue = Integer.parseInt(numberField3.getText());
-				if (currentValue < 100) {
-					numberField3.setText(Integer.toString(currentValue + 1));
-				}
-			}
-		});
-
-		panel4c.add(minusButton3);
-		panel4c.add(numberField3);
-		panel4c.add(plusButton3);
-
-		row4.add(panel4c);
+//        btn4a.addActionListener(createButtonActionListener(0));
+//        btn4b.addActionListener(createButtonActionListener(1));
+//        btn4c.addActionListener(createButtonActionListener(2));
 
 		jp.add(row4);
 
-		// 다섯 번째 행
+		// 행5 : 버튼
 		JPanel row5 = new JPanel();
-		row5.setPreferredSize(new Dimension(540, 180));
-		// TODO: 여기에 필요한 컴포넌트 추가
+		row5.setPreferredSize(new Dimension(540, 40));
+
+		// 패널 1 : 컵 버튼
+		JPanel panel5a = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
+		panel5a.setBackground(beskinColor);
+		panel5a.setPreferredSize(new Dimension(160, 40));
+
+		new ConeAndCup_05counting(panel5a, 1);
+
+		row5.add(panel5a);
+
+		// 패널 2 : 콘 버튼
+		JPanel panel5b = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
+		panel5b.setBackground(beskinColor);
+		panel5b.setPreferredSize(new Dimension(160, 40));
+
+		new ConeAndCup_05counting(panel5b, 2);
+		row5.add(panel5b);
+
+		// 패널 3 : 와플 버튼
+		JPanel panel5c = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
+		panel5c.setBackground(beskinColor);
+		panel5c.setPreferredSize(new Dimension(160, 40));
+
+		new ConeAndCup_05counting(panel5c, 3);
+		row5.add(panel5c);
+
 		jp.add(row5);
 
-		// 여섯 번째 행
+		// 행6 : 빈공간
 		JPanel row6 = new JPanel();
-		row6.setPreferredSize(new Dimension(540, 80));
+		row6.setPreferredSize(new Dimension(540, 180));
+		// TODO: 여기에 필요한 컴포넌트 추가
+		jp.add(row6);
+
+		// 행7 : 이전, 담기 버튼
+		JPanel row7 = new JPanel();
+		row7.setPreferredSize(new Dimension(540, 80));
 		JButton button6a = new JButton("이전");
 		button6a.setBackground(Color.white);
 		button6a.setForeground(beskinColor);
 		button6a.setPreferredSize(new Dimension(100, 30));
 		button6a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
-		JButton button6b = new JButton("담기");
-		button6b.setBackground(beskinColor);
-		button6b.setForeground(Color.white);
-		button6b.setPreferredSize(new Dimension(350, 30));
-		button6b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		// 다섯 번째 행
 
-		row6.add(button6a);
-		row6.add(button6b);
-		jp.add(row6);
+		row5.setPreferredSize(new Dimension(540, 180));
+		// TODO: 여기에 필요한 컴포넌트 추가
+		jp.add(row5);
 
-		// 일곱 번째 행
-		JPanel row7 = new JPanel();
-		row7.setPreferredSize(new Dimension(540, 170));
-		// 앞으로 쓸곳8
-		row7.setBackground(Color.gray);
+		row7.add(button6a);
+	
 		jp.add(row7);
+
+		// 행8 : 뭔가,, 광고 같은게,,
+		JPanel row8 = new JPanel();
+		row8.setPreferredSize(new Dimension(540, 170));
+		// 앞으로 쓸곳8
+		row8.setBackground(Color.gray);
+		jp.add(row8);
 
 		add(jp);
 	}
 
 	public static void main(String[] args) {
-		new ConeAndCup_00frame();
+		new ConeAndCup_00frame().setVisible(true);
 	}
+
 }

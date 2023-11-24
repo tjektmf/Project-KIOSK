@@ -343,8 +343,9 @@ public class PointButton extends JPanel {
 		f.add("4", panel4);
 
 		// f.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		f.setBounds(100, 100, 540, 960);
-//		f.setVisible(true);
+		f.setBounds(100, 100, 560, 960);
+		f.setVisible(true);
+		f.setLocationRelativeTo(null);
 	}
 
 	public static void main(String[] args) {
