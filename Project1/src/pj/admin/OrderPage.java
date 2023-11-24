@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
-import Database.jdbcConnection;
+import database.JdbcConnection;
 
 public class OrderPage extends JFrame {
 	// adminPassword() 에서 비밀번호 입력 후 들어오는 창
@@ -124,7 +124,7 @@ public class OrderPage extends JFrame {
 	public List<String> getOrderData() {
 		List<String> orderDataList = new ArrayList<>();
 
-		try (Connection conn = jdbcConnection.getConnection()) {
+		try (Connection conn = JdbcConnection.getConnection()) {
 			 if (conn == null) {
 	                System.err.println("데이터베이스와의 연결을 확인하세요");
 	                return orderDataList;
