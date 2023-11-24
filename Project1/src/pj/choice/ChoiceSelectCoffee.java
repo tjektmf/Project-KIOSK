@@ -132,18 +132,24 @@ public class ChoiceSelectCoffee extends JPanel {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						boolean full = false;
 						for (int i = 0; i < theNumberOfMenu; i++) {
-							if (e.getSource() == actions[i]) {
-								System.out.println("같다");
+							for (int j = 0; j < 9; j++) {
+								if (choiceFramePrice.thisPrice[j] == 0) {
+									full = true;
+
+								}
+							}
+							if (e.getSource() == actions[i] && full) {
 								choiceFramePrice.showPrice(priceSet.get(i));
 							}
 						}
-						System.out.println("데굴데굴");
-
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
 
-						move.setVisible(true);
+						if (choiceFrameBuyList.SAVED_BUYLIST1[8].getText().equals("")) {
+							move.setVisible(true);
+						}
 					}
 				});
 			}

@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -44,7 +45,8 @@ public class ChoiceSelectIce extends JPanel {
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ChoiceFrameSelect choiceFrameSelect;
-	JLabel[] SAVED_BUYLIST = new JLabel[9];
+
+//	JLabel[] SAVED_BUYLIST = new JLabel[9];
 
 	// ResultSet priceSet;
 	ArrayList<Integer> priceSet = new ArrayList<Integer>();
@@ -128,28 +130,63 @@ public class ChoiceSelectIce extends JPanel {
 
 		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
 			if (picArr[buttonNum - 1] != null) {
-
 				actions[buttonNum - 1].addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						boolean full = false;
 						for (int i = 0; i < theNumberOfMenu; i++) {
-							if (e.getSource() == actions[i]) {
-								System.out.println("같다");
+							for (int j = 0; j < 9; j++) {
+								if (choiceFramePrice.thisPrice[j] == 0) {
+									full = true;
+								}
+							}
+							if (e.getSource() == actions[i] && full) {
 								choiceFramePrice.showPrice(priceSet.get(i));
+								choiceFrameBuyList.ICECREAM_SIZE[i] = true;
 							}
 						}
-						System.out.println("데굴데굴");
-
+						System.out.println("아이스크림 크기배열 : " + Arrays.toString(choiceFrameBuyList.ICECREAM_SIZE));
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
 
 						// if문을 통해 메뉴당 골라서 넣으면 될듯
-						move.setVisible(true);
+						if (choiceFrameBuyList.SAVED_BUYLIST1[8].getText().equals("")) {
+							move.setVisible(true);
+						}
 					}
 				});
 			}
 		}
+
+//		for (int i = 0; i < 9; i++) {
+//
+//			if (ICECREAM_SIZE[i]) {
+//				switch (i) {
+//				case 0: // 싱글레귤러 맛1개만 선택되게 나머지 5개버튼 setenable(false)
+//					break;
+//				case 1: // 더블주니어 맛2개
+//					break;
+//				case 2: // 더블레귤러 맛2개
+//					break;
+//				case 3: // 파인트 3개
+//					break;
+//				case 4: // 쿼터 4개
+//					break;
+//				case 5: // 패밀리 5개
+//					break;
+//				case 6: // 하프갤런 6개
+//					break;
+//				case 7: // 버라이어티팩 6개
+//					break;
+//				case 8: // 핸드팩 4개
+//					break;
+//
+//				}
+//
+//			}
+//
+//		}
 
 		System.out.println("ChoiceSelectIce : " + this);
 

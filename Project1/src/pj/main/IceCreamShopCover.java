@@ -52,7 +52,7 @@ public class IceCreamShopCover extends JFrame {
 		keyBtn.setLocation(455, 855);
 		keyBtn.setBackground(new Color(0, 0, 0, 0));
 		keyBtn.setBorderPainted(false);
-		
+
 		// Key 이미지
 		ImageIcon addImage = new ImageIcon("img/hyemi/key.png");
 
@@ -64,16 +64,16 @@ public class IceCreamShopCover extends JFrame {
 //		    	JLabel key = new JLabel();
 //		    	key.setIcon(new ImageIcon("img/hyemi/key.png"));
 //		    	new adminPassword();
-		    	
-                // adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
-		    	setVisible(false);
-                updateFrameContent();     
-		    }
+
+				// adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
+				setVisible(false);
+				updateFrameContent();
+			}
 
 		});
 
 		// 투명한 패널을 만들어 글씨를 포함시키고 위치 설정
-		JPanel textPanel = new JPanel();		
+		JPanel textPanel = new JPanel();
 		textPanel.setBounds(120, 280, 400, 400);
 
 		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
@@ -84,9 +84,9 @@ public class IceCreamShopCover extends JFrame {
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setLayout(null); // (mainPanel)의 레이아웃 null로 설정후 수동으로 위치조절
 		mainLabel.setSize(540, 960);
-		mainPanel.add(mainLabel);//, BorderLayout.CENTER 뺌
+		mainPanel.add(mainLabel);// , BorderLayout.CENTER 뺌
 		mainPanel.add(keyBtn);// , BorderLayout.SOUTH 뺌
-			
+
 		Timer changeImg = new Timer(3000, new ActionListener() {
 
 			@Override

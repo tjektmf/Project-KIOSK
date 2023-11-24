@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,10 +26,23 @@ public class ChoiceFrameBuyList extends JPanel {
 		return instance;
 	}
 
+	ChoiceFramePrice choiceFramePrice;
+
 	JLabel label1 = new JLabel();
 	JLabel label2 = new JLabel();
-	JLabel[] SAVED_BUYLIST = new JLabel[9];
+	JButton[] SAVED_BTN = new JButton[9];
+	JLabel[] SAVED_BUYLIST1 = new JLabel[9];
+	JLabel[] SAVED_BUYLIST2 = new JLabel[9];
+	JLabel[] SAVED_BUYLIST3 = new JLabel[9];
+	JLabel[] SAVED_BUYLIST4 = new JLabel[9];
+	JLabel[] SAVED_BUYLIST5 = new JLabel[9];
+	JLabel[] SAVED_BUYLIST6 = new JLabel[9];
+	JLabel[] SAVED_BUYLIST7 = new JLabel[9];
+	boolean[] ICECREAM_SIZE = new boolean[9];
+	int checkNum = 0;
+
 	JLabel label3 = new JLabel();
+
 	GridLayout grid1 = new GridLayout(1, 3);
 	GridLayout grid2 = new GridLayout(1, 3);
 	GridLayout grid3 = new GridLayout(1, 3);
@@ -37,11 +51,14 @@ public class ChoiceFrameBuyList extends JPanel {
 	JPanel gridPan3 = new JPanel(grid3);
 	CardLayout card = new CardLayout(10, 10);
 
-	public JLabel[] SAVED_BUYLIST() {
-		return SAVED_BUYLIST();
+	
+	public JLabel SAVED_BUYLIST1(int index) {
+		return SAVED_BUYLIST1[index];
 	}
 
 	private ChoiceFrameBuyList() {
+
+		choiceFramePrice = ChoiceFramePrice.getInstance();
 
 		JLabel test = new JLabel();
 		test.setIcon(new ImageIcon("img/daseul/cat.gif"));
@@ -63,6 +80,12 @@ public class ChoiceFrameBuyList extends JPanel {
 		JButton borderNextBtn2 = new JButton(">>");
 		JButton borderPrevBtn3 = new JButton("<<");
 		JButton borderNextBtn3 = new JButton(">>");
+
+		
+
+		// 맨앞 맨뒤 버튼비활성화
+		borderPrevBtn1.setEnabled(false);
+		borderNextBtn3.setEnabled(false);
 
 		borderNextBtn1.addActionListener(new ActionListener() {
 
@@ -130,33 +153,87 @@ public class ChoiceFrameBuyList extends JPanel {
 		gridPan2.setLayout(grid2);
 		gridPan3.setLayout(grid3);
 
-//		gridPan1.add(label2);
-//		gridPan1.add(label3);
-
-		// 팬2는 날릴 생각으로 test랑 같이 붙여놓은거임
-		label1.setText("외않되");
-		System.out.println("외않되 추가당시 instance: " + this);
-
 		for (int i = 0; i < 9; i++) {
-			SAVED_BUYLIST[i] = new JLabel();
+			SAVED_BTN[i] = new JButton();
+			SAVED_BTN[i].setBorderPainted(false);
+			SAVED_BTN[i].setLayout(new GridLayout(7, 1));
+			SAVED_BUYLIST1[i] = new JLabel();
+			SAVED_BUYLIST2[i] = new JLabel();
+			SAVED_BUYLIST3[i] = new JLabel();
+			SAVED_BUYLIST4[i] = new JLabel();
+			SAVED_BUYLIST5[i] = new JLabel();
+			SAVED_BUYLIST6[i] = new JLabel();
+			SAVED_BUYLIST7[i] = new JLabel();
 
 			switch (i) {
 			case 0, 1, 2:
-				gridPan1.add(SAVED_BUYLIST[i]);
-				// SAVED_BUYLIST[i].setText("콘컵맛 추가예정 : " + i);
+				gridPan1.add(SAVED_BTN[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST1[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST2[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST3[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST4[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST5[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST6[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST7[i]);
 				break;
 			case 3, 4, 5:
-				gridPan2.add(SAVED_BUYLIST[i]);
-				// SAVED_BUYLIST[i].setText("콘컵맛 추가예정 : " + i);
+				gridPan2.add(SAVED_BTN[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST1[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST2[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST3[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST4[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST5[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST6[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST7[i]);
 				break;
 			case 6, 7, 8:
-				gridPan3.add(SAVED_BUYLIST[i]);
-				// SAVED_BUYLIST[i].setText("콘컵맛 추가예정 : " + i);
+				gridPan3.add(SAVED_BTN[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST1[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST2[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST3[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST4[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST5[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST6[i]);
+				SAVED_BTN[i].add(SAVED_BUYLIST7[i]);
 				break;
+
 			}
 
-		}
+			SAVED_BTN[i].addActionListener(new ActionListener() {
 
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int i;
+					for (i = 0; i < 9; i++) {
+
+						if (e.getSource() == SAVED_BTN[i]) {
+
+							SAVED_BUYLIST1[i].setText("");
+							SAVED_BUYLIST2[i].setText("");
+							SAVED_BUYLIST3[i].setText("");
+							SAVED_BUYLIST4[i].setText("");
+							SAVED_BUYLIST5[i].setText("");
+							SAVED_BUYLIST6[i].setText("");
+							SAVED_BUYLIST7[i].setText("");
+							break;
+						}
+					}
+
+					// 금액조정관련 코드 필요
+					checkNum = i;
+					System.out.println(choiceFramePrice.thisPrice(i));
+
+					choiceFramePrice.tf.setText(Integer
+							.toString(Integer.parseInt(choiceFramePrice.tf.getText()) - choiceFramePrice.thisPrice(i)));
+					choiceFramePrice.thisPrice[i] = 0;
+					ICECREAM_SIZE[i] = false;
+					System.out.println("삭제된 아이스크림 크기 배열 : " + Arrays.toString(ICECREAM_SIZE));
+					System.out.println("삭제된 장바구니 가격 배열 : " + Arrays.toString(choiceFramePrice.thisPrice));
+					choiceFramePrice.tf.repaint();
+
+				}
+			});
+		}
 	}
 
 	public void showImg() {
@@ -168,14 +245,20 @@ public class ChoiceFrameBuyList extends JPanel {
 				break;
 			}
 
-			if (SAVED_BUYLIST[i].getText() == "") {
-				SAVED_BUYLIST[i].setText("콘컵맛 추가예정 : " + i);
+			if (SAVED_BUYLIST1[i].getText() == "") {
+				SAVED_BUYLIST1[i].setText("메뉴");
+				SAVED_BUYLIST2[i].setText("맛1or커피컵");
+				SAVED_BUYLIST3[i].setText("맛2");
+				SAVED_BUYLIST4[i].setText("맛3");
+				SAVED_BUYLIST5[i].setText("맛4");
+				SAVED_BUYLIST6[i].setText("맛5");
+				SAVED_BUYLIST7[i].setText("맛6");
 				if (i == 3 || i == 6) {
 					card.next(ChoiceFrameBuyList.this);
 				}
-
 				break;
 			}
 		}
+		i = 0;
 	}
 }

@@ -3,6 +3,7 @@ package pj_yr.ConeAndCup;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

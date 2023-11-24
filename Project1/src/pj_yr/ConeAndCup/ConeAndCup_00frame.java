@@ -21,7 +21,8 @@ import pj.main.CategoryHome;
 public class ConeAndCup_00frame extends JFrame {
 
 	ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
-	CategoryHome categoryHome;
+//    private int selectedButtonIndex = -1;
+	Color beskinColor = new Color(236, 108, 165);
 
 	public ConeAndCup_00frame() {
 
@@ -46,43 +47,27 @@ public class ConeAndCup_00frame extends JFrame {
 		label1b.setPreferredSize(new Dimension(270, 80));
 		label1b.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
-		// 행2 : 맛에대한 설명
-		JPanel row2 = new JPanel();
-		row2.setPreferredSize(new Dimension(540, 150));
-		row2.setBackground(Color.gray);
-		jp.add(row2);
-
-		// 행3 : 포장 하는지 안내문구
-		JPanel row3 = new JPanel();
-		row3.setPreferredSize(new Dimension(540, 50));
-		row3.add(noticeTakeOut.getContentPane());
-		jp.add(row3);
-
 		// 행4 : 컵~콘~와플콘 사진이 있어야
 		JPanel row4 = new JPanel();
 		row4.setPreferredSize(new Dimension(540, 210));
 
 		// 라벨1 : 컵
 		JLabel btn4a = new JLabel();
-		new ConeAndCup_04choicImg(btn4a);
+		// new ConeAndCup_04choicImg(btn4a,"img_menu/img_Container/"+ 1 + ".png");
 		btn4a.setPreferredSize(new Dimension(160, 200));
 		row4.add(btn4a);
 
 		// 라벨2 : 콘
 		JLabel btn4b = new JLabel();
-		new ConeAndCup_04choicImg(btn4b);
+		// new ConeAndCup_04choicImg(btn4b,"img_menu/img_Container/"+ 2 + ".png");
 		btn4b.setPreferredSize(new Dimension(160, 200));
 		row4.add(btn4b);
 
 		// 라벨3 : 와플콘
 		JLabel btn4c = new JLabel();
-		new ConeAndCup_04choicImg(btn4c);
+		// new ConeAndCup_04choicImg(btn4c,"img_menu/img_Container/"+ 3 + ".png");
 		btn4c.setPreferredSize(new Dimension(160, 200));
 		row4.add(btn4c);
-
-//        btn4a.addActionListener(createButtonActionListener(0));
-//        btn4b.addActionListener(createButtonActionListener(1));
-//        btn4c.addActionListener(createButtonActionListener(2));
 
 		jp.add(row4);
 
@@ -115,22 +100,31 @@ public class ConeAndCup_00frame extends JFrame {
 		new ConeAndCup_05counting(panel5c, 3);
 		row5.add(panel5c);
 
-		jp.add(row5);
-
-		// 행6 : 빈공간
-		JPanel row6 = new JPanel();
-		row6.setPreferredSize(new Dimension(540, 180));
-		// TODO: 여기에 필요한 컴포넌트 추가
-		jp.add(row6);
-
 		// 행7 : 이전, 담기 버튼
 		JPanel row7 = new JPanel();
 		row7.setPreferredSize(new Dimension(540, 80));
-		JButton button6a = new JButton("이전");
-		button6a.setBackground(Color.white);
-		button6a.setForeground(beskinColor);
-		button6a.setPreferredSize(new Dimension(100, 30));
-		button6a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		JButton button7a = new JButton("확인");
+		button7a.setBackground(Color.white);
+		button7a.setForeground(beskinColor);
+		button7a.setPreferredSize(new Dimension(300, 30));
+		button7a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		button7a.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+
+//        JButton button7b = new JButton("담기");
+//        button7b.setBackground(beskinColor);
+//        button7b.setForeground(Color.white);
+//        button7b.setPreferredSize(new Dimension(350, 30));
+//        button7b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+//
+		row7.add(button7a);
+//        row7.add(button7b);
+		jp.add(row7);
 
 		// 다섯 번째 행
 
@@ -138,8 +132,6 @@ public class ConeAndCup_00frame extends JFrame {
 		// TODO: 여기에 필요한 컴포넌트 추가
 		jp.add(row5);
 
-		row7.add(button6a);
-	
 		jp.add(row7);
 
 		// 행8 : 뭔가,, 광고 같은게,,
