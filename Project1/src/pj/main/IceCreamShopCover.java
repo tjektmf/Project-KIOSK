@@ -1,4 +1,4 @@
-package pj.menu;
+package pj.main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,7 +27,6 @@ import pj.jks.PointButton;
 
 public class IceCreamShopCover extends JFrame {
 	// img
-
 	String[] imagePaths = { "img/hyemi/ad0.png", "img/hyemi/ad1.png", "img/hyemi/ad2.png", "img/hyemi/ad3.png",
 			"img/hyemi/ad4.png" };
 
@@ -35,7 +34,6 @@ public class IceCreamShopCover extends JFrame {
 
 	ChoiceFrame choiceFrame = new ChoiceFrame();
 	CategoryHome categoryHome = new CategoryHome(choiceFrame);
-	
 
 	public IceCreamShopCover() {
 		setTitle("BR31");
@@ -54,7 +52,7 @@ public class IceCreamShopCover extends JFrame {
 		keyBtn.setLocation(455, 855);
 		keyBtn.setBackground(new Color(0, 0, 0, 0));
 		keyBtn.setBorderPainted(false);
-
+		
 		// Key 이미지
 		ImageIcon addImage = new ImageIcon("img/hyemi/key.png");
 
@@ -66,16 +64,16 @@ public class IceCreamShopCover extends JFrame {
 //		    	JLabel key = new JLabel();
 //		    	key.setIcon(new ImageIcon("img/hyemi/key.png"));
 //		    	new adminPassword();
-
-				// adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
-				setVisible(false);
-				updateFrameContent();
-			}
+		    	
+                // adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
+		    	setVisible(false);
+                updateFrameContent();     
+		    }
 
 		});
 
 		// 투명한 패널을 만들어 글씨를 포함시키고 위치 설정
-		JPanel textPanel = new JPanel();
+		JPanel textPanel = new JPanel();		
 		textPanel.setBounds(120, 280, 400, 400);
 
 		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
@@ -86,9 +84,9 @@ public class IceCreamShopCover extends JFrame {
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setLayout(null); // (mainPanel)의 레이아웃 null로 설정후 수동으로 위치조절
 		mainLabel.setSize(540, 960);
-		mainPanel.add(mainLabel);// , BorderLayout.CENTER 뺌
+		mainPanel.add(mainLabel);//, BorderLayout.CENTER 뺌
 		mainPanel.add(keyBtn);// , BorderLayout.SOUTH 뺌
-
+			
 		Timer changeImg = new Timer(3000, new ActionListener() {
 
 			@Override
@@ -107,7 +105,7 @@ public class IceCreamShopCover extends JFrame {
 
 		try {
 			BufferedImage image = ImageIO.read(new File(imagePaths[currentImgIndex]));
-			Image scaledImage = image.getScaledInstance(540, 960, Image.SCALE_SMOOTH);
+			Image scaledImage = image.getScaledInstance(555, 960, Image.SCALE_SMOOTH);
 			mainLabel.setIcon(new ImageIcon(scaledImage));
 
 		} catch (IOException e) {
@@ -132,7 +130,7 @@ public class IceCreamShopCover extends JFrame {
 
 		// 프레임 표시 설정
 		pack();
-		setSize(540, 960);
+		setSize(555, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -156,5 +154,7 @@ public class IceCreamShopCover extends JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> new IceCreamShopCover());
+		// 이벤트 디스패치 스레드(Event Dispatch Thread, EDT)에서 코드를 실행하기 위한 유틸리티 메서드
+		// IceCreamShopCover() 클래스의 인스턴스를 생성하고, 이를 EDT에서 실행하도록 스케줄링
 	}
 }

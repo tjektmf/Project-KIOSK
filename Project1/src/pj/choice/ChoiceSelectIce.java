@@ -15,10 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import javax.imageio.ImageIO;
-import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,9 +24,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.database.Connector;
-import pj.jks.PointButton;
-import pj.menu.CategoryHome;
-import pj.menu.IceCreamShopCover;
+import pj.main.CategoryHome;
+import pj.main.IceCreamShopCover;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class ChoiceSelectIce extends JPanel {
@@ -143,11 +140,11 @@ public class ChoiceSelectIce extends JPanel {
 							}
 						}
 						System.out.println("데굴데굴");
-				
+
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
-						
-						// if문을 통해 메뉴당 골라서 넣으면 될듯 
+
+						// if문을 통해 메뉴당 골라서 넣으면 될듯
 						move.setVisible(true);
 					}
 				});

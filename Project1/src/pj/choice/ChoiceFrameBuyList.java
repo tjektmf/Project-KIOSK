@@ -17,6 +17,8 @@ import javax.swing.SwingUtilities;
 
 public class ChoiceFrameBuyList extends JPanel {
 
+	// 싱글톤 : 생성자 private 박아버리고 다른데선 객체생성을 못하게하고
+	// public 메서드로 만들어논 객체를 불러다 사용하게 설정함 중복으로 객체가 만들어지는걸 막아줌
 	private static final ChoiceFrameBuyList instance = new ChoiceFrameBuyList();
 
 	public static ChoiceFrameBuyList getInstance() {
@@ -34,7 +36,10 @@ public class ChoiceFrameBuyList extends JPanel {
 	JPanel gridPan2 = new JPanel(grid2);
 	JPanel gridPan3 = new JPanel(grid3);
 	CardLayout card = new CardLayout(10, 10);
-	JOptionPane popUp = new JOptionPane();
+
+	public JLabel[] SAVED_BUYLIST() {
+		return SAVED_BUYLIST();
+	}
 
 	private ChoiceFrameBuyList() {
 
@@ -159,16 +164,17 @@ public class ChoiceFrameBuyList extends JPanel {
 		int i;
 		for (i = 0; i < 10; i++) {
 			if (i >= 9) {
-				JOptionPane.showMessageDialog(null, "헉");
+				JOptionPane.showMessageDialog(null, "장바구니에 빈 자리가 없어요");
 				break;
 			}
+
 			if (SAVED_BUYLIST[i].getText() == "") {
 				SAVED_BUYLIST[i].setText("콘컵맛 추가예정 : " + i);
 				if (i == 3 || i == 6) {
 					card.next(ChoiceFrameBuyList.this);
 				}
-				break;
 
+				break;
 			}
 		}
 	}

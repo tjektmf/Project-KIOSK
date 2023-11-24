@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import pj.menu.CategoryHome;
+import pj.main.CategoryHome;
 
 public class ChoiceFrameCategory extends JPanel {
 

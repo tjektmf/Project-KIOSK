@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import pj.menu.CategoryHome;
+import pj.main.CategoryHome;
 
 public class Coffee_Select1_1 extends JPanel {
 	
