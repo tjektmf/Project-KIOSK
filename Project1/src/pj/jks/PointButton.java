@@ -14,6 +14,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -25,8 +27,14 @@ import javax.swing.JTextField;
 
 public class PointButton extends JFrame {
 
-	static String membership_tel;
-
+	String membership_tel;
+	String membership_point= "";
+	
+	JTextField panel4currenttf = new JTextField(30);
+	JTextField panel1tf = new JTextField(30);
+	JTextField panel1tf2 = new JTextField(30);
+	JTextField panel5tf = new JTextField(30);
+	JTextField panel5tf2 = new JTextField(30);
 	public PointButton() {
 		JFrame f = new JFrame("CardLayout Sample");
 		CardLayout card = new CardLayout();
@@ -79,21 +87,36 @@ public class PointButton extends JFrame {
 		panel1.add(label6);
 		panel1.add(label7);
 
-		JTextField panel1tf = new JTextField(30);
-		JTextField panel1tf2 = new JTextField(30);
 //	            }
 
-		// PANEL 1 최종결제 밑에 2 옆에
+		// tf 밑에 tf2 옆에
 		panel1tf.setLocation(10, 610);
 		panel1tf.setSize(500, 100);
 		panel1tf2.setLocation(280, 520);
 		panel1tf2.setSize(200, 40);
 		panel1.add(panel1tf);
 		panel1.add(panel1tf2);
-		//							처음에는 0
-		// PANEL1 에는   주문금액 - (포인트사용금액)  = 최종결제금액
-		// PANEL2 최종결제금액
-		
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project", "1234");
+			String sql = "SELECT * FROM membership";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				panel1tf.setText("총 주문금액    " + Integer.toString(rs.getInt("membership_point"))+ "                 -                " 
+						+ "사용할 적립포인트     "  + membership_point);
+				panel1tf2.setText(Integer.toString(rs.getInt("membership_point")));
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		// 처음에는 0
+		// tf 에는 주문금액 - (포인트사용금액) = 최종결제금액
+		// tf2 최종결제금액
 
 		JLabel pointLabel = new JLabel();
 		try {
@@ -468,7 +491,7 @@ public class PointButton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				card.show(f.getContentPane(), "1");
 				tf.setText("");
-				
+
 				btn3.setBackground(Color.white);
 				btn4.setBackground(Color.white);
 			}
@@ -483,7 +506,11 @@ public class PointButton extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				membership_tel = tf.getText().substring(1, tf.getText().length());
+				if (!tf.getText().equals("")) {
+					membership_tel = tf.getText().substring(1, tf.getText().length());
+
+				}
+				System.out.println("입력완료버튼 : " + membership_tel);
 				try {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 				} catch (ClassNotFoundException e1) {
@@ -492,17 +519,29 @@ public class PointButton extends JFrame {
 				try {
 					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
 							"1234");
-					String sql = "SELECT membership_tel FROM membership";
+					String sql = "SELECT * FROM membership";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
 
 					while (rs.next()) {
 						if (rs.getString("membership_tel").equals(membership_tel)) {
 							card.show(f.getContentPane(), "4");
+//							System.out.println("ㅇ : " + rs.getString("membership_tel"));
+							panel4currenttf.setText(Integer.toString(rs.getInt("membership_point")));
 							break;
 						} else {
 							card.show(f.getContentPane(), "3");
 						}
+//						panel4currenttf.setText("ddddddd22d");
+//						System.out.println("널널" + membership_tel);
+//						if (rs.getString("membership_tel").equals(membership_tel)) {
+//							System.out.println("ddd");
+////							if(membership_point> Integer.toString(rs.getInt("membership_point"))) {
+////								System.out.println("사용하고자하는 포인트가 현재 적립금보다 많습니다");
+////							}
+//							break;
+//						}
+//						System.out.printf(" %s \n", rs.getString("membership_tel"));
 					}
 					rs.close();
 					pstmt.close();
@@ -551,7 +590,6 @@ public class PointButton extends JFrame {
 		panel3.add(panel3label1);
 
 		// panel4 부분
-
 		JLabel p4numLabel1 = new JLabel();
 		try {
 			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/1.png"));
@@ -622,7 +660,7 @@ public class PointButton extends JFrame {
 			e.printStackTrace();
 		}
 		p4numLabel6.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JLabel p4numLabel7 = new JLabel();
 		try {
 			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/7.png"));
@@ -696,61 +734,22 @@ public class PointButton extends JFrame {
 		p4cleLabel.setHorizontalAlignment(JLabel.CENTER);
 
 		JTextField panel4pointtf = new JTextField(30);
-		JTextField panel4currenttf = new JTextField(30);
+
 		panel4pointtf.setLocation(80, 600);
 		panel4pointtf.setSize(330, 50);
 		panel4currenttf.setLocation(120, 700);
 		panel4currenttf.setSize(330, 50);
-		panel4.add( panel4pointtf);
+		panel4.add(panel4pointtf);
 		panel4.add(panel4currenttf);
-		if(tf.getText()=="") {
-		
-			System.out.println("널");
-		}else {
-			tf.setText("ddd");
-			membership_tel = tf.getText().substring(1, tf.getText().length());
-		}
-//		membership_point = tf.getText().substring(1, tf.getText().length());
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
-					"1234");
-			String sql = "SELECT * FROM membership";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				if (rs.getString("membership_tel").equals(membership_tel)) {
-					System.out.println("ㅇ : " + Integer.toString(rs.getInt("membership_point")));
-					panel4currenttf.setText(Integer.toString(rs.getInt("membership_point")));
-		//			panel4currenttf.repaint();
-					break;
-				}
-			}
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-	
-		// TOString Integer.;;;; 사용 
-		//멤버쉽 포인트 불러와서 현재적립금 나오게 하기 CURRNETTF에   >> 사용포인트 누르기 (사용포인트랑 멤버십포인트 비교 사용포인트가 멤버십포인트 보다 많으면 에러) 
-		// 확인 누르면 패널1 최종결재 금액이 바뀌게  (주문금액 - 사용포인트 = 최종가격);
-		
 
 		JLabel panel4label1 = new JLabel("적립포인트");
-		JLabel panel4label2 = new JLabel("포인트를 사용하시려면 버튼을 눌러주세요");
+		JLabel panel4label2 = new JLabel("포인트를 사용하시려면 확인버튼을 눌러주세요");
 		JLabel panel4label3 = new JLabel("현재 적립금");
 
 		panel4label1.setBounds(200, 20, 300, 100);
 		panel4label1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		panel4label2.setBounds(80, 130, 300, 100);
-		panel4label2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 15));
+		panel4label2.setBounds(80, 130, 400, 100);
+		panel4label2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 14));
 		panel4label3.setBounds(30, 680, 300, 100);
 		panel4label3.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 15));
 
@@ -901,7 +900,7 @@ public class PointButton extends JFrame {
 				btn4.setBackground(Color.white);
 			}
 		});
-		
+
 		JButton panel4btn13 = new JButton("확인");
 		panel4btn13.setBounds(155, 800, 350, 90);
 		panel4btn13.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
@@ -910,6 +909,40 @@ public class PointButton extends JFrame {
 		panel4btn13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				membership_point = panel4pointtf.getText();
+//				if (!panel4pointtf.getText().equals("")) {
+//					membership_point =panel4pointtf.setText();;
+
+//				}
+				
+				try {
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project", "1234");
+					String sql = "SELECT * FROM membership";
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery();
+					while (rs.next()) {
+//						 int currentMembershipPoint = rs.getInt("membership_point");
+//						 int userMembershipPoint = Integer.parseInt(membership_point);
+//						if(userMembershipPoint > currentMembershipPoint) {
+//						System.out.println("사용하고자하는 포인트가 현재 적립금보다 많습니다");
+//						break;
+//						}
+						panel1tf.setText("총 주문금액    " + Integer.toString(rs.getInt("membership_point"))+ "                 -                " 
+								+ "사용할 적립포인트     "  + membership_point);
+						panel5tf.setText("총 주문금액    " + Integer.toString(rs.getInt("membership_point"))+ "                 -                " 
+								+ "사용할 적립포인트     "  + membership_point);
+//						panel1tf2.setText(Integer.toString(rs.getInt("membership_point"))- Integer.parseInt(membership_point));
+						
+					}
+					rs.close();
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+				
 
 				card.show(f.getContentPane(), "1");
 			}
@@ -942,8 +975,7 @@ public class PointButton extends JFrame {
 		panel5.add(panel5label1);
 		panel5.add(panel5label2);
 
-		JTextField panel5tf = new JTextField(30);
-		JTextField panel5tf2 = new JTextField(30);
+	
 
 		panel5tf.setLocation(10, 610);
 		panel5tf.setSize(500, 100);
@@ -1130,7 +1162,7 @@ public class PointButton extends JFrame {
 		JLabel panel7label2 = new JLabel("결제 내역을 확인하시고 카드를 꼭 회수해주세요 ");
 		panel7label2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 15));
 		panel7label2.setBounds(70, 80, 400, 100);
-		JLabel panel7label3 = new JLabel("대기 번호 ");
+		JLabel panel7label3 = new JLabel("주문 번호 ");
 		panel7label3.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel7label3.setBounds(180, 140, 300, 100);
 		JLabel panel7label4 = new JLabel("결제내역");
@@ -1139,7 +1171,7 @@ public class PointButton extends JFrame {
 		panel7.add(panel7label);
 		panel7.add(panel7label2);
 		panel7.add(panel7label3);
-		panel7.add(panel7label4);	
+		panel7.add(panel7label4);
 
 		JTextField panel7waittf = new JTextField(30);
 		JTextField panel7ordertf = new JTextField(30);
@@ -1149,11 +1181,8 @@ public class PointButton extends JFrame {
 		panel7ordertf.setSize(180, 60);
 		panel7.add(panel7waittf);
 		panel7.add(panel7ordertf);
-		
-		
-		
-		// waittf에 대기번호 출력      ordertf에 주문 내역 적립금 내역 출력 
-		
+
+		// waittf에 대기번호 출력 ordertf에 주문 내역 적립금 내역 출력
 
 		JButton panel7btn1 = new JButton("확인");
 		panel7btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
@@ -1161,7 +1190,6 @@ public class PointButton extends JFrame {
 		panel7btn1.setForeground(Color.white);
 		panel7btn1.setBackground(Color.pink);
 		add(panel7btn1);
-
 
 		panel7.add(panel7btn1);
 		f.add("1", panel1);
