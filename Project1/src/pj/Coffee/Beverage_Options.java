@@ -5,65 +5,55 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
-
 public class Beverage_Options extends JPanel {
-	 private BufferedImage[] images;
 
-	 private static BufferedImage[] loadImages() {
-	        BufferedImage[] images = new BufferedImage[18]; // 이미지 개수에 맞게 배열 크기 조절
-
-	        // 이미지 파일 경로
-	        String[] imagePaths = {
-	        		"img/hodong/음료1.png",
-	        		"img/hodong/음료2.png",
-	        		"img/hodong/음료3.png",
-	        		"img/hodong/음료4.png",
-	        		"img/hodong/음료5.png",
-	        		"img/hodong/음료6.png",
-	        		"img/hodong/음료7.png",
-	        		"img/hodong/음료8.png",
-	        		"img/hodong/음료9.png",
-	        		"img/hodong/음료10.png",
-	        		"img/hodong/음료11.png",
-	        		"img/hodong/음료12.png",
-	        		"img/hodong/음료13.png",
-	        		"img/hodong/음료14.png",
-	        		"img/hodong/음료15.png",
-	        		"img/hodong/음료16.png",
-	        		"img/hodong/음료17.png",
-	        		"img/hodong/음료18.png"	
-	        };
-	        // 이미지를 배열에 로드
-	        for (int i = 0; i < images.length; i++) {
-	            try {
-	                images[i] = ImageIO.read(new File(imagePaths[i]));
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	            }
-	        }
-
-	        return images;
-	    }
+	private BufferedImage[] images;
+	boolean BEVERAGE_CUP = false;
 	
+	public boolean BEVERAGE_CUP() {
+		return BEVERAGE_CUP;
+	}
+
+	private static BufferedImage[] loadImages() {
+		BufferedImage[] images = new BufferedImage[18]; // 이미지 개수에 맞게 배열 크기 조절
+
+		// 이미지 파일 경로
+		String[] imagePaths = { "img/hodong/음료1.png", "img/hodong/음료2.png", "img/hodong/음료3.png", "img/hodong/음료4.png",
+				"img/hodong/음료5.png", "img/hodong/음료6.png", "img/hodong/음료7.png", "img/hodong/음료8.png",
+				"img/hodong/음료9.png", "img/hodong/음료10.png", "img/hodong/음료11.png", "img/hodong/음료12.png",
+				"img/hodong/음료13.png", "img/hodong/음료14.png", "img/hodong/음료15.png", "img/hodong/음료16.png",
+				"img/hodong/음료17.png", "img/hodong/음료18.png" };
+		// 이미지를 배열에 로드
+		for (int i = 0; i < images.length; i++) {
+			try {
+				images[i] = ImageIO.read(new File(imagePaths[i]));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return images;
+	}
+
 	public Beverage_Options() {
 		CardLayout cardLayout = new CardLayout();
-		
+
 		JFrame Beverage = new JFrame();
 		JPanel mainPanel = new JPanel();
-		JLabel imageLabel = new JLabel(new ImageIcon(loadImages()[0]));// loadImages()[] []안에 숫자가 바뀌면 배경이미지가 바뀐다 ㅎㅎ
+		JLabel imageLabel = new JLabel(new ImageIcon(loadImages()[15]));// loadImages()[] []안에 숫자가 바뀌면 배경이미지가 바뀐다 ㅎㅎ
 		Beverage.setBounds(100, 100, 550, 960);
 
 		JButton CupForBurial = new JButton(new ImageIcon("img/hodong/B매장용컵P.png"));
@@ -78,7 +68,7 @@ public class Beverage_Options extends JPanel {
 		PrevBtn.setBorderPainted(false); // 버튼 테두리 투명화 작업
 		PrevBtn.setOpaque(false); // 버튼 테두리 투명화 작업
 		PrevBtn.setBackground(new Color(0, 0, 0, 0)); // 버튼 투명화 작업
-		JButton OptionsBtn = new JButton(new ImageIcon("img/hodong/결제하기.png"));
+		JButton OptionsBtn = new JButton(new ImageIcon("img/hodong/장바구니.png"));
 		OptionsBtn.setBorderPainted(false); // 버튼 테두리 투명화 작업
 		OptionsBtn.setOpaque(false); // 버튼 테두리 투명화 작업
 		OptionsBtn.setBackground(new Color(0, 0, 0, 0)); // 버튼 투명화 작업
@@ -110,8 +100,29 @@ public class Beverage_Options extends JPanel {
 		PrevBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				BEVERAGE_CUP = false;
 				Beverage.setVisible(false);
 
+			}
+		});
+
+		DisposableCup.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DisposableCup.setIcon(new ImageIcon("img/hodong/B일회용컵P.png"));
+				CupForBurial.setIcon(new ImageIcon("img/hodong/B매장용컵G.png"));
+				BEVERAGE_CUP = true;
+				
+				System.out.println("포장 : " + BEVERAGE_CUP);
+			}
+		});
+
+		CupForBurial.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CupForBurial.setIcon(new ImageIcon("img/hodong/B매장용컵P.png"));
+				DisposableCup.setIcon(new ImageIcon("img/hodong/B일회용컵G.png"));
+				BEVERAGE_CUP = false;
 			}
 		});
 
