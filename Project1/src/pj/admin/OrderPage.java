@@ -24,7 +24,7 @@ public class OrderPage extends JFrame {
 	// 기간 별 주문내역 (일간, 주간, 월간, 년간)
 
 	private List<String> orderDataList;
-	private int currentPage; // 현재 표시 중인 페이지
+	private int currentPage;
 	private JTextArea orderTextArea;
 	private JComboBox<String> searchPeriods;
 	private String selectedPeriod;
@@ -140,7 +140,7 @@ public class OrderPage extends JFrame {
 		showNextPage();
 	}
 
-	private List<String> getOrderDataByPeriod(String period) {	
+	private List<String> getOrderDataByPeriod(String period) {
 		// 선택된 기간에 따라 데이터를 가져오는 메서드
 		List<String> orderDataList = new ArrayList<>();
 
@@ -165,7 +165,6 @@ public class OrderPage extends JFrame {
 				sql = "SELECT * FROM receipt WHERE EXTRACT(YEAR FROM receipt_date) = EXTRACT(YEAR FROM CURRENT_DATE)";
 				break;
 			default:
-				// 기본적으로 전체 데이터를 조회
 				sql = "SELECT * FROM receipt";
 				break;
 			}
@@ -173,7 +172,11 @@ public class OrderPage extends JFrame {
 			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
 
 				while (resultSet.next()) {
-				
+					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + ", 메뉴: "
+							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + ", 총 가격: "
+							+ resultSet.getInt("total_price") + ", 주문 일자: " + resultSet.getDate("receipt_date");
+
+					orderDataList.add(orderData);
 				}
 			}
 
@@ -181,12 +184,13 @@ public class OrderPage extends JFrame {
 
 		SQLException e) {
 			e.printStackTrace();
-			System.err.println("Error executing SQL query: " + e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 		}
 		return orderDataList;
 
 	}
 
+	// 초기 주문 데이터
 	public List<String> getOrderData() {
 		List<String> orderDataList = new ArrayList<>();
 
@@ -213,8 +217,12 @@ public class OrderPage extends JFrame {
 //				        int menuPrice = resultSet.getInt("menu_price");
 //				        String totalPrice = resultSet.getString(" total_price");
 
-					String orderData = "메뉴: "; // + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
-
+//					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
+				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
+	                            ", 메뉴: " + resultSet.getString("menu_name") +
+	                            ", 가격: " + resultSet.getInt("menu_price") +
+	                            ", 총 가격: " + resultSet.getInt("total_price") +
+	                            ", 주문 일자: " + resultSet.getDate("receipt_date");
 					orderDataList.add(orderData);
 				}
 			}
