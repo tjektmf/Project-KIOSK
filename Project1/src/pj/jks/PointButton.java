@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import pj.choice.ChoiceFrame;
-import pj.main.CategoryHome;
+import pj.menu.CategoryHome;
 
 public class PointButton extends JPanel {
 
@@ -343,12 +343,8 @@ public class PointButton extends JPanel {
 		f.add("4", panel4);
 
 		// f.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		f.setBounds(100, 100, 560, 960);
-		f.setVisible(true);
-		f.setLocationRelativeTo(null);
+		f.setBounds(100, 100, 540, 960);
+//		f.setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		new PointButton();
-	}
 }
