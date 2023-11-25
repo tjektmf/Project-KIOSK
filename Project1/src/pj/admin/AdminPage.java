@@ -1,95 +1,85 @@
 package pj.admin;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.BoxLayout;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import database.JdbcConnection;
 
 public class AdminPage extends JFrame {
 
-	// adminPassword() 에서 비밀번호 입력 후 들어오는 창
-	// 예정 항목 : 매출 관리 (손님 주문내역 확인)
-	
-	// 현재 아무것도 안나오는데, 오류가 있는건지 아니면 주문내역이 안만들어져서 안나오는건지 모르겠음.
-	
-	
-	public static List<String> getOrderData() {
-		List<String> orderDataList = new ArrayList<>();
-
-		try (Connection conn = JdbcConnection.getConnection()) {
-
-			String sql = "SELECT menu_name, menu_price, category5_name "
-					+ "FROM menu m JOIN choice c ON m.menu_id = c.icecream_id";
-			try (PreparedStatement pstmt = conn.prepareStatement(sql);
-					ResultSet resultSet = pstmt.executeQuery()) {
-
-				while (resultSet.next()) {
-					String menuName = resultSet.getString("menu_name");
-					int menuPrice = resultSet.getInt("menu_price");
-					String categoryName = resultSet.getString("category5_name");
-
-					String orderData = 
-							"Menu: " + menuName + ", Price: " + menuPrice + 
-							", Category: " + categoryName;
-					orderDataList.add(orderData);
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		   return orderDataList;
-
-	}
-
 	public AdminPage() {
-		super("IceCreamShop admin");
+		// 화면구성
+		setLayout(new GridLayout(2, 2));
+		
+		// 1. 기간 별 주문내역 (일간, 주간, 월간, 년간)
+		// 2. 회원별 포인트 사용내역 (기간별)
+		// 3. 카테고리별 랭킹
+		// 4. 팀원들 이름 넣기, 만든사람들 => 크레딧느낌으로다가 두목 과 졸개 말고 임원진이었으면 
+		// 배라이미지를 모든 버튼에 추가
 
-		JPanel main = new JPanel();
-		main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
+        // Button names
+        String[] buttonNames = {"OrderPage", "CustomerPage", "RanksPage", "MadeBy"};
 
-		JPanel row = new JPanel(new GridLayout());
+        for (int i = 0; i < buttonNames.length; ++i) {
+            try {
+                BufferedImage originalImage = ImageIO.read(new File("img/hyemi/BRlogo.png"));
 
-		 List<String> orderDataList = getOrderData();
-		 // 주문 데이터 for문 돌리면서 패널에 추가
-		 for(String orderData : orderDataList) {
-			 JLabel order = new JLabel(orderData);
-			 customizeLabel(order);
-			 row.add(order);
-		 }
+                // Adjust the size of the image to fit the button dimensions
+                Image scaledImage = originalImage.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
 
-		main.add(row);
-		add(main);
+                JButton button = new JButton(new ImageIcon(scaledImage));
+                button.setText(buttonNames[i]);
+                
+                button.addActionListener(new ButtonListener(buttonNames[i]));
+                add(button);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-		setSize(540, 960);
+     
+      
+		setSize(555, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBackground(Color.gray);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
-	private void customizeLabel(JLabel label) {
-		label.setPreferredSize(new Dimension(300, 50));
-		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		label.setBackground(new Color(236, 108, 165));
-		label.setOpaque(true);
+	// 버튼눌러서 각 페이지 이동할 액션리스너
+	private class ButtonListener implements ActionListener {
+		private String pageName;
+
+		public ButtonListener(String pageName) {
+			this.pageName = pageName;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if("OrderPage".equals(pageName)) {
+				new OrderPage();
+			} else if("CustomerPage".equals(pageName)) {
+				new CustomerInformation();
+			} else if("RanksPage".equals(pageName)) {
+				new OrdersRanks();
+			} else if ("MadeBy".equals(pageName)) {
+				new ProjectMadeBy3();
+			}
+
+		}
+
 	}
 
 	public static void main(String[] args) {
 		new AdminPage();
+
 	}
 
 }

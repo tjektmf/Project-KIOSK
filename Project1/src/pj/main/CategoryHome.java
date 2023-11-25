@@ -174,6 +174,7 @@ public class CategoryHome extends JPanel {
 
         // f.setDefaultCloseOperation(ABORT);
         f.setSize(555, 960);
+
   //    f.setVisible(true);
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
