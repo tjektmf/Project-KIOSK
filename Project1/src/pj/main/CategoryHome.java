@@ -22,6 +22,10 @@ import pj.choice.ChoiceSelectAll;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class CategoryHome extends JPanel {
+	
+	public void disapear() {
+		f.setVisible(false);
+	}
 
     private JButton icecreamBtn = new JButton();
     private JButton icecakeBtn = new JButton();
