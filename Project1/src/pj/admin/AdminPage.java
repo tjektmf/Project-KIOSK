@@ -32,7 +32,6 @@ public class AdminPage extends JFrame {
             try {
                 BufferedImage originalImage = ImageIO.read(new File("img/hyemi/BRlogo.png"));
 
-                // Adjust the size of the image to fit the button dimensions
                 Image scaledImage = originalImage.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
 
                 JButton button = new JButton(new ImageIcon(scaledImage));
