@@ -24,7 +24,7 @@ public class OrderPage extends JFrame {
 	// 기간 별 주문내역 (일간, 주간, 월간, 년간)
 
 	private List<String> orderDataList;
-	private int currentPage; // 현재 표시 중인 페이지
+	private int currentPage;
 	private JTextArea orderTextArea;
 	private JComboBox<String> searchPeriods;
 	private String selectedPeriod;
@@ -80,6 +80,11 @@ public class OrderPage extends JFrame {
 		mainPanel.add(new JScrollPane(orderTextArea), BorderLayout.CENTER);
 		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
 
+		JPanel searchPanel = new JPanel();
+		searchPanel.add(searchPeriods);
+		searchPanel.add(searchButton);
+		mainPanel.add(searchPanel, BorderLayout.NORTH);
+
 		add(mainPanel);
 
 		setSize(555, 960);
@@ -87,15 +92,6 @@ public class OrderPage extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
-//	orderDataList에 있는 데이터를 가져와서 텍스트 영역에 업데이트
-//	private void updateOrderText() {
-//		StringBuilder orderText = new StringBuilder();
-//		for(String order : orderDataList) {
-//			orderText.append(order).append("\n");
-//		}
-//		orderTextArea.setText(orderText.toString());
-//	}
 
 	private void showNextPage() {
 		int ordersPerPage = 5; // 한 페이지에 표시할 주문 수
@@ -137,6 +133,7 @@ public class OrderPage extends JFrame {
 		orderTextArea.setText(pageText.toString());
 	}
 
+	// 선택된 기간에 따라 주문 내역을 조회하고, 그 결과를 GUI에 표시
 	private void showOrdersByPeriod() {
 		orderDataList = getOrderDataByPeriod(selectedPeriod);
 		currentPage = 0;
@@ -144,11 +141,56 @@ public class OrderPage extends JFrame {
 	}
 
 	private List<String> getOrderDataByPeriod(String period) {
-		return orderDataList;
 		// 선택된 기간에 따라 데이터를 가져오는 메서드
-		// 고민중
+		List<String> orderDataList = new ArrayList<>();
+
+		try (Connection conn = JdbcConnection.getConnection()) {
+			if (conn == null) {
+				System.err.println("데이터베이스와의 연결을 확인하세요");
+				return orderDataList;
+			}
+
+			String sql;
+			switch (period) {
+			case "일간":
+				sql = "SELECT * FROM receipt WHERE receipt_date = CURRENT_DATE";
+				break;
+			case "주간":
+				sql = "SELECT * FROM receipt WHERE receipt_date >= CURRENT_DATE - INTERVAL '7' DAY";
+				break;
+			case "월간":
+				sql = "SELECT * FROM receipt WHERE EXTRACT(MONTH FROM receipt_date) = EXTRACT(MONTH FROM CURRENT_DATE)";
+				break;
+			case "연간":
+				sql = "SELECT * FROM receipt WHERE EXTRACT(YEAR FROM receipt_date) = EXTRACT(YEAR FROM CURRENT_DATE)";
+				break;
+			default:
+				sql = "SELECT * FROM receipt";
+				break;
+			}
+
+			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
+
+				while (resultSet.next()) {
+					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + ", 메뉴: "
+							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + ", 총 가격: "
+							+ resultSet.getInt("total_price") + ", 주문 일자: " + resultSet.getDate("receipt_date");
+
+					orderDataList.add(orderData);
+				}
+			}
+
+		} catch (
+
+		SQLException e) {
+			e.printStackTrace();
+			System.err.println("Error: " + e.getMessage());
+		}
+		return orderDataList;
+
 	}
 
+	// 초기 주문 데이터
 	public List<String> getOrderData() {
 		List<String> orderDataList = new ArrayList<>();
 
@@ -175,8 +217,12 @@ public class OrderPage extends JFrame {
 //				        int menuPrice = resultSet.getInt("menu_price");
 //				        String totalPrice = resultSet.getString(" total_price");
 
-					String orderData = "메뉴: "; // + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
-
+//					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
+				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
+	                            ", 메뉴: " + resultSet.getString("menu_name") +
+	                            ", 가격: " + resultSet.getInt("menu_price") +
+	                            ", 총 가격: " + resultSet.getInt("total_price") +
+	                            ", 주문 일자: " + resultSet.getDate("receipt_date");
 					orderDataList.add(orderData);
 				}
 			}
