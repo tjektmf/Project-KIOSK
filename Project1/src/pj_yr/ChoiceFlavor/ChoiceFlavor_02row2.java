@@ -2,6 +2,7 @@ package pj_yr.ChoiceFlavor;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -22,8 +23,6 @@ public class ChoiceFlavor_02row2 extends JPanel {
     private ChoiceFlavor_04showFlavorSelections showFlavorSelections;
     private ChoiceFlavor_03prevOrNext row3; // row3 추가
 
-//    private static final int BUTTONS_NUMS = 16;
-//    private static final int TOTAL_CARDS = 2;
 
     public ChoiceFlavor_02row2(ChoiceFlavor_00frame frame, ChoiceFlavor_04showFlavorSelections showFlavorSelections) {
         this.frame = frame;
@@ -50,6 +49,8 @@ public class ChoiceFlavor_02row2 extends JPanel {
                 cardLayout.previous(cardPanel);
             }
         });
+        prevButton.setBackground(Color.white);
+
         add(prevButton, BorderLayout.WEST);
 
         // >> 
@@ -60,6 +61,8 @@ public class ChoiceFlavor_02row2 extends JPanel {
                 cardLayout.next(cardPanel);
             }
         });
+        nextButton.setBackground(Color.white);
+
         add(nextButton, BorderLayout.EAST);
 
         // 카드 패널 추가 (센터에)
@@ -75,6 +78,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
         for (int i = startValue; i <= endValue; i++) {
             JButton imageButton = new JButton();
             try {
+                String imageName = String.format("%02d", i);
                 BufferedImage bufferedImage = ImageIO.read(new File("img_baskin/baskin_flavor/" + i + ".png"));
                 Image scaledImage = bufferedImage.getScaledInstance(100, 110, Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(scaledImage);
@@ -82,9 +86,12 @@ public class ChoiceFlavor_02row2 extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         addFlavorSelection(imageIcon);
+                        String flavorName = showFlavorSelections.getFlavorNameByImage(imageIcon);
+                        // 여기서 장바구니로 전달?
                     }
                 });
-
+                
+                imageButton.setBackground(Color.white);
                 imageButton.setIcon(imageIcon);
                 cardPanel.add(imageButton);
             } catch (IOException e) {
@@ -93,6 +100,8 @@ public class ChoiceFlavor_02row2 extends JPanel {
         }
         return cardPanel;
     }
+    
+    
 
     public void changePanel(int direction) {
         cardLayout.next(cardPanel);
@@ -102,3 +111,4 @@ public class ChoiceFlavor_02row2 extends JPanel {
         showFlavorSelections.addFlavor(imageIcon);
     }
 }
+
