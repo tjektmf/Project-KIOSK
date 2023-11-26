@@ -1,3 +1,4 @@
+
 package pj_yr.ChoiceFlavor;
 
 import java.awt.BorderLayout;
@@ -5,8 +6,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class ChoiceFlavor_03prevOrNext extends JPanel {
     Color beskinColor = new Color(236, 108, 165);
@@ -22,7 +26,12 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         prevButton.setPreferredSize(new Dimension(100, 30));
         prevButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         prevButton.addActionListener(e -> {
-            // 이전 버튼 기능 구현
+        	setVisible(false);	
+
+            // ConeAndCup_00frame 열기
+            ConeAndCup_00frame coneAndCupFrame = new ConeAndCup_00frame();
+            coneAndCupFrame.setVisible(true);
+
         });
         add(prevButton, BorderLayout.WEST);
 
@@ -33,7 +42,12 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         addButton.setPreferredSize(new Dimension(350, 30));
         addButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         addButton.addActionListener(e -> {
-            // 담기 버튼 기능 구현
+            if (showFlavorSelections.getSelectedImageIcon() != null) {
+            	String flavorName = showFlavorSelections.getSelectedImageIcon();
+                System.out.println("선택된 플레이버: " + flavorName);
+            } else {
+                System.out.println("선택된 플레이버가 없습니다.");
+            }
         });
         add(addButton, BorderLayout.CENTER);
 

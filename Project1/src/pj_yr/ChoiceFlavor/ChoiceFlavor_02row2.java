@@ -78,6 +78,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
         for (int i = startValue; i <= endValue; i++) {
             JButton imageButton = new JButton();
             try {
+                String imageName = String.format("%02d", i);
                 BufferedImage bufferedImage = ImageIO.read(new File("img_baskin/baskin_flavor/" + i + ".png"));
                 Image scaledImage = bufferedImage.getScaledInstance(100, 110, Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(scaledImage);
@@ -85,6 +86,8 @@ public class ChoiceFlavor_02row2 extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         addFlavorSelection(imageIcon);
+                        String flavorName = showFlavorSelections.getFlavorNameByImage(imageIcon);
+                        // 여기서 장바구니로 전달?
                     }
                 });
                 
@@ -97,6 +100,8 @@ public class ChoiceFlavor_02row2 extends JPanel {
         }
         return cardPanel;
     }
+    
+    
 
     public void changePanel(int direction) {
         cardLayout.next(cardPanel);
@@ -106,3 +111,4 @@ public class ChoiceFlavor_02row2 extends JPanel {
         showFlavorSelections.addFlavor(imageIcon);
     }
 }
+
