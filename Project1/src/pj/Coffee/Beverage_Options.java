@@ -18,16 +18,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pj.choice.ChoiceFrameBuyList;
+
 public class Beverage_Options extends JPanel {
+
+	private static final Beverage_Options instance = new Beverage_Options();
+
+	public static Beverage_Options getInstance() {
+		return instance;
+	}
 
 	private BufferedImage[] images;
 	boolean BEVERAGE_CUP = false;
-	
+
 	public boolean BEVERAGE_CUP() {
 		return BEVERAGE_CUP;
 	}
 
-	private static BufferedImage[] loadImages() {
+	JLabel imageLabel = new JLabel();
+
+	public void loadImages(int index) {
 		BufferedImage[] images = new BufferedImage[18]; // 이미지 개수에 맞게 배열 크기 조절
 
 		// 이미지 파일 경로
@@ -44,18 +54,16 @@ public class Beverage_Options extends JPanel {
 				e.printStackTrace();
 			}
 		}
-
-		return images;
+		imageLabel.setIcon(new ImageIcon(images[index]));
 	}
 
-	public Beverage_Options() {
+	private Beverage_Options() {
 		CardLayout cardLayout = new CardLayout();
 
 		JFrame Beverage = new JFrame();
 		JPanel mainPanel = new JPanel();
-		JLabel imageLabel = new JLabel(new ImageIcon(loadImages()[15]));// loadImages()[] []안에 숫자가 바뀌면 배경이미지가 바뀐다 ㅎㅎ
 		Beverage.setBounds(100, 100, 550, 960);
-
+		loadImages(0);
 		JButton CupForBurial = new JButton(new ImageIcon("img/hodong/B매장용컵P.png"));
 		CupForBurial.setBorderPainted(false); // 버튼 테두리 투명화 작업
 		CupForBurial.setOpaque(false); // 버튼 테두리 투명화 작업
@@ -105,6 +113,14 @@ public class Beverage_Options extends JPanel {
 
 			}
 		});
+		OptionsBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Beverage.setVisible(false);
+
+			}
+		});
 
 		DisposableCup.addActionListener(new ActionListener() {
 			@Override
@@ -112,7 +128,7 @@ public class Beverage_Options extends JPanel {
 				DisposableCup.setIcon(new ImageIcon("img/hodong/B일회용컵P.png"));
 				CupForBurial.setIcon(new ImageIcon("img/hodong/B매장용컵G.png"));
 				BEVERAGE_CUP = true;
-				
+
 				System.out.println("포장 : " + BEVERAGE_CUP);
 			}
 		});
@@ -131,6 +147,6 @@ public class Beverage_Options extends JPanel {
 	}
 
 	public static void main(String[] args) {
-		new Beverage_Options();
+		// new Beverage_Options();
 	}
 }

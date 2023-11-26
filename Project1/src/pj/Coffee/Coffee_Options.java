@@ -16,27 +16,37 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pj.choice.ChoiceFrameBuyList;
 import pj.choice.ChoiceSelectCoffee;
 
 public class Coffee_Options extends JPanel {
+
+	private static final Coffee_Options instance = new Coffee_Options();
+
+	public static Coffee_Options getInstance() {
+		return instance;
+	}
+
 	private BufferedImage[] images;
 	boolean COFFEE_SHOT = false;
 	boolean COFFEE_SYRUP = false;
 	boolean COFFEE_CUP = false;
-	
-	public boolean COFFEE_SHOT () {
+
+	public boolean COFFEE_SHOT() {
 		return COFFEE_SHOT;
 	}
-	
-	public boolean COFFEE_SYRUP () {
+
+	public boolean COFFEE_SYRUP() {
 		return COFFEE_SYRUP;
 	}
-	
-	public boolean COFFEE_CUP () {
+
+	public boolean COFFEE_CUP() {
 		return COFFEE_CUP;
 	}
-	
-	private static BufferedImage[] loadImages() {
+
+	JLabel imageLabel = new JLabel();
+
+	public void loadImages(int index) {
 		BufferedImage[] images = new BufferedImage[10]; // 이미지 개수에 맞게 배열 크기 조절
 
 		// 이미지 파일 경로
@@ -47,20 +57,19 @@ public class Coffee_Options extends JPanel {
 		for (int i = 0; i < images.length; i++) {
 			try {
 				images[i] = ImageIO.read(new File(imagePaths[i]));
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
-		return images;
+		imageLabel.setIcon(new ImageIcon(images[index]));
 	}
 
-	public Coffee_Options() {
+	private Coffee_Options() {
 		CardLayout cardLayout = new CardLayout();
-		JLabel imageLabel = new JLabel(new ImageIcon(loadImages()[4]));// loadImages()[] []안에 숫자가 바뀌면 배경이미지가 바뀐다 ㅎㅎ
 		JFrame Coffee1 = new JFrame();
 		JPanel mainPanel = new JPanel();
-
+		loadImages(0);
 
 		Coffee1.setBounds(100, 100, 550, 960);
 
@@ -97,7 +106,6 @@ public class Coffee_Options extends JPanel {
 		OptionsBtn.setBorderPainted(false); // 버튼 테두리 투명화 작업
 		OptionsBtn.setOpaque(false); // 버튼 테두리 투명화 작업
 		OptionsBtn.setBackground(new Color(0, 0, 0, 0)); // 버튼 투명화 작업
-
 
 		AddShotN.setBounds(160, 220, 100, 90);
 		AddShotY.setBounds(270, 220, 100, 90);
@@ -139,6 +147,14 @@ public class Coffee_Options extends JPanel {
 
 			}
 		});
+		OptionsBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Coffee1.setVisible(false);
+
+			}
+		});
 		AddShotN.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -176,7 +192,7 @@ public class Coffee_Options extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				CupForBurial.setIcon(new ImageIcon("img/hodong/매장용컵P.png"));
 				DisposableCup.setIcon(new ImageIcon("img/hodong/일회용컵G.png"));
-				COFFEE_CUP = true; 
+				COFFEE_CUP = true;
 			}
 		});
 		DisposableCup.addActionListener(new ActionListener() {
@@ -193,6 +209,6 @@ public class Coffee_Options extends JPanel {
 	}
 
 	public static void main(String[] args) {
-		new Coffee_Options();
+		// new Coffee_Options();
 	}
 }

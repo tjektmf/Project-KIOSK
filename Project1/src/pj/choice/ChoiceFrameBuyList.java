@@ -51,9 +51,36 @@ public class ChoiceFrameBuyList extends JPanel {
 	JPanel gridPan3 = new JPanel(grid3);
 	CardLayout card = new CardLayout(10, 10);
 
-	
 	public JLabel SAVED_BUYLIST1(int index) {
 		return SAVED_BUYLIST1[index];
+	}
+
+	public JLabel SAVED_BUYLIST2(int index) {
+		return SAVED_BUYLIST2[index];
+	}
+
+	public JLabel SAVED_BUYLIST3(int index) {
+		return SAVED_BUYLIST3[index];
+	}
+
+	public JLabel SAVED_BUYLIST4(int index) {
+		return SAVED_BUYLIST4[index];
+	}
+
+	public JLabel SAVED_BUYLIST5(int index) {
+		return SAVED_BUYLIST5[index];
+	}
+
+	public JLabel SAVED_BUYLIST6(int index) {
+		return SAVED_BUYLIST6[index];
+	}
+
+	public JLabel SAVED_BUYLIST7(int index) {
+		return SAVED_BUYLIST7[index];
+	}
+	
+	public boolean ICECREAM_SIZE(int index) {
+		return ICECREAM_SIZE[index];
 	}
 
 	private ChoiceFrameBuyList() {
@@ -80,8 +107,6 @@ public class ChoiceFrameBuyList extends JPanel {
 		JButton borderNextBtn2 = new JButton(">>");
 		JButton borderPrevBtn3 = new JButton("<<");
 		JButton borderNextBtn3 = new JButton(">>");
-
-		
 
 		// 맨앞 맨뒤 버튼비활성화
 		borderPrevBtn1.setEnabled(false);
