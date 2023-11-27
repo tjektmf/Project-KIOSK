@@ -79,7 +79,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
             JButton imageButton = new JButton();
             try {
                 String imageName = String.format("%02d", i);
-                BufferedImage bufferedImage = ImageIO.read(new File("img_baskin/baskin_flavor/" + i + ".png"));
+                BufferedImage bufferedImage = ImageIO.read(new File("img/img_baskin/baskin_flavor/" + i + ".png"));
                 Image scaledImage = bufferedImage.getScaledInstance(100, 110, Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(scaledImage);
                 imageButton.addActionListener(new ActionListener() {

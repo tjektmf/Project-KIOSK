@@ -39,7 +39,8 @@ public class ChoiceFramePrice extends JPanel {
 
 	// = new CategoryHome(mainFrame, pointButton);
 
-	JButton but0 = new JButton("결제하기");
+	JButton but0 = new JButton();
+	
 	JTextField tf = new JTextField("price");
 
 	boolean a = true; // 메서드 테스트용
@@ -97,7 +98,7 @@ public class ChoiceFramePrice extends JPanel {
 	public ChoiceFramePrice() {
 		System.out.println("ChoiceFramePrice : " + this);
 		JLabel test = new JLabel();
-		test.setIcon(new ImageIcon("img/daseul/cat.gif"));
+		test.setIcon(new ImageIcon("img/daseul/show.png"));
 		test.setHorizontalAlignment(JLabel.CENTER);
 		setLayout(priceCard);
 		setBackground(Color.white);
@@ -110,6 +111,7 @@ public class ChoiceFramePrice extends JPanel {
 		grid.setHgap(10);
 		pan1.setLayout(grid);
 		but0.setVisible(false);
+		but0.setIcon(new ImageIcon("img/daseul/buy.png"));
 		tf.setHorizontalAlignment(JTextField.CENTER);
 
 		but0.addActionListener(new ActionListener() {

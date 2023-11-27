@@ -62,21 +62,21 @@ public class Container_00frame extends JFrame {
         // 패널 1 : 필요없음
         JLabel label4a = new JLabel();
         label4a.setPreferredSize(new Dimension(110, 70));
-        new Container_04imageSpoon(label4a, "img_menu/img_Container/" + 1 + ".png");
+        new Container_04imageSpoon(label4a, "img/img_menu/img_Container/1.png");
 
         row4.add(label4a);
 
         // 패널 2 : 스푼(최대 4개)
         JLabel label4b = new JLabel();
         label4b.setPreferredSize(new Dimension(110, 70));
-        new Container_04imageSpoon(label4b, "img_menu/img_Container/" + 2 + ".png");
+        new Container_04imageSpoon(label4b, "img/img_menu/img_Container/2.png");
 
         row4.add(label4b);
 
         // 패널 3 : 포장스푼추가(+50)
         JLabel label4c = new JLabel();
         label4c.setPreferredSize(new Dimension(110, 70));
-        new Container_04imageSpoon(label4c, "img_menu/img_Container/" + 3 + ".png");
+        new Container_04imageSpoon(label4c, "img/img_menu/img_Container/3.png");
 
         row4.add(label4c);
 
@@ -133,21 +133,21 @@ public class Container_00frame extends JFrame {
         // 패널 1
         JLabel label6a = new JLabel();
         label6a.setPreferredSize(new Dimension(110, 70));
-        new Container_04imageSpoon(label6a, "img_menu/img_Container/" + 4 + ".png");
+        new Container_04imageSpoon(label6a, "img/img_menu/img_Container/4.png");
 
         row6.add(label6a);
 
         // 패널 2
         JLabel label6b = new JLabel();
         label6b.setPreferredSize(new Dimension(110, 70));
-        new Container_04imageSpoon(label6b, "img_menu/img_Container/" + 5 + ".png");
+        new Container_04imageSpoon(label6b, "img/img_menu/img_Container/5.png");
 
         row6.add(label6b);
 
         // 패널 3
         JLabel label6c = new JLabel();
         label6c.setPreferredSize(new Dimension(110, 70));
-        new Container_04imageSpoon(label6c, "img_menu/img_Container/" + 6 + ".png");
+        new Container_04imageSpoon(label6c, "img/img_menu/img_Container/6.png");
 
         row6.add(label6c);
 
