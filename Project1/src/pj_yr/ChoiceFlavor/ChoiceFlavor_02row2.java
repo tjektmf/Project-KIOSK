@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -109,6 +110,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
         add(row3, BorderLayout.SOUTH);
     }
 
+    
     private JPanel createCardPanel(int startValue, int endValue) {
         JPanel cardPanel = new JPanel(new GridLayout(4, 4));
         for (int i = startValue; i <= endValue; i++) {
@@ -122,7 +124,6 @@ public class ChoiceFlavor_02row2 extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         addFlavorSelection(imageIcon);
-                        // 여기서 selectedFlavorName에 flavorName을 받고싶은데
                         selectedFlavorName.add(flavorIdMap.get(flavorName));
                     }
                 });
@@ -148,7 +149,8 @@ public class ChoiceFlavor_02row2 extends JPanel {
     }
     
     public static List<String> getSelectedFlavorNames() {
-    	return selectedFlavorName;
+        List<String> newList = selectedFlavorName.stream().distinct().collect(Collectors.toList());
+    	return newList;
     }	
 
 

@@ -4,6 +4,8 @@ package pj_yr.ChoiceFlavor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -25,7 +27,7 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
     private JButton[] flavorButtons;
     private Map<Integer, String> flavorIdMap;
     private ImageIcon selectedIcon; 
-    
+
     public ChoiceFlavor_04showFlavorSelections() {
         setLayout(new GridLayout(1, MAX_BUTTONS));
         initializeButtons();
@@ -44,10 +46,6 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
             flavorButtons[buttonIndex].setIcon(null);
             flavorButtons[buttonIndex].setEnabled(false);
 
-//            String flavorName = getFlavorName(removedIcon);
-//            if (flavorName != null) {
-//                selectedFlavorName.remove(flavorName);
-//            }
         }
     }
     
@@ -84,6 +82,7 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
         for (JButton button : flavorButtons) {
             if (!button.isEnabled()) {
                 button.setIcon(imageIcon);
+                button.setBackground(Color.WHITE);
                 button.setEnabled(true);
                 break;
             }

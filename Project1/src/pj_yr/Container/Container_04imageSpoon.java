@@ -19,7 +19,7 @@ public class Container_04imageSpoon {
 			BufferedImage bufferedImage = ImageIO.read(new File(route));
 
 			// 2. 불러온 이미지로부터 사이즈 조절된 새로운 인스턴스를 받을 수 있다
-			Image scaledImage = bufferedImage.getScaledInstance(160, 200, Image.SCALE_SMOOTH);
+			Image scaledImage = bufferedImage.getScaledInstance(90, 50, Image.SCALE_SMOOTH);
 
 			labelName.setIcon(new ImageIcon(scaledImage));
 		} catch (IOException e) {

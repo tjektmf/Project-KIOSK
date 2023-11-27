@@ -90,7 +90,7 @@ public class Container_00frame extends JFrame {
         
         // 행5 
         // 스푼의 버튼 -> 3번째, 4번째만 있으면됨
-        JPanel row5 = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        JPanel row5 = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
         row5.setPreferredSize(new Dimension(540, 40));
 
         //스푼 밑에
