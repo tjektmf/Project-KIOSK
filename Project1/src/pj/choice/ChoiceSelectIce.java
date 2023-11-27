@@ -29,7 +29,7 @@ import pj.database.Connector;
 import pj.main.CategoryHome;
 import pj.main.IceCreamShopCover;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
-import pj_yr.choiceFlavor.ChoiceFlavor_00frame;
+import pj_yr.Container.Container_00frame;
 
 public class ChoiceSelectIce extends JPanel {
 
@@ -45,7 +45,7 @@ public class ChoiceSelectIce extends JPanel {
 	IceCreamShopCover iceCreamShopCover;
 	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
-	ChoiceFlavor_00frame move2 = new ChoiceFlavor_00frame();
+	Container_00frame move2 = new Container_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ChoiceFrameSelect choiceFrameSelect;
 
@@ -162,6 +162,8 @@ public class ChoiceSelectIce extends JPanel {
 												if (nameArr[i].getText().contains(rs.getString("icecream_name"))) {
 													choiceFrameBuyList.SAVED_BUYLIST1[k]
 															.setText(rs.getString("icecream_name"));
+								//					choiceFrameBuyList.SAVED_BUYLIST2[k]
+								//							.setText(Integer.toString(rs.getInt("icecream_price")));
 												}
 
 											}

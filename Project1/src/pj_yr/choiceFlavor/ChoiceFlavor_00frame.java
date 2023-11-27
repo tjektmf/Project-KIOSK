@@ -16,8 +16,14 @@ import javax.swing.SwingUtilities;
 
 public class ChoiceFlavor_00frame extends JFrame {
     private int currentPanel;
+    
+    private static final ChoiceFlavor_00frame instance = new ChoiceFlavor_00frame();
+    
+    public static ChoiceFlavor_00frame getInstance() {
+    	return instance;
+    }
 
-    public ChoiceFlavor_00frame() {
+    private ChoiceFlavor_00frame() {
     	
         Color beskinColor = new Color(236, 108, 165);
 

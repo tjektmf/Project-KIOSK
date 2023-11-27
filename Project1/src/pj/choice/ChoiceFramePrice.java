@@ -24,6 +24,10 @@ public class ChoiceFramePrice extends JPanel {
 		return instance;
 	}
 
+	public int SAVED_PRICE() {
+		return SAVED_PRICE;
+	}
+
 	ChoiceFrame mainFrame;
 	CategoryHome categoryHome;
 	int SAVED_PRICE;
@@ -40,7 +44,7 @@ public class ChoiceFramePrice extends JPanel {
 	// = new CategoryHome(mainFrame, pointButton);
 
 	JButton but0 = new JButton();
-	
+
 	JTextField tf = new JTextField("price");
 
 	boolean a = true; // 메서드 테스트용

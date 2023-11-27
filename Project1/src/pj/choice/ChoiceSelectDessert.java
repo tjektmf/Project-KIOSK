@@ -156,6 +156,8 @@ public class ChoiceSelectDessert extends JPanel {
 												if (nameArr[i].getText().contains(rs.getString("dessert_name"))) {
 													choiceFrameBuyList.SAVED_BUYLIST1[k]
 															.setText(rs.getString("dessert_name"));
+								//					choiceFrameBuyList.SAVED_BUYLIST2[k]
+								//							.setText(Integer.toString(rs.getInt("dessert_price")));
 												}
 
 											}

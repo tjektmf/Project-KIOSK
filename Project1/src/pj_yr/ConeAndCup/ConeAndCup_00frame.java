@@ -21,9 +21,10 @@ public class ConeAndCup_00frame extends JFrame {
     ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
 //    private int selectedButtonIndex = -1;
     Color beskinColor = new Color(236, 108, 165);
-    ChoiceFlavor_00frame move = new ChoiceFlavor_00frame();
+    ChoiceFlavor_00frame choiceFlavor_00frame;
     
     public ConeAndCup_00frame() {
+    	choiceFlavor_00frame = ChoiceFlavor_00frame.getInstance();
         setTitle("ConeAndCup Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(555, 960);
@@ -135,7 +136,7 @@ public class ConeAndCup_00frame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				move.setVisible(true);
+				choiceFlavor_00frame.setVisible(true);
 				setVisible(false);
 				
 			}

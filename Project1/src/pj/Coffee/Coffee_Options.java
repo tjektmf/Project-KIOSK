@@ -17,16 +17,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.choice.ChoiceFrameBuyList;
+import pj.choice.ChoiceSelectAll;
 import pj.choice.ChoiceSelectCoffee;
 
 public class Coffee_Options extends JPanel {
+
+	ChoiceFrameBuyList choiceFrameBuyList;
+	ChoiceSelectCoffee choiceSelectCoffee;
+	ChoiceSelectAll choiceSelectAll;
 
 	private static final Coffee_Options instance = new Coffee_Options();
 
 	public static Coffee_Options getInstance() {
 		return instance;
 	}
-	
+
 	public void showFrame(boolean check) {
 		Coffee1.setVisible(check);
 	}
@@ -36,21 +41,39 @@ public class Coffee_Options extends JPanel {
 	boolean COFFEE_SYRUP = false;
 	boolean COFFEE_CUP = false;
 
-	public boolean COFFEE_SHOT() {
-		return COFFEE_SHOT;
+	public String COFFEE_SHOT() {
+		if (COFFEE_SHOT) {
+			return "포장";
+		} else {
+
+			return "매장";
+		}
+
 	}
 
-	public boolean COFFEE_SYRUP() {
-		return COFFEE_SYRUP;
+	public String COFFEE_SYRUP() {
+		if (COFFEE_SYRUP) {
+			return "포장";
+		} else {
+
+			return "매장";
+		}
 	}
 
-	public boolean COFFEE_CUP() {
-		return COFFEE_CUP;
+	public String COFFEE_CUP() {
+
+		if (COFFEE_CUP) {
+			return "포장";
+		} else {
+
+			return "매장";
+		}
 	}
 
 	JLabel imageLabel = new JLabel();
 
 	public void loadImages(int index) {
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		BufferedImage[] images = new BufferedImage[10]; // 이미지 개수에 맞게 배열 크기 조절
 
 		// 이미지 파일 경로
@@ -70,6 +93,7 @@ public class Coffee_Options extends JPanel {
 	}
 
 	JFrame Coffee1 = new JFrame();
+
 	private Coffee_Options() {
 		CardLayout cardLayout = new CardLayout();
 		JPanel mainPanel = new JPanel();
@@ -156,6 +180,11 @@ public class Coffee_Options extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Coffee1.setVisible(false);
+				
+//				choiceFrameBuyList.SAVED_BUYLIST2(choiceSelectCoffee.listNum()).setText(COFFEE_CUP());
+//				choiceFrameBuyList.SAVED_BUYLIST3(choiceSelectCoffee.listNum()).setText(COFFEE_SHOT());
+//				choiceFrameBuyList.SAVED_BUYLIST4(choiceSelectCoffee.listNum()).setText(COFFEE_SYRUP());
+ 
 
 			}
 		});

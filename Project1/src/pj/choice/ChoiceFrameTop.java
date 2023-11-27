@@ -42,7 +42,7 @@ public class ChoiceFrameTop extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				new IceCreamShopCover();
-				categoryHome.disapear();
+		//		categoryHome.disapear();
 
 			}
 		});

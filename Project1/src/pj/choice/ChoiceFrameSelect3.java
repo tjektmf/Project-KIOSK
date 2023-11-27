@@ -10,7 +10,7 @@ public class ChoiceFrameSelect3 extends JPanel{
 	ChoiceSelectCoffee choiceSelectCoffee;
 	JButton choiceSelectNextBtn;
 	JButton choiceSelectPrevBtn;
-
+	
 	public ChoiceFrameSelect3(ChoiceSelectAll mainFrame) {
 		BorderLayout border = new BorderLayout(20, 20);
 		setLayout(border);

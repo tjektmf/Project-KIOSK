@@ -52,30 +52,32 @@ public class ChoiceFrameBuyList extends JPanel {
 	JPanel gridPan3 = new JPanel(grid3);
 	CardLayout card = new CardLayout(10, 10);
 
+	
+	// 1 = 메뉴이름
 	public JLabel SAVED_BUYLIST1(int index) {
 		return SAVED_BUYLIST1[index];
 	}
-
+	// 2 = 맛1 or 컵선택
 	public JLabel SAVED_BUYLIST2(int index) {
 		return SAVED_BUYLIST2[index];
 	}
-
+	// 3 = 맛2 or 샷추가
 	public JLabel SAVED_BUYLIST3(int index) {
 		return SAVED_BUYLIST3[index];
 	}
-
+	// 4 = 맛3 or 시럽추가
 	public JLabel SAVED_BUYLIST4(int index) {
 		return SAVED_BUYLIST4[index];
 	}
-
+	// 5 = 맛4
 	public JLabel SAVED_BUYLIST5(int index) {
 		return SAVED_BUYLIST5[index];
 	}
-
+	// 6 = 맛5
 	public JLabel SAVED_BUYLIST6(int index) {
 		return SAVED_BUYLIST6[index];
 	}
-
+	// 7 = 맛6
 	public JLabel SAVED_BUYLIST7(int index) {
 		return SAVED_BUYLIST7[index];
 	}
@@ -183,6 +185,7 @@ public class ChoiceFrameBuyList extends JPanel {
 			SAVED_BTN[i] = new JButton();
 			SAVED_BTN[i].setBorderPainted(false);
 			SAVED_BTN[i].setLayout(new GridLayout(7, 1));
+			SAVED_BTN[i].setBackground(new Color(255,255,255));
 			SAVED_BUYLIST1[i] = new JLabel();
 			SAVED_BUYLIST2[i] = new JLabel();
 			SAVED_BUYLIST3[i] = new JLabel();
