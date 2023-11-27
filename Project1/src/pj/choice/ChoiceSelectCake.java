@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.JdbcConnection;
 import pj.database.Connector;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
@@ -144,14 +145,38 @@ public class ChoiceSelectCake extends JPanel {
 							}
 							if (e.getSource() == actions[i] && full) {
 								choiceFramePrice.showPrice(priceSet.get(i));
+								for (int k = 0; k < 9; k++) {
+									if (choiceFrameBuyList.SAVED_BUYLIST1[k].getText() == "") {
+
+										try {
+											Connection conn = JdbcConnection.getConnection();
+											System.out.println(conn);
+											String sql = "select cake_name, cake_price from cake";
+
+											PreparedStatement pstmt = conn.prepareStatement(sql);
+											ResultSet rs = pstmt.executeQuery();
+
+											while (rs.next()) { // 넥스트값이 없으면 false를 반환, while문 정지
+												if (nameArr[i].getText().contains(rs.getString("cake_name"))) {
+													choiceFrameBuyList.SAVED_BUYLIST1[k]
+															.setText(rs.getString("cake_name"));
+												}
+
+											}
+
+											// choiceFrameBuyList.SAVED_BUYLIST1[k].setText(nameArr[i].getText());
+										} catch (SQLException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										break;
+									}
+
+								}
 							}
 						}
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
-
-						if (choiceFrameBuyList.SAVED_BUYLIST1[8].getText().equals("")) {
-							move.setVisible(true);
-						}
 					}
 				});
 			}

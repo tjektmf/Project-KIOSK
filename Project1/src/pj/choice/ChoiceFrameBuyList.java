@@ -3,6 +3,7 @@ package pj.choice;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,7 +79,7 @@ public class ChoiceFrameBuyList extends JPanel {
 	public JLabel SAVED_BUYLIST7(int index) {
 		return SAVED_BUYLIST7[index];
 	}
-	
+
 	public boolean ICECREAM_SIZE(int index) {
 		return ICECREAM_SIZE[index];
 	}
@@ -264,25 +265,20 @@ public class ChoiceFrameBuyList extends JPanel {
 	public void showImg() {
 		System.out.println("showImg 잘굴러가는중");
 		int i;
-		for (i = 0; i < 10; i++) {
+		for (i = 0; i <= 9; i++) {
 			if (i >= 9) {
 				JOptionPane.showMessageDialog(null, "장바구니에 빈 자리가 없어요");
 				break;
 			}
 
 			if (SAVED_BUYLIST1[i].getText() == "") {
-				SAVED_BUYLIST1[i].setText("메뉴");
-				SAVED_BUYLIST2[i].setText("맛1or커피컵");
-				SAVED_BUYLIST3[i].setText("맛2");
-				SAVED_BUYLIST4[i].setText("맛3");
-				SAVED_BUYLIST5[i].setText("맛4");
-				SAVED_BUYLIST6[i].setText("맛5");
-				SAVED_BUYLIST7[i].setText("맛6");
-				if (i == 3 || i == 6) {
+
+				if (i % 3 == 1 && i >= 3) {
 					card.next(ChoiceFrameBuyList.this);
 				}
 				break;
 			}
+
 		}
 		i = 0;
 	}

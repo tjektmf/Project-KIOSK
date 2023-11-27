@@ -24,10 +24,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.JdbcConnection;
 import pj.database.Connector;
 import pj.main.CategoryHome;
 import pj.main.IceCreamShopCover;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
+import pj_yr.choiceFlavor.ChoiceFlavor_00frame;
 
 public class ChoiceSelectIce extends JPanel {
 
@@ -43,6 +45,7 @@ public class ChoiceSelectIce extends JPanel {
 	IceCreamShopCover iceCreamShopCover;
 	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
+	ChoiceFlavor_00frame move2 = new ChoiceFlavor_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ChoiceFrameSelect choiceFrameSelect;
 
@@ -139,11 +142,39 @@ public class ChoiceSelectIce extends JPanel {
 							for (int j = 0; j < 9; j++) {
 								if (choiceFramePrice.thisPrice[j] == 0) {
 									full = true;
+
 								}
 							}
 							if (e.getSource() == actions[i] && full) {
 								choiceFramePrice.showPrice(priceSet.get(i));
-								choiceFrameBuyList.ICECREAM_SIZE[i] = true;
+								for (int k = 0; k < 9; k++) {
+									if (choiceFrameBuyList.SAVED_BUYLIST1[k].getText() == "") {
+
+										try {
+											Connection conn = JdbcConnection.getConnection();
+											System.out.println(conn);
+											String sql = "select icecream_name, icecream_price from icecream";
+
+											PreparedStatement pstmt = conn.prepareStatement(sql);
+											ResultSet rs = pstmt.executeQuery();
+
+											while (rs.next()) { // 넥스트값이 없으면 false를 반환, while문 정지
+												if (nameArr[i].getText().contains(rs.getString("icecream_name"))) {
+													choiceFrameBuyList.SAVED_BUYLIST1[k]
+															.setText(rs.getString("icecream_name"));
+												}
+
+											}
+
+											// choiceFrameBuyList.SAVED_BUYLIST1[k].setText(nameArr[i].getText());
+										} catch (SQLException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										break;
+									}
+
+								}
 							}
 						}
 						System.out.println("아이스크림 크기배열 : " + Arrays.toString(choiceFrameBuyList.ICECREAM_SIZE));
@@ -151,8 +182,23 @@ public class ChoiceSelectIce extends JPanel {
 						choiceFramePrice.hideButton();
 
 						// if문을 통해 메뉴당 골라서 넣으면 될듯
+
 						if (choiceFrameBuyList.SAVED_BUYLIST1[8].getText().equals("")) {
-							move.setVisible(true);
+							for (int i = 0; i < theNumberOfMenu; i++) {
+								if (e.getSource() == actions[i]) {
+									switch (i) {
+									case 0, 1, 2:
+										move.setVisible(true);
+										System.out.println("체크012");
+										break;
+									case 3, 4, 5, 6, 7, 8:
+										move2.setVisible(true);
+										System.out.println("체크3456789");
+										break;
+
+									}
+								}
+							}
 						}
 					}
 				});

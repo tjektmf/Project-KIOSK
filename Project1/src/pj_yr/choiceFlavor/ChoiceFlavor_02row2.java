@@ -1,4 +1,4 @@
-package pj_yr.ChoiceFlavor;
+package pj_yr.choiceFlavor;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;

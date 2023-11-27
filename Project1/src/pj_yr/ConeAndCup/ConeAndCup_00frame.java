@@ -1,19 +1,33 @@
 package pj_yr.ConeAndCup;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import pj_yr.choiceFlavor.ChoiceFlavor_00frame;
 
 public class ConeAndCup_00frame extends JFrame {
     ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
 //    private int selectedButtonIndex = -1;
     Color beskinColor = new Color(236, 108, 165);
+    ChoiceFlavor_00frame move = new ChoiceFlavor_00frame();
     
     public ConeAndCup_00frame() {
         setTitle("ConeAndCup Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(540, 960);
+        setSize(555, 960);
+        setLocationRelativeTo(null);
 
 
         JPanel jp = new JPanel();
@@ -121,7 +135,9 @@ public class ConeAndCup_00frame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);			
+				move.setVisible(true);
+				setVisible(false);
+				
 			}
 		});
         
@@ -146,7 +162,7 @@ public class ConeAndCup_00frame extends JFrame {
     }
 
     public static void main(String[] args) {
-    	new ConeAndCup_00frame().setVisible(true);
+  //  	new ConeAndCup_00frame().setVisible(true);
     }
 }
 

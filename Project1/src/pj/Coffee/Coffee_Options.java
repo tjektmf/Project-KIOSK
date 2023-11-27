@@ -26,6 +26,10 @@ public class Coffee_Options extends JPanel {
 	public static Coffee_Options getInstance() {
 		return instance;
 	}
+	
+	public void showFrame(boolean check) {
+		Coffee1.setVisible(check);
+	}
 
 	private BufferedImage[] images;
 	boolean COFFEE_SHOT = false;
@@ -65,13 +69,13 @@ public class Coffee_Options extends JPanel {
 		imageLabel.setIcon(new ImageIcon(images[index]));
 	}
 
+	JFrame Coffee1 = new JFrame();
 	private Coffee_Options() {
 		CardLayout cardLayout = new CardLayout();
-		JFrame Coffee1 = new JFrame();
 		JPanel mainPanel = new JPanel();
 		loadImages(0);
 
-		Coffee1.setBounds(100, 100, 550, 960);
+		Coffee1.setBounds(100, 100, 555, 960);
 
 		JButton AddShotN = new JButton(new ImageIcon("img/hodong/추가안함P.png"));
 		AddShotN.setBorderPainted(false); // 버튼 테두리 투명화 작업
@@ -127,7 +131,7 @@ public class Coffee_Options extends JPanel {
 		mainPanel.add(PrevBtn);
 		mainPanel.add(OptionsBtn);
 		mainPanel.add(imageLabel);
-		mainPanel.setBounds(0, 0, 540, 960); // 메인 페널 생성
+		mainPanel.setBounds(0, 0, 555, 960); // 메인 페널 생성
 		mainPanel.setOpaque(false); // 메인 페널 투명화
 
 		// 프레임에 이미지 레이블 추가 후 이미지 레이블에 메인 페널 올리기
@@ -205,7 +209,7 @@ public class Coffee_Options extends JPanel {
 		});
 
 		Coffee1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Coffee1.setVisible(true);
+//		Coffee1.setVisible(true);
 	}
 
 	public static void main(String[] args) {

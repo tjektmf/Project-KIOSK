@@ -1,5 +1,5 @@
 
-package pj_yr.ChoiceFlavor;
+package pj_yr.choiceFlavor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

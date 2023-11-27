@@ -25,9 +25,11 @@ public class AdminPassword extends JFrame {
 	// (맞으면 adminPage() 틀리면 IceCreamShopCover())
 
 	private String passWord = "123456";
+	
+	
 
 	public void apear() {
-		new AdminPassword();
+		this.setVisible(true);
 	}
 
 	public AdminPassword() {
@@ -100,7 +102,7 @@ public class AdminPassword extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(555, 960);
 		setLocationRelativeTo(null);
-		setVisible(true);
+//		setVisible(true);
 
 	}
 

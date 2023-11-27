@@ -27,6 +27,10 @@ public class Beverage_Options extends JPanel {
 	public static Beverage_Options getInstance() {
 		return instance;
 	}
+	
+	public void showFrame(boolean check) {
+		Beverage.setVisible(check);
+	}
 
 	private BufferedImage[] images;
 	boolean BEVERAGE_CUP = false;
@@ -56,13 +60,15 @@ public class Beverage_Options extends JPanel {
 		}
 		imageLabel.setIcon(new ImageIcon(images[index]));
 	}
+	
+	
 
+	JFrame Beverage = new JFrame();
 	private Beverage_Options() {
 		CardLayout cardLayout = new CardLayout();
 
-		JFrame Beverage = new JFrame();
 		JPanel mainPanel = new JPanel();
-		Beverage.setBounds(100, 100, 550, 960);
+		Beverage.setBounds(100, 100, 555, 960);
 		loadImages(0);
 		JButton CupForBurial = new JButton(new ImageIcon("img/hodong/B매장용컵P.png"));
 		CupForBurial.setBorderPainted(false); // 버튼 테두리 투명화 작업
@@ -95,7 +101,7 @@ public class Beverage_Options extends JPanel {
 		mainPanel.add(PrevBtn);
 		mainPanel.add(OptionsBtn);
 		mainPanel.add(imageLabel);
-		mainPanel.setBounds(0, 0, 540, 960); // 메인 페널 생성
+		mainPanel.setBounds(0, 0, 555, 960); // 메인 페널 생성
 		mainPanel.setOpaque(false); // 메인 페널 투명화
 
 		// 프레임에 이미지 레이블 추가 후 이미지 레이블에 메인 페널 올리기
@@ -143,7 +149,7 @@ public class Beverage_Options extends JPanel {
 		});
 
 		Beverage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Beverage.setVisible(true);
+//		Beverage.setVisible(true);
 	}
 
 	public static void main(String[] args) {

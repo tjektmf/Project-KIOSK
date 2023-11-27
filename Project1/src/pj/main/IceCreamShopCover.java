@@ -34,6 +34,11 @@ public class IceCreamShopCover extends JFrame {
 
 	ChoiceFrame choiceFrame = new ChoiceFrame();
 	CategoryHome categoryHome = new CategoryHome(choiceFrame);
+	AdminPassword adminPassword = new AdminPassword();
+	
+	public void showFrame(boolean show) {
+        setVisible(show);
+    }
 
 	public IceCreamShopCover() {
 		setTitle("BR31");
@@ -68,6 +73,7 @@ public class IceCreamShopCover extends JFrame {
 				// adminPassword 클래스의 메서드를 호출하여 기존 프레임의 내용을 변경
 				setVisible(false);
 				updateFrameContent();
+				adminPassword.apear();
 			}
 
 		});

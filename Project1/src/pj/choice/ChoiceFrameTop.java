@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -20,9 +21,12 @@ public class ChoiceFrameTop extends JPanel {
 	JButton choiceTopButtonHome;
 	JButton choiceTopButtonBack;
 	CategoryHome categoryHome;
-	AdminPassword adminPassword;
+	AdminPassword adminPassword = new AdminPassword();
+	IceCreamShopCover iceCreamShopCover;
 
 	public ChoiceFrameTop(ChoiceFrame mainFrame) {
+		
+		categoryHome = CategoryHome.getInstance();
 
 		GridLayout grid = new GridLayout(1, 2);
 
@@ -36,17 +40,18 @@ public class ChoiceFrameTop extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				categoryHome.disapear();
+				
 				new IceCreamShopCover();
+				categoryHome.disapear();
 
 			}
 		});
 
 		choiceTopButtonBack.addMouseListener(new MouseAdapter() {
-
+	
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				categoryHome.disapear();
+				// categoryHome.disapear();
 				adminPassword.apear();
 			}
 		});

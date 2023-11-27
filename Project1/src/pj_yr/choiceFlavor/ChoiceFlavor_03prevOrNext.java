@@ -1,5 +1,5 @@
 
-package pj_yr.ChoiceFlavor;
+package pj_yr.choiceFlavor;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,6 +14,7 @@ import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class ChoiceFlavor_03prevOrNext extends JPanel {
     Color beskinColor = new Color(236, 108, 165);
+ //   ChoiceFlavor_00frame move = new ChoiceFlavor_00frame();
 
     public ChoiceFlavor_03prevOrNext(ChoiceFlavor_00frame choiceFlavor_00frame, 
                                       ChoiceFlavor_04showFlavorSelections showFlavorSelections) {
@@ -27,6 +28,7 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         prevButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         prevButton.addActionListener(e -> {
         	setVisible(false);	
+  //      	move.setVisible(false);
 
             // ConeAndCup_00frame 열기
             ConeAndCup_00frame coneAndCupFrame = new ConeAndCup_00frame();
@@ -48,6 +50,7 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
             } else {
                 System.out.println("선택된 플레이버가 없습니다.");
             }
+  //          move.setVisible(false);
         });
         add(addButton, BorderLayout.CENTER);
 

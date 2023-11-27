@@ -1173,7 +1173,7 @@ public class PointButton extends JFrame {
 		f.add("7", panel7);
 
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		f.setBounds(100, 100, 540, 960);
+		f.setBounds(100, 100, 555, 960);
 		f.setVisible(true);
 	}
 

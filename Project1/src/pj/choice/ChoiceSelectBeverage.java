@@ -22,6 +22,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.JdbcConnection;
+import pj.Coffee.Beverage_Options;
 import pj.database.Connector;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
@@ -40,10 +42,12 @@ public class ChoiceSelectBeverage extends JPanel {
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ArrayList<Integer> priceSet = new ArrayList<Integer>();
+	Beverage_Options beverage_Options;
 
 	public ChoiceSelectBeverage(ChoiceFrameSelect4 mainFrame) {
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceFramePrice = ChoiceFramePrice.getInstance();
+		beverage_Options = Beverage_Options.getInstance();
 
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
@@ -129,6 +133,7 @@ public class ChoiceSelectBeverage extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						boolean full = false;
+
 						for (int i = 0; i < theNumberOfMenu; i++) {
 							for (int j = 0; j < 9; j++) {
 								if (choiceFramePrice.thisPrice[j] == 0) {
@@ -138,13 +143,48 @@ public class ChoiceSelectBeverage extends JPanel {
 							}
 							if (e.getSource() == actions[i] && full) {
 								choiceFramePrice.showPrice(priceSet.get(i));
+								for (int k = 0; k < 9; k++) {
+									if (choiceFrameBuyList.SAVED_BUYLIST1[k].getText() == "") {
+
+										try {
+											Connection conn = JdbcConnection.getConnection();
+											System.out.println(conn);
+											String sql = "select beverage_name, beverage_price from beverage";
+
+											PreparedStatement pstmt = conn.prepareStatement(sql);
+											ResultSet rs = pstmt.executeQuery();
+
+											while (rs.next()) { // 넥스트값이 없으면 false를 반환, while문 정지
+												if (nameArr[i].getText().contains(rs.getString("beverage_name"))) {
+													choiceFrameBuyList.SAVED_BUYLIST1[k]
+															.setText(rs.getString("beverage_name"));
+												}
+
+											}
+
+											// choiceFrameBuyList.SAVED_BUYLIST1[k].setText(nameArr[i].getText());
+										} catch (SQLException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										break;
+									}
+
+								}
 							}
 						}
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
 
 						if (choiceFrameBuyList.SAVED_BUYLIST1[8].getText().equals("")) {
-							move.setVisible(true);
+							for (int i = 0; i < theNumberOfMenu; i++) {
+
+								if (e.getSource() == actions[i]) {
+									beverage_Options.loadImages(i);
+									beverage_Options.showFrame(true);
+
+								}
+							}
 						}
 					}
 				});

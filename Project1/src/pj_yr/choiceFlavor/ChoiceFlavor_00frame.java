@@ -1,4 +1,4 @@
-package pj_yr.ChoiceFlavor;
+package pj_yr.choiceFlavor;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +23,8 @@ public class ChoiceFlavor_00frame extends JFrame {
 
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(540, 960);
+        setSize(555, 960);
+        setLocationRelativeTo(null);
         
         ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);
         ChoiceFlavor_04showFlavorSelections showFlavorSelections = new ChoiceFlavor_04showFlavorSelections();
@@ -58,6 +59,6 @@ public class ChoiceFlavor_00frame extends JFrame {
 
     public static void main(String[] args) {
     	ChoiceFlavor_00frame frame = new ChoiceFlavor_00frame();
-        frame.setVisible(true);
+  //      frame.setVisible(true);
     }
 }
