@@ -27,7 +27,12 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
     private JButton[] flavorButtons;
     private Map<Integer, String> flavorIdMap;
     private ImageIcon selectedIcon; 
+    private int[] selectedImagesIndex = new int[30];
+    private int addCount = 0;
 
+    
+
+    
     public ChoiceFlavor_04showFlavorSelections() {
         setLayout(new GridLayout(1, MAX_BUTTONS));
         initializeButtons();
@@ -41,11 +46,19 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
         }
 
         @Override
+        //만약 buttonIndex를 안다면 몇번째의 addFlavor 된건지 알수있을거고 
         public void actionPerformed(ActionEvent e) {
             ImageIcon removedIcon = (ImageIcon) flavorButtons[buttonIndex].getIcon();
             flavorButtons[buttonIndex].setIcon(null);
             flavorButtons[buttonIndex].setEnabled(false);
+            flavorButtons[buttonIndex].setBackground(getBackground());
+            
+            for(int i = 0; i < selectedImagesIndex.length; i++) {
+                if (buttonIndex == selectedImagesIndex[i]%6) {
+                	ChoiceFlavor_02row2.getSelectedFlavorNames().remove(flavorIdMap.get(i));
+                }
 
+            }
         }
     }
     
@@ -78,12 +91,18 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
     }
     
     
-    public void addFlavor(ImageIcon imageIcon) {
+    public void addFlavor(ImageIcon imageIcon, int flavorName) {
+        for (int i = 0; i<selectedImagesIndex.length; i++) {
+        	selectedImagesIndex[i] = -1;
+        }
+        
         for (JButton button : flavorButtons) {
             if (!button.isEnabled()) {
                 button.setIcon(imageIcon);
                 button.setBackground(Color.WHITE);
                 button.setEnabled(true);
+                addCount++;
+                selectedImagesIndex[flavorName] = addCount;
                 break;
             }
         }

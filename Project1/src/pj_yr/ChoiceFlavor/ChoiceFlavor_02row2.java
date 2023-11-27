@@ -123,7 +123,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
                 imageButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        addFlavorSelection(imageIcon);
+                        addFlavorSelection(imageIcon, flavorName);
                         selectedFlavorName.add(flavorIdMap.get(flavorName));
                     }
                 });
@@ -144,8 +144,8 @@ public class ChoiceFlavor_02row2 extends JPanel {
         cardLayout.next(cardPanel);
     }
 
-    private void addFlavorSelection(ImageIcon imageIcon) {
-        showFlavorSelections.addFlavor(imageIcon);
+    private void addFlavorSelection(ImageIcon imageIcon, int flavorName) {
+        showFlavorSelections.addFlavor(imageIcon, flavorName);
     }
     
     public static List<String> getSelectedFlavorNames() {
