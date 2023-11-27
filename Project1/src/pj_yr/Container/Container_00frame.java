@@ -1,7 +1,12 @@
 package pj_yr.Container;
 
 import javax.swing.*;
+
+import pj_yr.ChoiceFlavor.ChoiceFlavor_00frame;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Container_00frame extends JFrame {
     Container_03takeOut noticeTakeOut = new Container_03takeOut();
@@ -199,12 +204,31 @@ public class Container_00frame extends JFrame {
         button8a.setForeground(beskinColor);
         button8a.setPreferredSize(new Dimension(100, 30));
         button8a.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        button8a.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
 
         JButton button8b = new JButton("담기");
         button8b.setBackground(beskinColor);
         button8b.setForeground(Color.white);
         button8b.setPreferredSize(new Dimension(350, 30));
         button8b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        button8b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+
+				ChoiceFlavor_00frame choiceFlavorFrame = new ChoiceFlavor_00frame();
+				choiceFlavorFrame.setVisible(true);
+				
+
+			}
+		});
 
         row8.add(button8a);
         row8.add(button8b);

@@ -1,6 +1,9 @@
 package pj_yr.ConeAndCup;
 
 import javax.swing.*;
+
+import pj_yr.ChoiceFlavor.ChoiceFlavor_00frame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,19 +56,19 @@ public class ConeAndCup_00frame extends JFrame {
         
         // 라벨1 : 컵
         JLabel btn4a = new JLabel();
-        new ConeAndCup_04choicImg(btn4a,"img_menu/img_Container/"+ 1 + ".png");
+        new ConeAndCup_04choicImg(btn4a,"img_menu/img_ConeAndCup/"+ 1 + ".png");
         btn4a.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4a);
 
         // 라벨2 : 콘
         JLabel btn4b = new JLabel();
-        new ConeAndCup_04choicImg(btn4b,"img_menu/img_Container/"+ 2 + ".png");
+        new ConeAndCup_04choicImg(btn4b,"img_menu/img_ConeAndCup/"+ 2 + ".png");
         btn4b.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4b);
 
         // 라벨3 : 와플콘
         JLabel btn4c = new JLabel();
-        new ConeAndCup_04choicImg(btn4c,"img_menu/img_Container/"+ 3 + ".png");
+        new ConeAndCup_04choicImg(btn4c,"img_menu/img_ConeAndCup/"+ 3 + ".png");
         btn4c.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4c);
         
@@ -130,6 +133,16 @@ public class ConeAndCup_00frame extends JFrame {
         button7b.setForeground(Color.white);
         button7b.setPreferredSize(new Dimension(350, 30));
         button7b.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        button7b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+	            // ConeAndCup_00frame 열기
+				ChoiceFlavor_00frame choiceFlavorFrame = new ChoiceFlavor_00frame();
+				choiceFlavorFrame.setVisible(true);
+			}
+		});
 
         row7.add(button7a);
         row7.add(button7b);
