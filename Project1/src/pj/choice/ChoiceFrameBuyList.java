@@ -23,6 +23,15 @@ public class ChoiceFrameBuyList extends JPanel {
 	// public 메서드로 만들어논 객체를 불러다 사용하게 설정함 중복으로 객체가 만들어지는걸 막아줌
 	private static final ChoiceFrameBuyList instance = new ChoiceFrameBuyList();
 
+    private JButton createImgBtn(String iconPath) {
+        JButton button = new JButton();
+        button.setIcon(new ImageIcon(iconPath));
+        button.setBorderPainted(false);
+        button.setBackground(new Color(255, 255, 255));
+        return button;
+    }
+
+    
 	public static ChoiceFrameBuyList getInstance() {
 		return instance;
 	}
@@ -104,12 +113,12 @@ public class ChoiceFrameBuyList extends JPanel {
 		JPanel borderPan2 = new JPanel(new BorderLayout(20, 20));
 		JPanel borderPan3 = new JPanel(new BorderLayout(20, 0));
 
-		JButton borderPrevBtn1 = new JButton("<<");
-		JButton borderNextBtn1 = new JButton(">>");
-		JButton borderPrevBtn2 = new JButton("<<");
-		JButton borderNextBtn2 = new JButton(">>");
-		JButton borderPrevBtn3 = new JButton("<<");
-		JButton borderNextBtn3 = new JButton(">>");
+        JButton borderPrevBtn1 = createImgBtn("img/daseul/shortleft.png");
+        JButton borderNextBtn1 = createImgBtn("img/daseul/shortright.png");
+        JButton borderPrevBtn2 = createImgBtn("img/daseul/shortleft.png");
+        JButton borderNextBtn2 = createImgBtn("img/daseul/shortright.png");
+        JButton borderPrevBtn3 = createImgBtn("img/daseul/shortleft.png");
+        JButton borderNextBtn3 = createImgBtn("img/daseul/shortright.png");
 
 		// 맨앞 맨뒤 버튼비활성화
 		borderPrevBtn1.setEnabled(false);
