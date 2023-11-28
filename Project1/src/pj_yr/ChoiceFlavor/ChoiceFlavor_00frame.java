@@ -16,6 +16,10 @@ import javax.swing.SwingUtilities;
 
 public class ChoiceFlavor_00frame extends JFrame {
     private int currentPanel;
+    
+    public void disapear() {
+    	setVisible(false);
+    }
 
     public ChoiceFlavor_00frame() {
     	
@@ -23,7 +27,7 @@ public class ChoiceFlavor_00frame extends JFrame {
 
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(540, 960);
+        setSize(555, 960);
         
         ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);
         ChoiceFlavor_04showFlavorSelections showFlavorSelections = new ChoiceFlavor_04showFlavorSelections();
@@ -51,7 +55,7 @@ public class ChoiceFlavor_00frame extends JFrame {
         add(row1, BorderLayout.NORTH);
         add(row2);
         add(showFlavorSelections, BorderLayout.SOUTH);
-
+        setLocationRelativeTo(null);
         revalidate();
         repaint();
     }

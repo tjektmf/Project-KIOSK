@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import pj.main.CategoryHome;
+
 public class ChoiceFrameCategory extends JPanel {
 
 	JButton choiceCategoryIceBtn;
@@ -22,7 +24,6 @@ public class ChoiceFrameCategory extends JPanel {
 		GridLayout grid = new GridLayout(1, 5);
 		setLayout(grid);
 		grid.setHgap(10);
-
 
 		choiceCategoryIceBtn = new ChoiceCategoryIceBtn(this);
 		choiceCategoryCakeBtn = new ChoiceCategoryCakeBtn(this);
