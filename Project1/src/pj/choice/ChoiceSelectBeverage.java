@@ -43,8 +43,11 @@ public class ChoiceSelectBeverage extends JPanel {
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ArrayList<Integer> priceSet = new ArrayList<Integer>();
 	Beverage_Options beverage_Options;
+	public final ChoiceFrameSelect4 mainFrame;
 
 	public ChoiceSelectBeverage(ChoiceFrameSelect4 mainFrame) {
+		this.mainFrame = mainFrame;
+
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceFramePrice = ChoiceFramePrice.getInstance();
 		beverage_Options = Beverage_Options.getInstance();
@@ -158,8 +161,8 @@ public class ChoiceSelectBeverage extends JPanel {
 												if (nameArr[i].getText().contains(rs.getString("beverage_name"))) {
 													choiceFrameBuyList.SAVED_BUYLIST1[k]
 															.setText(rs.getString("beverage_name"));
-								//					choiceFrameBuyList.SAVED_BUYLIST2[k]
-								//							.setText(Integer.toString(rs.getInt("beverage_price")));
+													// choiceFrameBuyList.SAVED_BUYLIST2[k]
+													// .setText(Integer.toString(rs.getInt("beverage_price")));
 												}
 
 											}

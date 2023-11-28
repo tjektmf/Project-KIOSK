@@ -40,7 +40,8 @@ public class ChoiceSelectCoffee extends JPanel {
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ArrayList<Integer> priceSet = new ArrayList<Integer>();
 	Coffee_Options coffee_Options;
-	ChoiceFrameSelect3 choiceFrameSelect3;
+	
+	public final ChoiceFrameSelect3 mainFrame;
 
 	public int listNum() {
 		return listNum;
@@ -51,6 +52,7 @@ public class ChoiceSelectCoffee extends JPanel {
 	int buttonNum;
 
 	public ChoiceSelectCoffee(ChoiceFrameSelect3 mainFrame) {
+		this.mainFrame=mainFrame;
 
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceFramePrice = ChoiceFramePrice.getInstance();

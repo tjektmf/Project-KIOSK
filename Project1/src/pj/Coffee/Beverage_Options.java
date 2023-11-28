@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,15 +17,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.choice.ChoiceFrameBuyList;
+import pj.choice.ChoiceFrameSelect4;
+import pj.choice.ChoiceSelectAll;
+import pj.choice.ChoiceSelectBeverage;
 
 public class Beverage_Options extends JPanel {
+
+	ChoiceFrameBuyList choiceFrameBuyList;
+	ChoiceSelectAll choiceSelectAll;
+	ChoiceFrameSelect4 mainFrame = new ChoiceFrameSelect4(choiceSelectAll);
+	ChoiceSelectBeverage choiceSelectBeverage = new ChoiceSelectBeverage(mainFrame);
 
 	private static final Beverage_Options instance = new Beverage_Options();
 
 	public static Beverage_Options getInstance() {
 		return instance;
 	}
-	
+
 	public void showFrame(boolean check) {
 		Beverage.setVisible(check);
 	}
@@ -35,13 +41,18 @@ public class Beverage_Options extends JPanel {
 	private BufferedImage[] images;
 	boolean BEVERAGE_CUP = false;
 
-	public boolean BEVERAGE_CUP() {
-		return BEVERAGE_CUP;
+	public String BEVERAGE_CUP() {
+		if (BEVERAGE_CUP) {
+			return "일회용컵";
+		} else {
+			return "매장용컵";
+		}
 	}
 
 	JLabel imageLabel = new JLabel();
 
 	public void loadImages(int index) {
+
 		BufferedImage[] images = new BufferedImage[18]; // 이미지 개수에 맞게 배열 크기 조절
 
 		// 이미지 파일 경로
@@ -60,11 +71,12 @@ public class Beverage_Options extends JPanel {
 		}
 		imageLabel.setIcon(new ImageIcon(images[index]));
 	}
-	
-	
 
 	JFrame Beverage = new JFrame();
+
 	private Beverage_Options() {
+
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		CardLayout cardLayout = new CardLayout();
 
 		JPanel mainPanel = new JPanel();
@@ -123,8 +135,17 @@ public class Beverage_Options extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CupForBurial.setIcon(new ImageIcon("img/hodong/B매장용컵P.png"));
+				DisposableCup.setIcon(new ImageIcon("img/hodong/B일회용컵G.png"));
 				Beverage.setVisible(false);
+				for (int i = 0; i < 9; i++) {
 
+					if (choiceFrameBuyList.SAVED_BUYLIST2(i).getText() == "") {
+						choiceFrameBuyList.SAVED_BUYLIST2(i).setText(BEVERAGE_CUP());
+						BEVERAGE_CUP = false;
+						break;
+					}
+				}
 			}
 		});
 

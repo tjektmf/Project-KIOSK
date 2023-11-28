@@ -17,14 +17,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.choice.ChoiceFrameBuyList;
+import pj.choice.ChoiceFrameSelect3;
 import pj.choice.ChoiceSelectAll;
 import pj.choice.ChoiceSelectCoffee;
 
 public class Coffee_Options extends JPanel {
 
 	ChoiceFrameBuyList choiceFrameBuyList;
-	ChoiceSelectCoffee choiceSelectCoffee;
 	ChoiceSelectAll choiceSelectAll;
+	ChoiceFrameSelect3 mainFrame = new ChoiceFrameSelect3(choiceSelectAll);
+	ChoiceSelectCoffee choiceSelectCoffee = new ChoiceSelectCoffee(mainFrame);
 
 	private static final Coffee_Options instance = new Coffee_Options();
 
@@ -43,30 +45,28 @@ public class Coffee_Options extends JPanel {
 
 	public String COFFEE_SHOT() {
 		if (COFFEE_SHOT) {
-			return "포장";
+			return "샷추가";
 		} else {
-
-			return "매장";
+			return "샷추가안함";
 		}
 
 	}
 
 	public String COFFEE_SYRUP() {
 		if (COFFEE_SYRUP) {
-			return "포장";
+			return "시럽추가";
 		} else {
-
-			return "매장";
+			return "시럽추가안함";
 		}
 	}
 
 	public String COFFEE_CUP() {
 
 		if (COFFEE_CUP) {
-			return "포장";
+			return "일회용컵";
 		} else {
 
-			return "매장";
+			return "매장용컵";
 		}
 	}
 
@@ -180,11 +180,24 @@ public class Coffee_Options extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Coffee1.setVisible(false);
-				
-//				choiceFrameBuyList.SAVED_BUYLIST2(choiceSelectCoffee.listNum()).setText(COFFEE_CUP());
-//				choiceFrameBuyList.SAVED_BUYLIST3(choiceSelectCoffee.listNum()).setText(COFFEE_SHOT());
-//				choiceFrameBuyList.SAVED_BUYLIST4(choiceSelectCoffee.listNum()).setText(COFFEE_SYRUP());
- 
+				AddShotN.setIcon(new ImageIcon("img/hodong/추가안함P.png"));
+				AddShotY.setIcon(new ImageIcon("img/hodong/샷추가G.png"));
+				SyrupN.setIcon(new ImageIcon("img/hodong/추가안함P.png"));
+				SyrupY.setIcon(new ImageIcon("img/hodong/시럽추가G.png"));
+				CupForBurial.setIcon(new ImageIcon("img/hodong/매장용컵P.png"));
+				DisposableCup.setIcon(new ImageIcon("img/hodong/일회용컵G.png"));
+				for (int i = 0; i < 9; i++) {
+
+					if (choiceFrameBuyList.SAVED_BUYLIST2(i).getText() == "") {
+						choiceFrameBuyList.SAVED_BUYLIST2(i).setText(COFFEE_SHOT());
+						choiceFrameBuyList.SAVED_BUYLIST3(i).setText(COFFEE_SYRUP());
+						choiceFrameBuyList.SAVED_BUYLIST4(i).setText(COFFEE_CUP());
+						COFFEE_SHOT = false;
+						COFFEE_SYRUP = false;
+						COFFEE_CUP = false;
+						break;
+					}
+				}
 
 			}
 		});
@@ -193,7 +206,7 @@ public class Coffee_Options extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				AddShotN.setIcon(new ImageIcon("img/hodong/추가안함P.png"));
 				AddShotY.setIcon(new ImageIcon("img/hodong/샷추가G.png"));
-				COFFEE_SHOT = true;
+				COFFEE_SHOT = false;
 			}
 		});
 		AddShotY.addActionListener(new ActionListener() {
@@ -201,7 +214,7 @@ public class Coffee_Options extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				AddShotN.setIcon(new ImageIcon("img/hodong/추가안함G.png"));
 				AddShotY.setIcon(new ImageIcon("img/hodong/샷추가P.png"));
-				COFFEE_SHOT = false;
+				COFFEE_SHOT = true;
 			}
 		});
 		SyrupN.addActionListener(new ActionListener() {
@@ -209,7 +222,7 @@ public class Coffee_Options extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				SyrupN.setIcon(new ImageIcon("img/hodong/추가안함P.png"));
 				SyrupY.setIcon(new ImageIcon("img/hodong/시럽추가G.png"));
-				COFFEE_SYRUP = true;
+				COFFEE_SYRUP = false;
 			}
 		});
 		SyrupY.addActionListener(new ActionListener() {
@@ -217,7 +230,7 @@ public class Coffee_Options extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				SyrupN.setIcon(new ImageIcon("img/hodong/추가안함G.png"));
 				SyrupY.setIcon(new ImageIcon("img/hodong/시럽추가P.png"));
-				COFFEE_SYRUP = false;
+				COFFEE_SYRUP = true;
 			}
 		});
 		CupForBurial.addActionListener(new ActionListener() {
@@ -225,7 +238,7 @@ public class Coffee_Options extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				CupForBurial.setIcon(new ImageIcon("img/hodong/매장용컵P.png"));
 				DisposableCup.setIcon(new ImageIcon("img/hodong/일회용컵G.png"));
-				COFFEE_CUP = true;
+				COFFEE_CUP = false;
 			}
 		});
 		DisposableCup.addActionListener(new ActionListener() {
@@ -233,7 +246,7 @@ public class Coffee_Options extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				CupForBurial.setIcon(new ImageIcon("img/hodong/매장용컵G.png"));
 				DisposableCup.setIcon(new ImageIcon("img/hodong/일회용컵P.png"));
-				COFFEE_CUP = false;
+				COFFEE_CUP = true;
 			}
 		});
 
