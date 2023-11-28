@@ -22,6 +22,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.JdbcConnection;
+import pj.Coffee.Coffee_Options;
 import pj.database.Connector;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
@@ -37,15 +39,23 @@ public class ChoiceSelectCoffee extends JPanel {
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ArrayList<Integer> priceSet = new ArrayList<Integer>();
+	Coffee_Options coffee_Options;
+	ChoiceFrameSelect3 choiceFrameSelect3;
 
+	public int listNum() {
+		return listNum;
+	}
+
+	int listNum;
 	final int theNumberOfMenu = 10;
 	int buttonNum;
-	
+
 	public ChoiceSelectCoffee(ChoiceFrameSelect3 mainFrame) {
 
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceFramePrice = ChoiceFramePrice.getInstance();
-		
+		coffee_Options = Coffee_Options.getInstance();
+
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
@@ -100,7 +110,7 @@ public class ChoiceSelectCoffee extends JPanel {
 
 			}
 		}
-		
+
 		try {
 			Connection conn = Connector.getConnection();
 			System.out.println(conn);
@@ -124,7 +134,7 @@ public class ChoiceSelectCoffee extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			
+
 		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
 			if (picArr[buttonNum - 1] != null) {
 
@@ -132,18 +142,62 @@ public class ChoiceSelectCoffee extends JPanel {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						boolean full = false;
+
 						for (int i = 0; i < theNumberOfMenu; i++) {
-							if (e.getSource() == actions[i]) {
-								System.out.println("같다");
+							for (int j = 0; j < 9; j++) {
+								if (choiceFramePrice.thisPrice[j] == 0) {
+									full = true;
+
+								}
+							}
+							if (e.getSource() == actions[i] && full) {
 								choiceFramePrice.showPrice(priceSet.get(i));
+								for (int k = 0; k < 9; k++) {
+									if (choiceFrameBuyList.SAVED_BUYLIST1[k].getText() == "") {
+
+										try {
+											Connection conn = JdbcConnection.getConnection();
+											System.out.println(conn);
+											String sql = "select coffee_name, coffee_price from coffee";
+
+											PreparedStatement pstmt = conn.prepareStatement(sql);
+											ResultSet rs = pstmt.executeQuery();
+
+											while (rs.next()) { // 넥스트값이 없으면 false를 반환, while문 정지
+												if (nameArr[i].getText().contains(rs.getString("coffee_name"))) {
+													choiceFrameBuyList.SAVED_BUYLIST1[k]
+															.setText(rs.getString("coffee_name"));
+													listNum = k;
+
+												}
+
+											}
+
+											// choiceFrameBuyList.SAVED_BUYLIST1[k].setText(nameArr[i].getText());
+										} catch (SQLException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										break;
+									}
+
+								}
 							}
 						}
-						System.out.println("데굴데굴");
-
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
 
-						move.setVisible(true);
+						if (choiceFrameBuyList.SAVED_BUYLIST1[8].getText().equals("")) {
+							for (int i = 0; i < theNumberOfMenu; i++) {
+
+								if (e.getSource() == actions[i]) {
+									coffee_Options.loadImages(i);
+									coffee_Options.showFrame(true);
+
+								}
+							}
+						}
 					}
 				});
 			}

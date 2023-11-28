@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.JdbcConnection;
 import pj.database.Connector;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
@@ -31,22 +32,21 @@ public class ChoiceSelectDessert extends JPanel {
 	JButton choiceSelectPrevBtn;
 	JButton choiceSelectNextBtn;
 	ImageIcon menuImage;
-	
+
 	final int theNumberOfMenu = 18;
 	int buttonNum;
-	
+
 	ChoiceFrame choiceFrame;
 	ChoiceFramePrice choiceFramePrice;
 	ConeAndCup_00frame move = new ConeAndCup_00frame();
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ArrayList<Integer> priceSet = new ArrayList<Integer>();
-	
 
 	public ChoiceSelectDessert(ChoiceFrameSelect5 mainFrame) {
-		
+
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceFramePrice = ChoiceFramePrice.getInstance();
-		
+
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
@@ -58,7 +58,7 @@ public class ChoiceSelectDessert extends JPanel {
 		BorderLayout[] borderArr = new BorderLayout[48];
 		JLabel[] nameArr = new JLabel[48];
 		JLabel[] picArr = new JLabel[48];
-		
+
 		for (int i = 1; i <= 18; i++) {
 			try {
 				if (i <= theNumberOfMenu) {
@@ -83,7 +83,7 @@ public class ChoiceSelectDessert extends JPanel {
 				nameArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				picArr[i - 1].setHorizontalAlignment(JLabel.CENTER);
 				menuImage = null;
-				
+
 			} else if (i < 19) {
 				pan2.add(actions[i - 1] = new JButton(menuImage));
 				borderArr[i - 1] = new BorderLayout(-10, -10);
@@ -99,7 +99,7 @@ public class ChoiceSelectDessert extends JPanel {
 				menuImage = null;
 			}
 		}
-		
+
 		try {
 			Connection conn = Connector.getConnection();
 			System.out.println(conn);
@@ -123,7 +123,7 @@ public class ChoiceSelectDessert extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			
+
 		for (buttonNum = 1; buttonNum <= theNumberOfMenu; buttonNum++) {
 			if (picArr[buttonNum - 1] != null) {
 
@@ -131,23 +131,55 @@ public class ChoiceSelectDessert extends JPanel {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						boolean full = false;
 						for (int i = 0; i < theNumberOfMenu; i++) {
-							if (e.getSource() == actions[i]) {
-								System.out.println("같다");
+							for (int j = 0; j < 9; j++) {
+								if (choiceFramePrice.thisPrice[j] == 0) {
+									full = true;
+
+								}
+							}
+							if (e.getSource() == actions[i] && full) {
 								choiceFramePrice.showPrice(priceSet.get(i));
+								for (int k = 0; k < 9; k++) {
+									if (choiceFrameBuyList.SAVED_BUYLIST1[k].getText() == "") {
+
+										try {
+											Connection conn = JdbcConnection.getConnection();
+											System.out.println(conn);
+											String sql = "select dessert_name, dessert_price from dessert";
+
+											PreparedStatement pstmt = conn.prepareStatement(sql);
+											ResultSet rs = pstmt.executeQuery();
+
+											while (rs.next()) { // 넥스트값이 없으면 false를 반환, while문 정지
+												if (nameArr[i].getText().contains(rs.getString("dessert_name"))) {
+													choiceFrameBuyList.SAVED_BUYLIST1[k]
+															.setText(rs.getString("dessert_name"));
+								//					choiceFrameBuyList.SAVED_BUYLIST2[k]
+								//							.setText(Integer.toString(rs.getInt("dessert_price")));
+												}
+
+											}
+
+											// choiceFrameBuyList.SAVED_BUYLIST1[k].setText(nameArr[i].getText());
+										} catch (SQLException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										break;
+									}
+
+								}
 							}
 						}
-						System.out.println("데굴데굴");
-
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
-
-						move.setVisible(true);
 					}
 				});
 			}
 		}
-		
+
 		choiceSelectNextBtn.addActionListener(new ActionListener() {
 
 			@Override

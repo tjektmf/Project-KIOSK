@@ -16,23 +16,28 @@ import javax.swing.SwingUtilities;
 
 public class ChoiceFlavor_00frame extends JFrame {
     private int currentPanel;
+    
+    private static final ChoiceFlavor_00frame instance = new ChoiceFlavor_00frame();
+    
+    public static ChoiceFlavor_00frame getInstance() {
+    	return instance;
+    }
 
-    public ChoiceFlavor_00frame() {
+    private ChoiceFlavor_00frame() {
     	
         Color beskinColor = new Color(236, 108, 165);
 
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(540, 960);
+        setSize(555, 960);
+        setLocationRelativeTo(null);
         
         ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);
         ChoiceFlavor_04showFlavorSelections showFlavorSelections = new ChoiceFlavor_04showFlavorSelections();
         ChoiceFlavor_02row2 row2 = new ChoiceFlavor_02row2(this, showFlavorSelections);
-        ChoiceFlavor_03prevOrNext row3 = new ChoiceFlavor_03prevOrNext(this, row2, showFlavorSelections);
         
         add(row1, BorderLayout.NORTH);
         add(row2);
-        add(row3);
         add(showFlavorSelections, BorderLayout.SOUTH);
 
         setCurrentPanel(1);
@@ -45,27 +50,21 @@ public class ChoiceFlavor_00frame extends JFrame {
 
     public void setCurrentPanel(int currentPanel) {
         this.currentPanel = currentPanel;
-        SwingUtilities.invokeLater(() -> {
-            getContentPane().removeAll();
-            ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);
-            ChoiceFlavor_04showFlavorSelections showFlavorSelections = new ChoiceFlavor_04showFlavorSelections();
-            ChoiceFlavor_02row2 row2 = new ChoiceFlavor_02row2(this, showFlavorSelections);
-            //ChoiceFlavor_03prevOrNext row3 = new ChoiceFlavor_03prevOrNext(null, row2, showFlavorSelections);
+        getContentPane().removeAll();
+        ChoiceFlavor_01row1 row1 = new ChoiceFlavor_01row1(this);
+        ChoiceFlavor_04showFlavorSelections showFlavorSelections = new ChoiceFlavor_04showFlavorSelections();
+        ChoiceFlavor_02row2 row2 = new ChoiceFlavor_02row2(this, showFlavorSelections);
 
-            add(row1, BorderLayout.NORTH);
-            add(row2);
-            add(showFlavorSelections, BorderLayout.SOUTH);
-            //add(row3);
+        add(row1, BorderLayout.NORTH);
+        add(row2);
+        add(showFlavorSelections, BorderLayout.SOUTH);
 
-            revalidate();
-            repaint();
-        });
+        revalidate();
+        repaint();
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            ChoiceFlavor_00frame frame = new ChoiceFlavor_00frame();
-            frame.setVisible(true);
-        });
+    	ChoiceFlavor_00frame frame = new ChoiceFlavor_00frame();
+  //      frame.setVisible(true);
     }
 }

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,13 +24,27 @@ public class ChoiceFramePrice extends JPanel {
 		return instance;
 	}
 
+	public int SAVED_PRICE() {
+		return SAVED_PRICE;
+	}
+
 	ChoiceFrame mainFrame;
 	CategoryHome categoryHome;
-	static int SAVED_PRICE;
+	int SAVED_PRICE;
+	int[] thisPrice = new int[9];
+
+	public int thisPrice(int i) {
+		return thisPrice[i];
+	}
+
+	public int thisPriceDel(int i) {
+		return thisPrice[i] = 0;
+	}
 
 	// = new CategoryHome(mainFrame, pointButton);
 
-	JButton but0 = new JButton("결제하기");
+	JButton but0 = new JButton();
+
 	JTextField tf = new JTextField("price");
 
 	boolean a = true; // 메서드 테스트용
@@ -55,13 +70,29 @@ public class ChoiceFramePrice extends JPanel {
 	}
 
 	public void showPrice(int price) {
+		int i;
 		System.out.println("showPrice 데굴데굴");
-		System.out.println(tf.getText());
 		if (tf.getText().equals("price")) {
 			tf.setText(Integer.toString(price));
+			for (i = 0; i < 9; i++) {
+				if (thisPrice[i] == 0) {
+					thisPrice[i] = price;
+					System.out.println("처음 : " + thisPrice[i]);
+					break;
+				}
+			}
+
 		} else {
 			tf.setText(Integer.toString(price + Integer.parseInt(tf.getText())));
+			for (i = 0; i < 9; i++) {
+				if (thisPrice[i] == 0) {
+					thisPrice[i] = price;
+					System.out.println("나중 : " + Integer.toString(thisPrice[i]));
+					break;
+				}
+			}
 		}
+		System.out.println("추가된 장바구니 가격 배열 : " + Arrays.toString(thisPrice));
 		SAVED_PRICE = Integer.parseInt(tf.getText());
 		System.out.println("결제창으로 보낼 값 : " + SAVED_PRICE);
 	}
@@ -71,7 +102,7 @@ public class ChoiceFramePrice extends JPanel {
 	public ChoiceFramePrice() {
 		System.out.println("ChoiceFramePrice : " + this);
 		JLabel test = new JLabel();
-		test.setIcon(new ImageIcon("img/daseul/cat.gif"));
+		test.setIcon(new ImageIcon("img/daseul/show.png"));
 		test.setHorizontalAlignment(JLabel.CENTER);
 		setLayout(priceCard);
 		setBackground(Color.white);
@@ -84,6 +115,7 @@ public class ChoiceFramePrice extends JPanel {
 		grid.setHgap(10);
 		pan1.setLayout(grid);
 		but0.setVisible(false);
+		but0.setIcon(new ImageIcon("img/daseul/buy.png"));
 		tf.setHorizontalAlignment(JTextField.CENTER);
 
 		but0.addActionListener(new ActionListener() {
