@@ -17,6 +17,7 @@ import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,9 +25,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import pj.choice.ChoiceFrameBuyList;
+import pj.choice.ChoiceFramePrice;
 
 public class PointButton extends JFrame {
 
+	private static int SAVED_PRICE = 0;
 	String membership_tel;
 	String membership_point= "";
 	
@@ -38,11 +41,15 @@ public class PointButton extends JFrame {
 	JTextField panel5tf2 = new JTextField(30);
 	JTextField panel7waittf = new JTextField(30);
 	JTextField panel7ordertf = new JTextField(30);
+	
 	ChoiceFrameBuyList choiceFrameBuyList;
+	ChoiceFramePrice choiceFramePrice;
 	
 	int guest = 203;
 	public PointButton() {
 		choiceFrameBuyList = choiceFrameBuyList.getInstance();
+//		choiceFramePrice = choiceFramePrice.getInstance();
+		
 		JFrame f = new JFrame("CardLayout Sample");
 		CardLayout card = new CardLayout();
 		f.setLayout(card);
@@ -74,6 +81,8 @@ public class PointButton extends JFrame {
 		JLabel label5 = new JLabel("*사용하기: 포인트 보유시 사용가능합니다 (자동 적립).");
 		JLabel label6 = new JLabel("적립하기");
 		JLabel label7 = new JLabel("사용하기");
+		JLabel label8 = new JLabel("회원포인트");
+		JLabel label9 = new JLabel("결제");
 
 		label1.setBounds(30, 1, 300, 100);
 		label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
@@ -87,7 +96,11 @@ public class PointButton extends JFrame {
 		label5.setFont(new Font("맑음고딕체", Font.BOLD, 15));
 		label6.setBounds(58, 320, 420, 100);
 		label7.setBounds(190, 320, 420, 100);
-
+		label8.setBounds(70, 90, 145, 90);
+		label8.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+		label8.setForeground(Color.pink);
+		label9.setBounds(270, 90, 145, 90);
+		label9.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel1.add(label1);
 		panel1.add(label2);
 		panel1.add(label3);
@@ -95,8 +108,10 @@ public class PointButton extends JFrame {
 		panel1.add(label5);
 		panel1.add(label6);
 		panel1.add(label7);
+		panel1.add(label8);
+		panel1.add(label9);
 
-//	            }
+
 
 		// tf 밑에 tf2 옆에
 		panel1tf.setLocation(10, 610);
@@ -105,23 +120,12 @@ public class PointButton extends JFrame {
 		panel1tf2.setSize(200, 40);
 		panel1.add(panel1tf);
 		panel1.add(panel1tf2);
+//		System.out.println("결체장 불러온값" + choiceFramePrice.SAVED_PRICE());
+//		panel1tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE()  + "               -                " 
+//				+ "사용할 적립포인트     "  + membership_point);
+//		
+//		panel1tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE()));
 
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project", "1234");
-			String sql = "SELECT * FROM membership";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-//				panel1tf.setText("총 주문금액    " + "                 -                " 
-//						+ "사용할 적립포인트     "  + membership_point);
-//				panel1tf2.setText(Integer.toString(rs.getInt("membership_point")));
-			}
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
 
 
 		JLabel pointLabel = new JLabel();
@@ -147,17 +151,16 @@ public class PointButton extends JFrame {
 		}
 		pointLabel2.setHorizontalAlignment(JLabel.CENTER);
 
-		JButton btn1 = new JButton("회원포인트");
-		btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		btn1.setBorderPainted(false);
-		btn1.setForeground(Color.pink);
-		btn1.setBackground(new Color(0, 0, 0, 0));
-		btn1.setBounds(30, 90, 145, 90);
-		JButton btn2 = new JButton("결제");
-		btn2.setBorderPainted(false);
-		btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		btn2.setBackground(new Color(0, 0, 0, 0));
-		btn2.setBounds(270, 90, 145, 90);
+//		JButton btn1 = new JButton("회원포인트");
+//		btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+//		btn1.setForeground(Color.pink);
+//		btn1.setBackground(new Color(0, 0, 0, 0));
+//		btn1.setBounds(30, 90, 145, 90);
+//		JButton btn2 = new JButton("결제");
+//		btn2.setBorderPainted(false);
+//		btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+//		btn2.setBackground(new Color(0, 0, 0, 0));
+//		btn2.setBounds(270, 90, 145, 90);
 		JButton btn3 = new JButton();
 		btn3.add(pointLabel);
 		btn3.setBorderPainted(false);
@@ -179,8 +182,8 @@ public class PointButton extends JFrame {
 		btn6.setForeground(Color.white);
 		btn6.setBackground(Color.pink);
 
-		panel1.add(btn1);
-		panel1.add(btn2);
+//		panel1.add(btn1);
+//		panel1.add(btn2);
 		panel1.add(btn3);
 		panel1.add(btn4);
 		panel1.add(btn5);
@@ -205,7 +208,9 @@ public class PointButton extends JFrame {
 		btn6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+//				panel5tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE()  + "               -                " 
+//						+ "사용할 적립포인트     "  + membership_point);
+				
 				card.show(f.getContentPane(), "5");
 			}
 		});
@@ -590,7 +595,7 @@ public class PointButton extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				tf.setText("");
 				card.show(f.getContentPane(), "2");
 			}
 		});
@@ -933,11 +938,13 @@ public class PointButton extends JFrame {
 //							System.out.println("사용하고자하는 포인트가 보유포인트보다 많습니다");
 //							break;
 //						 }
-						panel1tf.setText("총 주문금액    " +  "                 -                " 
-								+ "사용할 적립포인트     "  + membership_point);
-						panel5tf.setText("총 주문금액    " +   "                 -                " 
-								+ "사용할 적립포인트     "  + membership_point);
-//						panel1tf2.setText(Integer.toString(rs.getInt("membership_point"))- Integer.parseInt(membership_point));
+//						panel1tf.setText("총 주문금액    " + choiceFramePrice.SAVED_PRICE() + "                 -                " 
+//								+ "사용할 적립포인트     "  + membership_point);
+//						panel1tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE() - Integer.parseInt(membership_point)));
+//						panel5tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE() + "                 -                " 
+//								+ "사용할 적립포인트     "  + membership_point);
+//						
+//						panel5tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE() - Integer.parseInt(membership_point)));
 						
 					}
 					rs.close();
@@ -973,12 +980,21 @@ public class PointButton extends JFrame {
 		// panel5 부분
 		JLabel panel5label1 = new JLabel("결제하기");
 		JLabel panel5label2 = new JLabel("최종결제금액");
+		JLabel panel5label3 = new JLabel("회원포인트");
+		JLabel panel5label4 = new JLabel("결제");
 		panel5label1.setBounds(30, 1, 300, 100);
 		panel5label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 		panel5label2.setBounds(30, 490, 300, 100);
 		panel5label2.setFont(new Font("맑음고딕체", Font.BOLD, 23));
+		panel5label3.setBounds(70, 90, 145, 90);
+		panel5label3.setFont(new Font("맑음고딕체", Font.BOLD, 18));
+		panel5label4.setBounds(270, 90, 145, 90);
+		panel5label4.setFont(new Font("맑음고딕체", Font.BOLD, 18));
+		panel5label4.setForeground(Color.pink);
 		panel5.add(panel5label1);
 		panel5.add(panel5label2);
+		panel5.add(panel5label3);
+		panel5.add(panel5label4);
 
 	
 
@@ -990,18 +1006,12 @@ public class PointButton extends JFrame {
 
 		panel5.add(panel5tf);
 		panel5.add(panel5tf2);
+		
+//		panel5tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE()  + "               -                " 
+//				+ "사용할 적립포인트     "  + membership_point);
+//		
+//		panel5tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE()));
 
-		JButton panel5btn1 = new JButton("회원포인트");
-		panel5btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		panel5btn1.setBorderPainted(false);
-		panel5btn1.setBackground(new Color(0, 0, 0, 0));
-		panel5btn1.setBounds(30, 90, 145, 90);
-		JButton panel5btn2 = new JButton("결제");
-		panel5btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		panel5btn2.setBorderPainted(false);
-		panel5btn2.setForeground(Color.pink);
-		panel5btn2.setBackground(new Color(0, 0, 0, 0));
-		panel5btn2.setBounds(270, 90, 145, 90);
 
 		JLabel cashLabel = new JLabel();
 		try {
@@ -1108,8 +1118,8 @@ public class PointButton extends JFrame {
 			}
 		});
 
-		panel5.add(panel5btn1);
-		panel5.add(panel5btn2);
+//		panel5.add(panel5btn1);
+//		panel5.add(panel5btn2);
 		panel5.add(panel5btn3);
 		panel5.add(panel5btn4);
 		panel5.add(panel5btn5);
@@ -1141,8 +1151,21 @@ public class PointButton extends JFrame {
 		panel6btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				panel7ordertf.setText(choiceFrameBuyList.SAVED_BUYLIST1(0).getText());
-//				System.out.println("ddd : " + choiceFrameBuyList.SAVED_BUYLIST1(0).getText());
+//				for(int i =0; i<9; i++) {
+//				panel7ordertf.setText(choiceFrameBuyList.SAVED_BUYLIST1(i).getText() + 
+//						choiceFrameBuyList.SAVED_BUYLIST2(i).getText() 
+//						+ choiceFrameBuyList.SAVED_BUYLIST3(i).getText()
+//						+ choiceFrameBuyList.SAVED_BUYLIST4(i).getText());
+//				}
+			
+//				panel7ordertf.setText(choiceFrameBuyList.SAVED_BUYLIST1(0).getText() + 
+//						choiceFrameBuyList.SAVED_BUYLIST2(0).getText()+
+//						choiceFrameBuyList.SAVED_BUYLIST3(0).getText()+ 
+//						choiceFrameBuyList.SAVED_BUYLIST1(1).getText()+
+//						choiceFrameBuyList.SAVED_BUYLIST2(1).getText() 
+//						
+//						);
+		
 				panel7waittf.setText(Integer.toString(guest++));
 				card.show(f.getContentPane(), "7");
 
@@ -1568,6 +1591,11 @@ public class PointButton extends JFrame {
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		f.setBounds(100, 100, 540, 960);
 		f.setVisible(true);
+	}
+
+	private String SAVED_PRICE() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public static void main(String[] args) {
