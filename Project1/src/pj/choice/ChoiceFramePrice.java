@@ -50,8 +50,6 @@ public class ChoiceFramePrice extends JPanel {
 	boolean a = true; // 메서드 테스트용
 
 	public void hideButton() {
-		System.out.println("hideButton 굴데굴데");
-
 		// but0.setVisible(true);
 		// tf.setVisible(true);
 		// 불리언포함 if문은 테스트용 이후 삭제하면서 윗줄 살리고 내용추가
@@ -71,7 +69,6 @@ public class ChoiceFramePrice extends JPanel {
 
 	public void showPrice(int price) {
 		int i;
-		System.out.println("showPrice 데굴데굴");
 		if (tf.getText().equals("price")) {
 			tf.setText(Integer.toString(price));
 			for (i = 0; i < 9; i++) {

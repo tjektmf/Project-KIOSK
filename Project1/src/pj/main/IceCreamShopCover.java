@@ -35,10 +35,10 @@ public class IceCreamShopCover extends JFrame {
 	ChoiceFrame choiceFrame = new ChoiceFrame();
 	CategoryHome categoryHome = new CategoryHome(choiceFrame);
 	AdminPassword adminPassword = new AdminPassword();
-	
+
 	public void showFrame(boolean show) {
-        setVisible(show);
-    }
+		setVisible(show);
+	}
 
 	public IceCreamShopCover() {
 		setTitle("BR31");

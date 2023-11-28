@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import database.JdbcConnection;
@@ -190,7 +191,7 @@ public class ChoiceSelectCoffee extends JPanel {
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
 
-						if (choiceFrameBuyList.SAVED_BUYLIST1[8].getText().equals("")) {
+						if (choiceFrameBuyList.SAVED_BUYLIST2[8].getText().equals("")) {
 							for (int i = 0; i < theNumberOfMenu; i++) {
 
 								if (e.getSource() == actions[i]) {
@@ -199,6 +200,20 @@ public class ChoiceSelectCoffee extends JPanel {
 
 								}
 							}
+						}
+						
+						boolean fullCheck = false;
+						for (int p = 0; p < 9; p++) {
+							if (choiceFrameBuyList.SAVED_BUYLIST2(p).getText() == "") {
+								fullCheck = false;
+								break;
+							} else {
+								fullCheck = true;
+							}
+						}
+						if (fullCheck) {
+							JOptionPane.showMessageDialog(null, "장바구니에 빈 자리가 없어요");
+							fullCheck = false;
 						}
 					}
 				});

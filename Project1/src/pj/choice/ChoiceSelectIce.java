@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import database.JdbcConnection;
@@ -146,8 +147,10 @@ public class ChoiceSelectIce extends JPanel {
 								}
 							}
 							if (e.getSource() == actions[i] && full) {
+
 								choiceFramePrice.showPrice(priceSet.get(i));
 								for (int k = 0; k < 9; k++) {
+
 									if (choiceFrameBuyList.SAVED_BUYLIST1[k].getText() == "") {
 
 										try {
@@ -162,8 +165,8 @@ public class ChoiceSelectIce extends JPanel {
 												if (nameArr[i].getText().contains(rs.getString("icecream_name"))) {
 													choiceFrameBuyList.SAVED_BUYLIST1[k]
 															.setText(rs.getString("icecream_name"));
-								//					choiceFrameBuyList.SAVED_BUYLIST2[k]
-								//							.setText(Integer.toString(rs.getInt("icecream_price")));
+													choiceFrameBuyList.SAVED_BUYLIST2[k]
+															.setText(Integer.toString(rs.getInt("icecream_price")));
 												}
 
 											}
@@ -179,6 +182,7 @@ public class ChoiceSelectIce extends JPanel {
 								}
 							}
 						}
+						
 						System.out.println("아이스크림 크기배열 : " + Arrays.toString(choiceFrameBuyList.ICECREAM_SIZE));
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
@@ -201,6 +205,19 @@ public class ChoiceSelectIce extends JPanel {
 									}
 								}
 							}
+						}
+						boolean fullCheck = false;
+						for (int p = 0; p < 9; p++) {
+							if (choiceFrameBuyList.SAVED_BUYLIST1(p).getText() == "") {
+								fullCheck = false;
+								break;
+							} else {
+								fullCheck = true;
+							}
+						}
+						if (fullCheck) {
+							JOptionPane.showMessageDialog(null, "장바구니에 빈 자리가 없어요");
+							fullCheck = false;
 						}
 					}
 				});
