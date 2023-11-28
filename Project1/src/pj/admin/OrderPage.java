@@ -77,7 +77,28 @@ public class OrderPage extends JFrame {
 		PanelBtn.add(searchButton);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
-		mainPanel.add(new JScrollPane(orderTextArea), BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(orderTextArea);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+/*
+void setVerticalScrollBarPolicy(int), int getVerticalScrollBarPolicy()
+수직 방향의 정책을 설정하거나 읽어온다. 
+
+VERTICAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
+VERTICAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
+VERTICAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
+
+
+void setHorizontalScrollBarPolicy(int), int getHorizontalScrollBarPolicy()
+수평 방향의 정책을 설정하거나 읽어온다.
+
+HORIZONTAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
+HORIZONTAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
+HORIZONTAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
+
+*/
+		
+		mainPanel.add(scrollPane);
 		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
 
 		JPanel searchPanel = new JPanel();
@@ -236,7 +257,7 @@ public class OrderPage extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new OrderPage());
+		new OrderPage();
 	}
 
 }
