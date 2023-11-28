@@ -16,11 +16,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 
 import database.JdbcConnection;
 
-public class OrderPage extends JFrame {
+
+
+public class OrderPagee extends JFrame {
 	// 기간 별 주문내역 (일간, 주간, 월간, 년간)
 
 	private List<String> orderDataList;
@@ -29,7 +30,7 @@ public class OrderPage extends JFrame {
 	private JComboBox<String> searchPeriods;
 	private String selectedPeriod;
 
-	public OrderPage() {
+	public OrderPagee() {
 		super("IceCreamShop Orders");
 
 		String[] searchPeriod = { "일간", "주간", "월간", "연간" };
@@ -80,26 +81,7 @@ public class OrderPage extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(orderTextArea);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-/*
-void setVerticalScrollBarPolicy(int), int getVerticalScrollBarPolicy()
-수직 방향의 정책을 설정하거나 읽어온다. 
-
-VERTICAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
-VERTICAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
-VERTICAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
-
-
-void setHorizontalScrollBarPolicy(int), int getHorizontalScrollBarPolicy()
-수평 방향의 정책을 설정하거나 읽어온다.
-
-HORIZONTAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
-HORIZONTAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
-HORIZONTAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
-
-https://blog.naver.com/sks6624/150165616213
-
-*/
-		
+	
 		mainPanel.add(scrollPane);
 		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
 
@@ -164,100 +146,85 @@ https://blog.naver.com/sks6624/150165616213
 	}
 
 	private List<String> getOrderDataByPeriod(String period) {
-		// 선택된 기간에 따라 데이터를 가져오는 메서드
-		List<String> orderDataList = new ArrayList<>();
+	    // 선택된 기간에 따라 데이터를 가져오는 메서드
+	    List<String> orderDataList = new ArrayList<>();
 
-		try (Connection conn = JdbcConnection.getConnection()) {
-			if (conn == null) {
-				System.err.println("데이터베이스와의 연결을 확인하세요");
-				return orderDataList;
-			}
+	    try (Connection conn = JdbcConnection.getConnection()) {
+	        if (conn == null) {
+	            System.err.println("데이터베이스와의 연결을 확인하세요");
+	            return orderDataList;
+	        }
 
-			String sql;
-			switch (period) {
-			case "일간":
-				sql = "SELECT * FROM receipt WHERE receipt_date = CURRENT_DATE";
-				break;
-			case "주간":
-				sql = "SELECT * FROM receipt WHERE receipt_date >= CURRENT_DATE - INTERVAL '7' DAY";
-				break;
-			case "월간":
-				sql = "SELECT * FROM receipt WHERE EXTRACT(MONTH FROM receipt_date) = EXTRACT(MONTH FROM CURRENT_DATE)";
-				break;
-			case "연간":
-				sql = "SELECT * FROM receipt WHERE EXTRACT(YEAR FROM receipt_date) = EXTRACT(YEAR FROM CURRENT_DATE)";
-				break;
-			default:
-				sql = "SELECT * FROM receipt";
-				break;
-			}
+	        String sql;
+	        switch (period) {
+	            case "일간":
+	                sql = "SELECT * FROM receipt WHERE receipt_date = CURRENT_DATE";
+	                break;
+	            case "주간":
+	                sql = "SELECT * FROM receipt WHERE receipt_date >= CURRENT_DATE - INTERVAL '7' DAY";
+	                break;
+	            case "월간":
+	                sql = "SELECT * FROM receipt WHERE EXTRACT(MONTH FROM receipt_date) = EXTRACT(MONTH FROM CURRENT_DATE)";
+	                break;
+	            case "연간":
+	                sql = "SELECT * FROM receipt WHERE EXTRACT(YEAR FROM receipt_date) = EXTRACT(YEAR FROM CURRENT_DATE)";
+	                break;
+	            default:
+	                sql = "SELECT * FROM receipt";
+	                break;
+	        }
 
-			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
+	        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
 
-				while (resultSet.next()) {
-					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + ", 메뉴: "
-							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + ", 총 가격: "
-							+ resultSet.getInt("total_price") + ", 주문 일자: " + resultSet.getDate("receipt_date");
+	            while (resultSet.next()) {
+	                String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
+	                        ", 메뉴: " + resultSet.getString("menu_name") +
+	                        ", 가격: " + resultSet.getInt("menu_price") +
+	                        ", 총 가격: " + resultSet.getInt("total_price") +
+	                        ", 주문 일자: " + resultSet.getDate("receipt_date");
 
-					orderDataList.add(orderData);
-				}
-			}
+	                orderDataList.add(orderData);
+	            }
+	        }
 
-		} catch (
-
-		SQLException e) {
-			e.printStackTrace();
-			System.err.println("Error: " + e.getMessage());
-		}
-		return orderDataList;
-
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.err.println("Error: " + e.getMessage());
+	    }
+	    return orderDataList;
 	}
+
 
 	// 초기 주문 데이터
 	public List<String> getOrderData() {
-		List<String> orderDataList = new ArrayList<>();
+	    List<String> orderDataList = new ArrayList<>();
 
-		try (Connection conn = JdbcConnection.getConnection()) {
-			if (conn == null) {
-				System.err.println("데이터베이스와의 연결을 확인하세요");
-				return orderDataList;
-			}
+	    try (Connection conn = JdbcConnection.getConnection()) {
+	        if (conn == null) {
+	            System.err.println("데이터베이스와의 연결을 확인하세요");
+	            return orderDataList;
+	        }
 
-//			 String sql = "SELECT r.menu_name, r.menu_price, m.category5_id "
-//					    + "FROM receipt r "
-//					    + "JOIN menu m ON r.menu_id = m.menu_id";
+	        String sql = "SELECT * FROM receipt";
 
-			String sql = "SELECT r.receipt_id, r.menu_name, r.menu_price, r.total_price, r.receipt_date, "
-					+ "       m.choice1, m.choice2, m.choice3, m.choice4, m.choice5, m.choice6, "
-					+ "       mb.membership_tel, mb.membership_point "
-					+ "FROM receipt r "
-					+ "INNER JOIN menu m ON r.menu_id = m.menu_id "
-					+ "INNER JOIN membership mb ON r.membership_id = mb.membership_id";
+	        try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
+	            while (resultSet.next()) {
+	                String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
+	                        ", 메뉴: " + resultSet.getString("menu_name") +
+	                        ", 가격: " + resultSet.getInt("menu_price") +
+	                        ", 총 가격: " + resultSet.getInt("total_price") +
+	                        ", 주문 일자: " + resultSet.getDate("receipt_date");
+	                orderDataList.add(orderData);
+	            }
+	        }
 
-			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
-
-				while (resultSet.next()) {
-//				        String menuName = resultSet.getString("menu_name");
-//				        int menuPrice = resultSet.getInt("menu_price");
-//				        String totalPrice = resultSet.getString(" total_price");
-
-//					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
-				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
-	                            ", 메뉴: " + resultSet.getString("menu_name") +
-	                            ", 가격: " + resultSet.getInt("menu_price") +
-	                            ", 총 가격: " + resultSet.getInt("total_price") +
-	                            ", 주문 일자: " + resultSet.getDate("receipt_date");
-					orderDataList.add(orderData);
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.err.println("Error : " + e.getMessage());
-		}
-		return orderDataList;
-
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.err.println("Error : " + e.getMessage());
+	    }
+	    return orderDataList;
 	}
+
 
 	public static void main(String[] args) {
 		new OrderPage();

@@ -48,8 +48,8 @@ public class IceCreamShopCover extends JFrame {
 		mainLabel.setIcon(null);
 
 		// 투명한 패널 위에 글씨 표시
-		JLabel textLabel = new JLabel("화면을 클릭하세요");
-		textLabel.setFont(new Font("맑은고딕", Font.BOLD, 40));
+//		JLabel textLabel = new JLabel("화면을 클릭하세요");
+//		textLabel.setFont(new Font("맑은고딕", Font.BOLD, 40));
 
 		// 우측하단 관리자 페이지로 넘어갈 버튼
 		JButton keyBtn = new JButton();
@@ -84,7 +84,7 @@ public class IceCreamShopCover extends JFrame {
 
 		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
 		add(textPanel);
-		textPanel.add(textLabel);
+//		textPanel.add(textLabel);
 
 		// 전체를 감싸는 패널
 		JPanel mainPanel = new JPanel(new BorderLayout());
