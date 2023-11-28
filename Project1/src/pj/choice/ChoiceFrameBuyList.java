@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -28,6 +29,7 @@ public class ChoiceFrameBuyList extends JPanel {
         button.setIcon(new ImageIcon(iconPath));
         button.setBorderPainted(false);
         button.setBackground(new Color(255, 255, 255));
+        button.setMargin(new Insets(0, 0, 0, 0));
         return button;
     }
 

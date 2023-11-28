@@ -30,7 +30,7 @@ public class OrderPage extends JFrame {
 	private String selectedPeriod;
 
 	public OrderPage() {
-		super("IceCreamShop Orders");
+		super("BR31 Orders");
 
 		String[] searchPeriod = { "일간", "주간", "월간", "연간" };
 		searchPeriods = new JComboBox<>(searchPeriod);
@@ -192,7 +192,8 @@ https://blog.naver.com/sks6624/150165616213
 				break;
 			}
 
-			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
+			try (PreparedStatement pstmt = conn.prepareStatement(sql);
+					ResultSet resultSet = pstmt.executeQuery()) {
 
 				while (resultSet.next()) {
 					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + ", 메뉴: "
@@ -228,8 +229,8 @@ https://blog.naver.com/sks6624/150165616213
 //					    + "JOIN menu m ON r.menu_id = m.menu_id";
 
 			String sql = "SELECT r.receipt_id, r.menu_name, r.menu_price, r.total_price, r.receipt_date, "
-					+ "       m.choice1, m.choice2, m.choice3, m.choice4, m.choice5, m.choice6, "
-					+ "       mb.membership_tel, mb.membership_point "
+					+ "m.choice1, m.choice2, m.choice3, m.choice4, m.choice5, m.choice6, "
+					+ "mb.membership_tel, mb.membership_point "
 					+ "FROM receipt r "
 					+ "INNER JOIN menu m ON r.menu_id = m.menu_id "
 					+ "INNER JOIN membership mb ON r.membership_id = mb.membership_id";
