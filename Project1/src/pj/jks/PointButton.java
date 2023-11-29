@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -25,9 +26,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import database.JdbcConnection;
 import pj.choice.ChoiceFrameBuyList;
 import pj.choice.ChoiceFramePrice;
-import pj.main.IceCreamShopCover;
 
 public class PointButton extends JFrame {
 
@@ -49,6 +50,7 @@ public class PointButton extends JFrame {
 	JTextField panel8tf = new JTextField(30);
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ChoiceFramePrice choiceFramePrice;
+	LocalDate now = LocalDate.now();
 
 	int guest = 203;
 
@@ -1530,6 +1532,24 @@ public class PointButton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				f.setVisible(false);
 				choiceFrameBuyList.SAVED_BUYLIST_OUT();
+
+				try (Connection conn = JdbcConnection.getConnection();) {
+					// 기본키를 넣을 때는 자바쪽에서 시퀀스를 불러 사용한다 fruit_id_seq.nextval
+					String sql1 = "insert into "
+							+ "receipt(receipt_id, menu_name, total_price, receipt_date, menu_price)"
+							+ " values(receipt_id_seq.nextval," + choiceFrameBuyList.SAVED_BUYLIST1(0) + ","
+							+ Integer.toString(choiceFramePrice.SAVED_PRICE()) + "," + now.toString() + ", 0))";
+					try (PreparedStatement pstmt = conn.prepareStatement(sql1);) {
+						// INSERT, UPDATE, DELETE는 executeUpdate()로 실행해야함
+						int row = pstmt.executeUpdate();
+						System.out.println(row + "행이 변경됨");
+					}
+
+				} catch (SQLException er) {
+					// TODO Auto-generated catch block
+					er.printStackTrace();
+				}
+
 			}
 		});
 		add(panel7btn1);
