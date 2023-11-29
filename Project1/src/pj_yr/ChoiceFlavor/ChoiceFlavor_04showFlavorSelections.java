@@ -35,6 +35,8 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 		initializeButtons();
 	}
 
+	// 하 또 깃충돌
+	
 	private class ButtonClickListener implements ActionListener {
         private int addCount;
         private int flavorName;
