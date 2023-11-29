@@ -46,6 +46,8 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         addButton.addActionListener(e -> {
         	ChoiceFlavor_02row2.getSelectedFlavorNames().stream().distinct().collect(Collectors.toList());;
         	System.out.println(ChoiceFlavor_02row2.getSelectedFlavorNames().stream().distinct().collect(Collectors.toList()));
+        	ChoiceFlavor_02row2.getSelectedFlavorNames().clear();
+        
         });
         add(addButton, BorderLayout.CENTER);
 
@@ -57,7 +59,10 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         cancelButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         cancelButton.addActionListener(e -> { 
             // 취소 버튼 기능 구현
+        	// 버튼날리고
             showFlavorSelections.clearFlavorButtons();
+            // 담아둔 아이스크림 flavorName들도 날릴게요
+            ChoiceFlavor_02row2.clearSelectedFlavorNames();
         });
         add(cancelButton, BorderLayout.EAST);
         

@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +16,11 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 public class ChoiceFlavor_00frame extends JFrame {
+	
+	
     private int currentPanel;
+   
+
 
     public ChoiceFlavor_00frame() {
     	
@@ -55,6 +60,7 @@ public class ChoiceFlavor_00frame extends JFrame {
         revalidate();
         repaint();
     }
+
 
     public static void main(String[] args) {
     	ChoiceFlavor_00frame frame = new ChoiceFlavor_00frame();

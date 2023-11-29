@@ -158,5 +158,15 @@ public class ChoiceFlavor_02row2 extends JPanel {
 //    }	
 
 
+    public static void removeSelectedFlavor(int flavorName) {
+        selectedFlavorName.remove(flavorIdMap.get(flavorName));
+    }
+
+    public static void clearSelectedFlavorNames() {
+        selectedFlavorName.clear();
+    }
+
+    
+    
 }
 
