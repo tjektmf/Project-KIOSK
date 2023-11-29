@@ -33,6 +33,8 @@ public class OrderPage extends JFrame {
 
 		String[] searchPeriod = { "일간", "주간", "월간", "연간" };
 		searchPeriods = new JComboBox<>(searchPeriod);
+		
+		// 기간을 직접 검색하게 하는게 나을 것 같음.
 
 		// private JComboBox searchPeriods = new JComboBox(searchPeriod);
 		// String period = (String) searchPeriods.getSelectedItem();
