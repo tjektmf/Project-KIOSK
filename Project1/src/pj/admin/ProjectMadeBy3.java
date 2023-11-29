@@ -40,7 +40,7 @@ public class ProjectMadeBy3 extends JFrame {
 		card = new CardLayout();
 		cardPanel = new JPanel(card);
 
-		String[] lists = { " ", "프로젝트 팀원", "만든기간", "수고하셨습니다" };
+		String[] lists = { " ", "프로젝트 팀원", "만든기간", "수고하셨습니다", "관리자페이지" };
 		list = new JComboBox<>(lists);
 
 		JButton searchBtn = new JButton("검색");
@@ -49,6 +49,9 @@ public class ProjectMadeBy3 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				selected = (String) list.getSelectedItem();
 				card.show(cardPanel, selected);
+				 if ("관리자페이지".equals(selected)) {
+	                    new AdminPage();
+	                }
 			}
 		});
 
