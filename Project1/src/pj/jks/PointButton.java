@@ -1529,8 +1529,7 @@ public class PointButton extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				f.setVisible(false);
-				new IceCreamShopCover();
-
+				choiceFrameBuyList.SAVED_BUYLIST_OUT();
 			}
 		});
 		add(panel7btn1);

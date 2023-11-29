@@ -51,7 +51,9 @@ public class CategoryHome extends JPanel {
 	}
 
 	public void showFrame(boolean show) {
-		f.setVisible(show);
+		System.out.println("외않되");
+		this.setVisible(false);
+		this.f.getContentPane().setVisible(false);
 	}
 
 	public void mainCard(CardLayout mainCard) {
@@ -180,7 +182,7 @@ public class CategoryHome extends JPanel {
 		// f.setDefaultCloseOperation(ABORT);
 		f.setSize(555, 960);
 
-		// f.setVisible(true);
+		f.setVisible(false);
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -224,5 +226,6 @@ public class CategoryHome extends JPanel {
 	public static void main(String[] args) {
 		ChoiceFrame choiceFrame = new ChoiceFrame();
 		new CategoryHome(choiceFrame);
+		System.out.println("CetegoryHome 켜짐");
 	}
 }

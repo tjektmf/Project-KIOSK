@@ -122,8 +122,7 @@ public class ChoiceFramePrice extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				categoryHome.f.setVisible(false);
-				System.out.println("결제 ㄱㄱ");
+				but0.getParent().getParent().getParent().setVisible(false);
 				new PointButton();
 			}
 		});

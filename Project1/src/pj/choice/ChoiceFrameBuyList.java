@@ -91,6 +91,17 @@ public class ChoiceFrameBuyList extends JPanel {
 		return ICECREAM_SIZE[index];
 	}
 
+	public void SAVED_BUYLIST_OUT() {
+		for (int i = 0; i < 9; i++) {
+			SAVED_BUYLIST1[i].setText("");
+			SAVED_BUYLIST2[i].setText("");
+			SAVED_BUYLIST3[i].setText("");
+			SAVED_BUYLIST4[i].setText("");
+			SAVED_BUYLIST5[i].setText("");
+			SAVED_BUYLIST6[i].setText("");
+			SAVED_BUYLIST7[i].setText("");
+		}
+	}
 
 	private ChoiceFrameBuyList() {
 
