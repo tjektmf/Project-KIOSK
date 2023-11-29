@@ -3,6 +3,7 @@ package pj.choice;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,11 +33,13 @@ public class ChoiceFrameSelect extends JPanel {
 		choiceSelectNextBtn.setIcon(new ImageIcon("img/daseul/longright.png"));
 		choiceSelectNextBtn.setBorderPainted(false);
 		choiceSelectNextBtn.setBackground(new Color(255,255,255));
+		choiceSelectNextBtn.setMargin(new Insets(0, -10, 0, -10));
 	
 		choiceSelectPrevBtn = new JButton();
 		choiceSelectPrevBtn.setIcon(new ImageIcon("img/daseul/longleft.png"));
 		choiceSelectPrevBtn.setBorderPainted(false);	
 		choiceSelectPrevBtn.setBackground(new Color(255,255,255));
+		choiceSelectPrevBtn.setMargin(new Insets(0, -10, 0, -10));
 		
 		choiceSelectIce = new ChoiceSelectIce(this);
 	

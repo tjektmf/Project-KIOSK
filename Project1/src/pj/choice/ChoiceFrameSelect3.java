@@ -2,6 +2,7 @@ package pj.choice;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,11 +22,13 @@ public class ChoiceFrameSelect3 extends JPanel{
 		choiceSelectNextBtn.setIcon(new ImageIcon("img/daseul/longright.png"));
 		choiceSelectNextBtn.setBorderPainted(false);
 		choiceSelectNextBtn.setBackground(new Color(255,255,255));
-	
+		choiceSelectNextBtn.setMargin(new Insets(0, -10, 0, -10));
+		
 		choiceSelectPrevBtn = new JButton();
 		choiceSelectPrevBtn.setIcon(new ImageIcon("img/daseul/longleft.png"));
 		choiceSelectPrevBtn.setBorderPainted(false);	
 		choiceSelectPrevBtn.setBackground(new Color(255,255,255));
+		choiceSelectPrevBtn.setMargin(new Insets(0, -10, 0, -10));
 		
 		choiceSelectCoffee = new ChoiceSelectCoffee(this);
 	

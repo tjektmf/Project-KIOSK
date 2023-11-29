@@ -29,7 +29,7 @@ public class ChoiceFrameBuyList extends JPanel {
         button.setIcon(new ImageIcon(iconPath));
         button.setBorderPainted(false);
         button.setBackground(new Color(255, 255, 255));
-        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setMargin(new Insets(0, -15, 0, -15));
         return button;
     }
 
