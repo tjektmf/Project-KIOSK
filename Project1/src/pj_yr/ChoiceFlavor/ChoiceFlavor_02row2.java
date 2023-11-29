@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
+// 
 public class ChoiceFlavor_02row2 extends JPanel {
     private JPanel cardPanel;
     private CardLayout cardLayout;

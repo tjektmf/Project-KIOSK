@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-
+//
 public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 	private static final int MAX_BUTTONS = 6;
 	private FlavorButton[] flavorButtons;
@@ -74,7 +74,6 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 	        flavorButtons[i].setPreferredSize(new Dimension(90, 110));
 	        flavorButtons[i].setEnabled(false);
 
-	        // Set the client property with the flavorName
 	        flavorButtons[i].putClientProperty("flavorName", i);
 
 	        flavorButtons[i].addActionListener(new ButtonClickListener(i, 0));
@@ -98,7 +97,6 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 				button.setEnabled(true);
 				
 	            // Flavor 이름 저장
-	            
 				addCount++;
 				selectedImagesIndex[flavorName] = addCount;
 				System.out.print("addButton : " + selectedImagesIndex[flavorName]);

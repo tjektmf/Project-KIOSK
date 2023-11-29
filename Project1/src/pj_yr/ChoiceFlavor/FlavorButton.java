@@ -1,7 +1,7 @@
 package pj_yr.ChoiceFlavor;
 
 import javax.swing.JButton;
-
+//
 public class FlavorButton extends JButton {
     private int flavorName;
 

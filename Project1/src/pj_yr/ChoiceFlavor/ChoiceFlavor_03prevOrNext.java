@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
-
+//
 public class ChoiceFlavor_03prevOrNext extends JPanel {
     Color beskinColor = new Color(236, 108, 165);
     
