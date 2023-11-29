@@ -43,6 +43,7 @@ public class AdminPage extends JFrame {
                 JButton button = new JButton(new ImageIcon(originalImage));
                 //button.setText(buttonNames[i]);
                 button.addActionListener(new ButtonListener(buttonNames[i]));
+                button.setBorderPainted(false);
                 add(button);
                 
             } catch (IOException e) {
