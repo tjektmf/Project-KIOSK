@@ -1,8 +1,8 @@
 package pj.admin;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class AdminPage extends JFrame {
 	
@@ -25,11 +26,18 @@ public class AdminPage extends JFrame {
 
 	public AdminPage() {
 		// 화면구성
-		 setLayout(new GridLayout(4,2));
+		 setLayout(new GridLayout(5,1));
+		JPanel empty = new JPanel();
+		empty.setBackground(Color.white);
+		JLabel adminLabel = new JLabel();
+		adminLabel.setText("관리자페이지");
+		adminLabel.setFont(new Font("맑은 고딕",Font.BOLD,20));
+		empty.add(adminLabel);
+		add(empty);
 
         // Button names
-        String[] buttonNames = {"OrderPage", "CustomerPage", "RanksPage", "MadeBy"};
-        String[] imgPath = {"img/hyemi/orderpage.png","img/hyemi/customerpage.png","img/hyemi/rankspage.png","img/hyemi/madeby.png"};
+        String[] buttonNames = {"OrderPage", "CustomerPage", "MadeBy"};
+        String[] imgPath = {"img/hyemi/orderpage.png","img/hyemi/customerpage.png","img/hyemi/madeby.png"};
 //        JPanel panel1 = new JPanel();
 //        panel1.setSize(150,200);
 //        add(panel1);
@@ -50,7 +58,8 @@ public class AdminPage extends JFrame {
                 e.printStackTrace();
             }
         }
-       
+        JPanel empty1 = new JPanel();
+        add(empty1);
 		setSize(555, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
