@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 
 import database.JdbcConnection;
 
@@ -41,9 +40,18 @@ public class OrderPage extends JFrame {
 		orderDataList = getOrderData();
 		currentPage = 0;
 
-		orderTextArea = new JTextArea(40, 60); // 40 텍스트영역 행의수 / 60 텍스트영역 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
+		orderTextArea = new JTextArea(40, 30); // 행의수 / 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
 		orderTextArea.setEnabled(false);
 
+		JButton adminPageBtn = new JButton("관리자화면");
+		adminPageBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AdminPage();	
+			}
+			
+		});
+		
 		JButton searchButton = new JButton("검색");
 		searchButton.addActionListener(new ActionListener() {
 			@Override
@@ -74,7 +82,7 @@ public class OrderPage extends JFrame {
 		JPanel PanelBtn = new JPanel();
 		PanelBtn.add(prevPageBtn);
 		PanelBtn.add(nextPageBtn);
-		PanelBtn.add(searchButton);
+		PanelBtn.add(adminPageBtn, BorderLayout.PAGE_END);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JScrollPane scrollPane = new JScrollPane(orderTextArea);
