@@ -45,6 +45,7 @@ public class PointButton extends JFrame {
 	JPanel panel7ordertf = new JPanel(new BorderLayout(20, 20));
 	JPanel panel7ordertf2 = new JPanel(new BorderLayout(20, 20));
 	JPanel panel7ordertf3 = new JPanel(new BorderLayout(20, 20));
+	JTextField totalPrice = new JTextField();
 	JPanel panel7mainPanel = new JPanel(new BorderLayout());
 	JTextField panel8tf = new JTextField(30);
 	ChoiceFrameBuyList choiceFrameBuyList;
@@ -945,7 +946,9 @@ public class PointButton extends JFrame {
 
 						panel5tf2.setText(
 								Integer.toString(choiceFramePrice.SAVED_PRICE() - Integer.parseInt(membership_point)));
-
+						
+						totalPrice.setText("최종 가격 : " + Integer.toString(choiceFramePrice.SAVED_PRICE() - Integer.parseInt(membership_point)));
+						
 					}
 					rs.close();
 					pstmt.close();
@@ -1485,14 +1488,17 @@ public class PointButton extends JFrame {
 			}
 		});
 
-		JTextField totalPrice = new JTextField();
+		
 		totalPrice.add(orderList8[0]);
 
 		panel7.add(totalPrice);
 		totalPrice.setLocation(60, 720);
-		totalPrice.setSize(160, 60);
-		totalPrice.setText("전체 가격 : " + Integer.toString(choiceFramePrice.SAVED_PRICE()));
+		totalPrice.setSize(280, 60);
+		totalPrice.setText("최종 가격 : " + Integer.toString(choiceFramePrice.SAVED_PRICE()));
 		totalPrice.setHorizontalAlignment(JTextField.CENTER);
+		
+	
+		
 		panel7mainPanel.setLocation(40, 300);
 		panel7mainPanel.setSize(450, 400);
 		panel7waittf.setLocation(135, 215);
