@@ -56,6 +56,15 @@ public class CustomerInformation extends JFrame {
 				showAllCustomerData();
 			}
 		});
+		
+		JButton adminPageBtn = new JButton("관리자화면");
+		adminPageBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AdminPage();	
+			}
+			
+		});
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(236, 108, 165));
@@ -71,6 +80,7 @@ public class CustomerInformation extends JFrame {
 
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.add(showAllButton, BorderLayout.SOUTH);
+		bottomPanel.add(adminPageBtn, BorderLayout.PAGE_END);
 
 		add(mainPanel, BorderLayout.CENTER);
 		add(bottomPanel, BorderLayout.SOUTH); 

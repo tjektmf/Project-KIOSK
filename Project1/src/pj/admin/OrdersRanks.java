@@ -18,6 +18,7 @@ public class OrdersRanks extends JFrame {
 	private Map<String, Integer> orderRanks;
 	// 1> 랭킹확인버튼 누르기전에 현재 랭크대로 정리되어있는 페이지 보여져야하고
 	// 2> 상단 패널에 있는 랭킹확인 버튼 클릭하면 해당 날짜로 업데이트해서 보여져야한다
+	
 
 	public OrdersRanks() {
 		setTitle("BR31 Ranks");

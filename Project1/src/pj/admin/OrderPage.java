@@ -1,6 +1,7 @@
 package pj.admin;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -42,7 +43,8 @@ public class OrderPage extends JFrame {
 		orderDataList = getOrderData();
 		currentPage = 0;
 
-		orderTextArea = new JTextArea(40, 30); // 행의수 / 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
+		orderTextArea = new JTextArea(30, 30); // 행의수 / 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
+		orderTextArea.setFont(new Font("맑은고딕", Font.BOLD, 18));
 		orderTextArea.setEnabled(false);
 
 		JButton adminPageBtn = new JButton("관리자화면");
@@ -108,8 +110,7 @@ HORIZONTAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
 
 https://blog.naver.com/sks6624/150165616213
 
-*/
-		
+*/		
 		mainPanel.add(scrollPane);
 		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
 
@@ -206,9 +207,9 @@ https://blog.naver.com/sks6624/150165616213
 					ResultSet resultSet = pstmt.executeQuery()) {
 
 				while (resultSet.next()) {
-					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + ", 메뉴: "
-							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + ", 총 가격: "
-							+ resultSet.getInt("total_price") + ", 주문 일자: " + resultSet.getDate("receipt_date");
+					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + "\n 메뉴: "
+							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + "\n 총 가격: "
+							+ resultSet.getInt("total_price") + "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 
 					orderDataList.add(orderData);
 				}
@@ -254,10 +255,10 @@ https://blog.naver.com/sks6624/150165616213
 
 //					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
 				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
-	                            ", 메뉴: " + resultSet.getString("menu_name") +
+	                            "\n 메뉴: " + resultSet.getString("menu_name") +
 	                            ", 가격: " + resultSet.getInt("menu_price") +
-	                            ", 총 가격: " + resultSet.getInt("total_price") +
-	                            ", 주문 일자: " + resultSet.getDate("receipt_date");
+	                            "\n 총 가격: " + resultSet.getInt("total_price") +
+	                            "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 					orderDataList.add(orderData);
 				}
 			}

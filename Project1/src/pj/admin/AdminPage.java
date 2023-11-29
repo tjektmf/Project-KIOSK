@@ -1,6 +1,7 @@
 package pj.admin;
 
-import java.awt.GridLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +18,7 @@ public class AdminPage extends JFrame {
 
 	public AdminPage() {
 		// 화면구성
-		setLayout(new GridLayout(2, 2));
+		 setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 		
 		// 1. 기간 별 주문내역 (일간, 주간, 월간, 년간)
 		// 2. 회원별 포인트 사용내역 (기간별)
@@ -32,20 +33,19 @@ public class AdminPage extends JFrame {
             try {
                 BufferedImage originalImage = ImageIO.read(new File("img/hyemi/BRlogo.png"));
 
-                Image scaledImage = originalImage.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
+                Image scaledImage = originalImage.getScaledInstance(220, 210, Image.SCALE_SMOOTH);
 
                 JButton button = new JButton(new ImageIcon(scaledImage));
+//                button.setPreferredSize(new Dimension(240, 300));
+                button.setBackground(new Color(236, 108, 165));
                 button.setText(buttonNames[i]);
-                
                 button.addActionListener(new ButtonListener(buttonNames[i]));
                 add(button);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-     
-      
+       
 		setSize(555, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
