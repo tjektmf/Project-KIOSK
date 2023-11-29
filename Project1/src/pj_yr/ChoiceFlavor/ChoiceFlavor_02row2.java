@@ -29,7 +29,6 @@ import javax.swing.JPanel;
 
 import database.JdbcConnection;
 import pj.choice.ChoiceFrameBuyList;
-import pj.database.Connector;
 
 public class ChoiceFlavor_02row2 extends JPanel {
 	private JPanel cardPanel;

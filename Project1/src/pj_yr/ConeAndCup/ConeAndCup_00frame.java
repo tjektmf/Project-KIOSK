@@ -15,7 +15,8 @@ public class ConeAndCup_00frame extends JFrame {
     public ConeAndCup_00frame() {
         setTitle("ConeAndCup Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(540, 960);
+        setSize(555, 960);
+        setLocationRelativeTo(null);
 
         Color beskinColor = new Color(236, 108, 165);
 

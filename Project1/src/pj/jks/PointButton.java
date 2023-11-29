@@ -31,6 +31,7 @@ public class PointButton extends JFrame {
 		JFrame f = new JFrame("CardLayout Sample");
 		CardLayout card = new CardLayout();
 		f.setLayout(card);
+		
 		Color color = new Color(236, 108, 165);
 
 		JPanel panel1 = new JPanel(null);
@@ -1174,6 +1175,7 @@ public class PointButton extends JFrame {
 
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		f.setBounds(100, 100, 555, 960);
+		f.setLocationRelativeTo(null);
 		f.setVisible(true);
 	}
 

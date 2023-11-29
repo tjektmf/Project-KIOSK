@@ -26,7 +26,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import database.JdbcConnection;
-import pj.database.Connector;
 import pj.main.CategoryHome;
 import pj.main.IceCreamShopCover;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
@@ -109,7 +108,7 @@ public class ChoiceSelectIce extends JPanel {
 		}
 
 		try {
-			Connection conn = Connector.getConnection();
+			Connection conn = JdbcConnection.getConnection();
 			System.out.println(conn);
 			String sql = "select icecream_name, icecream_price, icecream_id from icecream";
 

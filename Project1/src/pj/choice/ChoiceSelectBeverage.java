@@ -25,7 +25,6 @@ import javax.swing.JPanel;
 
 import database.JdbcConnection;
 import pj.Coffee.Beverage_Options;
-import pj.database.Connector;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class ChoiceSelectBeverage extends JPanel {
@@ -106,7 +105,7 @@ public class ChoiceSelectBeverage extends JPanel {
 		}
 
 		try {
-			Connection conn = Connector.getConnection();
+			Connection conn = JdbcConnection.getConnection();
 			System.out.println(conn);
 			String sql = "select beverage_name, beverage_price from beverage";
 

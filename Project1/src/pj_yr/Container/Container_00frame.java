@@ -18,7 +18,8 @@ public class Container_00frame extends JFrame {
     public Container_00frame() {
         setTitle("Container Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(540, 960);
+        setSize(555, 960);
+        setLocationRelativeTo(null);
 
         Color beskinColor = new Color(236, 108, 165);
 
