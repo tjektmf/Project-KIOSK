@@ -17,17 +17,39 @@ import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import pj.choice.ChoiceFrameBuyList;
+import pj.choice.ChoiceFramePrice;
+
 public class PointButton extends JFrame {
 
-	static String membership_tel;
-
+	private static int SAVED_PRICE = 0;
+	String membership_tel;
+	String membership_point= "";
+	
+	JTextField panel4pointtf = new JTextField(30);
+	JTextField panel4currenttf = new JTextField(30);
+	JTextField panel1tf = new JTextField(30);
+	JTextField panel1tf2 = new JTextField(30);
+	JTextField panel5tf = new JTextField(30);
+	JTextField panel5tf2 = new JTextField(30);
+	JTextField panel7waittf = new JTextField(30);
+	JTextField panel7ordertf = new JTextField(30);
+	
+	ChoiceFrameBuyList choiceFrameBuyList;
+	ChoiceFramePrice choiceFramePrice;
+	
+	int guest = 203;
 	public PointButton() {
+		choiceFrameBuyList = choiceFrameBuyList.getInstance();
+//		choiceFramePrice = choiceFramePrice.getInstance();
+		
 		JFrame f = new JFrame("CardLayout Sample");
 		CardLayout card = new CardLayout();
 		f.setLayout(card);
@@ -41,7 +63,8 @@ public class PointButton extends JFrame {
 		JPanel panel5 = new JPanel(null);
 		JPanel panel6 = new JPanel(null);
 		JPanel panel7 = new JPanel(null);
-
+		JPanel panel8 = new JPanel(null);
+		
 		panel1.setBackground(color.white);
 		panel2.setBackground(Color.white);
 		panel3.setBackground(Color.white);
@@ -49,6 +72,7 @@ public class PointButton extends JFrame {
 		panel5.setBackground(Color.white);
 		panel6.setBackground(Color.white);
 		panel7.setBackground(Color.white);
+		panel8.setBackground(Color.white);
 
 		// panel 1부분
 		JLabel label1 = new JLabel("결제하기");
@@ -58,6 +82,8 @@ public class PointButton extends JFrame {
 		JLabel label5 = new JLabel("*사용하기: 포인트 보유시 사용가능합니다 (자동 적립).");
 		JLabel label6 = new JLabel("적립하기");
 		JLabel label7 = new JLabel("사용하기");
+		JLabel label8 = new JLabel("회원포인트");
+		JLabel label9 = new JLabel("결제");
 
 		label1.setBounds(30, 1, 300, 100);
 		label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
@@ -71,7 +97,11 @@ public class PointButton extends JFrame {
 		label5.setFont(new Font("맑음고딕체", Font.BOLD, 15));
 		label6.setBounds(58, 320, 420, 100);
 		label7.setBounds(190, 320, 420, 100);
-
+		label8.setBounds(70, 90, 145, 90);
+		label8.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+		label8.setForeground(Color.pink);
+		label9.setBounds(270, 90, 145, 90);
+		label9.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel1.add(label1);
 		panel1.add(label2);
 		panel1.add(label3);
@@ -79,22 +109,25 @@ public class PointButton extends JFrame {
 		panel1.add(label5);
 		panel1.add(label6);
 		panel1.add(label7);
+		panel1.add(label8);
+		panel1.add(label9);
 
-		JTextField panel1tf = new JTextField(30);
-		JTextField panel1tf2 = new JTextField(30);
-//	            }
 
-		// PANEL 1 최종결제 밑에 2 옆에
+
+		// tf 밑에 tf2 옆에
 		panel1tf.setLocation(10, 610);
 		panel1tf.setSize(500, 100);
 		panel1tf2.setLocation(280, 520);
 		panel1tf2.setSize(200, 40);
 		panel1.add(panel1tf);
 		panel1.add(panel1tf2);
-		//							처음에는 0
-		// PANEL1 에는   주문금액 - (포인트사용금액)  = 최종결제금액
-		// PANEL2 최종결제금액
-		
+//		System.out.println("결체장 불러온값" + choiceFramePrice.SAVED_PRICE());
+//		panel1tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE()  + "               -                " 
+//				+ "사용할 적립포인트     "  + membership_point);
+//		
+//		panel1tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE()));
+
+
 
 		JLabel pointLabel = new JLabel();
 		try {
@@ -119,21 +152,24 @@ public class PointButton extends JFrame {
 		}
 		pointLabel2.setHorizontalAlignment(JLabel.CENTER);
 
-		JButton btn1 = new JButton("회원포인트");
-		btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		btn1.setForeground(Color.pink);
-		btn1.setBackground(new Color(0, 0, 0, 0));
-		btn1.setBounds(30, 90, 145, 90);
-		JButton btn2 = new JButton("결제");
-		btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		btn2.setBackground(new Color(0, 0, 0, 0));
-		btn2.setBounds(270, 90, 145, 90);
+//		JButton btn1 = new JButton("회원포인트");
+//		btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+//		btn1.setForeground(Color.pink);
+//		btn1.setBackground(new Color(0, 0, 0, 0));
+//		btn1.setBounds(30, 90, 145, 90);
+//		JButton btn2 = new JButton("결제");
+//		btn2.setBorderPainted(false);
+//		btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+//		btn2.setBackground(new Color(0, 0, 0, 0));
+//		btn2.setBounds(270, 90, 145, 90);
 		JButton btn3 = new JButton();
 		btn3.add(pointLabel);
+		btn3.setBorderPainted(false);
 		btn3.setBackground(new Color(255, 255, 255));
 		btn3.setBounds(30, 270, 105, 120);
 		JButton btn4 = new JButton();
 		btn4.add(pointLabel2);
+		btn4.setBorderPainted(false);
 		btn4.setBackground(new Color(0, 0, 0, 0));
 		btn4.setBounds(160, 270, 105, 120);
 		JButton btn5 = new JButton("< 이전");
@@ -147,8 +183,8 @@ public class PointButton extends JFrame {
 		btn6.setForeground(Color.white);
 		btn6.setBackground(Color.pink);
 
-		panel1.add(btn1);
-		panel1.add(btn2);
+//		panel1.add(btn1);
+//		panel1.add(btn2);
 		panel1.add(btn3);
 		panel1.add(btn4);
 		panel1.add(btn5);
@@ -158,7 +194,7 @@ public class PointButton extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				btn3.setBackground(Color.pink);
-				card.show(f.getContentPane(), "2");
+				card.show(f.getContentPane(), "8");
 
 			}
 		});
@@ -173,7 +209,9 @@ public class PointButton extends JFrame {
 		btn6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+//				panel5tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE()  + "               -                " 
+//						+ "사용할 적립포인트     "  + membership_point);
+				
 				card.show(f.getContentPane(), "5");
 			}
 		});
@@ -469,8 +507,7 @@ public class PointButton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				card.show(f.getContentPane(), "1");
 				tf.setText("");
-				
-				btn3.setBackground(Color.white);
+
 				btn4.setBackground(Color.white);
 			}
 		});
@@ -483,8 +520,11 @@ public class PointButton extends JFrame {
 		panel2btn13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				panel4pointtf.setText("");
+				if (!tf.getText().equals("")) {
+					membership_tel = tf.getText().substring(1, tf.getText().length());
 
-				membership_tel = tf.getText().substring(1, tf.getText().length());
+				}
 				try {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 				} catch (ClassNotFoundException e1) {
@@ -493,17 +533,29 @@ public class PointButton extends JFrame {
 				try {
 					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
 							"1234");
-					String sql = "SELECT membership_tel FROM membership";
+					String sql = "SELECT * FROM membership";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
 
 					while (rs.next()) {
 						if (rs.getString("membership_tel").equals(membership_tel)) {
 							card.show(f.getContentPane(), "4");
+//							System.out.println("ㅇ : " + rs.getString("membership_tel"));
+							panel4currenttf.setText(Integer.toString(rs.getInt("membership_point")));
 							break;
 						} else {
 							card.show(f.getContentPane(), "3");
 						}
+//						panel4currenttf.setText("ddddddd22d");
+//						System.out.println("널널" + membership_tel);
+//						if (rs.getString("membership_tel").equals(membership_tel)) {
+//							System.out.println("ddd");
+////							if(membership_point> Integer.toString(rs.getInt("membership_point"))) {
+////								System.out.println("사용하고자하는 포인트가 현재 적립금보다 많습니다");
+////							}
+//							break;
+//						}
+//						System.out.printf(" %s \n", rs.getString("membership_tel"));
 					}
 					rs.close();
 					pstmt.close();
@@ -544,7 +596,7 @@ public class PointButton extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				tf.setText("");
 				card.show(f.getContentPane(), "2");
 			}
 		});
@@ -552,7 +604,6 @@ public class PointButton extends JFrame {
 		panel3.add(panel3label1);
 
 		// panel4 부분
-
 		JLabel p4numLabel1 = new JLabel();
 		try {
 			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/1.png"));
@@ -623,7 +674,7 @@ public class PointButton extends JFrame {
 			e.printStackTrace();
 		}
 		p4numLabel6.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		JLabel p4numLabel7 = new JLabel();
 		try {
 			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/7.png"));
@@ -696,62 +747,23 @@ public class PointButton extends JFrame {
 		}
 		p4cleLabel.setHorizontalAlignment(JLabel.CENTER);
 
-		JTextField panel4pointtf = new JTextField(30);
-		JTextField panel4currenttf = new JTextField(30);
+		
+
 		panel4pointtf.setLocation(80, 600);
 		panel4pointtf.setSize(330, 50);
 		panel4currenttf.setLocation(120, 700);
 		panel4currenttf.setSize(330, 50);
-		panel4.add( panel4pointtf);
+		panel4.add(panel4pointtf);
 		panel4.add(panel4currenttf);
-		if(tf.getText()=="") {
-		
-			System.out.println("널");
-		}else {
-			tf.setText("ddd");
-			membership_tel = tf.getText().substring(1, tf.getText().length());
-		}
-//		membership_point = tf.getText().substring(1, tf.getText().length());
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
-					"1234");
-			String sql = "SELECT * FROM membership";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				if (rs.getString("membership_tel").equals(membership_tel)) {
-					System.out.println("ㅇ : " + Integer.toString(rs.getInt("membership_point")));
-					panel4currenttf.setText(Integer.toString(rs.getInt("membership_point")));
-		//			panel4currenttf.repaint();
-					break;
-				}
-			}
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-	
-		// TOString Integer.;;;; 사용 
-		//멤버쉽 포인트 불러와서 현재적립금 나오게 하기 CURRNETTF에   >> 사용포인트 누르기 (사용포인트랑 멤버십포인트 비교 사용포인트가 멤버십포인트 보다 많으면 에러) 
-		// 확인 누르면 패널1 최종결재 금액이 바뀌게  (주문금액 - 사용포인트 = 최종가격);
-		
 
 		JLabel panel4label1 = new JLabel("적립포인트");
-		JLabel panel4label2 = new JLabel("포인트를 사용하시려면 버튼을 눌러주세요");
+		JLabel panel4label2 = new JLabel("포인트를 사용하시려면 확인버튼을 눌러주세요");
 		JLabel panel4label3 = new JLabel("현재 적립금");
 
 		panel4label1.setBounds(200, 20, 300, 100);
 		panel4label1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		panel4label2.setBounds(80, 130, 300, 100);
-		panel4label2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 15));
+		panel4label2.setBounds(80, 130, 400, 100);
+		panel4label2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 14));
 		panel4label3.setBounds(30, 680, 300, 100);
 		panel4label3.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 15));
 
@@ -902,7 +914,7 @@ public class PointButton extends JFrame {
 				btn4.setBackground(Color.white);
 			}
 		});
-		
+
 		JButton panel4btn13 = new JButton("확인");
 		panel4btn13.setBounds(155, 800, 350, 90);
 		panel4btn13.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
@@ -911,6 +923,39 @@ public class PointButton extends JFrame {
 		panel4btn13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				membership_point = panel4pointtf.getText();
+	
+				try {
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project", "1234");
+					String sql = "SELECT * FROM membership";
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery();
+					while (rs.next()) {
+//						 int currentMembershipPoint = rs.getInt("membership_point");
+//						 int userMembershipPoint = Integer.parseInt(membership_point);
+//						 if(userMembershipPoint > currentMembershipPoint) {
+//							panel4pointtf.setText("사용하고자하는 포인트가 보유포인트보다 많습니다");
+//							System.out.println("사용하고자하는 포인트가 보유포인트보다 많습니다");
+//							break;
+//						 }
+//						panel1tf.setText("총 주문금액    " + choiceFramePrice.SAVED_PRICE() + "                 -                " 
+//								+ "사용할 적립포인트     "  + membership_point);
+//						panel1tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE() - Integer.parseInt(membership_point)));
+//						panel5tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE() + "                 -                " 
+//								+ "사용할 적립포인트     "  + membership_point);
+//						
+//						panel5tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE() - Integer.parseInt(membership_point)));
+						
+					}
+					rs.close();
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+				
 
 				card.show(f.getContentPane(), "1");
 			}
@@ -936,15 +981,23 @@ public class PointButton extends JFrame {
 		// panel5 부분
 		JLabel panel5label1 = new JLabel("결제하기");
 		JLabel panel5label2 = new JLabel("최종결제금액");
+		JLabel panel5label3 = new JLabel("회원포인트");
+		JLabel panel5label4 = new JLabel("결제");
 		panel5label1.setBounds(30, 1, 300, 100);
 		panel5label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 		panel5label2.setBounds(30, 490, 300, 100);
 		panel5label2.setFont(new Font("맑음고딕체", Font.BOLD, 23));
+		panel5label3.setBounds(70, 90, 145, 90);
+		panel5label3.setFont(new Font("맑음고딕체", Font.BOLD, 18));
+		panel5label4.setBounds(270, 90, 145, 90);
+		panel5label4.setFont(new Font("맑음고딕체", Font.BOLD, 18));
+		panel5label4.setForeground(Color.pink);
 		panel5.add(panel5label1);
 		panel5.add(panel5label2);
+		panel5.add(panel5label3);
+		panel5.add(panel5label4);
 
-		JTextField panel5tf = new JTextField(30);
-		JTextField panel5tf2 = new JTextField(30);
+	
 
 		panel5tf.setLocation(10, 610);
 		panel5tf.setSize(500, 100);
@@ -954,16 +1007,12 @@ public class PointButton extends JFrame {
 
 		panel5.add(panel5tf);
 		panel5.add(panel5tf2);
+		
+//		panel5tf.setText("총 주문금액    " +  choiceFramePrice.SAVED_PRICE()  + "               -                " 
+//				+ "사용할 적립포인트     "  + membership_point);
+//		
+//		panel5tf2.setText(Integer.toString(choiceFramePrice.SAVED_PRICE()));
 
-		JButton panel5btn1 = new JButton("회원포인트");
-		panel5btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		panel5btn1.setBackground(new Color(0, 0, 0, 0));
-		panel5btn1.setBounds(30, 90, 145, 90);
-		JButton panel5btn2 = new JButton("결제");
-		panel5btn2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
-		panel5btn2.setForeground(Color.pink);
-		panel5btn2.setBackground(new Color(0, 0, 0, 0));
-		panel5btn2.setBounds(270, 90, 145, 90);
 
 		JLabel cashLabel = new JLabel();
 		try {
@@ -1010,10 +1059,13 @@ public class PointButton extends JFrame {
 		panel5btn5.setBounds(370, 240, 100, 90);
 
 		panel5btn3.add(cashLabel);
+		panel5btn3.setBorderPainted(false);
 		panel5btn3.setBackground(new Color(255, 255, 255));
 		panel5btn4.add(cashLabel2);
+		panel5btn4.setBorderPainted(false);
 		panel5btn4.setBackground(new Color(255, 255, 255));
 		panel5btn5.add(cashLabel3);
+		panel5btn5.setBorderPainted(false);
 		panel5btn5.setBackground(new Color(255, 255, 255));
 
 		panel5btn3.addActionListener(new ActionListener() {
@@ -1067,8 +1119,8 @@ public class PointButton extends JFrame {
 			}
 		});
 
-		panel5.add(panel5btn1);
-		panel5.add(panel5btn2);
+//		panel5.add(panel5btn1);
+//		panel5.add(panel5btn2);
 		panel5.add(panel5btn3);
 		panel5.add(panel5btn4);
 		panel5.add(panel5btn5);
@@ -1100,8 +1152,24 @@ public class PointButton extends JFrame {
 		panel6btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+//				for(int i =0; i<9; i++) {
+//				panel7ordertf.setText(choiceFrameBuyList.SAVED_BUYLIST1(i).getText() + 
+//						choiceFrameBuyList.SAVED_BUYLIST2(i).getText() 
+//						+ choiceFrameBuyList.SAVED_BUYLIST3(i).getText()
+//						+ choiceFrameBuyList.SAVED_BUYLIST4(i).getText());
+//				}
+			
+//				panel7ordertf.setText(choiceFrameBuyList.SAVED_BUYLIST1(0).getText() + 
+//						choiceFrameBuyList.SAVED_BUYLIST2(0).getText()+
+//						choiceFrameBuyList.SAVED_BUYLIST3(0).getText()+ 
+//						choiceFrameBuyList.SAVED_BUYLIST1(1).getText()+
+//						choiceFrameBuyList.SAVED_BUYLIST2(1).getText() 
+//						
+//						);
+		
+				panel7waittf.setText(Integer.toString(guest++));
 				card.show(f.getContentPane(), "7");
+
 			}
 		});
 		JButton panel6btn2 = new JButton("이전");
@@ -1131,7 +1199,7 @@ public class PointButton extends JFrame {
 		JLabel panel7label2 = new JLabel("결제 내역을 확인하시고 카드를 꼭 회수해주세요 ");
 		panel7label2.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 15));
 		panel7label2.setBounds(70, 80, 400, 100);
-		JLabel panel7label3 = new JLabel("대기 번호 ");
+		JLabel panel7label3 = new JLabel("주문 번호 ");
 		panel7label3.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel7label3.setBounds(180, 140, 300, 100);
 		JLabel panel7label4 = new JLabel("결제내역");
@@ -1140,31 +1208,376 @@ public class PointButton extends JFrame {
 		panel7.add(panel7label);
 		panel7.add(panel7label2);
 		panel7.add(panel7label3);
-		panel7.add(panel7label4);	
+		panel7.add(panel7label4);
 
-		JTextField panel7waittf = new JTextField(30);
-		JTextField panel7ordertf = new JTextField(30);
-		panel7waittf.setLocation(10, 440);
-		panel7waittf.setSize(500, 300);
-		panel7ordertf.setLocation(135, 215);
-		panel7ordertf.setSize(180, 60);
+		panel7ordertf.setLocation(10, 440);
+		panel7ordertf.setSize(500, 300);
+		panel7waittf.setLocation(135, 215);
+		panel7waittf.setSize(180, 60);
 		panel7.add(panel7waittf);
 		panel7.add(panel7ordertf);
-		
-		
-		
-		// waittf에 대기번호 출력      ordertf에 주문 내역 적립금 내역 출력 
-		
 
+		// waittf에 대기번호 출력 ordertf에 주문 내역 적립금 내역 출력
 		JButton panel7btn1 = new JButton("확인");
 		panel7btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel7btn1.setBounds(155, 800, 350, 90);
 		panel7btn1.setForeground(Color.white);
 		panel7btn1.setBackground(Color.pink);
 		add(panel7btn1);
-
-
 		panel7.add(panel7btn1);
+		
+		// panel 8부분
+		JTextField panel8tf = new JTextField(30);
+		panel8tf.setLocation(100, 700);
+		panel8tf.setSize(330, 50);
+		panel8.add(panel8tf);
+		JLabel panel8label1 = new JLabel("회원번호 입력해주세요");
+		panel8label1.setBounds(30, 50, 300, 100);
+		panel8label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
+		panel8.add(panel8label1);
+
+		JLabel panel8numLabel1 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/1.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel1.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel1.setHorizontalAlignment(JLabel.CENTER);
+
+		JLabel panel8numLabel2 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/2.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel2.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel2.setHorizontalAlignment(JLabel.CENTER);
+
+		JLabel panel8numLabel3 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/3.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(80, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel3.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel3.setHorizontalAlignment(JLabel.CENTER);
+		JLabel panel8numLabel4 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/4.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel4.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel4.setHorizontalAlignment(JLabel.CENTER);
+
+		JLabel panel8numLabel5 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/5.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel5.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel5.setHorizontalAlignment(JLabel.CENTER);
+
+		JLabel panel8numLabel6 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/6.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel6.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel6.setHorizontalAlignment(JLabel.CENTER);
+		JLabel panel8numLabel7 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/7.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel7.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel7.setHorizontalAlignment(JLabel.CENTER);
+		JLabel panel8numLabel8 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/8.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel8.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel8.setHorizontalAlignment(JLabel.CENTER);
+		JLabel panel8numLabel9 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/9.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel9.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel9.setHorizontalAlignment(JLabel.CENTER);
+
+		JLabel panel8numLabel0 = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/0.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(100, 90, Image.SCALE_SMOOTH);
+
+			panel8numLabel0.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8numLabel0.setHorizontalAlignment(JLabel.CENTER);
+
+		JLabel panel8backLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/취소.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+
+			panel8backLabel.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8backLabel.setHorizontalAlignment(JLabel.CENTER);
+
+		JLabel panel8cleLabel = new JLabel();
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/reset.jpg"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(60, 90, Image.SCALE_SMOOTH);
+
+			panel8cleLabel.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		panel8cleLabel.setHorizontalAlignment(JLabel.CENTER);
+
+		JButton panel8btn0 = new JButton();
+		JButton panel8btn1 = new JButton();
+		JButton panel8btn2 = new JButton();
+		JButton panel8btn3 = new JButton();
+		JButton panel8btn4 = new JButton();
+		JButton panel8btn5 = new JButton();
+		JButton panel8btn6 = new JButton();
+		JButton panel8btn7 = new JButton();
+		JButton panel8btn8 = new JButton();
+		JButton panel8btn9 = new JButton();
+		JButton panel8btn10 = new JButton();
+		JButton panel8btn11 = new JButton();
+
+		panel8btn1.add(panel8numLabel1);
+		panel8btn2.add(panel8numLabel2);
+		panel8btn3.add(panel8numLabel3);
+		panel8btn4.add(panel8numLabel4);
+		panel8btn5.add(panel8numLabel5);
+		panel8btn6.add(panel8numLabel6);
+		panel8btn7.add(panel8numLabel7);
+		panel8btn8.add(panel8numLabel8);
+		panel8btn9.add(panel8numLabel9);
+		panel8btn0.add(panel8numLabel0);
+		panel8btn10.add(panel8cleLabel);
+		panel8btn11.add(panel8backLabel);
+		panel8btn0.setBounds(200, 500, 100, 90);
+		panel8btn0.setBackground(new Color(255, 255, 255));
+		panel8btn1.setBounds(80, 200, 100, 90);
+		panel8btn1.setBackground(new Color(255, 255, 255));
+		panel8btn2.setBounds(200, 200, 100, 90);
+		panel8btn2.setBackground(new Color(255, 255, 255));
+		panel8btn3.setBounds(320, 200, 100, 90);
+		panel8btn3.setBackground(new Color(255, 255, 255));
+		panel8btn4.setBounds(80, 300, 100, 90);
+		panel8btn4.setBackground(new Color(255, 255, 255));
+		panel8btn5.setBounds(200, 300, 100, 90);
+		panel8btn5.setBackground(new Color(255, 255, 255));
+		panel8btn6.setBounds(320, 300, 100, 90);
+		panel8btn6.setBackground(new Color(255, 255, 255));
+		panel8btn7.setBounds(80, 400, 100, 90);
+		panel8btn7.setBackground(new Color(255, 255, 255));
+		panel8btn8.setBounds(200, 400, 100, 90);
+		panel8btn8.setBackground(new Color(255, 255, 255));
+		panel8btn9.setBounds(320, 400, 100, 90);
+		panel8btn9.setBackground(new Color(255, 255, 255));
+		panel8btn10.setBounds(80, 500, 100, 90);
+		panel8btn10.setBackground(new Color(255, 255, 255));
+		panel8btn11.setBounds(320, 500, 100, 90);
+		panel8btn11.setBackground(new Color(255, 255, 255));
+
+		panel8btn0.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "0");
+			}
+		});
+
+		panel8btn1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "1");
+			}
+		});
+
+		panel8btn2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "2");
+			}
+		});
+		panel8btn3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "3");
+			}
+		});
+		panel8btn4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "4");
+			}
+		});
+		panel8btn5.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "5");
+			}
+		});
+		panel8btn6.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "6");
+			}
+		});
+
+		panel8btn7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "7");
+			}
+		});
+		panel8btn8.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "8");
+			}
+		});
+
+		panel8btn9.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText() + "9");
+			}
+		});
+
+		panel8btn10.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText("");
+			}
+		});
+
+		panel8btn11.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel8tf.setText(panel8tf.getText().substring(0, panel8tf.getText().length() - 1));
+			}
+		});
+
+		JButton panel8btn12 = new JButton("이전");
+		panel8btn12.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+		panel8btn12.setBounds(30, 800, 100, 90);
+		panel8btn12.setForeground(Color.pink);
+		panel8btn12.setBackground(Color.white);
+		panel8btn12.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				card.show(f.getContentPane(), "1");
+				panel8tf.setText("");
+
+				btn3.setBackground(Color.white);
+	
+			}
+		});
+
+		JButton panel8btn13 = new JButton("입력 완료");
+		panel8btn13.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+		panel8btn13.setBounds(155, 800, 350, 90);
+		panel8btn13.setForeground(Color.white);
+		panel8btn13.setBackground(Color.pink);
+		panel8btn13.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (!panel8tf.getText().equals("")) {
+					membership_tel = panel8tf.getText().substring(1, panel8tf.getText().length());
+
+				}
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
+							"1234");
+					String sql = "SELECT * FROM membership";
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery();
+
+					while (rs.next()) {
+						if (rs.getString("membership_tel").equals(membership_tel)) {
+							card.show(f.getContentPane(), "1");
+							break;
+						} else {
+							card.show(f.getContentPane(), "3");
+						}
+					}
+					rs.close();
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		panel8.add(panel8btn0);
+		panel8.add(panel8btn1);
+		panel8.add(panel8btn2);
+		panel8.add(panel8btn3);
+		panel8.add(panel8btn4);
+		panel8.add(panel8btn5);
+		panel8.add(panel8btn6);
+		panel8.add(panel8btn7);
+		panel8.add(panel8btn8);
+		panel8.add(panel8btn9);
+		panel8.add(panel8btn10);
+		panel8.add(panel8btn11);
+		panel8.add(panel8btn12);
+		panel8.add(panel8btn13);
+	
 		f.add("1", panel1);
 		f.add("2", panel2);
 		f.add("3", panel3);
@@ -1172,11 +1585,19 @@ public class PointButton extends JFrame {
 		f.add("5", panel5);
 		f.add("6", panel6);
 		f.add("7", panel7);
+		f.add("8", panel8);
+		
+		
 
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		f.setBounds(100, 100, 555, 960);
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+	}
+
+	private String SAVED_PRICE() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public static void main(String[] args) {
