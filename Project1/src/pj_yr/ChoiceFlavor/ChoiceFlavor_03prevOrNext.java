@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -43,8 +44,8 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         addButton.setPreferredSize(new Dimension(350, 30));
         addButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         addButton.addActionListener(e -> {
-        	ChoiceFlavor_02row2.getSelectedFlavorNames();
-        	System.out.println(ChoiceFlavor_02row2.getSelectedFlavorNames());
+        	ChoiceFlavor_02row2.getSelectedFlavorNames().stream().distinct().collect(Collectors.toList());;
+        	System.out.println(ChoiceFlavor_02row2.getSelectedFlavorNames().stream().distinct().collect(Collectors.toList()));
         });
         add(addButton, BorderLayout.CENTER);
 

@@ -28,7 +28,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
     private ChoiceFlavor_04showFlavorSelections showFlavorSelections;
     private ChoiceFlavor_03prevOrNext row3; // row3 추가
     private static List<String> selectedFlavorName = new ArrayList<>();
-    public Map<Integer, String> flavorIdMap = new HashMap<>();
+    public static Map<Integer, String> flavorIdMap = new HashMap<>();
 
 
     public ChoiceFlavor_02row2(ChoiceFlavor_00frame frame, ChoiceFlavor_04showFlavorSelections showFlavorSelections) {
@@ -123,7 +123,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
                 imageButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        addFlavorSelection(imageIcon, flavorName);
+                    	showFlavorSelections.addFlavor(imageIcon, flavorName);
                         selectedFlavorName.add(flavorIdMap.get(flavorName));
                     }
                 });
@@ -143,15 +143,19 @@ public class ChoiceFlavor_02row2 extends JPanel {
     public void changePanel(int direction) {
         cardLayout.next(cardPanel);
     }
-
-    private void addFlavorSelection(ImageIcon imageIcon, int flavorName) {
-        showFlavorSelections.addFlavor(imageIcon, flavorName);
-    }
     
+//    public static List<String> getSelectedFlavorNames() {
+//    	return selectedFlavorName;
+//    }	
+
     public static List<String> getSelectedFlavorNames() {
-        List<String> newList = selectedFlavorName.stream().distinct().collect(Collectors.toList());
-    	return newList;
-    }	
+        return new ArrayList<>(selectedFlavorName);
+     }
+
+//    public static List<String> getnewList() {
+//        List<String> newList = selectedFlavorName.stream().distinct().collect(Collectors.toList());
+//    	return newList;
+//    }	
 
 
 }
