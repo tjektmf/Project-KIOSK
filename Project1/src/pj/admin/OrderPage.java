@@ -92,25 +92,7 @@ public class OrderPage extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(orderTextArea);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-/*
-void setVerticalScrollBarPolicy(int), int getVerticalScrollBarPolicy()
-수직 방향의 정책을 설정하거나 읽어온다. 
-
-VERTICAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
-VERTICAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
-VERTICAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
-
-
-void setHorizontalScrollBarPolicy(int), int getHorizontalScrollBarPolicy()
-수평 방향의 정책을 설정하거나 읽어온다.
-
-HORIZONTAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
-HORIZONTAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
-HORIZONTAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
-
-https://blog.naver.com/sks6624/150165616213
-
-*/		
+		
 		mainPanel.add(scrollPane);
 		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
 
@@ -128,9 +110,10 @@ https://blog.naver.com/sks6624/150165616213
 	}
 
 	private void showNextPage() {
+		// 주문 5개 이하만 보이게 
 		int ordersPerPage = 5; // 한 페이지에 표시할 주문 수
 		int startIndex = currentPage * ordersPerPage;
-		int endIndex = Math.min((currentPage + 1) * ordersPerPage, orderDataList.size());
+		int endIndex = Math.min((currentPage + 1) * ordersPerPage, orderDataList.size()); // 둘 중 작은 수
 
 		StringBuilder pageText = new StringBuilder();
 		for (int i = startIndex; i < endIndex; i++) {
@@ -167,7 +150,7 @@ https://blog.naver.com/sks6624/150165616213
 		orderTextArea.setText(pageText.toString());
 	}
 
-	// 선택된 기간에 따라 주문 내역을 조회하고, 그 결과를 GUI에 표시
+	// 선택된 기간에 따라 주문 내역을 조회
 	private void showOrdersByPeriod() {
 		orderDataList = getOrderDataByPeriod(selectedPeriod);
 		currentPage = 0;
@@ -175,7 +158,7 @@ https://blog.naver.com/sks6624/150165616213
 	}
 
 	private List<String> getOrderDataByPeriod(String period) {
-		// 선택된 기간에 따라 데이터를 가져오는 메서드
+		// 선택된 기간에 따라
 		List<String> orderDataList = new ArrayList<>();
 
 		try (Connection conn = JdbcConnection.getConnection()) {
@@ -215,12 +198,11 @@ https://blog.naver.com/sks6624/150165616213
 				}
 			}
 
-		} catch (
-
-		SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
 			System.err.println("Error: " + e.getMessage());
+			e.printStackTrace();
 		}
+		
 		return orderDataList;
 
 	}
@@ -259,14 +241,17 @@ https://blog.naver.com/sks6624/150165616213
 	                            ", 가격: " + resultSet.getInt("menu_price") +
 	                            "\n 총 가격: " + resultSet.getInt("total_price") +
 	                            "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
+				     
 					orderDataList.add(orderData);
 				}
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.err.println("Error : " + e.getMessage());
+		    System.err.println("에러: " + e.getMessage());
+		    e.printStackTrace();
 		}
+
+	
 		return orderDataList;
 
 	}
@@ -276,3 +261,23 @@ https://blog.naver.com/sks6624/150165616213
 	}
 
 }
+
+/*
+void setVerticalScrollBarPolicy(int), int getVerticalScrollBarPolicy()
+수직 방향의 정책을 설정하거나 읽어온다. 
+
+VERTICAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
+VERTICAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
+VERTICAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
+
+
+void setHorizontalScrollBarPolicy(int), int getHorizontalScrollBarPolicy()
+수평 방향의 정책을 설정하거나 읽어온다.
+
+HORIZONTAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
+HORIZONTAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
+HORIZONTAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
+
+https://blog.naver.com/sks6624/150165616213
+
+*/
