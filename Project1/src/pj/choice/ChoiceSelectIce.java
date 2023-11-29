@@ -164,12 +164,12 @@ public class ChoiceSelectIce extends JPanel {
 												if (nameArr[i].getText().contains(rs.getString("icecream_name"))) {
 													choiceFrameBuyList.SAVED_BUYLIST1[k]
 															.setText(rs.getString("icecream_name"));
-//													choiceFrameBuyList.SAVED_BUYLIST2[k]
-//															.setText(Integer.toString(rs.getInt("icecream_price")));
+													choiceFrameBuyList.SAVED_BUYLIST7[k]
+															.setText(Integer.toString(rs.getInt("icecream_price")));
 												}
 
 											}
-											
+
 											rs.close();
 											conn.close();
 
@@ -184,7 +184,7 @@ public class ChoiceSelectIce extends JPanel {
 								}
 							}
 						}
-						
+
 						System.out.println("아이스크림 크기배열 : " + Arrays.toString(choiceFrameBuyList.ICECREAM_SIZE));
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();

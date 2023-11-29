@@ -170,6 +170,8 @@ public class ChoiceSelectCoffee extends JPanel {
 												if (nameArr[i].getText().contains(rs.getString("coffee_name"))) {
 													choiceFrameBuyList.SAVED_BUYLIST1[k]
 															.setText(rs.getString("coffee_name"));
+													choiceFrameBuyList.SAVED_BUYLIST7[k]
+															.setText(rs.getString("coffee_price"));
 													listNum = k;
 
 												}

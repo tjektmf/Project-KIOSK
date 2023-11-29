@@ -97,6 +97,9 @@ public class ChoiceFramePrice extends JPanel {
 	CardLayout priceCard = new CardLayout(10, 0);
 
 	public ChoiceFramePrice() {
+		
+		categoryHome = CategoryHome.getInstance();
+		
 		System.out.println("ChoiceFramePrice : " + this);
 		JLabel test = new JLabel();
 		test.setIcon(new ImageIcon("img/daseul/show.png"));
@@ -119,6 +122,7 @@ public class ChoiceFramePrice extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				categoryHome.f.setVisible(false);
 				System.out.println("결제 ㄱㄱ");
 				new PointButton();
 			}
