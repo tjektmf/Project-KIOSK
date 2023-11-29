@@ -27,7 +27,7 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 	private FlavorButton[] flavorButtons;
 	private Map<Integer, String> flavorIdMap;
 	private ImageIcon selectedIcon;
-	private int[] selectedImagesIndex = new int[29];
+	private int[] selectedImagesIndex = new int[1000];
 	private int addCount = 0;
 
 	public ChoiceFlavor_04showFlavorSelections() {
