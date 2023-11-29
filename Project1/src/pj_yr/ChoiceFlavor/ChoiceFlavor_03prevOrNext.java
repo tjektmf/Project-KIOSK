@@ -44,7 +44,7 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
         addButton.setPreferredSize(new Dimension(350, 30));
         addButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         addButton.addActionListener(e -> {
-        	ChoiceFlavor_02row2.getSelectedFlavorNames().stream().distinct().collect(Collectors.toList());;
+        	ChoiceFlavor_02row2.getSelectedFlavorNames().stream().distinct().collect(Collectors.toList());
         	System.out.println(ChoiceFlavor_02row2.getSelectedFlavorNames().stream().distinct().collect(Collectors.toList()));
         	ChoiceFlavor_02row2.getSelectedFlavorNames().clear();
         

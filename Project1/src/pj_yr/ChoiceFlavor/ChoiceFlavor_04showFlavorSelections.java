@@ -27,22 +27,18 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 	private FlavorButton[] flavorButtons;
 	private Map<Integer, String> flavorIdMap;
 	private ImageIcon selectedIcon;
-	private int[] selectedImagesIndex = new int[1000];
-	private int addCount = 0;
 
 	public ChoiceFlavor_04showFlavorSelections() {
 		setLayout(new GridLayout(1, MAX_BUTTONS));
 		initializeButtons();
 	}
 
-	// 하 또 깃충돌
 	
 	private class ButtonClickListener implements ActionListener {
         private int addCount;
         private int flavorName;
 
-        public ButtonClickListener(int addCount, int flavorName) {
-            this.addCount = addCount;
+        public ButtonClickListener(int flavorName) {
             this.flavorName = flavorName;
         }
 
@@ -57,8 +53,6 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 
             System.out.println("Clicked Flavor Name: " + flavorName);
             System.out.println("Clicked Add Count: " + addCount);
-
-            int[] selectedImagesIndex = ChoiceFlavor_04showFlavorSelections.this.selectedImagesIndex;
 
             List<String> selectedFlavorName = ChoiceFlavor_02row2.getSelectedFlavorNames();
             ChoiceFlavor_02row2.removeSelectedFlavor(flavorName);
@@ -76,7 +70,7 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 
 	        flavorButtons[i].putClientProperty("flavorName", i);
 
-	        flavorButtons[i].addActionListener(new ButtonClickListener(i, 0));
+	        flavorButtons[i].addActionListener(new ButtonClickListener(0));
 	        add(flavorButtons[i]);
 	    }
 	}
@@ -86,9 +80,6 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 	// 여기서 처음에 addButton할때 button에 해당하는 flavorName을 넣고 다른 메서드에서 꺼낼수 있도록 하는 어떤 방법이 있을까?
 
 	public void addFlavor(ImageIcon imageIcon, int flavorName) {
-		for (int i = 0; i < selectedImagesIndex.length; i++) {
-			selectedImagesIndex[i] = -1;
-		}
 
 		for (JButton button : flavorButtons) {
 			if (!button.isEnabled()) {
@@ -97,13 +88,10 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 				button.setEnabled(true);
 				
 	            // Flavor 이름 저장
-				addCount++;
-				selectedImagesIndex[flavorName] = addCount;
-				System.out.print("addButton : " + selectedImagesIndex[flavorName]);
 				System.out.println(", flavorName : " + flavorName);
 
 	            // ActionListener에 flavorName 전달
-	            button.addActionListener(new ButtonClickListener(addCount, flavorName));
+	            button.addActionListener(new ButtonClickListener(flavorName));
 
 				break;
 			}

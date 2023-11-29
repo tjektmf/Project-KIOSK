@@ -144,18 +144,10 @@ public class ChoiceFlavor_02row2 extends JPanel {
         cardLayout.next(cardPanel);
     }
     
-//    public static List<String> getSelectedFlavorNames() {
-//    	return selectedFlavorName;
-//    }	
 
     public static List<String> getSelectedFlavorNames() {
         return new ArrayList<>(selectedFlavorName);
      }
-
-//    public static List<String> getnewList() {
-//        List<String> newList = selectedFlavorName.stream().distinct().collect(Collectors.toList());
-//    	return newList;
-//    }	
 
 
     public static void removeSelectedFlavor(int flavorName) {
