@@ -70,7 +70,7 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
 	    flavorButtons = new FlavorButton[MAX_BUTTONS];
 
 	    for (int i = 0; i < MAX_BUTTONS; i++) {
-	        flavorButtons[i] = new FlavorButton("메뉴" + (i + 1), i);
+	        flavorButtons[i] = new FlavorButton(i);
 	        flavorButtons[i].setPreferredSize(new Dimension(90, 110));
 	        flavorButtons[i].setEnabled(false);
 

@@ -5,8 +5,7 @@ import javax.swing.JButton;
 public class FlavorButton extends JButton {
     private int flavorName;
 
-    public FlavorButton(String text, int flavorName) {
-        super(text);
+    public FlavorButton(int flavorName) {
         this.flavorName = flavorName;
     }
 
