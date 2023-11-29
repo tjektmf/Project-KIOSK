@@ -1,6 +1,7 @@
 package pj.admin;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -16,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 
 import database.JdbcConnection;
 
@@ -30,10 +30,12 @@ public class OrderPage extends JFrame {
 	private String selectedPeriod;
 
 	public OrderPage() {
-		super("IceCreamShop Orders");
+		super("BR31 Orders");
 
 		String[] searchPeriod = { "일간", "주간", "월간", "연간" };
 		searchPeriods = new JComboBox<>(searchPeriod);
+		
+		// 기간을 직접 검색하게 하는게 나을 것 같음.
 
 		// private JComboBox searchPeriods = new JComboBox(searchPeriod);
 		// String period = (String) searchPeriods.getSelectedItem();
@@ -41,9 +43,19 @@ public class OrderPage extends JFrame {
 		orderDataList = getOrderData();
 		currentPage = 0;
 
-		orderTextArea = new JTextArea(40, 60); // 40 텍스트영역 행의수 / 60 텍스트영역 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
+		orderTextArea = new JTextArea(30, 30); // 행의수 / 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
+		orderTextArea.setFont(new Font("맑은고딕", Font.BOLD, 18));
 		orderTextArea.setEnabled(false);
 
+		JButton adminPageBtn = new JButton("관리자화면");
+		adminPageBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AdminPage();	
+			}
+			
+		});
+		
 		JButton searchButton = new JButton("검색");
 		searchButton.addActionListener(new ActionListener() {
 			@Override
@@ -74,10 +86,14 @@ public class OrderPage extends JFrame {
 		JPanel PanelBtn = new JPanel();
 		PanelBtn.add(prevPageBtn);
 		PanelBtn.add(nextPageBtn);
-		PanelBtn.add(searchButton);
+		PanelBtn.add(adminPageBtn, BorderLayout.PAGE_END);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
-		mainPanel.add(new JScrollPane(orderTextArea), BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(orderTextArea);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		mainPanel.add(scrollPane);
 		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
 
 		JPanel searchPanel = new JPanel();
@@ -94,9 +110,10 @@ public class OrderPage extends JFrame {
 	}
 
 	private void showNextPage() {
+		// 주문 5개 이하만 보이게 
 		int ordersPerPage = 5; // 한 페이지에 표시할 주문 수
 		int startIndex = currentPage * ordersPerPage;
-		int endIndex = Math.min((currentPage + 1) * ordersPerPage, orderDataList.size());
+		int endIndex = Math.min((currentPage + 1) * ordersPerPage, orderDataList.size()); // 둘 중 작은 수
 
 		StringBuilder pageText = new StringBuilder();
 		for (int i = startIndex; i < endIndex; i++) {
@@ -133,7 +150,7 @@ public class OrderPage extends JFrame {
 		orderTextArea.setText(pageText.toString());
 	}
 
-	// 선택된 기간에 따라 주문 내역을 조회하고, 그 결과를 GUI에 표시
+	// 선택된 기간에 따라 주문 내역을 조회
 	private void showOrdersByPeriod() {
 		orderDataList = getOrderDataByPeriod(selectedPeriod);
 		currentPage = 0;
@@ -141,7 +158,7 @@ public class OrderPage extends JFrame {
 	}
 
 	private List<String> getOrderDataByPeriod(String period) {
-		// 선택된 기간에 따라 데이터를 가져오는 메서드
+		// 선택된 기간에 따라
 		List<String> orderDataList = new ArrayList<>();
 
 		try (Connection conn = JdbcConnection.getConnection()) {
@@ -169,23 +186,23 @@ public class OrderPage extends JFrame {
 				break;
 			}
 
-			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
+			try (PreparedStatement pstmt = conn.prepareStatement(sql);
+					ResultSet resultSet = pstmt.executeQuery()) {
 
 				while (resultSet.next()) {
-					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + ", 메뉴: "
-							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + ", 총 가격: "
-							+ resultSet.getInt("total_price") + ", 주문 일자: " + resultSet.getDate("receipt_date");
+					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + "\n 메뉴: "
+							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + "\n 총 가격: "
+							+ resultSet.getInt("total_price") + "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 
 					orderDataList.add(orderData);
 				}
 			}
 
-		} catch (
-
-		SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
 			System.err.println("Error: " + e.getMessage());
+			e.printStackTrace();
 		}
+		
 		return orderDataList;
 
 	}
@@ -205,10 +222,11 @@ public class OrderPage extends JFrame {
 //					    + "JOIN menu m ON r.menu_id = m.menu_id";
 
 			String sql = "SELECT r.receipt_id, r.menu_name, r.menu_price, r.total_price, r.receipt_date, "
-					+ "m.menu_id, m.choice1, m.choice2, m.choice3, m.choice4, m.choice5, "
-					+ "mb.membership_tel, mb.membership_point " + "FROM receipt r "
-					+ "JOIN menu m ON r.menu_id = m.menu_id "
-					+ "LEFT JOIN membership mb ON r.membership_id = mb.membership_id";
+					+ "m.choice1, m.choice2, m.choice3, m.choice4, m.choice5, m.choice6, "
+					+ "mb.membership_tel, mb.membership_point "
+					+ "FROM receipt r "
+					+ "INNER JOIN menu m ON r.menu_id = m.menu_id "
+					+ "INNER JOIN membership mb ON r.membership_id = mb.membership_id";
 
 			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
 
@@ -219,24 +237,47 @@ public class OrderPage extends JFrame {
 
 //					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
 				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
-	                            ", 메뉴: " + resultSet.getString("menu_name") +
+	                            "\n 메뉴: " + resultSet.getString("menu_name") +
 	                            ", 가격: " + resultSet.getInt("menu_price") +
-	                            ", 총 가격: " + resultSet.getInt("total_price") +
-	                            ", 주문 일자: " + resultSet.getDate("receipt_date");
+	                            "\n 총 가격: " + resultSet.getInt("total_price") +
+	                            "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
+				     
 					orderDataList.add(orderData);
 				}
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.err.println("Error : " + e.getMessage());
+		    System.err.println("에러: " + e.getMessage());
+		    e.printStackTrace();
 		}
+
+	
 		return orderDataList;
 
 	}
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new OrderPage());
+		new OrderPage();
 	}
 
 }
+
+/*
+void setVerticalScrollBarPolicy(int), int getVerticalScrollBarPolicy()
+수직 방향의 정책을 설정하거나 읽어온다. 
+
+VERTICAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
+VERTICAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
+VERTICAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
+
+
+void setHorizontalScrollBarPolicy(int), int getHorizontalScrollBarPolicy()
+수평 방향의 정책을 설정하거나 읽어온다.
+
+HORIZONTAL_SCROLLBAR_AS_NEEDED : 필요할 때만 스크롤 바가 보이도록 함
+HORIZONTAL_SCROLLBAR_ALWAYS : 항상 스크롤바가 보이도록 함
+HORIZONTAL_SCROLLBAR_NEVER : 스크롤바가 보이지 않게 함
+
+https://blog.naver.com/sks6624/150165616213
+
+*/

@@ -1,3 +1,4 @@
+
 package pj.admin;
 
 import java.awt.BorderLayout;
@@ -19,7 +20,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
@@ -40,7 +40,7 @@ public class ProjectMadeBy3 extends JFrame {
 		card = new CardLayout();
 		cardPanel = new JPanel(card);
 
-		String[] lists = { " ", "프로젝트 팀원", "만든기간", "수고하셨습니다" };
+		String[] lists = { " ", "프로젝트 팀원", "만든기간", "수고하셨습니다", "관리자페이지" };
 		list = new JComboBox<>(lists);
 
 		JButton searchBtn = new JButton("검색");
@@ -49,6 +49,9 @@ public class ProjectMadeBy3 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				selected = (String) list.getSelectedItem();
 				card.show(cardPanel, selected);
+				 if ("관리자페이지".equals(selected)) {
+	                    new AdminPage();
+	                }
 			}
 		});
 
@@ -65,13 +68,14 @@ public class ProjectMadeBy3 extends JFrame {
 		projectTeamPanel.setBackground(brColor);
 
 		JLabel title = new JLabel("3팀 프로젝트 팀원");
-		title.setFont(new Font("맑은고딕", Font.BOLD, 25));
+		title.setFont(new Font("맑은고딕", Font.BOLD, 40));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		
 
 		JTextArea madeByPro = new JTextArea();
 		madeByPro.setEditable(false);
-		madeByPro.setFont(new Font("맑은고딕", Font.BOLD, 18));
+		madeByPro.setFont(new Font("맑은고딕", Font.BOLD, 30));
+		madeByPro.setBorder(BorderFactory.createEmptyBorder(120 , 100 , 0 , 0));
 
 		Arrays.sort(developers);
 		for (String developer : developers) {
@@ -80,7 +84,7 @@ public class ProjectMadeBy3 extends JFrame {
 			nameColors.put(developer, nameColor);
 		}
 		projectTeamPanel.add(title, BorderLayout.NORTH);
-		projectTeamPanel.add(new JScrollPane(madeByPro), BorderLayout.CENTER);
+		projectTeamPanel.add(madeByPro);
 
 		cardPanel.add(projectTeamPanel, "프로젝트 팀원");
 		card.show(cardPanel, " ");
@@ -102,6 +106,8 @@ public class ProjectMadeBy3 extends JFrame {
 		JLabel thanksLabel = new JLabel("수고하셨습니다!!");
 		thanksLabel.setFont(new Font("맑은고딕", Font.BOLD, 25));
 		thanksLabel.setForeground(brColor);
+		thanksLabel.setBorder(BorderFactory.createEmptyBorder(120 , 180 , 0 , 0));
+		//createEmptyBorder 안에 들어가는 값이 각각 위, 왼쪽, 아래, 오른쪽 안쪽 여백
 		thanksLabel.setOpaque(false);
 		
 		

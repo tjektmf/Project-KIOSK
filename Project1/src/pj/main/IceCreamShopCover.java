@@ -48,8 +48,8 @@ public class IceCreamShopCover extends JFrame {
 		mainLabel.setIcon(null);
 
 		// 투명한 패널 위에 글씨 표시
-		JLabel textLabel = new JLabel("화면을 클릭하세요");
-		textLabel.setFont(new Font("맑은고딕", Font.BOLD, 40));
+//		JLabel textLabel = new JLabel("화면을 클릭하세요");
+//		textLabel.setFont(new Font("맑은고딕", Font.BOLD, 40));
 
 		// 우측하단 관리자 페이지로 넘어갈 버튼
 		JButton keyBtn = new JButton();
@@ -84,7 +84,7 @@ public class IceCreamShopCover extends JFrame {
 
 		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
 		add(textPanel);
-		textPanel.add(textLabel);
+//		textPanel.add(textLabel);
 
 		// 전체를 감싸는 패널
 		JPanel mainPanel = new JPanel(new BorderLayout());
@@ -159,8 +159,8 @@ public class IceCreamShopCover extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> new IceCreamShopCover());
-		// 이벤트 디스패치 스레드(Event Dispatch Thread, EDT)에서 코드를 실행하기 위한 유틸리티 메서드
+		new IceCreamShopCover();
+		//SwingUtilities.invokeLater(() -> 이벤트 디스패치 스레드(Event Dispatch Thread, EDT)에서 코드를 실행하기 위한 유틸리티 메서드
 		// IceCreamShopCover() 클래스의 인스턴스를 생성하고, 이를 EDT에서 실행하도록 스케줄링
 	}
 }

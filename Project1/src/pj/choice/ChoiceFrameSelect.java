@@ -3,6 +3,7 @@ package pj.choice;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,17 +30,17 @@ public class ChoiceFrameSelect extends JPanel {
 		setLayout(border);
 
 		choiceSelectNextBtn = new JButton();
-	//	choiceSelectNextBtn.setIcon(new ImageIcon("img/daseul/longright.png"));
-	//	choiceSelectNextBtn.setContentAreaFilled(false);
-	//	choiceSelectNextBtn.setBorderPainted(false);
-	//	choiceSelectNextBtn.setFocusPainted(false);
-		
-		choiceSelectPrevBtn = new JButton();
-	//	choiceSelectPrevBtn.setIcon(new ImageIcon("img/daseul/longleft.png"));
-	//	choiceSelectNextBtn.setBorder(new LineBorder(Color.red));
-	//	choiceSelectPrevBtn.setBorder(null);
+		choiceSelectNextBtn.setIcon(new ImageIcon("img/daseul/longright.png"));
+		choiceSelectNextBtn.setBorderPainted(false);
 		choiceSelectNextBtn.setBackground(new Color(255,255,255));
+		choiceSelectNextBtn.setMargin(new Insets(0, -10, 0, -10));
+	
+		choiceSelectPrevBtn = new JButton();
+		choiceSelectPrevBtn.setIcon(new ImageIcon("img/daseul/longleft.png"));
+		choiceSelectPrevBtn.setBorderPainted(false);	
 		choiceSelectPrevBtn.setBackground(new Color(255,255,255));
+		choiceSelectPrevBtn.setMargin(new Insets(0, -10, 0, -10));
+		
 		choiceSelectIce = new ChoiceSelectIce(this);
 	
 		add(choiceSelectNextBtn, BorderLayout.EAST);

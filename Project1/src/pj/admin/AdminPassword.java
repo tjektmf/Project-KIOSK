@@ -87,7 +87,7 @@ public class AdminPassword extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// if (passWord.equals(new String(pw.getPassword()))) {
 				if (new String(pw.getPassword()).equals(passWord)) {
-					new OrderPage();
+					new AdminPage();
 					setVisible(false);
 				} else {
 					new IceCreamShopCover();
