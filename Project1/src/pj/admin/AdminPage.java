@@ -1,7 +1,6 @@
 package pj.admin;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -28,7 +27,7 @@ public class AdminPage extends JFrame {
 
 	public AdminPage() {
 		// 화면구성
-		 setLayout(new GridLayout(6,1));
+		 setLayout(new GridLayout(4,1));
 		JPanel empty = new JPanel();
 		empty.setBackground(Color.black);
 		JLabel adminLabel = new JLabel();
@@ -39,10 +38,10 @@ public class AdminPage extends JFrame {
 		//adminLabel.setPreferredSize(new Dimension(550, 150));
 		empty.add(adminLabel);
 		add(empty);
-		JPanel empty0 = new JPanel();
-		empty0.setBackground(Color.black);
+//		JPanel empty0 = new JPanel();
+//		empty0.setBackground(Color.black);
 		//empty0.setPreferredSize(new Dimension(550, 100));
-		add(empty0);
+//		add(empty0);
 		
         // Button names
         String[] buttonNames = {"OrderPage", "CustomerPage", "MadeBy"};
@@ -55,10 +54,12 @@ public class AdminPage extends JFrame {
             try {
                 BufferedImage originalImage = ImageIO.read(new File(imgPath[i]));
 
-                Image scaledImage = originalImage.getScaledInstance(550, 150, Image.SCALE_SMOOTH);
+                Image scaledImage = originalImage.getScaledInstance(550, 200, Image.SCALE_SMOOTH);
                 JButton button = new JButton(new ImageIcon(scaledImage));
                 //JButton button = new JButton(new ImageIcon(originalImage));
                 //button.setText(buttonNames[i]);
+                button.setBorder(BorderFactory.createEmptyBorder(-30 , 0, 0 , 0));	
+                button.setBackground(Color.black);
                 button.addActionListener(new ButtonListener(buttonNames[i]));
                 button.setBorderPainted(false);
                 add(button);
@@ -67,9 +68,9 @@ public class AdminPage extends JFrame {
                 e.printStackTrace();
             }
         }
-        JPanel empty1 = new JPanel();
-        empty1.setBackground(Color.black);
-        add(empty1);
+//        JPanel empty1 = new JPanel();
+//        empty1.setBackground(Color.black);
+//        add(empty1);
 		setSize(555, 960);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
