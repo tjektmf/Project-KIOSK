@@ -27,6 +27,11 @@ public class ChoiceFramePrice extends JPanel {
 	public int SAVED_PRICE() {
 		return SAVED_PRICE;
 	}
+	
+	public void SAVED_PRICE_out() {
+		tf.setText("price");
+		tf.repaint();
+	}
 
 	ChoiceFrame mainFrame;
 	CategoryHome categoryHome;
@@ -74,7 +79,6 @@ public class ChoiceFramePrice extends JPanel {
 			for (i = 0; i < 9; i++) {
 				if (thisPrice[i] == 0) {
 					thisPrice[i] = price;
-					System.out.println("처음 : " + thisPrice[i]);
 					break;
 				}
 			}
@@ -84,28 +88,26 @@ public class ChoiceFramePrice extends JPanel {
 			for (i = 0; i < 9; i++) {
 				if (thisPrice[i] == 0) {
 					thisPrice[i] = price;
-					System.out.println("나중 : " + Integer.toString(thisPrice[i]));
 					break;
 				}
 			}
 		}
 		System.out.println("추가된 장바구니 가격 배열 : " + Arrays.toString(thisPrice));
 		SAVED_PRICE = Integer.parseInt(tf.getText());
-		System.out.println("결제창으로 보낼 값 : " + SAVED_PRICE);
 	}
 
 	CardLayout priceCard = new CardLayout(10, 0);
 
 	public ChoiceFramePrice() {
-		
+
 		categoryHome = CategoryHome.getInstance();
-		
+
 		System.out.println("ChoiceFramePrice : " + this);
 		JLabel test = new JLabel();
 		test.setIcon(new ImageIcon("img/daseul/show.png"));
 		test.setHorizontalAlignment(JLabel.CENTER);
 		setLayout(priceCard);
-		setBackground(Color.white);
+		setBackground(new Color(244, 228, 225));
 
 		// 팬1 팬2가 카드레이아웃에 붙일 메인 패널
 		// 팬12 13은 위치 적당히 잡으려고 만든 투명패널
@@ -114,6 +116,7 @@ public class ChoiceFramePrice extends JPanel {
 		GridLayout grid = new GridLayout(1, 3);
 		grid.setHgap(10);
 		pan1.setLayout(grid);
+		pan1.setBackground(new Color(244, 228, 225));
 		but0.setVisible(false);
 		but0.setIcon(new ImageIcon("img/daseul/buy.png"));
 		tf.setHorizontalAlignment(JTextField.CENTER);

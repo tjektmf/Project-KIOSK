@@ -122,7 +122,7 @@ public class IceCreamShopCover extends JFrame {
 		// 전체 패널에 마우스 클릭 리스너 추가
 		mainPanel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {	
 				// 화면 클릭 시 카테고리 페이지를 표시
 				// ChoiceFrame choiceFrame = new ChoiceFrame();
 				// new CategoryHome(choiceFrame);

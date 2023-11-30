@@ -1,5 +1,6 @@
 package pj.choice;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,8 @@ public class ChoiceFrameCategory extends JPanel {
 		GridLayout grid = new GridLayout(1, 5);
 		setLayout(grid);
 		grid.setHgap(10);
+		setBackground(new Color(244, 228, 225));
+		
 
 		choiceCategoryIceBtn = new ChoiceCategoryIceBtn(this);
 		choiceCategoryCakeBtn = new ChoiceCategoryCakeBtn(this);
