@@ -16,10 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.choice.ChoiceFrame;
-import pj.choice.ChoiceFrameBuyList;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
-import pj_yr.ConeAndCup.ConeAndCup_00frame;
+import pj_yr.coneAndCup.ConeAndCup_00frame;
 
 public class CategoryHome extends JPanel {
 
@@ -142,44 +141,7 @@ public class CategoryHome extends JPanel {
 //               choiceSelectAll.showCard("ice");
 //            }
 //         });
-//         icecakeBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("cake");
-//            }
-//         });
-//         coffeeBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("coffee");
-//            }
-//         });
-//         beverageBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("beverage");
-//            }
-//         });
-//         dessertBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("dessert");
-//            }
-//         });
 
-		// f.setDefaultCloseOperation(ABORT);
 		f.setSize(555, 960);
 
 		f.setVisible(false);
