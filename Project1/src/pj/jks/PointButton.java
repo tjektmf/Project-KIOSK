@@ -1505,15 +1505,13 @@ public class PointButton extends JFrame {
 			}
 		});
 
-		
 		totalPrice.add(orderList8[0]);
 
 		panel7.add(totalPrice);
 		totalPrice.setLocation(60, 720);
 		totalPrice.setSize(160, 60);
 
-		
-		//totalPrice.setText(panel5tf2.getText());
+		// totalPrice.setText(panel5tf2.getText());
 		totalPrice.setHorizontalAlignment(JTextField.CENTER);
 		panel7mainPanel.setLocation(40, 300);
 		panel7mainPanel.setSize(450, 400);
@@ -1554,12 +1552,24 @@ public class PointButton extends JFrame {
 
 				try (Connection conn = JdbcConnection.getConnection();) {
 					// 기본키를 넣을 때는 자바쪽에서 시퀀스를 불러 사용한다 fruit_id_seq.nextval
+					String sql1 = null;
+					if (panel8tf.getText() != "") {
+						System.out.println("ddz");
 
-					String sql1 = "insert into "
-							+ "receipt(receipt_id, menu_name, total_price, receipt_date, menu_price)"
-							+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
-							+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
-							+ "', 0)";
+						sql1 = "insert into "
+								+ "receipt(receipt_id, menu_name, total_price, receipt_date, membership_tel, menu_price)"
+								+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
+								+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
+								+ "'," + membership_tel + ",0)";
+					}
+//						else if (panel8tf.getText() != "") {
+//
+//						sql1 = "insert into " + "receipt(receipt_id, menu_name, total_price, receipt_date, menu_price)"
+//								+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
+//								+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
+//								+ "', 0)";
+//					}
+
 					try (PreparedStatement pstmt = conn.prepareStatement(sql1);) {
 						// INSERT, UPDATE, DELETE는 executeUpdate()로 실행해야함
 						int row = pstmt.executeUpdate();
@@ -1567,7 +1577,6 @@ public class PointButton extends JFrame {
 					}
 
 				} catch (SQLException er) {
-					// TODO Auto-generated catch block
 					er.printStackTrace();
 				}
 				choiceFrameBuyList.SAVED_BUYLIST_OUT();
