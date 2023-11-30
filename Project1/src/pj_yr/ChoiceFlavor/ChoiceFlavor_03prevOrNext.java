@@ -7,16 +7,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pj.choice.ChoiceFrameBuyList;
-import pj_yr.ConeAndCup.ConeAndCup_00frame;
+import pj_yr.coneAndCup.ConeAndCup_00frame;
 
 public class ChoiceFlavor_03prevOrNext extends JPanel {
 	Color beskinColor = new Color(236, 108, 165);
