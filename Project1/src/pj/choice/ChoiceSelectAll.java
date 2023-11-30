@@ -41,6 +41,5 @@ public class ChoiceSelectAll extends JPanel {
 
 	public void showCard(String cardName) {
 		menuCard.show(this, cardName);
-		System.out.println("작동함");
 	}
 }

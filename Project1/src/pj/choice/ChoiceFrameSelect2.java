@@ -15,7 +15,7 @@ public class ChoiceFrameSelect2 extends JPanel{
 	
 	public ChoiceFrameSelect2(ChoiceSelectAll mainFrame) {
 		
-		BorderLayout border = new BorderLayout(20, 20);
+		BorderLayout border = new BorderLayout(0,0);
 		setLayout(border);
 		choiceSelectNextBtn = new JButton();
 		choiceSelectNextBtn.setIcon(new ImageIcon("img/daseul/longright.png"));

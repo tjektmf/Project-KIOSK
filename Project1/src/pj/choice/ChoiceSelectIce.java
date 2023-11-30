@@ -72,6 +72,7 @@ public class ChoiceSelectIce extends JPanel {
 		grid1.setVgap(10);
 
 		JPanel pan1 = new JPanel(grid1);
+		pan1.setBackground(new Color(244, 228, 225));
 
 		JButton[] actions = new JButton[48];
 		BorderLayout[] borderArr = new BorderLayout[48];
@@ -109,7 +110,6 @@ public class ChoiceSelectIce extends JPanel {
 
 		try {
 			Connection conn = JdbcConnection.getConnection();
-			System.out.println(conn);
 			String sql = "select icecream_name, icecream_price, icecream_id from icecream";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -123,7 +123,6 @@ public class ChoiceSelectIce extends JPanel {
 
 				priceSet.add(rs.getInt("icecream_price"));
 			}
-			System.out.println("아이스크림 가격 list : " + priceSet.toString());
 			rs.close();
 			pstmt.close();
 			conn.close();
@@ -154,7 +153,6 @@ public class ChoiceSelectIce extends JPanel {
 
 										try {
 											Connection conn = JdbcConnection.getConnection();
-											System.out.println(conn);
 											String sql = "select icecream_name, icecream_price from icecream";
 
 											PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -185,7 +183,7 @@ public class ChoiceSelectIce extends JPanel {
 							}
 						}
 
-						System.out.println("아이스크림 크기배열 : " + Arrays.toString(choiceFrameBuyList.ICECREAM_SIZE));
+		//				System.out.println("아이스크림 크기배열 : " + Arrays.toString(choiceFrameBuyList.ICECREAM_SIZE));
 						choiceFrameBuyList.showImg();
 						choiceFramePrice.hideButton();
 
@@ -197,11 +195,9 @@ public class ChoiceSelectIce extends JPanel {
 									switch (i) {
 									case 0, 1, 2:
 										move.setVisible(true);
-										System.out.println("체크012");
 										break;
 									case 3, 4, 5, 6, 7, 8:
 										move2.setVisible(true);
-										System.out.println("체크3456789");
 										break;
 
 									}
@@ -225,35 +221,6 @@ public class ChoiceSelectIce extends JPanel {
 				});
 			}
 		}
-
-//		for (int i = 0; i < 9; i++) {
-//
-//			if (ICECREAM_SIZE[i]) {
-//				switch (i) {
-//				case 0: // 싱글레귤러 맛1개만 선택되게 나머지 5개버튼 setenable(false)
-//					break;
-//				case 1: // 더블주니어 맛2개
-//					break;
-//				case 2: // 더블레귤러 맛2개
-//					break;
-//				case 3: // 파인트 3개
-//					break;
-//				case 4: // 쿼터 4개
-//					break;
-//				case 5: // 패밀리 5개
-//					break;
-//				case 6: // 하프갤런 6개
-//					break;
-//				case 7: // 버라이어티팩 6개
-//					break;
-//				case 8: // 핸드팩 4개
-//					break;
-//
-//				}
-//
-//			}
-//
-//		}
 
 		System.out.println("ChoiceSelectIce : " + this);
 

@@ -80,7 +80,6 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
 				choiceFlavor_00frame.disapear();
 				for (int i = 0; i < 9; i++) {
 					if (choiceFrameBuyList.SAVED_BUYLIST2(i).getText() == "") {
-						System.out.println("겟택스트");
 						for (int j = 0; j < 6; j++) {
 							System.out.print(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(j) + ", ");
 						}
@@ -89,7 +88,7 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
 						choiceFrameBuyList.SAVED_BUYLIST4(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(2));
 						choiceFrameBuyList.SAVED_BUYLIST5(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(3));
 						choiceFrameBuyList.SAVED_BUYLIST6(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(4));
-						choiceFrameBuyList.SAVED_BUYLIST7(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(5));
+				//		choiceFrameBuyList.SAVED_BUYLIST7(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(5));
 						break;
 					}
 				}

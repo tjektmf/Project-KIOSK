@@ -50,9 +50,18 @@ public class ChoiceSelectDessert extends JPanel {
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
-		JPanel pan1 = new JPanel(new GridLayout(3, 3));
-		JPanel pan2 = new JPanel(new GridLayout(3, 3));
+		GridLayout grid1 = new GridLayout(3, 3);
+		GridLayout grid2 = new GridLayout(3, 3);
+		grid1.setHgap(10);
+		grid1.setVgap(10);
+		grid2.setHgap(10);
+		grid2.setVgap(10);
+		
+		JPanel pan1 = new JPanel(grid1);
+		JPanel pan2 = new JPanel(grid2);
 		JPanel pan3 = new JPanel(new GridLayout(3, 3));
+		pan1.setBackground(new Color(244, 228, 225));
+		pan2.setBackground(new Color(244, 228, 225));
 
 		JButton[] actions = new JButton[48];
 		BorderLayout[] borderArr = new BorderLayout[48];
@@ -102,7 +111,6 @@ public class ChoiceSelectDessert extends JPanel {
 
 		try {
 			Connection conn = JdbcConnection.getConnection();
-			System.out.println(conn);
 			String sql = "select dessert_name, dessert_price from dessert";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -116,7 +124,7 @@ public class ChoiceSelectDessert extends JPanel {
 
 				priceSet.add(rs.getInt("dessert_price"));
 			}
-			System.out.println("dessert 가격 list : " + priceSet.toString());
+
 			rs.close();
 			pstmt.close();
 			conn.close();
@@ -146,7 +154,6 @@ public class ChoiceSelectDessert extends JPanel {
 
 										try {
 											Connection conn = JdbcConnection.getConnection();
-											System.out.println(conn);
 											String sql = "select dessert_name, dessert_price from dessert";
 
 											PreparedStatement pstmt = conn.prepareStatement(sql);

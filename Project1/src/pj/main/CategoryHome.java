@@ -134,52 +134,6 @@ public class CategoryHome extends JPanel {
 		beverageBtn.addActionListener(new MenuButtonListener("beverageBtn"));
 		dessertBtn.addActionListener(new MenuButtonListener("dessertBtn"));
 
-//        icecreamBtn.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("ice");
-//            }
-//         });
-//         icecakeBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("cake");
-//            }
-//         });
-//         coffeeBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("coffee");
-//            }
-//         });
-//         beverageBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("beverage");
-//            }
-//         });
-//         dessertBtn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//               System.out.println("작동");
-//               card.next(f.getContentPane());
-//               choiceSelectAll.showCard("dessert");
-//            }
-//         });
-
-		// f.setDefaultCloseOperation(ABORT);
 		f.setSize(555, 960);
 
 		f.setVisible(false);
@@ -202,7 +156,6 @@ public class CategoryHome extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// 선택된 메뉴 정보 처리
-			System.out.println(itemName + " 선택됨");
 			// System.out.println(itemName.substring(0, itemName.length() - 3));
 			if (e.getSource() == icecreamBtn) {
 				card.next(f.getContentPane());

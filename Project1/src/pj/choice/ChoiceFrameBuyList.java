@@ -196,6 +196,7 @@ public class ChoiceFrameBuyList extends JPanel {
 		add(borderPan1);
 		add(borderPan2);
 		add(borderPan3);
+		setBackground(new Color(244, 228, 225));
 		borderPan1.add(borderPrevBtn1, BorderLayout.WEST);
 		borderPan1.add(borderNextBtn1, BorderLayout.EAST);
 		borderPan1.add(gridPan1, BorderLayout.CENTER);
@@ -205,9 +206,16 @@ public class ChoiceFrameBuyList extends JPanel {
 		borderPan3.add(borderPrevBtn3, BorderLayout.WEST);
 		borderPan3.add(borderNextBtn3, BorderLayout.EAST);
 		borderPan3.add(gridPan3, BorderLayout.CENTER);
+		borderPan1.setBackground(new Color(244, 228, 225));
+		borderPan2.setBackground(new Color(244, 228, 225));
+		borderPan3.setBackground(new Color(244, 228, 225));
+		
 		gridPan1.setLayout(grid1);
 		gridPan2.setLayout(grid2);
 		gridPan3.setLayout(grid3);
+		gridPan1.setBackground(new Color(244, 228, 225));
+		gridPan2.setBackground(new Color(244, 228, 225));
+		gridPan3.setBackground(new Color(244, 228, 225));
 
 		for (int i = 0; i < 9; i++) {
 			SAVED_BTN[i] = new JButton();
@@ -303,7 +311,7 @@ public class ChoiceFrameBuyList extends JPanel {
 
 			if (SAVED_BUYLIST1[i].getText() == "") {
 
-				if (i % 3 == 1 && i >= 3) {
+				if (i % 3 == 1 && i >= 3 && SAVED_BUYLIST1[3].getText()!="") {
 					card.next(ChoiceFrameBuyList.this);
 				}
 				break;

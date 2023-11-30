@@ -18,6 +18,8 @@ public class ChoiceFrame extends JPanel {
 	public ChoiceFrame() {
 
 		setLayout(null);
+		
+		
 		choiceFrameTop = new ChoiceFrameTop(this);
 		choiceFrameCategory = new ChoiceFrameCategory(this);
 		choiceSelectAll = new ChoiceSelectAll(this);
@@ -38,7 +40,7 @@ public class ChoiceFrame extends JPanel {
 		add(choiceSelectAll);
 		add(choiceFramePrice);
 		add(choiceFrameBuyList);
-		setBackground(new Color(255, 255, 255));
+		setBackground(new Color(244, 228, 225));
 
 		setBounds(100, 100, 560, 960);
 //		setDefaultCloseOperation(EXIT_ON_CLOSE);

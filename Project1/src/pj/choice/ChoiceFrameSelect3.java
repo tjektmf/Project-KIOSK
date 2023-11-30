@@ -15,7 +15,7 @@ public class ChoiceFrameSelect3 extends JPanel{
 	JButton choiceSelectPrevBtn;
 	
 	public ChoiceFrameSelect3(ChoiceSelectAll mainFrame) {
-		BorderLayout border = new BorderLayout(20, 20);
+		BorderLayout border = new BorderLayout();
 		setLayout(border);
 		
 		choiceSelectNextBtn = new JButton();

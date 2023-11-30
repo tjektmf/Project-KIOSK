@@ -49,8 +49,17 @@ public class ChoiceSelectCake extends JPanel {
 		choiceSelectPrevBtn = mainFrame.choiceSelectPrevBtn;
 		choiceSelectNextBtn = mainFrame.choiceSelectNextBtn;
 
-		JPanel pan1 = new JPanel(new GridLayout(3, 3));
-		JPanel pan2 = new JPanel(new GridLayout(3, 3));
+		GridLayout grid1 = new GridLayout(3, 3);
+		GridLayout grid2 = new GridLayout(3, 3);
+		grid1.setHgap(10);
+		grid1.setVgap(10);
+		grid2.setHgap(10);
+		grid2.setVgap(10);
+
+		JPanel pan1 = new JPanel(grid1);
+		JPanel pan2 = new JPanel(grid2);
+		pan1.setBackground(new Color(244, 228, 225));
+		pan2.setBackground(new Color(244, 228, 225));
 		JPanel pan3 = new JPanel(new GridLayout(3, 3));
 
 		JButton[] actions = new JButton[48];
@@ -106,7 +115,6 @@ public class ChoiceSelectCake extends JPanel {
 
 		try {
 			Connection conn = JdbcConnection.getConnection();
-			System.out.println(conn);
 			String sql = "select cake_name, cake_price from cake";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -120,7 +128,7 @@ public class ChoiceSelectCake extends JPanel {
 
 				priceSet.add(rs.getInt("cake_price"));
 			}
-			System.out.println("cake 가격 list : " + priceSet.toString());
+
 			rs.close();
 			pstmt.close();
 			conn.close();
@@ -150,7 +158,6 @@ public class ChoiceSelectCake extends JPanel {
 
 										try {
 											Connection conn = JdbcConnection.getConnection();
-											System.out.println(conn);
 											String sql = "select cake_name, cake_price from cake";
 
 											PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -160,8 +167,7 @@ public class ChoiceSelectCake extends JPanel {
 												if (nameArr[i].getText().contains(rs.getString("cake_name"))) {
 													choiceFrameBuyList.SAVED_BUYLIST1[k]
 															.setText(rs.getString("cake_name"));
-													choiceFrameBuyList.SAVED_BUYLIST2[k]
-															.setText(" ");
+													choiceFrameBuyList.SAVED_BUYLIST2[k].setText(" ");
 													choiceFrameBuyList.SAVED_BUYLIST7[k]
 															.setText(Integer.toString(rs.getInt("cake_price")));
 												}
