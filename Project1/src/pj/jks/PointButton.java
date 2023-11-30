@@ -52,11 +52,29 @@ public class PointButton extends JFrame {
 	ChoiceFramePrice choiceFramePrice;
 	LocalDate now = LocalDate.now();
 
-	int guest = 203;
+	int guest;
 
 	public PointButton() {
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 		choiceFramePrice = ChoiceFramePrice.getInstance();
+
+		try {
+			Connection conn = JdbcConnection.getConnection();
+			String sql = "select * from receipt";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				guest = rs.getInt("receipt_id");
+			}
+			guest++;
+			rs.close();
+			conn.close();
+
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 
 		JFrame f = new JFrame("CardLayout Sample");
 		CardLayout card = new CardLayout();
@@ -1531,15 +1549,15 @@ public class PointButton extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				f.setVisible(false);
-				
 
 				try (Connection conn = JdbcConnection.getConnection();) {
 					// 기본키를 넣을 때는 자바쪽에서 시퀀스를 불러 사용한다 fruit_id_seq.nextval
-					
+
 					String sql1 = "insert into "
 							+ "receipt(receipt_id, menu_name, total_price, receipt_date, menu_price)"
-							+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()+ "', "
-							+ Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString() + "', 0)";
+							+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
+							+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
+							+ "', 0)";
 					try (PreparedStatement pstmt = conn.prepareStatement(sql1);) {
 						// INSERT, UPDATE, DELETE는 executeUpdate()로 실행해야함
 						int row = pstmt.executeUpdate();
