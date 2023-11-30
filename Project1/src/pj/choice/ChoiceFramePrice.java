@@ -27,7 +27,17 @@ public class ChoiceFramePrice extends JPanel {
 	public int SAVED_PRICE() {
 		return SAVED_PRICE;
 	}
-	
+
+	public int SAVED_PRICE_minus(int cancel) {
+		return SAVED_PRICE = SAVED_PRICE - cancel;
+
+	}
+
+	public void SAVED_PRICE_change(int change) {
+		SAVED_PRICE = change;
+		tf.setText(Integer.toString(SAVED_PRICE));
+	}
+
 	public void SAVED_PRICE_out() {
 		tf.setText("price");
 		tf.repaint();
@@ -94,6 +104,7 @@ public class ChoiceFramePrice extends JPanel {
 		}
 		System.out.println("추가된 장바구니 가격 배열 : " + Arrays.toString(thisPrice));
 		SAVED_PRICE = Integer.parseInt(tf.getText());
+
 	}
 
 	CardLayout priceCard = new CardLayout(10, 0);
@@ -103,9 +114,6 @@ public class ChoiceFramePrice extends JPanel {
 		categoryHome = CategoryHome.getInstance();
 
 		System.out.println("ChoiceFramePrice : " + this);
-		JLabel test = new JLabel();
-		test.setIcon(new ImageIcon("img/daseul/show.png"));
-		test.setHorizontalAlignment(JLabel.CENTER);
 		setLayout(priceCard);
 		setBackground(new Color(244, 228, 225));
 
@@ -113,8 +121,8 @@ public class ChoiceFramePrice extends JPanel {
 		// 팬12 13은 위치 적당히 잡으려고 만든 투명패널
 		// 13은 지금 안쓰는중 나중에 버튼0없애고 그자리에 넣으면됨
 		JPanel pan1 = new JPanel();
-		GridLayout grid = new GridLayout(1, 3);
-		grid.setHgap(10);
+		GridLayout grid = new GridLayout(1, 2);
+		grid.setHgap(20);
 		pan1.setLayout(grid);
 		pan1.setBackground(new Color(244, 228, 225));
 		but0.setVisible(false);
@@ -131,7 +139,6 @@ public class ChoiceFramePrice extends JPanel {
 		});
 
 		add(pan1);
-		pan1.add(test);
 		pan1.add(tf);
 		pan1.add(but0);
 

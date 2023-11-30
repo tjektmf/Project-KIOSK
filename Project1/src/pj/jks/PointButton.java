@@ -51,7 +51,7 @@ public class PointButton extends JFrame {
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ChoiceFramePrice choiceFramePrice;
 	LocalDate now = LocalDate.now();
-
+	JTextField totalPrice = new JTextField();
 	int guest;
 
 	public PointButton() {
@@ -965,7 +965,7 @@ public class PointButton extends JFrame {
 
 						panel5tf2.setText(
 								Integer.toString(choiceFramePrice.SAVED_PRICE() - Integer.parseInt(membership_point)));
-
+						totalPrice.setText(panel5tf2.getText());
 					}
 					rs.close();
 					pstmt.close();
@@ -1505,13 +1505,15 @@ public class PointButton extends JFrame {
 			}
 		});
 
-		JTextField totalPrice = new JTextField();
+		
 		totalPrice.add(orderList8[0]);
 
 		panel7.add(totalPrice);
 		totalPrice.setLocation(60, 720);
 		totalPrice.setSize(160, 60);
-		totalPrice.setText("전체 가격 : " + Integer.toString(choiceFramePrice.SAVED_PRICE()));
+
+		
+		//totalPrice.setText(panel5tf2.getText());
 		totalPrice.setHorizontalAlignment(JTextField.CENTER);
 		panel7mainPanel.setLocation(40, 300);
 		panel7mainPanel.setSize(450, 400);

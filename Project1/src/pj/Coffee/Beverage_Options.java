@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.choice.ChoiceFrameBuyList;
+import pj.choice.ChoiceFramePrice;
 import pj.choice.ChoiceFrameSelect4;
 import pj.choice.ChoiceSelectAll;
 import pj.choice.ChoiceSelectBeverage;
@@ -25,6 +26,7 @@ public class Beverage_Options extends JPanel {
 
 	ChoiceFrameBuyList choiceFrameBuyList;
 	ChoiceSelectAll choiceSelectAll;
+	ChoiceFramePrice choiceFramePrice;
 	ChoiceFrameSelect4 mainFrame = new ChoiceFrameSelect4(choiceSelectAll);
 	ChoiceSelectBeverage choiceSelectBeverage = new ChoiceSelectBeverage(mainFrame);
 
@@ -77,6 +79,7 @@ public class Beverage_Options extends JPanel {
 	private Beverage_Options() {
 
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
+		choiceFramePrice = ChoiceFramePrice.getInstance();
 		CardLayout cardLayout = new CardLayout();
 
 		JPanel mainPanel = new JPanel();
@@ -126,9 +129,22 @@ public class Beverage_Options extends JPanel {
 		PrevBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CupForBurial.setIcon(new ImageIcon("img/hodong/B매장용컵P.png"));
+				DisposableCup.setIcon(new ImageIcon("img/hodong/B일회용컵G.png"));
 				BEVERAGE_CUP = false;
 				Beverage.setVisible(false);
-
+				for (int i = 0; i < 9; i++) {
+					if (choiceFrameBuyList.SAVED_BUYLIST2(i).getText() == ""
+							&& choiceFrameBuyList.SAVED_BUYLIST1(i).getText() != "") {
+						int returnCost;
+						returnCost = choiceFramePrice.SAVED_PRICE()
+								- Integer.parseInt(choiceFrameBuyList.SAVED_BUYLIST7(i).getText());
+						choiceFramePrice.SAVED_PRICE_change(returnCost);
+						System.out.println(choiceFramePrice.SAVED_PRICE());
+						choiceFramePrice.repaint();
+						choiceFrameBuyList.SAVED_BUYLIST_OUT();
+					}
+				}
 			}
 		});
 		OptionsBtn.addActionListener(new ActionListener() {
