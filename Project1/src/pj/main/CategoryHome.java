@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
-import pj_yr.coneAndCup.ConeAndCup_00frame;
+import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class CategoryHome extends JPanel {
 
@@ -132,9 +132,6 @@ public class CategoryHome extends JPanel {
 		coffeeBtn.addActionListener(new MenuButtonListener("coffeeBtn"));
 		beverageBtn.addActionListener(new MenuButtonListener("beverageBtn"));
 		dessertBtn.addActionListener(new MenuButtonListener("dessertBtn"));
-
-<<<<<<< HEAD
-=======
 //        icecreamBtn.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
@@ -144,7 +141,7 @@ public class CategoryHome extends JPanel {
 //            }
 //         });
 
->>>>>>> refs/remotes/origin/bhm1
+
 		f.setSize(555, 960);
 
 		f.setVisible(false);

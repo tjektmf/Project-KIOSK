@@ -199,7 +199,7 @@ public class OrderPage extends JFrame {
 
 					orderDataList.add("========================");
 					orderDataList.add(orderData);
-					orderDataList.add("========================\n");
+					orderDataList.add("\n");
 				}
 			}
 
