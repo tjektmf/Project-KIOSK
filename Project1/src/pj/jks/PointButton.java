@@ -87,8 +87,8 @@ public class PointButton extends JFrame {
 		JLabel label3 = new JLabel("최종 결제금액");
 		JLabel label4 = new JLabel("*적립하기: 결제완료 후 포인트가 자동 적립 됩니다.");
 		JLabel label5 = new JLabel("*사용하기: 포인트 보유시 사용가능합니다 (자동 적립).");
-		JLabel label6 = new JLabel("적립하기");
-		JLabel label7 = new JLabel("사용하기");
+//		JLabel label6 = new JLabel("적립하기");
+//		JLabel label7 = new JLabel("사용하기");
 		JLabel label8 = new JLabel("회원포인트");
 		JLabel label9 = new JLabel("결제");
 
@@ -102,20 +102,21 @@ public class PointButton extends JFrame {
 		label4.setFont(new Font("맑음고딕체", Font.BOLD, 15));
 		label5.setBounds(30, 420, 420, 100);
 		label5.setFont(new Font("맑음고딕체", Font.BOLD, 15));
-		label6.setBounds(58, 320, 420, 100);
-		label7.setBounds(190, 320, 420, 100);
+//		label6.setBounds(58, 320, 420, 100);
+//		label7.setBounds(190, 320, 420, 100);
 		label8.setBounds(70, 90, 145, 90);
 		label8.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		label8.setForeground(Color.pink);
 		label9.setBounds(270, 90, 145, 90);
 		label9.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
+		
 		panel1.add(label1);
 		panel1.add(label2);
 		panel1.add(label3);
 		panel1.add(label4);
 		panel1.add(label5);
-		panel1.add(label6);
-		panel1.add(label7);
+//		panel1.add(label6);
+//		panel1.add(label7);
 		panel1.add(label8);
 		panel1.add(label9);
 
@@ -134,20 +135,21 @@ public class PointButton extends JFrame {
 
 		JLabel pointLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/happy.png"));
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/적립하기.png"));
 
-			Image scaledImage = bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+			Image scaledImage = bufferedImage.getScaledInstance(105, 120, Image.SCALE_SMOOTH);
 
 			pointLabel.setIcon(new ImageIcon(scaledImage));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		pointLabel.setHorizontalAlignment(JLabel.CENTER);
+		
 		JLabel pointLabel2 = new JLabel();
 		try {
-			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/happy.png"));
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/사용하기.png"));
 
-			Image scaledImage = bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+			Image scaledImage = bufferedImage.getScaledInstance(105, 120, Image.SCALE_SMOOTH);
 
 			pointLabel2.setIcon(new ImageIcon(scaledImage));
 		} catch (IOException e) {
@@ -180,6 +182,13 @@ public class PointButton extends JFrame {
 		btn5.setBounds(30, 800, 100, 90);
 		btn5.setForeground(Color.pink);
 		btn5.setBackground(Color.white);
+		btn5.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				f.setVisible(false);
+				new IceCreamShopCover();
+			}
+		});
 		JButton btn6 = new JButton("다음단계(결제하기)");
 		btn6.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		btn6.setBounds(165, 800, 350, 90);
