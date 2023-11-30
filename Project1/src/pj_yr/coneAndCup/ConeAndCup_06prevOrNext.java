@@ -1,4 +1,4 @@
-package pj_yr.ConeAndCup;
+package pj_yr.coneAndCup;
 
 public class ConeAndCup_06prevOrNext {
 

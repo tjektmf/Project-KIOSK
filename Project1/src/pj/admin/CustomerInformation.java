@@ -35,9 +35,7 @@ public class CustomerInformation extends JFrame {
 
 		textArea = new JTextArea(30, 30);
 		textArea.setFont(new Font("맑은고딕", Font.BOLD, 20));
-		//textArea.setForeground(new Color(214,206,147)); 글씨에 색을 주고싶으면 setEnabled를 꺼야하고, 이걸 끄면 화면에서 글씨 막 바꿀 수 있고 ..
-		
-		textArea.setEnabled(false);
+		textArea.setEditable(false);
 
 		showDataButton = new JButton("조회");
 
@@ -103,7 +101,7 @@ public class CustomerInformation extends JFrame {
 
 			while (rs.next()) {
 				String memberInfo = "아이디: " + rs.getInt("membership_id") + ", 번호: " + rs.getString("membership_tel")
-						+ ", 포인트: " + rs.getInt("membership_point");
+						+ ", 포인트: " + rs.getInt("membership_point") + "\n";
 
 				textArea.append(memberInfo + "\n");
 			}

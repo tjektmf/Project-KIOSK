@@ -15,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -28,8 +27,8 @@ import javax.swing.JPanel;
 import database.JdbcConnection;
 import pj.main.CategoryHome;
 import pj.main.IceCreamShopCover;
-import pj_yr.ConeAndCup.ConeAndCup_00frame;
-import pj_yr.Container.Container_00frame;
+import pj_yr.coneAndCup.ConeAndCup_00frame;
+import pj_yr.container.Container_00frame;
 
 public class ChoiceSelectIce extends JPanel {
 

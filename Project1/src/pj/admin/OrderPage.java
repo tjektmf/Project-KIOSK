@@ -46,7 +46,7 @@ public class OrderPage extends JFrame {
 
 		orderTextArea = new JTextArea(30, 30); // 행의수 / 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
 		orderTextArea.setFont(new Font("맑은고딕", Font.BOLD, 18));
-		orderTextArea.setEnabled(false);
+		orderTextArea.setEditable(false);
 
 		JButton adminPageBtn = new JButton("관리자화면");
 		adminPageBtn.addActionListener(new ActionListener(){
@@ -173,7 +173,7 @@ public class OrderPage extends JFrame {
 			String sql;
 			switch (period) {
 			case "일간":
-				sql = "SELECT * FROM receipt WHERE receipt_date = CURRENT_DATE";
+				sql = "SELECT * FROM receipt WHERE receipt_date BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '1' DAY";
 				break;
 			case "주간":
 				sql = "SELECT * FROM receipt WHERE receipt_date >= CURRENT_DATE - INTERVAL '7' DAY";
@@ -231,7 +231,7 @@ public class OrderPage extends JFrame {
 					+ "mb.membership_tel, mb.membership_point "
 					+ "FROM receipt r "
 					+ "INNER JOIN menu m ON r.menu_id = m.menu_id "
-					+ "INNER JOIN membership mb ON r.membership_id = mb.membership_id";
+					+ "INNER JOIN membership mb ON r.membership_tel = mb.membership_tel";
 
 			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
 

@@ -1,4 +1,4 @@
-package pj_yr.Container;
+package pj_yr.container;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

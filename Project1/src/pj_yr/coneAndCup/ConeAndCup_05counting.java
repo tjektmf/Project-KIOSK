@@ -1,4 +1,4 @@
-package pj_yr.ConeAndCup;
+package pj_yr.coneAndCup;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

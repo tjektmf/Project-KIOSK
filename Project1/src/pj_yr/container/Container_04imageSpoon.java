@@ -1,4 +1,4 @@
-package pj_yr.Container;
+package pj_yr.container;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;

@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import pj.choice.ChoiceFrame;
 import pj.choice.ChoiceFrameCategory;
 import pj.choice.ChoiceSelectAll;
-import pj_yr.ConeAndCup.ConeAndCup_00frame;
+import pj_yr.coneAndCup.ConeAndCup_00frame;
 
 public class CategoryHome extends JPanel {
 

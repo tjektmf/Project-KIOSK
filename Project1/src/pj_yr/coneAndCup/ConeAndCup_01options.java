@@ -1,4 +1,4 @@
-package pj_yr.ConeAndCup;
+package pj_yr.coneAndCup;
 
 import java.awt.Font;
 import java.awt.GridLayout;

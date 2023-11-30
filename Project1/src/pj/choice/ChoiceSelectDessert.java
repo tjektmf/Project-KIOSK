@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import database.JdbcConnection;
-import pj_yr.ConeAndCup.ConeAndCup_00frame;
+import pj_yr.coneAndCup.ConeAndCup_00frame;
 
 public class ChoiceSelectDessert extends JPanel {
 
