@@ -1,5 +1,6 @@
 package pj_yr.ConeAndCup;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import pj_yr.ChoiceFlavor.ChoiceFlavor_00frame;
@@ -7,6 +8,9 @@ import pj_yr.ChoiceFlavor.ChoiceFlavor_00frame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ConeAndCup_00frame extends JFrame {
     ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
@@ -151,7 +155,19 @@ public class ConeAndCup_00frame extends JFrame {
 
         // 행8 : 뭔가,, 광고 같은게,,
         JPanel row8 = new JPanel();
+        JLabel AD_one = new JLabel();
+        try {
+			BufferedImage image = ImageIO.read(new File("img/daseul/hotel.png"));
+			Image scaledImage = image.getScaledInstance(540, 170, Image.SCALE_SMOOTH);
+			AD_one.setIcon(new ImageIcon(scaledImage));
+
+		} catch (IOException e) {
+			System.out.println("이미지오류");
+			e.printStackTrace();
+		}
+        row8.add(AD_one);
         row8.setPreferredSize(new Dimension(540, 170));
+        
         // 앞으로 쓸곳8
         row8.setBackground(Color.gray);
         jp.add(row8);
