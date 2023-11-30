@@ -542,14 +542,8 @@ public class PointButton extends JFrame {
 					membership_tel = tf.getText().substring(1, tf.getText().length());
 
 				}
-				try {
-					Class.forName("oracle.jdbc.driver.OracleDriver");
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				}
-				try {
-					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
-							"1234");
+				try (Connection conn = JdbcConnection.getConnection();) {
+
 					String sql = "SELECT * FROM membership";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
@@ -942,9 +936,7 @@ public class PointButton extends JFrame {
 
 				membership_point = panel4pointtf.getText();
 
-				try {
-					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
-							"1234");
+				try (Connection conn = JdbcConnection.getConnection();) {
 					String sql = "SELECT * FROM membership";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
@@ -1556,11 +1548,28 @@ public class PointButton extends JFrame {
 					if (panel8tf.getText() != "") {
 						System.out.println("ddz");
 
-						sql1 = "insert into "
-								+ "receipt(receipt_id, menu_name, total_price, receipt_date, membership_tel, menu_price)"
-								+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
-								+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
-								+ "'," + membership_tel + ",0)";
+						sql1 = "insert into " + "receipt(receipt_id, receipt_date, membership_tel," + " total_price, "
+								+ " receipt_menu1, receipt_price1, receipt_menu2, receipt_price2, receipt_menu3, receipt_price3, receipt_menu4, receipt_price4, receipt_menu5, receipt_price5, receipt_menu6, receipt_price6, receipt_menu7, receipt_price7, receipt_menu8, receipt_price8, receipt_menu9, receipt_price9)"
+								+ " values(receipt_id_seq.nextval, '" + now.toString() + "'," + membership_tel + ","
+								+ Integer.toString(choiceFramePrice.SAVED_PRICE()) + ",'"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(0).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(0).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(1).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(1).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(2).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(2).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(3).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(3).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(4).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(4).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(5).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(5).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(6).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(6).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(7).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(7).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST1(8).getText() + "','"
+								+ choiceFrameBuyList.SAVED_BUYLIST7(8).getText() + "')";
 					}
 //						else if (panel8tf.getText() != "") {
 //
@@ -1894,14 +1903,7 @@ public class PointButton extends JFrame {
 					membership_tel = panel8tf.getText().substring(1, panel8tf.getText().length());
 
 				}
-				try {
-					Class.forName("oracle.jdbc.driver.OracleDriver");
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				}
-				try {
-					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.120:1521:XE", "project",
-							"1234");
+				try (Connection conn = JdbcConnection.getConnection();) {
 					String sql = "SELECT * FROM membership";
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
