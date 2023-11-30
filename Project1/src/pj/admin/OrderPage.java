@@ -1,6 +1,7 @@
 package pj.admin;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -83,20 +84,22 @@ public class OrderPage extends JFrame {
 			}
 		});
 
-		JPanel PanelBtn = new JPanel();
-		PanelBtn.add(prevPageBtn);
-		PanelBtn.add(nextPageBtn);
-		PanelBtn.add(adminPageBtn, BorderLayout.PAGE_END);
+		JPanel panelBtn = new JPanel();
+		panelBtn.setBackground(new Color(236, 108, 165));
+		panelBtn.add(prevPageBtn);
+		panelBtn.add(nextPageBtn);
+		panelBtn.add(adminPageBtn, BorderLayout.PAGE_END);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JScrollPane scrollPane = new JScrollPane(orderTextArea);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
+			
 		mainPanel.add(scrollPane);
-		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
+		mainPanel.add(panelBtn, BorderLayout.SOUTH);
 
 		JPanel searchPanel = new JPanel();
+		searchPanel.setBackground(new Color(236, 108, 165));
 		searchPanel.add(searchPeriods);
 		searchPanel.add(searchButton);
 		mainPanel.add(searchPanel, BorderLayout.NORTH);
@@ -190,11 +193,13 @@ public class OrderPage extends JFrame {
 					ResultSet resultSet = pstmt.executeQuery()) {
 
 				while (resultSet.next()) {
-					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + "\n 메뉴: "
-							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + "\n 총 가격: "
+					String orderData = "\n"+"주문 번호: " + resultSet.getInt("receipt_id") + "\n 멤버십 번호: " + resultSet.getString("membership_tel")
+					+ "\n 메뉴: " + resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + "\n 총 가격: "
 							+ resultSet.getInt("total_price") + "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 
+					orderDataList.add("========================");
 					orderDataList.add(orderData);
+					orderDataList.add("========================\n");
 				}
 			}
 
@@ -237,6 +242,7 @@ public class OrderPage extends JFrame {
 
 //					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
 				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
+				    		  "\n 멤버십 번호: " + resultSet.getString("membership_tel") +
 	                            "\n 메뉴: " + resultSet.getString("menu_name") +
 	                            ", 가격: " + resultSet.getInt("menu_price") +
 	                            "\n 총 가격: " + resultSet.getInt("total_price") +
