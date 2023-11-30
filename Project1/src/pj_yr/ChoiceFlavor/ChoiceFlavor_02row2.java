@@ -27,7 +27,7 @@ public class ChoiceFlavor_02row2 extends JPanel {
     private ChoiceFlavor_00frame frame;
     private ChoiceFlavor_04showFlavorSelections showFlavorSelections;
     private ChoiceFlavor_03prevOrNext row3; // row3 추가
-    private static List<String> selectedFlavorName = new ArrayList<>();
+    private static List<String> selectedFlavorName = new ArrayList<>(6);
     public static Map<Integer, String> flavorIdMap = new HashMap<>();
 
 
