@@ -106,12 +106,12 @@ public class PointButton extends JFrame {
 		JLabel label3 = new JLabel("최종 결제금액");
 		JLabel label4 = new JLabel("*적립하기: 결제완료 후 포인트가 자동 적립 됩니다.");
 		JLabel label5 = new JLabel("*사용하기: 포인트 보유시 사용가능합니다 (자동 적립).");
-		JLabel label6 = new JLabel("적립하기");
-		JLabel label7 = new JLabel("사용하기");
+		JLabel label6 = new JLabel();
+//		JLabel label7 = new JLabel("사용하기");
 		JLabel label8 = new JLabel("회원포인트");
 		JLabel label9 = new JLabel("결제");
 
-		label1.setBounds(30, 1, 300, 100);
+		label1.setBounds(110, 1, 300, 100);
 		label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 		label2.setBounds(30, 190, 500, 100);
 		label2.setFont(new Font("맑음고딕체", Font.BOLD, 23));
@@ -121,8 +121,9 @@ public class PointButton extends JFrame {
 		label4.setFont(new Font("맑음고딕체", Font.BOLD, 15));
 		label5.setBounds(30, 420, 420, 100);
 		label5.setFont(new Font("맑음고딕체", Font.BOLD, 15));
-		label6.setBounds(58, 320, 420, 100);
-		label7.setBounds(190, 320, 420, 100);
+		label6.setBounds(10, 1, 300, 100);
+		;
+//		label7.setBounds(190, 320, 420, 100);
 		label8.setBounds(70, 90, 145, 90);
 		label8.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		label8.setForeground(Color.pink);
@@ -134,7 +135,7 @@ public class PointButton extends JFrame {
 		panel1.add(label4);
 		panel1.add(label5);
 		panel1.add(label6);
-		panel1.add(label7);
+//		panel1.add(label7);
 		panel1.add(label8);
 		panel1.add(label9);
 
@@ -153,9 +154,9 @@ public class PointButton extends JFrame {
 
 		JLabel pointLabel = new JLabel();
 		try {
-			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/happy.png"));
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/적립하기.png"));
 
-			Image scaledImage = bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+			Image scaledImage = bufferedImage.getScaledInstance(105, 120, Image.SCALE_SMOOTH);
 
 			pointLabel.setIcon(new ImageIcon(scaledImage));
 		} catch (IOException e) {
@@ -164,15 +165,25 @@ public class PointButton extends JFrame {
 		pointLabel.setHorizontalAlignment(JLabel.CENTER);
 		JLabel pointLabel2 = new JLabel();
 		try {
-			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/happy.png"));
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/사용하기.png"));
 
-			Image scaledImage = bufferedImage.getScaledInstance(105, 60, Image.SCALE_SMOOTH);
+			Image scaledImage = bufferedImage.getScaledInstance(105, 120, Image.SCALE_SMOOTH);
 
 			pointLabel2.setIcon(new ImageIcon(scaledImage));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		pointLabel2.setHorizontalAlignment(JLabel.CENTER);
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/BRlogo.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(105, 120, Image.SCALE_SMOOTH);
+
+			label6.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 //      JButton btn1 = new JButton("회원포인트");
 //      btn1.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
@@ -192,7 +203,7 @@ public class PointButton extends JFrame {
 		JButton btn4 = new JButton();
 		btn4.add(pointLabel2);
 		btn4.setBorderPainted(false);
-		btn4.setBackground(new Color(0, 0, 0, 0));
+		btn4.setBackground(new Color(255, 255, 255));
 		btn4.setBounds(160, 270, 105, 120);
 		JButton btn5 = new JButton("< 이전");
 		btn5.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
@@ -992,7 +1003,8 @@ public class PointButton extends JFrame {
 		JLabel panel5label2 = new JLabel("최종결제금액");
 		JLabel panel5label3 = new JLabel("회원포인트");
 		JLabel panel5label4 = new JLabel("결제");
-		panel5label1.setBounds(30, 1, 300, 100);
+		JLabel panel5label5 = new JLabel();
+		panel5label1.setBounds(110, 1, 300, 100);
 		panel5label1.setFont(new Font("맑음고딕체", Font.BOLD, 23));
 		panel5label2.setBounds(30, 490, 300, 100);
 		panel5label2.setFont(new Font("맑음고딕체", Font.BOLD, 23));
@@ -1001,10 +1013,12 @@ public class PointButton extends JFrame {
 		panel5label4.setBounds(270, 90, 145, 90);
 		panel5label4.setFont(new Font("맑음고딕체", Font.BOLD, 18));
 		panel5label4.setForeground(Color.pink);
+		panel5label5.setBounds(10, 1, 300, 100);
 		panel5.add(panel5label1);
 		panel5.add(panel5label2);
 		panel5.add(panel5label3);
 		panel5.add(panel5label4);
+		panel5.add(panel5label5);
 
 		panel5tf.setLocation(10, 610);
 		panel5tf.setSize(500, 100);
@@ -1055,6 +1069,16 @@ public class PointButton extends JFrame {
 			e.printStackTrace();
 		}
 		cashLabel3.setHorizontalAlignment(JLabel.CENTER);
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/BRlogo.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(105, 120, Image.SCALE_SMOOTH);
+
+			panel5label5.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		JButton panel5btn3 = new JButton();
 		JButton panel5btn4 = new JButton();
@@ -1212,10 +1236,24 @@ public class PointButton extends JFrame {
 		panel7label4.setFont(new Font("맑음고딕체", Font.CENTER_BASELINE, 18));
 		panel7label4.setBounds(180, 270, 300, 100);
 		panel7label4.setVisible(false);
+		JLabel panel7label5 = new JLabel();
+		panel7label5.setBounds(10, 1, 300, 100);
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(new File("img/jks/BRlogo.png"));
+
+			Image scaledImage = bufferedImage.getScaledInstance(105, 120, Image.SCALE_SMOOTH);
+
+			panel7label5.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		panel7.add(panel7label);
 		panel7.add(panel7label2);
 		panel7.add(panel7label3);
 		panel7.add(panel7label4);
+		panel7.add(panel7label5);
 		GridLayout grid = new GridLayout(7, 1);
 
 		// panel7ordertf.setLayout(grid);
@@ -1503,7 +1541,6 @@ public class PointButton extends JFrame {
 		totalPrice.setLocation(60, 720);
 		totalPrice.setSize(160, 60);
 
-		// totalPrice.setText(panel5tf2.getText());
 		totalPrice.setHorizontalAlignment(JTextField.CENTER);
 		panel7mainPanel.setLocation(40, 300);
 		panel7mainPanel.setSize(450, 400);
@@ -1590,6 +1627,7 @@ public class PointButton extends JFrame {
 				}
 				choiceFrameBuyList.SAVED_BUYLIST_OUT();
 				choiceFramePrice.SAVED_PRICE_out();
+
 			}
 		});
 		add(panel7btn1);

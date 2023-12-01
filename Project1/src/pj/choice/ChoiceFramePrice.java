@@ -10,6 +10,7 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -45,6 +46,7 @@ public class ChoiceFramePrice extends JPanel {
 
 	ChoiceFrame mainFrame;
 	CategoryHome categoryHome;
+	ChoiceFrameBuyList choiceFrameBuyList;
 	int SAVED_PRICE;
 	int[] thisPrice = new int[9];
 
@@ -112,6 +114,7 @@ public class ChoiceFramePrice extends JPanel {
 	public ChoiceFramePrice() {
 
 		categoryHome = CategoryHome.getInstance();
+		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
 
 		System.out.println("ChoiceFramePrice : " + this);
 		setLayout(priceCard);
@@ -133,9 +136,26 @@ public class ChoiceFramePrice extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				but0.getParent().getParent().getParent().setVisible(false);
-				new PointButton();
+				choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
+				boolean empty = false;
+				for (int i = 0; i < 9; i++) {
+					if (!choiceFrameBuyList.SAVED_BUYLIST1(i).getText().equals("")) {
+						empty = false;
+						break;
+					} else {
+						empty = true;
+					}
+				}
+				if (empty) {
+					JOptionPane.showMessageDialog(null, "장바구니가 텅~ 비었어요");
+				} else {
+					but0.getParent().getParent().getParent().setVisible(false);
+					new PointButton();
+					empty = false;
+				}
+
 			}
+
 		});
 
 		add(pan1);
