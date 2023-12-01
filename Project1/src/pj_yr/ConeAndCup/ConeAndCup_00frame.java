@@ -14,14 +14,14 @@ import java.io.IOException;
 
 public class ConeAndCup_00frame extends JFrame {
     ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
-//    private int selectedButtonIndex = -1;
-    
+    Color beskinColor = new Color(236, 108, 165);
+    private JButton selectedButton = null;
+
     public ConeAndCup_00frame() {
         setTitle("ConeAndCup Frame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(540, 960);
 
-        Color beskinColor = new Color(236, 108, 165);
 
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
@@ -64,13 +64,14 @@ public class ConeAndCup_00frame extends JFrame {
         btn4a.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4a);
         btn4a.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ChoiceManager.setUserChoice("컵");
-				System.out.println(ChoiceManager.getUserChoice());				
 
-			}
+            public void actionPerformed(ActionEvent e) {
+                handleButtonSelection(btn4a);
+                ChoiceManager.setUserChoice("컵");			
+			
+
+            }
+
 		});
 
         // 버튼2 : 콘
@@ -79,12 +80,13 @@ public class ConeAndCup_00frame extends JFrame {
         btn4b.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4b);
         btn4b.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ChoiceManager.setUserChoice("콘");
-				System.out.println(ChoiceManager.getUserChoice());				
+            private boolean isHighlighted = false;
 
-			}
+            public void actionPerformed(ActionEvent e) {
+                handleButtonSelection(btn4b);
+                ChoiceManager.setUserChoice("콘");			
+
+            }
 		});
 
         // 버튼3 : 와플콘
@@ -93,12 +95,11 @@ public class ConeAndCup_00frame extends JFrame {
         btn4c.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4c);
         btn4c.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ChoiceManager.setUserChoice("와플콘");
-				System.out.println(ChoiceManager.getUserChoice());				
-			}
+
+            public void actionPerformed(ActionEvent e) {
+                handleButtonSelection(btn4c);
+                ChoiceManager.setUserChoice("와플콘");
+            }
 		});
                 
 
@@ -185,6 +186,22 @@ public class ConeAndCup_00frame extends JFrame {
         }
     }
 
+    private void highlightButton(JButton button) {
+        button.setBorder(BorderFactory.createLineBorder(beskinColor, 3));
+    }
+
+    private void resetButton(JButton button) {
+        button.setBorder(BorderFactory.createEmptyBorder());
+    }
+
+    private void handleButtonSelection(JButton button) {
+        if (selectedButton != null) {
+            resetButton(selectedButton);
+        }
+        highlightButton(button);
+        selectedButton = button;
+    }
+    
     public static void main(String[] args) throws IOException {
     	new ConeAndCup_00frame().setVisible(true);
     }
