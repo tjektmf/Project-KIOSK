@@ -1553,11 +1553,16 @@ public class PointButton extends JFrame {
 				try (Connection conn = JdbcConnection.getConnection();) {
 					// 기본키를 넣을 때는 자바쪽에서 시퀀스를 불러 사용한다 fruit_id_seq.nextval
 
-					String sql1 = "insert into "
-							+ "receipt(receipt_id, menu_name, total_price, receipt_date, menu_price)"
-							+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
-							+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
-							+ "', 0)";
+					String sql1 = null;
+					if (panel8tf.getText() != "") {
+						System.out.println("ddz");
+
+						sql1 = "insert into "
+								+ "receipt(receipt_id, menu_name, total_price, receipt_date, membership_tel, menu_price)"
+								+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
+								+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
+								+ "'," + membership_tel + ",0)";
+					}
 					try (PreparedStatement pstmt = conn.prepareStatement(sql1);) {
 						// INSERT, UPDATE, DELETE는 executeUpdate()로 실행해야함
 						int row = pstmt.executeUpdate();
