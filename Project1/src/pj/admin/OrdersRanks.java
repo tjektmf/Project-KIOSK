@@ -32,7 +32,7 @@ public class OrdersRanks extends JFrame {
 		// 데이터베이스 연결
 		try (Connection connection = JdbcConnection.getConnection();) {
 			System.out.println("DB연결성공!");
-			String sql = "SELECT * FROM ";
+			String sql = ""; // 주문내역에서 메뉴명으로 중복찾아서 갯수세기 (count에 저장)
 
 			try (PreparedStatement pstmt = connection.prepareStatement(sql); ResultSet rs = pstmt.executeQuery();) {
 				// 결과 출력
@@ -42,7 +42,7 @@ public class OrdersRanks extends JFrame {
 					// 메뉴 당 주문된 내역 확인 할 방법이 현 디비에 있는가..?
 					// 각 영수증에서 하나씩 꺼내와서 ?
 
-					System.out.println("Menu Name: " + menuName + ", Quantity: " + quantity);
+					System.out.println("Menu Name: " + menuName + " Quantity: " + quantity + "Count: " + count);
 				}
 			}
 
