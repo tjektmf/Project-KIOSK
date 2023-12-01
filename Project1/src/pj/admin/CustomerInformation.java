@@ -35,9 +35,7 @@ public class CustomerInformation extends JFrame {
 
 		textArea = new JTextArea(30, 30);
 		textArea.setFont(new Font("맑은고딕", Font.BOLD, 20));
-		//textArea.setForeground(new Color(214,206,147)); 글씨에 색을 주고싶으면 setEnabled를 꺼야하고, 이걸 끄면 화면에서 글씨 막 바꿀 수 있고 ..
-		
-		textArea.setEnabled(false);
+		textArea.setEditable(false);
 
 		showDataButton = new JButton("조회");
 
@@ -79,6 +77,7 @@ public class CustomerInformation extends JFrame {
 //		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		JPanel bottomPanel = new JPanel();
+		//bottomPanel.setBackground(new Color(236, 108, 165));
 		bottomPanel.add(showAllButton, BorderLayout.SOUTH);
 		bottomPanel.add(adminPageBtn, BorderLayout.PAGE_END);
 
@@ -102,7 +101,7 @@ public class CustomerInformation extends JFrame {
 
 			while (rs.next()) {
 				String memberInfo = "아이디: " + rs.getInt("membership_id") + ", 번호: " + rs.getString("membership_tel")
-						+ ", 포인트: " + rs.getInt("membership_point");
+						+ ", 포인트: " + rs.getInt("membership_point") + "\n";
 
 				textArea.append(memberInfo + "\n");
 			}
@@ -117,12 +116,13 @@ public class CustomerInformation extends JFrame {
 		String membershipNumber = membershipNumberField.getText();
 		String sql = "SELECT r.receipt_id, r.menu_name, r.menu_price, r.total_price, r.receipt_date, "
 				+ "mb.membership_id, mb.membership_tel, mb.membership_point "
-				+ "FROM membership mb LEFT JOIN receipt r ON mb.membership_id = r.membership_id "
+				+ "FROM membership mb LEFT JOIN receipt r ON mb.membership_tel = r.membership_tel "
 				+ "WHERE mb.membership_id = ?";
 
 		// 1> * 대신에 들어갈 것 2> while()문 수정
 		// 멤버십 정보 : membership_id, tel, point
 		// 레시피 정보 : receipt_id, menu_name, menu_price, total_price, receipt_date
+		// 멤버십id -> 전화번호 뒤4자리. 같은 번호가 있다면 번호 확인해서 클릭하게 하기 
 
 		try (Connection conn = JdbcConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
@@ -132,10 +132,10 @@ public class CustomerInformation extends JFrame {
 				textArea.setText("");
 
 				if (rs.next()) {
-					String membershipInfo = "\nMembership:" + "ID/번호/포인트내역\n" + rs.getInt("membership_id") + "/"
+					String membershipInfo = "\n" + "Membership:" + "ID/번호/포인트내역\n" + rs.getInt("membership_id") + "/"
 							+ rs.getString("membership_tel") + "/" + rs.getInt("membership_point");
 
-					String receiptInfo = "\nReceipt :" + "주문번호/총가격/주문날짜\n" + rs.getInt("receipt_id") + "/"
+					String receiptInfo = "\n" + "Receipt :" + "주문번호/총가격/주문날짜\n" + rs.getInt("receipt_id") + "/"
 							+ rs.getInt("total_price") + "/" + rs.getDate("receipt_date");
 
 					textArea.append(membershipInfo + "\n" + receiptInfo + "\n");

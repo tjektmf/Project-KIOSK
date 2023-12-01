@@ -24,7 +24,7 @@ public class AdminPassword extends JFrame {
 	// 2. adminPassword() 에서 비밀번호 입력(비밀번호 ~~~)
 	// (맞으면 adminPage() 틀리면 IceCreamShopCover())
 
-	private String passWord = "123456";
+	private final String passWord = "123456";
 	
 	
 
@@ -39,7 +39,7 @@ public class AdminPassword extends JFrame {
 		JLabel pageLabel = new JLabel();
 		try {
 			BufferedImage bufferedImage = ImageIO.read(new File("img/hyemi/image.png"));
-			Image scaledImage = bufferedImage.getScaledInstance(540, 960, Image.SCALE_SMOOTH);
+			Image scaledImage = bufferedImage.getScaledInstance(555, 960, Image.SCALE_SMOOTH);
 			pageLabel.setIcon(new ImageIcon(scaledImage));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

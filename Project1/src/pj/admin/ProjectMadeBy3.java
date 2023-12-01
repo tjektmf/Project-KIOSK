@@ -136,6 +136,7 @@ public class ProjectMadeBy3 extends JFrame {
 		calendarPanel.removeAll();
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month -1, 1);
+		// Calendar 클래스는 월 값이 0에서 시작해서 month - 1
 		
 		int firstDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 		int lastDayOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);

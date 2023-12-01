@@ -79,11 +79,11 @@ public class IceCreamShopCover extends JFrame {
 		});
 
 		// 투명한 패널을 만들어 글씨를 포함시키고 위치 설정
-		JPanel textPanel = new JPanel();
-		textPanel.setBounds(120, 280, 400, 400);
-
-		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
-		add(textPanel);
+//		JPanel textPanel = new JPanel();
+//		textPanel.setBounds(120, 280, 400, 400);
+//
+//		textPanel.setBackground(new Color(0, 0, 0, 0)); // 투명 설정
+//		add(textPanel);
 //		textPanel.add(textLabel);
 
 		// 전체를 감싸는 패널
@@ -102,7 +102,7 @@ public class IceCreamShopCover extends JFrame {
 				}
 				String imagePath = imagePaths[currentImgIndex];
 				updateImg(mainLabel);
-				mainLabel.add(textPanel);
+			//	mainLabel.add(textPanel);
 				mainLabel.add(keyBtn);
 				currentImgIndex = (currentImgIndex + 1) % imagePaths.length;
 			}

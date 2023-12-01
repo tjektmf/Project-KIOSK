@@ -1,5 +1,5 @@
 
-package pj_yr.ChoiceFlavor;
+package pj_yr.choiceFlavor;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,11 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 

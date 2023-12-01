@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pj.choice.ChoiceFrameBuyList;
-import pj.choice.ChoiceFramePrice;
 import pj.choice.ChoiceFrameSelect3;
 import pj.choice.ChoiceSelectAll;
 import pj.choice.ChoiceSelectCoffee;
@@ -25,7 +24,6 @@ import pj.choice.ChoiceSelectCoffee;
 public class Coffee_Options extends JPanel {
 
 	ChoiceFrameBuyList choiceFrameBuyList;
-	ChoiceFramePrice choiceFramePrice;
 	ChoiceSelectAll choiceSelectAll;
 	ChoiceFrameSelect3 mainFrame = new ChoiceFrameSelect3(choiceSelectAll);
 	ChoiceSelectCoffee choiceSelectCoffee = new ChoiceSelectCoffee(mainFrame);
@@ -76,7 +74,6 @@ public class Coffee_Options extends JPanel {
 
 	public void loadImages(int index) {
 		choiceFrameBuyList = ChoiceFrameBuyList.getInstance();
-		choiceFramePrice = ChoiceFramePrice.getInstance();
 		BufferedImage[] images = new BufferedImage[10]; // 이미지 개수에 맞게 배열 크기 조절
 
 		// 이미지 파일 경로
@@ -174,25 +171,8 @@ public class Coffee_Options extends JPanel {
 				COFFEE_SHOT = false;
 				COFFEE_SYRUP = false;
 				COFFEE_CUP = false;
-				AddShotN.setIcon(new ImageIcon("img/hodong/추가안함P.png"));
-				AddShotY.setIcon(new ImageIcon("img/hodong/샷추가G.png"));
-				SyrupN.setIcon(new ImageIcon("img/hodong/추가안함P.png"));
-				SyrupY.setIcon(new ImageIcon("img/hodong/시럽추가G.png"));
-				CupForBurial.setIcon(new ImageIcon("img/hodong/매장용컵P.png"));
-				DisposableCup.setIcon(new ImageIcon("img/hodong/일회용컵G.png"));
 				Coffee1.setVisible(false);
-				for (int i = 0; i < 9; i++) {
-					if (choiceFrameBuyList.SAVED_BUYLIST2(i).getText() == ""
-							&& choiceFrameBuyList.SAVED_BUYLIST1(i).getText() != "") {
-						int returnCost;
-						returnCost = choiceFramePrice.SAVED_PRICE()
-								- Integer.parseInt(choiceFrameBuyList.SAVED_BUYLIST7(i).getText());
-						choiceFramePrice.SAVED_PRICE_change(returnCost);
-						System.out.println(choiceFramePrice.SAVED_PRICE());
-						choiceFramePrice.repaint();
-						choiceFrameBuyList.SAVED_BUYLIST_OUT();
-					}
-				}
+
 			}
 		});
 		OptionsBtn.addActionListener(new ActionListener() {

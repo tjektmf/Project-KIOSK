@@ -1,6 +1,7 @@
 package pj.admin;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,7 +46,7 @@ public class OrderPage extends JFrame {
 
 		orderTextArea = new JTextArea(30, 30); // 행의수 / 열의 수 -> 추후 db들어오는 것 보고 수정이 필요함
 		orderTextArea.setFont(new Font("맑은고딕", Font.BOLD, 18));
-		orderTextArea.setEnabled(false);
+		orderTextArea.setEditable(false);
 
 		JButton adminPageBtn = new JButton("관리자화면");
 		adminPageBtn.addActionListener(new ActionListener(){
@@ -83,20 +84,22 @@ public class OrderPage extends JFrame {
 			}
 		});
 
-		JPanel PanelBtn = new JPanel();
-		PanelBtn.add(prevPageBtn);
-		PanelBtn.add(nextPageBtn);
-		PanelBtn.add(adminPageBtn, BorderLayout.PAGE_END);
+		JPanel panelBtn = new JPanel();
+		panelBtn.setBackground(new Color(236, 108, 165));
+		panelBtn.add(prevPageBtn);
+		panelBtn.add(nextPageBtn);
+		panelBtn.add(adminPageBtn, BorderLayout.PAGE_END);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JScrollPane scrollPane = new JScrollPane(orderTextArea);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
+			
 		mainPanel.add(scrollPane);
-		mainPanel.add(PanelBtn, BorderLayout.SOUTH);
+		mainPanel.add(panelBtn, BorderLayout.SOUTH);
 
 		JPanel searchPanel = new JPanel();
+		searchPanel.setBackground(new Color(236, 108, 165));
 		searchPanel.add(searchPeriods);
 		searchPanel.add(searchButton);
 		mainPanel.add(searchPanel, BorderLayout.NORTH);
@@ -149,12 +152,11 @@ public class OrderPage extends JFrame {
 
 		orderTextArea.setText(pageText.toString());
 	}
-
-	// 선택된 기간에 따라 주문 내역을 조회
+	
 	private void showOrdersByPeriod() {
-		orderDataList = getOrderDataByPeriod(selectedPeriod);
-		currentPage = 0;
-		showNextPage();
+	    orderDataList = getOrderDataByPeriod(selectedPeriod);
+	    currentPage = 0;
+	    showNextPage();
 	}
 
 	private List<String> getOrderDataByPeriod(String period) {
@@ -170,7 +172,7 @@ public class OrderPage extends JFrame {
 			String sql;
 			switch (period) {
 			case "일간":
-				sql = "SELECT * FROM receipt WHERE receipt_date = CURRENT_DATE";
+				sql = "SELECT * FROM receipt WHERE receipt_date BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '1' DAY";
 				break;
 			case "주간":
 				sql = "SELECT * FROM receipt WHERE receipt_date >= CURRENT_DATE - INTERVAL '7' DAY";
@@ -190,11 +192,23 @@ public class OrderPage extends JFrame {
 					ResultSet resultSet = pstmt.executeQuery()) {
 
 				while (resultSet.next()) {
-					String orderData = "주문 번호: " + resultSet.getInt("receipt_id") + "\n 메뉴: "
-							+ resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + "\n 총 가격: "
-							+ resultSet.getInt("total_price") + "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
+	                String orderData = "\n" + "주문 번호: " + resultSet.getInt("receipt_id") +
+	                        "\n 멤버십 번호: " + resultSet.getString("membership_tel") +
+	                        "\n 메뉴1: " + resultSet.getString("receipt_menu1") +
+	                        "\n 메뉴2: " + resultSet.getString("receipt_menu2") +
+	                        "\n 메뉴3: " + resultSet.getString("receipt_menu3") +
+	                        "\n 메뉴4: " + resultSet.getString("receipt_menu4") +
+	                        "\n 메뉴5: " + resultSet.getString("receipt_menu5") +
+	                        "\n 메뉴6: " + resultSet.getString("receipt_menu6") +
+	                        "\n 메뉴7: " + resultSet.getString("receipt_menu7") +
+	                        "\n 메뉴8: " + resultSet.getString("receipt_menu8") +
+	                        "\n 메뉴9: " + resultSet.getString("receipt_menu9") +
+	                        "\n 총 가격: " + resultSet.getInt("total_price") +
+	                        "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 
-					orderDataList.add(orderData);
+	                orderDataList.add("========================");
+	                orderDataList.add(orderData);
+	                orderDataList.add("\n");
 				}
 			}
 
@@ -221,12 +235,12 @@ public class OrderPage extends JFrame {
 //					    + "FROM receipt r "
 //					    + "JOIN menu m ON r.menu_id = m.menu_id";
 
-			String sql = "SELECT r.receipt_id, r.menu_name, r.menu_price, r.total_price, r.receipt_date, "
-					+ "m.choice1, m.choice2, m.choice3, m.choice4, m.choice5, m.choice6, "
+			String sql = "SELECT r.receipt_id, r.receipt_menu1, r.receipt_price1, r.receipt_menu2, r.receipt_price2, r.receipt_menu3, "
+					+ "r.receipt_price3, r.receipt_menu4, r.receipt_price4, r.receipt_menu5, r.receipt_price5, r.receipt_menu6, r.receipt_price6, "
+					+ "r.receipt_menu7, r.receipt_price7, r.receipt_menu8, r.receipt_price8, r.receipt_menu9, r.receipt_price9, r.total_price, r.receipt_date, "
 					+ "mb.membership_tel, mb.membership_point "
 					+ "FROM receipt r "
-					+ "INNER JOIN menu m ON r.menu_id = m.menu_id "
-					+ "INNER JOIN membership mb ON r.membership_id = mb.membership_id";
+					+ "INNER JOIN membership mb ON r.membership_tel = mb.membership_tel";
 
 			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
 
@@ -236,9 +250,19 @@ public class OrderPage extends JFrame {
 //				        String totalPrice = resultSet.getString(" total_price");
 
 //					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
+					
+					
 				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
-	                            "\n 메뉴: " + resultSet.getString("menu_name") +
-	                            ", 가격: " + resultSet.getInt("menu_price") +
+				    		  "\n 멤버십 번호: " + resultSet.getString("membership_tel") +
+	                            "\n 메뉴1: " + resultSet.getString("receipt_menu1") +
+	                            "\n 메뉴2: " + resultSet.getString("receipt_menu2") +
+	                            "\n 메뉴3: " + resultSet.getString("receipt_menu3") +
+	                            "\n 메뉴4: " + resultSet.getString("receipt_menu4") +
+	                            "\n 메뉴5: " + resultSet.getString("receipt_menu5") +
+	                            "\n 메뉴6: " + resultSet.getString("receipt_menu6") +
+	                            "\n 메뉴7: " + resultSet.getString("receipt_menu7") +
+	                            "\n 메뉴8: " + resultSet.getString("receipt_menu8") +
+	                            "\n 메뉴9: " + resultSet.getString("receipt_menu9") +
 	                            "\n 총 가격: " + resultSet.getInt("total_price") +
 	                            "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 				     
