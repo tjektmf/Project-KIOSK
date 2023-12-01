@@ -1,5 +1,6 @@
 package pj_yr.ConeAndCup;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import pj_yr.ChoiceFlavor.ChoiceFlavor_00frame;
@@ -7,6 +8,9 @@ import pj_yr.ChoiceFlavor.ChoiceFlavor_00frame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ConeAndCup_00frame extends JFrame {
     ConeAndCup_03takeOut noticeTakeOut = new ConeAndCup_03takeOut();
@@ -54,58 +58,54 @@ public class ConeAndCup_00frame extends JFrame {
         JPanel row4 = new JPanel();
         row4.setPreferredSize(new Dimension(540, 210));
         
-        // 라벨1 : 컵
-        JLabel btn4a = new JLabel();
-        new ConeAndCup_04choicImg(btn4a,"img_menu/img_ConeAndCup/"+ 1 + ".png");
+        // 버튼1 : 컵
+        JButton btn4a = new JButton();
+        new ConeAndCup_04choicImg(btn4a,"img_yr/"+ 1 + ".png");
         btn4a.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4a);
+        btn4a.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ChoiceManager.setUserChoice("컵");
+				System.out.println(ChoiceManager.getUserChoice());				
 
-        // 라벨2 : 콘
-        JLabel btn4b = new JLabel();
-        new ConeAndCup_04choicImg(btn4b,"img_menu/img_ConeAndCup/"+ 2 + ".png");
+			}
+		});
+
+        // 버튼2 : 콘
+        JButton btn4b = new JButton();
+        new ConeAndCup_04choicImg(btn4b,"img_yr/"+ 2 + ".png");
         btn4b.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4b);
+        btn4b.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ChoiceManager.setUserChoice("콘");
+				System.out.println(ChoiceManager.getUserChoice());				
 
-        // 라벨3 : 와플콘
-        JLabel btn4c = new JLabel();
-        new ConeAndCup_04choicImg(btn4c,"img_menu/img_ConeAndCup/"+ 3 + ".png");
+			}
+		});
+
+        // 버튼3 : 와플콘
+        JButton btn4c = new JButton();
+        new ConeAndCup_04choicImg(btn4c,"img_yr/"+ 3 + ".png");
         btn4c.setPreferredSize(new Dimension(160, 200)); 
         row4.add(btn4c);
-        
+        btn4c.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ChoiceManager.setUserChoice("와플콘");
+				System.out.println(ChoiceManager.getUserChoice());				
+			}
+		});
+                
 
         jp.add(row4);
         
-        // 행5 : 버튼
-        JPanel row5 = new JPanel();
-        row5.setPreferredSize(new Dimension(540, 40));
 
-        // 패널 1 : 컵 버튼
-        JPanel panel5a = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
-        panel5a.setBackground(beskinColor);
-        panel5a.setPreferredSize(new Dimension(160, 40));
-
-        new ConeAndCup_05counting(panel5a, 1);
-
-        row5.add(panel5a);
-
-        // 패널 2 : 콘 버튼
-        JPanel panel5b = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
-        panel5b.setBackground(beskinColor);
-        panel5b.setPreferredSize(new Dimension(160, 40));
-
-        new ConeAndCup_05counting(panel5b, 2);
-        row5.add(panel5b);
-
-        // 패널 3 : 와플 버튼
-        JPanel panel5c = new JPanel(new FlowLayout(FlowLayout.CENTER)); // 가운데 정렬
-        panel5c.setBackground(beskinColor);
-        panel5c.setPreferredSize(new Dimension(160, 40));
-
-        new ConeAndCup_05counting(panel5c, 3);
-        row5.add(panel5c);
-           
-        jp.add(row5);
-
+        
         // 행6 : 빈공간
         JPanel row6 = new JPanel();
         row6.setPreferredSize(new Dimension(540, 180));
@@ -150,15 +150,42 @@ public class ConeAndCup_00frame extends JFrame {
 
         // 행8 : 뭔가,, 광고 같은게,,
         JPanel row8 = new JPanel();
-        row8.setPreferredSize(new Dimension(540, 170));
+        row8.setPreferredSize(new Dimension(540, 200));
+        JLabel label8 = new JLabel();
+        
+		BufferedImage bufferedImage;
+		try {
+			bufferedImage = ImageIO.read(new File("img_yr/5.png"));
+			Image scaledImage = bufferedImage.getScaledInstance(540, 200, Image.SCALE_SMOOTH);
+			label8.setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		label8.setPreferredSize(new Dimension(540, 200));
+        row8.add(label8);
+
         // 앞으로 쓸곳8
-        row8.setBackground(Color.gray);
+        //row8.setBackground(Color.gray);
         jp.add(row8);
 
         add(jp);
     }
 
-    public static void main(String[] args) {
+    public class ChoiceManager {
+        private static String userChoice;
+
+        public static void setUserChoice(String choice) {
+            userChoice = choice;
+        }
+
+        public static String getUserChoice() {
+            return userChoice;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
     	new ConeAndCup_00frame().setVisible(true);
     }
 }
