@@ -114,7 +114,7 @@ public class CustomerInformation extends JFrame {
 
 	private void showCustomerData() {
 		String membershipNumber = membershipNumberField.getText();
-		String sql = "SELECT r.receipt_id, r.menu_name, r.menu_price, r.total_price, r.receipt_date, "
+		String sql = "SELECT r.receipt_id, r.total_price, r.receipt_date, "
 				+ "mb.membership_id, mb.membership_tel, mb.membership_point "
 				+ "FROM membership mb LEFT JOIN receipt r ON mb.membership_tel = r.membership_tel "
 				+ "WHERE mb.membership_id = ?";
@@ -132,7 +132,7 @@ public class CustomerInformation extends JFrame {
 				textArea.setText("");
 
 				if (rs.next()) {
-					String membershipInfo = "\n" + "Membership:" + "ID/번호/포인트내역\n" + rs.getInt("membership_id") + "/"
+					String membershipInfo = "\n" + "Membership :" + "ID/번호/포인트내역\n" + rs.getInt("membership_id") + "/"
 							+ rs.getString("membership_tel") + "/" + rs.getInt("membership_point");
 
 					String receiptInfo = "\n" + "Receipt :" + "주문번호/총가격/주문날짜\n" + rs.getInt("receipt_id") + "/"

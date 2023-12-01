@@ -105,7 +105,7 @@ public class ChoiceSelectCoffee extends JPanel {
 				menuImage = null;
 
 			} else if (i < 19) {
-				pan2.add(actions[i - 1] = new JButton(menuImage));
+				pan2.add(actions[i - 1] = new JButton());
 				borderArr[i - 1] = new BorderLayout(-10, -10);
 				nameArr[i - 1] = new JLabel();
 				picArr[i - 1] = new JLabel(menuImage);

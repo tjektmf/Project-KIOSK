@@ -193,18 +193,18 @@ public class OrderPage extends JFrame {
 
 				while (resultSet.next()) {
 	                String orderData = "\n" + "주문 번호: " + resultSet.getInt("receipt_id") +
-	                        "\n 멤버십 번호: " + resultSet.getString("membership_tel") +
-	                        "\n 메뉴1: " + resultSet.getString("receipt_menu1") +
-	                        "\n 메뉴2: " + resultSet.getString("receipt_menu2") +
-	                        "\n 메뉴3: " + resultSet.getString("receipt_menu3") +
-	                        "\n 메뉴4: " + resultSet.getString("receipt_menu4") +
-	                        "\n 메뉴5: " + resultSet.getString("receipt_menu5") +
-	                        "\n 메뉴6: " + resultSet.getString("receipt_menu6") +
-	                        "\n 메뉴7: " + resultSet.getString("receipt_menu7") +
-	                        "\n 메뉴8: " + resultSet.getString("receipt_menu8") +
-	                        "\n 메뉴9: " + resultSet.getString("receipt_menu9") +
-	                        "\n 총 가격: " + resultSet.getInt("total_price") +
-	                        "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
+	                        "\n 회원 번호 : " + resultSet.getString("membership_tel") +
+	                        "\n 메뉴1 : " + resultSet.getString("receipt_menu1") +
+	                        "\n 메뉴2 : " + resultSet.getString("receipt_menu2") +
+	                        "\n 메뉴3 : " + resultSet.getString("receipt_menu3") +
+	                        "\n 메뉴4 : " + resultSet.getString("receipt_menu4") +
+	                        "\n 메뉴5 : " + resultSet.getString("receipt_menu5") +
+	                        "\n 메뉴6 : " + resultSet.getString("receipt_menu6") +
+	                        "\n 메뉴7 : " + resultSet.getString("receipt_menu7") +
+	                        "\n 메뉴8 : " + resultSet.getString("receipt_menu8") +
+	                        "\n 메뉴9 : " + resultSet.getString("receipt_menu9") +
+	                        "\n 총 가격 : " + resultSet.getInt("total_price") +
+	                        "\n 주문 일자 : " + resultSet.getDate("receipt_date") + "\n";
 
 	                orderDataList.add("========================");
 	                orderDataList.add(orderData);

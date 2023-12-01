@@ -128,7 +128,7 @@ public class ChoiceFramePrice extends JPanel {
 		grid.setHgap(20);
 		pan1.setLayout(grid);
 		pan1.setBackground(new Color(244, 228, 225));
-		but0.setVisible(false);
+//		but0.setVisible(false);
 		but0.setIcon(new ImageIcon("img/daseul/buy.png"));
 		tf.setHorizontalAlignment(JTextField.CENTER);
 
