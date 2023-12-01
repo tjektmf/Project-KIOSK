@@ -152,12 +152,11 @@ public class OrderPage extends JFrame {
 
 		orderTextArea.setText(pageText.toString());
 	}
-
-	// 선택된 기간에 따라 주문 내역을 조회
+	
 	private void showOrdersByPeriod() {
-		orderDataList = getOrderDataByPeriod(selectedPeriod);
-		currentPage = 0;
-		showNextPage();
+	    orderDataList = getOrderDataByPeriod(selectedPeriod);
+	    currentPage = 0;
+	    showNextPage();
 	}
 
 	private List<String> getOrderDataByPeriod(String period) {
@@ -193,13 +192,23 @@ public class OrderPage extends JFrame {
 					ResultSet resultSet = pstmt.executeQuery()) {
 
 				while (resultSet.next()) {
-					String orderData = "\n"+"주문 번호: " + resultSet.getInt("receipt_id") + "\n 멤버십 번호: " + resultSet.getString("membership_tel")
-					+ "\n 메뉴: " + resultSet.getString("menu_name") + ", 가격: " + resultSet.getInt("menu_price") + "\n 총 가격: "
-							+ resultSet.getInt("total_price") + "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
+	                String orderData = "\n" + "주문 번호: " + resultSet.getInt("receipt_id") +
+	                        "\n 멤버십 번호: " + resultSet.getString("membership_tel") +
+	                        "\n 메뉴1: " + resultSet.getString("receipt_menu1") +
+	                        "\n 메뉴2: " + resultSet.getString("receipt_menu2") +
+	                        "\n 메뉴3: " + resultSet.getString("receipt_menu3") +
+	                        "\n 메뉴4: " + resultSet.getString("receipt_menu4") +
+	                        "\n 메뉴5: " + resultSet.getString("receipt_menu5") +
+	                        "\n 메뉴6: " + resultSet.getString("receipt_menu6") +
+	                        "\n 메뉴7: " + resultSet.getString("receipt_menu7") +
+	                        "\n 메뉴8: " + resultSet.getString("receipt_menu8") +
+	                        "\n 메뉴9: " + resultSet.getString("receipt_menu9") +
+	                        "\n 총 가격: " + resultSet.getInt("total_price") +
+	                        "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 
-					orderDataList.add("========================");
-					orderDataList.add(orderData);
-					orderDataList.add("\n");
+	                orderDataList.add("========================");
+	                orderDataList.add(orderData);
+	                orderDataList.add("\n");
 				}
 			}
 
@@ -226,11 +235,11 @@ public class OrderPage extends JFrame {
 //					    + "FROM receipt r "
 //					    + "JOIN menu m ON r.menu_id = m.menu_id";
 
-			String sql = "SELECT r.receipt_id, r.menu_name, r.menu_price, r.total_price, r.receipt_date, "
-					+ "m.choice1, m.choice2, m.choice3, m.choice4, m.choice5, m.choice6, "
+			String sql = "SELECT r.receipt_id, r.receipt_menu1, r.receipt_price1, r.receipt_menu2, r.receipt_price2, r.receipt_menu3, "
+					+ "r.receipt_price3, r.receipt_menu4, r.receipt_price4, r.receipt_menu5, r.receipt_price5, r.receipt_menu6, r.receipt_price6, "
+					+ "r.receipt_menu7, r.receipt_price7, r.receipt_menu8, r.receipt_price8, r.receipt_menu9, r.receipt_price9, r.total_price, r.receipt_date, "
 					+ "mb.membership_tel, mb.membership_point "
 					+ "FROM receipt r "
-					+ "INNER JOIN menu m ON r.menu_id = m.menu_id "
 					+ "INNER JOIN membership mb ON r.membership_tel = mb.membership_tel";
 
 			try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet resultSet = pstmt.executeQuery()) {
@@ -241,10 +250,19 @@ public class OrderPage extends JFrame {
 //				        String totalPrice = resultSet.getString(" total_price");
 
 //					String orderData = "메뉴: " + menuName + ", 가격: " + menuPrice + "\n 총 가격: " + totalPrice;
+					
+					
 				     String orderData = "주문 번호: " + resultSet.getInt("receipt_id") +
 				    		  "\n 멤버십 번호: " + resultSet.getString("membership_tel") +
-	                            "\n 메뉴: " + resultSet.getString("menu_name") +
-	                            ", 가격: " + resultSet.getInt("menu_price") +
+	                            "\n 메뉴1: " + resultSet.getString("receipt_menu1") +
+	                            "\n 메뉴2: " + resultSet.getString("receipt_menu2") +
+	                            "\n 메뉴3: " + resultSet.getString("receipt_menu3") +
+	                            "\n 메뉴4: " + resultSet.getString("receipt_menu4") +
+	                            "\n 메뉴5: " + resultSet.getString("receipt_menu5") +
+	                            "\n 메뉴6: " + resultSet.getString("receipt_menu6") +
+	                            "\n 메뉴7: " + resultSet.getString("receipt_menu7") +
+	                            "\n 메뉴8: " + resultSet.getString("receipt_menu8") +
+	                            "\n 메뉴9: " + resultSet.getString("receipt_menu9") +
 	                            "\n 총 가격: " + resultSet.getInt("total_price") +
 	                            "\n 주문 일자: " + resultSet.getDate("receipt_date") + "\n";
 				     
