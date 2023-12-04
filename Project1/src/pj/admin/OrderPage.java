@@ -113,7 +113,6 @@ public class OrderPage extends JFrame {
 	}
 
 	private void showNextPage() {
-		// 주문 5개 이하만 보이게 
 		int ordersPerPage = 5; // 한 페이지에 표시할 주문 수
 		int startIndex = currentPage * ordersPerPage;
 		int endIndex = Math.min((currentPage + 1) * ordersPerPage, orderDataList.size()); // 둘 중 작은 수
