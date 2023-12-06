@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import database.JdbcConnection;
-import pj.Coffee.Beverage_Options;
+import pj.coffee.Beverage_Options;
 import pj_yr.ConeAndCup.ConeAndCup_00frame;
 
 public class ChoiceSelectBeverage extends JPanel {

@@ -1,4 +1,4 @@
-package pj.Coffee;
+package pj.coffee;
 
 import java.awt.CardLayout;
 import java.awt.Color;
