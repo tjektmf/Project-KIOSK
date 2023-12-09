@@ -1,12 +1,10 @@
 package pj.choice;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import pj.main.CategoryHome;
 
 public class ChoiceSelectAll extends JPanel {
 
@@ -15,22 +13,21 @@ public class ChoiceSelectAll extends JPanel {
 	ChoiceFrameSelect3 choiceFrameSelect3;
 	ChoiceFrameSelect4 choiceFrameSelect4;
 	ChoiceFrameSelect5 choiceFrameSelect5;
-//	JButton choiceSelectNextBtn;
-//	JButton choiceSelectPrevBtn;
+	CategoryHome categoryhome;
 	CardLayout menuCard;
-
+	
 	public ChoiceSelectAll(ChoiceFrame mainFrame) {
-		menuCard = new CardLayout(20, 20);
+		menuCard = new CardLayout();
 
 		setLayout(menuCard);
 
-//		choiceSelectNextBtn = new JButton(">>");
-//		choiceSelectPrevBtn = new JButton("<<");
 		choiceFrameSelect = new ChoiceFrameSelect(this);
 		choiceFrameSelect2 = new ChoiceFrameSelect2(this);
 		choiceFrameSelect3 = new ChoiceFrameSelect3(this);
 		choiceFrameSelect4 = new ChoiceFrameSelect4(this);
 		choiceFrameSelect5 = new ChoiceFrameSelect5(this);
+		
+		System.out.println(this);
 
 		// 아이스크림1 케잌2 커피3 음료4 디저트5 클래스 이름길어서 숫자붙임
 
@@ -40,10 +37,9 @@ public class ChoiceSelectAll extends JPanel {
 		add("coffee", choiceFrameSelect3);
 		add("beverage", choiceFrameSelect4);
 		add("dessert", choiceFrameSelect5);
-
-//		choiceFrameSelect.add(choiceSelectNextBtn);
-//		choiceFrameSelect.add(choiceSelectPrevBtn);
-
 	}
 
+	public void showCard(String cardName) {
+		menuCard.show(this, cardName);
+	}
 }

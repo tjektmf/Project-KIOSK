@@ -1,11 +1,14 @@
 package pj.choice;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import pj.main.CategoryHome;
 
 public class ChoiceFrameCategory extends JPanel {
 
@@ -21,8 +24,9 @@ public class ChoiceFrameCategory extends JPanel {
 		choiceSelectAll = mainFrame.choiceSelectAll;
 		GridLayout grid = new GridLayout(1, 5);
 		setLayout(grid);
-		grid.setHgap(50);
-		grid.setVgap(50);
+		grid.setHgap(10);
+		setBackground(new Color(244, 228, 225));
+		
 
 		choiceCategoryIceBtn = new ChoiceCategoryIceBtn(this);
 		choiceCategoryCakeBtn = new ChoiceCategoryCakeBtn(this);
