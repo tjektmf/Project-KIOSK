@@ -1182,19 +1182,6 @@ public class PointButton extends JFrame {
 		panel6btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//            for(int i =0; i<9; i++) {
-//            panel7ordertf.setText(choiceFrameBuyList.SAVED_BUYLIST1(i).getText() + 
-//                  choiceFrameBuyList.SAVED_BUYLIST2(i).getText() 
-//                  + choiceFrameBuyList.SAVED_BUYLIST3(i).getText()
-//                  + choiceFrameBuyList.SAVED_BUYLIST4(i).getText());
-//            }
-
-//            panel7ordertf.setText(choiceFrameBuyList.SAVED_BUYLIST1(0).getText() + 
-//                  choiceFrameBuyList.SAVED_BUYLIST2(0).getText()+
-//                  choiceFrameBuyList.SAVED_BUYLIST3(0).getText()+ 
-//                  choiceFrameBuyList.SAVED_BUYLIST1(1).getText()+
-//                  choiceFrameBuyList.SAVED_BUYLIST2(1).getText() 
-//                  );
 
 				panel7waittf.setText(Integer.toString(guest++));
 				panel7waittf.setHorizontalAlignment(JLabel.CENTER);
@@ -1582,8 +1569,9 @@ public class PointButton extends JFrame {
 				try (Connection conn = JdbcConnection.getConnection();) {
 					// 기본키를 넣을 때는 자바쪽에서 시퀀스를 불러 사용한다 fruit_id_seq.nextval
 					String sql1 = null;
+					String sql2 = null;
+					String sql3 = "select * from membership";
 					if (panel8tf.getText() != "") {
-						System.out.println("ddz");
 
 						sql1 = "insert into " + "receipt(receipt_id, receipt_date, membership_tel," + " total_price, "
 								+ " receipt_menu1, receipt_price1, receipt_menu2, receipt_price2, receipt_menu3, receipt_price3, receipt_menu4, receipt_price4, receipt_menu5, receipt_price5, receipt_menu6, receipt_price6, receipt_menu7, receipt_price7, receipt_menu8, receipt_price8, receipt_menu9, receipt_price9)"
@@ -1608,18 +1596,27 @@ public class PointButton extends JFrame {
 								+ choiceFrameBuyList.SAVED_BUYLIST1(8).getText() + "','"
 								+ choiceFrameBuyList.SAVED_BUYLIST7(8).getText() + "')";
 					}
-//						else if (panel8tf.getText() != "") {
-//
-//						sql1 = "insert into " + "receipt(receipt_id, menu_name, total_price, receipt_date, menu_price)"
-//								+ " values(receipt_id_seq.nextval, '" + choiceFrameBuyList.SAVED_BUYLIST1(0).getText()
-//								+ "', " + Integer.toString(choiceFramePrice.SAVED_PRICE()) + ", '" + now.toString()
-//								+ "', 0)";
-//					}
 
-					try (PreparedStatement pstmt = conn.prepareStatement(sql1);) {
+					try (PreparedStatement pstmt = conn.prepareStatement(sql1);
+							PreparedStatement pstmt2 = conn.prepareStatement(sql3);) {
+						ResultSet rs = pstmt2.executeQuery();
+						System.out.println(membership_tel);
+						while (rs.next()) {
+							if (rs.getString("membership_tel").equals(membership_tel)) {
+								for (int i = 0; i < 1; i++) {
+									System.out.println("있음");
+									sql2 = "update membership set membership_point = membership_point - "
+											+ Integer.parseInt(panel4pointtf.getText()) + " where membership_tel = "
+											+ membership_tel;
+									PreparedStatement pstmt3 = conn.prepareStatement(sql2);
+									int row2 = pstmt3.executeUpdate();
+									System.out.println(row2 + " 적립금 사용함" + i);
+								}
+							}
+						}
 						// INSERT, UPDATE, DELETE는 executeUpdate()로 실행해야함
 						int row = pstmt.executeUpdate();
-						System.out.println(row + "행이 변경됨");
+						System.out.println(row + "적용됨");
 					}
 
 				} catch (SQLException er) {

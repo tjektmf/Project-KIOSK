@@ -31,6 +31,7 @@ public class ChoiceTopButtonHome extends JButton {
 	//	setIcon(home);
 	//	setText("Home");
 		setBackground(new Color(255,255,255));
+		setBorderPainted(false);
 		
 		mainFrame.choiceTopButtonHome = choiceTopButtonHome;
 

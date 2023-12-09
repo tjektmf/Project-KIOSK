@@ -84,7 +84,7 @@ public class ChoiceFlavor_03prevOrNext extends JPanel {
 						choiceFrameBuyList.SAVED_BUYLIST4(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(2));
 						choiceFrameBuyList.SAVED_BUYLIST5(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(3));
 						choiceFrameBuyList.SAVED_BUYLIST6(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(4));
-				//		choiceFrameBuyList.SAVED_BUYLIST7(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(5));
+						// choiceFrameBuyList.SAVED_BUYLIST7(i).setText(choiceFlavor_02row2.SAVED_FLAVORLIST_NEW(5));
 						break;
 					}
 				}
