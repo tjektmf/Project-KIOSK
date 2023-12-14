@@ -1,5 +1,12 @@
 package pj.choice;
 
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -10,9 +17,21 @@ public class ChoiceTopButtonHome extends JButton {
 	public ChoiceTopButtonHome(ChoiceFrameTop mainFrame) {
 		
 
-		ImageIcon home = new ImageIcon("C:/ds/JavaStudy/myfiles/images/fruits/apple100.jpg");
-		setIcon(home);
-		setText("Home");
+		BufferedImage image;
+		try {
+			image = ImageIO.read(new File("img/daseul/home.png"));
+			Image scaledImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+			setIcon(new ImageIcon(scaledImage));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	//	ImageIcon home = new ImageIcon("img/daseul/home.png");
+	//	setIcon(home);
+	//	setText("Home");
+		setBackground(new Color(255,255,255));
+		
 		mainFrame.choiceTopButtonHome = choiceTopButtonHome;
 
 	}

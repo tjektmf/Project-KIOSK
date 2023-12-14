@@ -1,10 +1,10 @@
 package pj.choice;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Insets;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -22,18 +22,25 @@ public class ChoiceFrameSelect extends JPanel {
 		// all 패널을 메인프레임에 붙어야함 5개패널의 생성자에 들어갈 매개변수 변경이 필요함
 		
 		
-		BorderLayout border = new BorderLayout(40, 40);
+		BorderLayout border = new BorderLayout(0,0);
 		setLayout(border);
-		
 
-		choiceSelectNextBtn = new JButton(">>");
-		choiceSelectPrevBtn = new JButton("<<");
+		choiceSelectNextBtn = new JButton();
+		choiceSelectNextBtn.setIcon(new ImageIcon("img/daseul/longright.png"));
+		choiceSelectNextBtn.setBorderPainted(false);
+		choiceSelectNextBtn.setBackground(new Color(255,255,255));
+		choiceSelectNextBtn.setMargin(new Insets(0, -10, 0, -10));
+	
+		choiceSelectPrevBtn = new JButton();
+		choiceSelectPrevBtn.setIcon(new ImageIcon("img/daseul/longleft.png"));
+		choiceSelectPrevBtn.setBorderPainted(false);	
+		choiceSelectPrevBtn.setBackground(new Color(255,255,255));
+		choiceSelectPrevBtn.setMargin(new Insets(0, -10, 0, -10));
+		
 		choiceSelectIce = new ChoiceSelectIce(this);
 	
-		
 		add(choiceSelectNextBtn, BorderLayout.EAST);
 		add(choiceSelectPrevBtn, BorderLayout.WEST);
 		add(choiceSelectIce, BorderLayout.CENTER);
-	
 	}
 }
