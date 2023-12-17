@@ -55,7 +55,7 @@ public class ChoiceFlavor_04showFlavorSelections extends JPanel {
             System.out.println("Clicked Add Count: " + addCount);
 
             List<String> selectedFlavorName = ChoiceFlavor_02row2.getSelectedFlavorNames();
-            ChoiceFlavor_02row2.removeSelectedFlavor(flavorName);
+            
 
         }
 	}
