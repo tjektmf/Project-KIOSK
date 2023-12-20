@@ -4,6 +4,7 @@
 <h6> h는 6까지됨 </h6>
 <p style="color:red"> <b>볼드</b> 빨간색? </p>
 <span style="color:red">빨간색? </span>
+<span style="color: red">red</span>
 
 
 <hr>
