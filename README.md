@@ -1,5 +1,5 @@
 <h3> ㅎ2 </h3>
-<h2> read.me test</h2>
+<h2> readme.md test</h2>
 
 <h6> h는 6까지됨 </h6>
 <p> <b>볼드</b> </p>
