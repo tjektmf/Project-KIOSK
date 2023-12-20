@@ -2,7 +2,8 @@
 <h2> read.me test</h2>
 
 <h6> h는 6까지됨 </h6>
-<p style="color: red; border: solid black 1px"> 빨간색? </p>
+<p style="border: solid black 1px;"> <b>볼드</b> 빨간색? </p>
+
 
 <hr>
   
