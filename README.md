@@ -25,6 +25,6 @@
 <br>
 
 
-<h3>프로젝트 관련 프레젠테이션 자료</h3>
+<h3>프로젝트 프레젠테이션</h3>
 
 <a>https://www.miricanvas.com/v/12qydtf</a>
